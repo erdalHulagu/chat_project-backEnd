@@ -1,0 +1,76 @@
+server: 
+ port: 8080
+ error: 
+  include-binding-errors: always
+  include-message: always
+  
+spring: 
+ main: 
+  allow-circular-references: true # 8 ve 9 yeni eklendi
+ datasource: 
+  url: jdbc:mysql://localhost:3306/furkanvakfi
+  username: root
+  password: aylaadem233
+  driver-class-name: com.mysql.cj.jdbc.Driver
+ jpa:
+  hibernate: 
+   ddl-auto: update
+  show-sql: true
+  database-platform: org.hibernate.dialect.MySQLDialect
+  properties:
+   '[hibernate.format_sql]': true
+   
+ #image
+ servlet: 
+  multipart: 
+   max-file-size: 2MB
+   max-request-size: 5MB
+ mail: 
+  host: smtp.gmail.com
+  port: 587
+  username: Example@gmail.com
+  password: ExamplePassword
+  properties: 
+   mail: 
+    smtp: 
+     auth: true
+     starttls: 
+      enable: true
+   
+logging: 
+ file: 
+  name: log/games.log
+ pattern:
+  file: "%d %-5level [%thread] %logger:%msg%n"
+ level:
+  root : WARN
+  '[org.springframework.web]' : WARN
+  '[org.hibernate]' : INFO
+  '[com.ecommerce.games]' : DEBUG
+
+furkanVakfi: 
+  app: 
+    jwtSecret: secret123245151312
+    jwtExpirationMs: 86400000
+  
+#actuator deneme 
+management: 
+ endpoints: 
+  web: 
+   exposure: 
+    include: '*'
+ info: 
+  env: 
+   enabled: true
+ endpoint: 
+  health: 
+   show-details: always
+  shutdown: 
+   enabled: true
+
+info: 
+ application: 
+  name: 'FurkanVakfi Sohbet App'
+  description: 'This is furkan-vakfi Backend  chat Project'
+  version: '@project.version@'
+  

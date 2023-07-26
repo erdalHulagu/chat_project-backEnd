@@ -1,0 +1,73 @@
+package com.sohbet.controller;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sohbet.DTOresponse.ChatResponse;
+import com.sohbet.DTOresponse.LoginResponse;
+import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.request.LoginRequest;
+import com.sohbet.request.RegisterRequest;
+import com.sohbet.security.jwt.JwtUtils;
+import com.sohbet.service.UserService;
+
+import jakarta.validation.Valid;
+
+
+
+@RestController
+public class UserJwtController {
+
+	// Bu classımda sadece login ve register işlemleri yapılacak
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private JwtUtils jwtUtils;
+
+	// register
+	@PostMapping("/register")
+	public ResponseEntity<ChatResponse> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+		userService.saveUser(registerRequest);
+
+		ChatResponse response = new ChatResponse();
+		response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+		response.setSuccess(true);
+
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
+
+	// login
+	@PostMapping("/login")
+	public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginRequest loginRequest) {
+
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+				loginRequest.getEmail(), loginRequest.getPassword());
+
+		Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();// mevcut giriş yapan kullanıcıyı getirir
+
+		String jwtToken = jwtUtils.generateJwtToken(userDetails);
+
+		LoginResponse loginResponse = new LoginResponse(jwtToken);
+
+		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
+
+	}
+
+}
