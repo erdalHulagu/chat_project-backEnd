@@ -1,5 +1,7 @@
 package com.sohbet.security;
 
+
+	     
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.sohbet.security.jwt.AuthTokenFilter;
 
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true) // method bazlı çalışacağım
 public class SecurityConfig {
@@ -29,30 +32,51 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	
+//    @Bean
+//	public SecurityFilterChain filterChain( HttpSecurity http ) throws Exception{ 
+//    	http.csrf().disable().
+//    	          sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+//    	          and(). // Cors işlemleri (delete) için alttaki 2 satır eklendi
+//    	          authorizeRequests().requestMatchers(HttpMethod.OPTIONS,"/**").permitAll().and().
+//    			  authorizeRequests().
+//    			  antMatchers(
+//    					  						"/login", 
+//    					  						"/register",
+//    					  						"/files/download/**",
+//    					  						"/contactmessage/visitors",
+//    					  						"/files/display/**",
+//    					  						"/car/visitors/**",
+//    					  						"/actuator/info","/actuator/health").permitAll().
+//    			  anyRequest().authenticated();
+//    	
+//    	http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//    	return http.build();
+//    	    	
+//    }
+	  @Bean
+	  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    http
+	        .csrf()
+	        .disable().authorizeRequests()
+	        .requestMatchers(HttpMethod.OPTIONS, "/**")
+	        .permitAll()
+	        .and()
+	        .authorizeRequests()
+	        .requestMatchers("/login"
+	        		        , "/register" )
+	          .permitAll().anyRequest()
+	          .authenticated()
+	        .and()
+	          .sessionManagement()
+	          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	        .and()
+	        .authenticationProvider(authProvider())
+	        .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+	    ;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and() // Cors işlemleri (delete) için alttaki 2 satır eklendi
-                .authorizeRequests().requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().and()
-                .authorizeRequests()
-                .requestMatchers(
-                        "/login",
-                        "/register").permitAll()
-                .anyRequest().authenticated();
-
-        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-        
-        /*,
-    			"/files/download/**",
-    			"/contactmessage/visitors",
-    			"/files/display/**",
-    			"/car/visitors/**",
-    			"/actuator/info","/actuator/health" */
-    
-    }
+	    return http.build();
+	  }
     
     //*************** cors Ayarları ****************************
     
@@ -135,3 +159,6 @@ public class SecurityConfig {
 	
 
 }
+
+	
+

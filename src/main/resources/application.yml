@@ -39,7 +39,7 @@ spring:
    
 logging: 
  file: 
-  name: log/games.log
+  name: log/furkanVakfi.log
  pattern:
   file: "%d %-5level [%thread] %logger:%msg%n"
  level:
@@ -49,9 +49,9 @@ logging:
   '[com.ecommerce.games]' : DEBUG
 
 furkanVakfi: 
-  app: 
-    jwtSecret: secret123245151312
-    jwtExpirationMs: 86400000
+ app: 
+  jwtSecret: secret123245151312
+  jwtExpirationMs: 86400000
   
 #actuator deneme 
 management: 

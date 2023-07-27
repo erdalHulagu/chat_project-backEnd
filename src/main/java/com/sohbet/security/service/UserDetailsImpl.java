@@ -31,7 +31,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	// user --> UserDetails dönüşümünü yapacak build() metodu 
 	public static UserDetailsImpl build(User user) {
-		     List<SimpleGrantedAuthority> authorities =   user.getRoles().
+		     List<SimpleGrantedAuthority> authorities =   user.getRole().
 		    		 																									stream().
 		    		 																								    map(role->new SimpleGrantedAuthority(role.getType().name())).
 		    		 																								   collect(Collectors.toList());											

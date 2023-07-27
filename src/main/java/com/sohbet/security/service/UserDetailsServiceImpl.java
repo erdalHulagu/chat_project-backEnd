@@ -19,16 +19,14 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 
 	private final UserService userService;
 	
-	private final UserMapper userMapper;
 	
 	
 	
 	@Override
 	public UserDetails loadUserByUsername(String  email) throws UsernameNotFoundException {
 		
-		 UserDTO userDTO =  userService.getUserByEmail(email);
+		User user=  userService.getUserByEmail(email);
 		 
-	   User user= userMapper.userDTOToUser(userDTO);
 		 return UserDetailsImpl.build(user);
 	}
 

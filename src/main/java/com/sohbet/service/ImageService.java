@@ -1,5 +1,6 @@
 package com.sohbet.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,6 @@ import com.sohbet.imageUtils.ImageUtils;
 import com.sohbet.repository.FileDataRepository;
 import com.sohbet.repository.ImageRepository;
 
-import lombok.RequiredArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +21,13 @@ import java.nio.file.Files;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ImageService {
 
+	@Autowired
 	   private  ImageRepository imageRepository;
-
+	@Autowired
 	   private   FileDataRepository fileDataRepository;
-
-
+	@Autowired
 		private final String folder_path="C:\\Users\\user\\Pictures\\Saved Pictures";
 		
 		public String uploadImage(MultipartFile file) throws IOException {

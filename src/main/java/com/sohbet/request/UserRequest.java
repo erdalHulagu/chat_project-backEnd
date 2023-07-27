@@ -1,7 +1,13 @@
 package com.sohbet.request;
 
 
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Set;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
@@ -40,6 +46,12 @@ public class UserRequest {
 	@Size(max=100)
 	@NotBlank(message="Please provide your address")
 	private String address;
+	
+	@NotBlank(message="Please provide your update time")
+	private LocalDateTime createAt;
+
+	@NotBlank(message="Please provide your update time")
+	private LocalDateTime updateAt;
 	
 	@Column
 	private Set<String> image; 

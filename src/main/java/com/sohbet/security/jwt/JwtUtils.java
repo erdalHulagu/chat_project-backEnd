@@ -22,10 +22,10 @@ public class JwtUtils {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 	
-	@Value( "${visionrent.app.jwtSecret}")// jwtSecret değerini application.yml dosyasından alıyor
+	@Value( "${furkanVakfi.app.jwtSecret}")// jwtSecret değerini application.yml dosyasından alıyor
 	private String jwtSecret ;
 	
-	@Value("${visionrent.app.jwtExpirationMs}") // jwtExpirationMs değerini application.yml dosyasından alıyor
+	@Value("${furkanVakfi.app.jwtExpirationMs}") // jwtExpirationMs değerini application.yml dosyasından alıyor
 	private long jwtExpirationMs;
 	
 	// JWT token üretecek

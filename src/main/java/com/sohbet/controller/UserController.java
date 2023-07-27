@@ -3,15 +3,18 @@ package com.sohbet.controller;
 
 import java.util.List;
 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,9 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.request.UpdatePasswordRequest;
 import com.sohbet.request.UserRequest;
 import com.sohbet.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,18 +39,30 @@ public class UserController {
 
     private final UserService userService;
 	
-    
-    
-	@GetMapping("/{id}")
-	public ResponseEntity<UserDTO> getUser(@PathVariable Long id){
+//--------------- ger user by id--------------------------
+	@GetMapping( "/{id}/auth")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<UserDTO> getUserById( @PathVariable Long id   ) {
+		  UserDTO userDTO  = userService.getUserById(id);
+		  
+		  return ResponseEntity.ok(userDTO);
 		
-		UserDTO userDTO=userService. getUserById(id);
-		
-		return ResponseEntity.ok(userDTO);
-	
+	}
+
+	//Update Password
+	@PatchMapping("/auth")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('CUSTOMER')")
+	public  ResponseEntity<ChatResponse> updatePassword( @Valid @RequestBody  UpdatePasswordRequest updatePasswordRequest) {
+		userService.updatePassword(updatePasswordRequest);
+		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
+		 return ResponseEntity.ok(response) ;
+		 
 	}
 	
-	@GetMapping
+	
+    //--------------get all users pageable------------------
+	@GetMapping("/auth/pages")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Page<UserDTO>> getAllProductWithpage(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
 	                                                           @RequestParam(value = "size", required = false, defaultValue = "20") int size,
 	                                                           @RequestParam(value = "sort", required = false, defaultValue = "create_at") String prop,
@@ -61,7 +78,19 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 		
 	}
 	
-	@GetMapping("/admin")
+	//---------------------- get user ----------------------------
+	@GetMapping
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('CUSTOMER')  " )
+	public ResponseEntity<UserDTO> getUser() {
+		   UserDTO userDTO =  userService.getPrincipal();
+		   
+		   return ResponseEntity.ok(userDTO);
+		   
+	}
+	
+	//---------------------- get all users -------------------------
+	@GetMapping("/auth/all")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<List<UserDTO>>getAllUser(){
    
 		List<UserDTO> usersDTO = userService.getAllUsers();
@@ -70,15 +99,15 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 		
 	
 		
-	}
-	@PutMapping("/{imageId}")
-	
-	public ResponseEntity<UserDTO> upDateUser(@Validated @PathVariable String imageId, @RequestBody UserRequest userRequest){
+	}	
+	@PutMapping("/admin/auth")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<ChatResponse> upDateUser(@Validated @RequestParam("imageId") String imageId, @RequestBody UserRequest userRequest){
 		
-		 UserDTO updateduser = userService.updateUser(imageId,userRequest);
-		 ChatResponse response = new ChatResponse();
-		 response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-		 return ResponseEntity.ok(updateduser);
+		  userService.updateUser(imageId,userRequest);
+		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
+		 
+		 return ResponseEntity.ok(response);
 		
 	}
 	

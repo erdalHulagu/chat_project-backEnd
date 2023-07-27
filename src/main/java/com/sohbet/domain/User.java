@@ -1,6 +1,6 @@
 package com.sohbet.domain;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +17,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,24 +43,28 @@ public class User {
 	@Column(length = 50, nullable = false)
 	private String lastName;
 	
+	@Email
 	@Column(length = 80, nullable = false, unique = true)
 	private String email;
 	
 	@Column(length = 120, nullable = false)
 	private String password;
 	
+	@Pattern(message = "Please provide valid phone number",regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$")//(541) 317-8828
+	@Size(min=14, max=14)
+    @NotBlank(message = "Please provide your phone number")
 	@Column(length = 14, nullable = false)
 	private String phoneNumber;
 	
 	@CreationTimestamp
-	@Column(name = "create_at", nullable = false, updatable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-	private OffsetDateTime createAt;
+	@Column(name = "createAt", nullable = false, updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private LocalDateTime createAt;
 
 	@UpdateTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-	@Column(name = "update_at")
-	private OffsetDateTime updateAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	@Column(name = "updateAt")
+	private LocalDateTime updateAt;
 	
 	@Column(length =100, nullable = false)
 	private String address;
@@ -70,10 +77,8 @@ public class User {
 	private Boolean builtIn = false; // silinmesini ve değiştirilmesi istenmeyen obje..
 	
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)   // hibernate defaultta LAZY
-	@JoinTable( name="userRole",
-							 joinColumns = @JoinColumn(name="userId"),
-							 inverseJoinColumns = @JoinColumn(name="roleId"))
+	@OneToMany   // hibernate defaultta LAZY
+	@JoinTable( name="userRole",joinColumns = @JoinColumn(name="userId"),inverseJoinColumns = @JoinColumn(name="roleId"))
 	private  Set<Role> role = new HashSet<>();
 }
 

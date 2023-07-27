@@ -1,16 +1,12 @@
 package com.sohbet.DTO;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.sohbet.domain.Role;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,10 +42,10 @@ public class UserDTO {
 	private Set<String> image;
 	
 
-	private OffsetDateTime createAt;
+	private LocalDateTime createAt;
 
 
-	private OffsetDateTime updateAt;
+	private LocalDateTime updateAt;
 	
 	private Boolean builtIn ; // silinmesini ve değiştirilmesi istenmeyen obje..
 	
