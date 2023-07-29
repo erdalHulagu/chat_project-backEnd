@@ -14,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "file_data")
+@Table(name = "fileData")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

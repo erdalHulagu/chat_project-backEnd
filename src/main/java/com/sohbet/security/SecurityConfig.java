@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +27,7 @@ import com.sohbet.security.jwt.AuthTokenFilter;
 
 
 @Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) // method bazlı çalışacağım
 public class SecurityConfig {
 	
@@ -64,7 +66,8 @@ public class SecurityConfig {
 	        .and()
 	        .authorizeRequests()
 	        .requestMatchers("/login"
-	        		        , "/register" )
+	        		        , "/register",
+	        		           "/profile")
 	          .permitAll().anyRequest()
 	          .authenticated()
 	        .and()

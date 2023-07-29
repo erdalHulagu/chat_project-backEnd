@@ -1,7 +1,13 @@
 package com.sohbet.request;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -42,9 +48,14 @@ public class AdminUserUpdateRequest {
 	@NotBlank(message="Please provide your address")
 	private String address;
 	
-	@Size(max=15)
-	@NotBlank(message="Please provide your zip-code")
-	private String zipCode;
+
+	
+	private LocalDateTime createAt;
+
+	
+	private LocalDateTime updateAt;
+	
+	private Set<String> image ;
 	
 	private Boolean builtIn ;
 	

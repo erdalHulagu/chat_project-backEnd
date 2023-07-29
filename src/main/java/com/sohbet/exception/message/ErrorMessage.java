@@ -51,6 +51,8 @@ public class ErrorMessage {
 	public static final String USER_LIST_IS_EMPTY = "List of users is empty";
 	public static final String EMAIL_IS_NOT_MATCH = "Email is not match";
 	public static final String EMAIL_NOT_FOUND = "Email not found";
+	public static final String UNVALID_TOKEN = "Reciev invalid token";
+	public static final String CHAT_NOT_FOUND_MESSAGE = "Chat not found with id %s";
 	
 	
 	

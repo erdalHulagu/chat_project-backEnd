@@ -32,13 +32,13 @@ public class UserDetailsImpl implements UserDetails {
 	// user --> UserDetails dönüşümünü yapacak build() metodu 
 	public static UserDetailsImpl build(User user) {
 		     List<SimpleGrantedAuthority> authorities =   user.getRole().
-		    		 																									stream().
-		    		 																								    map(role->new SimpleGrantedAuthority(role.getType().name())).
-		    		 																								   collect(Collectors.toList());											
+		    		 									stream().
+		    		 									 map(role->new SimpleGrantedAuthority(role.getType().name())).
+		    		 									collect(Collectors.toList());											
 		    		 																																					
 		     return new UserDetailsImpl(user.getEmail(), user.getPassword(), authorities);
-	}
 	
+}
 	
 	
 	@Override

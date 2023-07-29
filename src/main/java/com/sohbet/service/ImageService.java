@@ -1,5 +1,6 @@
 package com.sohbet.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +15,6 @@ import com.sohbet.imageUtils.ImageUtils;
 import com.sohbet.repository.FileDataRepository;
 import com.sohbet.repository.ImageRepository;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,11 +23,17 @@ import java.util.Optional;
 @Service
 public class ImageService {
 
-	@Autowired
 	   private  ImageRepository imageRepository;
-	@Autowired
+
 	   private   FileDataRepository fileDataRepository;
-	@Autowired
+
+		@Autowired
+		public ImageService(ImageRepository imageRepository,  FileDataRepository fileDataRepository) {
+
+			this.imageRepository = imageRepository;
+			this.fileDataRepository=fileDataRepository;
+		}
+
 		private final String folder_path="C:\\Users\\user\\Pictures\\Saved Pictures";
 		
 		public String uploadImage(MultipartFile file) throws IOException {
@@ -49,9 +55,7 @@ public class ImageService {
 //--------------------------------------------------------------------------------------------
 
     public byte[] getImage(String id) {
-        Optional<Image> dbImageData = Optional.of(imageRepository.findImageById(id)
-        		                              .orElseThrow(()->new ResourceNotFoundException
-        		                              (String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE))));
+        Optional<Image> dbImageData = Optional.of(imageRepository.findImageById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true))));
         byte[] images = ImageUtils.decompressImage(dbImageData.get().getData());
         return images;
     }
@@ -63,7 +67,7 @@ public class ImageService {
 	}
 
 	public Image findImageByImageId(String id) {
-		return imageRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE)));
+		return imageRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
 
 	}
 

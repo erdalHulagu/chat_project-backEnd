@@ -3,7 +3,7 @@ package com.sohbet.controller;
 
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,19 +26,28 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.mapper.UserMapper;
+import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.UpdatePasswordRequest;
-import com.sohbet.request.UserRequest;
+import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.service.UserService;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
+    private  UserService userService;
+    
+    private  UserMapper userMapper;
+    
+    @Autowired
+    public UserController(UserService userService,UserMapper userMapper) {
+		this.userService=userService;
+		this.userMapper=userMapper;
+	}
+    
 	
 //--------------- ger user by id--------------------------
 	@GetMapping( "/{id}/auth")
@@ -102,7 +112,7 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 	}	
 	@PutMapping("/admin/auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ChatResponse> upDateUser(@Validated @RequestParam("imageId") String imageId, @RequestBody UserRequest userRequest){
+	public ResponseEntity<ChatResponse> upDateUser(@Validated @RequestParam("imageId") String imageId, @RequestBody UpdateUserRequest userRequest){
 		
 		  userService.updateUser(imageId,userRequest);
 		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
@@ -117,6 +127,7 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 		userService.deleteUserWithId(id);
 		ChatResponse response = new ChatResponse();
 		 response.setMessage(ResponseMessage.USER_DELETED);
+		 response.setSuccess(true);
 		
 		return ResponseEntity.ok(response);
 		
@@ -124,6 +135,50 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 	
 	}
 	
+	// Admin herhangi bir kullanıcıyı update etsin
+		@PutMapping("/{id}/auth")
+		@PreAuthorize("hasRole('ADMIN')")
+		public ResponseEntity<ChatResponse> updateUserAuth( @PathVariable Long id ,  
+				  @Valid @RequestBody AdminUserUpdateRequest adminUserUpdateRequest ) {
+			
+			 userService.updateUserAuth(id,adminUserUpdateRequest);
+			 
+			 ChatResponse response = new ChatResponse();
+				response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+				response.setSuccess(true);
+				
+				return ResponseEntity.ok(response);
+			
+			
+		}
+	@GetMapping("/profile")
+	public ResponseEntity<UserDTO>getUserProfile(@RequestHeader ("Authorization") String token){
+		
+	UserDTO userDTO=	userService.findUserProfile(token);
+	 return ResponseEntity.ok(userDTO);
+		
+		
+		
+		
+	}
+	
+	@GetMapping("/{query}")
+	public ResponseEntity<List<UserDTO>> searchUser (@PathVariable("query")String query) {
+		
+	List<UserDTO> userDTOs=	userService.searchUsers(query);
+	
+	return ResponseEntity.ok(userDTOs);
+		
+	}
+	
+	//------- ikinci update token ile olacakti yarim biraktin----------------
+//	@PutMapping("/update")
+//	public ResponseEntity<ChatResponse> updateUserHandler(@RequestBody UpdateUserRequest userRequest,@RequestHeader ("Authorization") String token){
+//		UserDTO userDTO=	userService.findUserProfile(token);
+//	User user=	userMapper.userDTOToUser(userDTO);
+//		
+//		userService.updateuser(user);
+//	}
 	
 	
 }

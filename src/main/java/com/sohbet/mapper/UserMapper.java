@@ -10,10 +10,11 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import com.sohbet.DTO.UserDTO;
+import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
-import com.sohbet.request.UserRequest;
+import com.sohbet.request.UpdateUserRequest;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -30,15 +31,16 @@ public interface UserMapper {
 	@Mapping(target = "password", ignore=true)
 	@Mapping(target = "role", ignore=true)
 	@Mapping(target = "image",source = "image",qualifiedByName = "getImageAsLong")
-	User userRequestToUser(UserRequest userRequest);
+	User userRequestToUser(UpdateUserRequest userRequest);
 	
 
 
 	@Mapping(target = "image",source = "image",qualifiedByName = "getImageAsString")
+	@Mapping(target = "roles", ignore = true)
 	UserDTO userToUserDto(User user);
 	
 	
-	List<UserDTO> userToUserDTOList(List<User> userList);
+	List<UserDTO> userToUserDTOList(List<User> user);
 	  
 	 // long turunde image i image turunde image e cevidik
 	 @Named("getImageAsLong")

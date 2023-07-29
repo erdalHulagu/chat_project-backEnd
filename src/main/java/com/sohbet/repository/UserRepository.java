@@ -1,11 +1,12 @@
 package com.sohbet.repository;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,7 +19,7 @@ import com.sohbet.domain.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>  {
 
-@EntityGraph(attributePaths = "roles")
+    @EntityGraph(attributePaths = "roles")
 	Optional<User> findByEmail(String email);
 
 	@EntityGraph(attributePaths = "image")
@@ -28,6 +29,10 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	List<User> findAll();
 
 
+	@EntityGraph(attributePaths = "roles")
+	Page<User> findAll(Pageable pageable);
+	
+	
 	Boolean existsByEmail(String email);
 
 	@Modifying // JpaRepository içinde custom bir query ile DML operasyonları yapılıyor ise  @Modifying konulur
@@ -42,5 +47,9 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 			   	@Param("email") String email,
 			   	@Param("createAt")  LocalDateTime createAt,
 			   	@Param("updateAt")  LocalDateTime updateAt
-			   					);
+			   	);
+	@Modifying
+	@Query("SELECT u FROM User u WHERE u.firstName LIKE CONCAT('%', :query, '%') OR u.email LIKE CONCAT('%', :query, '%')")
+	public List<User>searchUser(@Param("query") String query);
 }
+

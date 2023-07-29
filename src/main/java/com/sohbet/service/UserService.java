@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,42 +13,50 @@ import org.springframework.stereotype.Service;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
+import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
+import com.sohbet.enums.RoleType;
 import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.UserRepository;
+import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdatePasswordRequest;
-import com.sohbet.request.UserRequest;
+import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.SecurityUtils;
-
-import jakarta.validation.Valid;
-
-import com.sohbet.domain.Role;
-import com.sohbet.enums.RoleType;
-
-import lombok.RequiredArgsConstructor;
+import com.sohbet.security.jwt.JwtUtils;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
-	private final UserRepository userRepository;
+	private  UserRepository userRepository;
 	
-	private final UserMapper userMapper;
+	private  UserMapper userMapper;
 	
-	private final ImageService imageService;
+	private  ImageService imageService;
 	
-	private final RoleService roleService;
+	private  RoleService roleService;
 	
-	private final PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 	
+	private  JwtUtils jwtUtils;
 	
+	@Autowired
+	public UserService( UserRepository userRepository,UserMapper userMapper,ImageService imageService,
+			            RoleService roleService,PasswordEncoder passwordEncoder,JwtUtils jwtUtils) {
+		
+		this.userRepository=userRepository;
+		this.userMapper=userMapper;
+		this.imageService=imageService;
+		this.roleService=roleService;
+		this.passwordEncoder=passwordEncoder;
+		this.jwtUtils=jwtUtils;
+		
 	
-	
+	}
 	
 	public UserDTO getPrincipal() {
 		 User currentUser =  getCurrentUser();
@@ -60,7 +70,7 @@ public class UserService {
 	public User getCurrentUser() {
 		
 		String email = SecurityUtils.getCurrentUserLogin().orElseThrow(()->
-		 new ResourceNotFoundException(ErrorMessage.PRINCIPAL_FOUND_MESSAGE));
+		 new ResourceNotFoundException(String.format(ErrorMessage.PRINCIPAL_FOUND_MESSAGE)));
 		User user=  getUserByEmail(email);
 		return user ;
 	}
@@ -177,7 +187,7 @@ public class UserService {
 		}
 		
 		//----------------------- update user ----------------------
-		public UserDTO updateUser(String imageId, UserRequest userRequest) {
+		public UserDTO updateUser(String imageId, UpdateUserRequest userRequest) {
 
 		User user = getCurrentUser();
 		
@@ -226,6 +236,7 @@ public class UserService {
 			userRepository.deleteById(id);
 			
 		}
+		
 
 
 		
@@ -258,8 +269,123 @@ public class UserService {
 		 return userDTOPage;
 		
 	}
+	
+	//------------find user profil-------------------
+
+	public UserDTO findUserProfile(String token) {
+		
+		String email=jwtUtils.getEmailFromToken(token);
+		
+		if (email==null) {
+			throw new BadRequestException(ErrorMessage.UNVALID_TOKEN);
+			
+		}
+		User user=getUserByEmail(email);
+		
+		if (user==null) {
+			throw new ResourceNotFoundException(ErrorMessage.USER_NOT_FOUND_MESSAGE);
+		}
+		
+	UserDTO userDTO=	userMapper.userToUserDto(user);
+		
+		return userDTO;
+	}
+	
+	//------------- search users ----------------------
+	
+	public List<UserDTO> searchUsers(String query){
+		List<User> userDTOs=userRepository.searchUser(query);
+		List<UserDTO> userDTOlist=	userMapper.userToUserDTOList(userDTOs);
+		
+		return userDTOlist;
+	}
 
 
+    //----------------- user update auth----------------------
+public void updateUserAuth(Long id, AdminUserUpdateRequest adminUserUpdateRequest) {
+		
+		UserDTO userDto = getUserById(id);
+		User user =userMapper.userDTOToUser(userDto);
+		
+		 // builtIn mi kontrol ediyoruz
+	     if(user.getBuiltIn()) {
+	    	 throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	    	 
+	     }
+	    
+	      boolean emailExist  = userRepository.existsByEmail(adminUserUpdateRequest.getEmail());
+	      
+	      if(emailExist && ! adminUserUpdateRequest.getEmail().equals(user.getEmail())) {
+	    	  throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, 
+	    			  adminUserUpdateRequest.getEmail()));
+	      }
+	      
+	      // password boş ise
+	      if(adminUserUpdateRequest.getPassword()==null) {
+	    	  adminUserUpdateRequest.setPassword(user.getPassword());
+	      } else  {
+	    	  String encodedPassword =  passwordEncoder.encode(adminUserUpdateRequest.getPassword());
+	    	  adminUserUpdateRequest.setPassword(encodedPassword);
+	      }
+	      
+	      // Customer    ----  ROLE_CUSTOMER
+	      // Administrator   ---- ROLE_ADMIN
+	       Set<String> userStrRoles =   adminUserUpdateRequest.getRoles();
+	       
+	       Set<Role> roles = convertRoles(userStrRoles);
+	       
+	       Set<String> userimage =   adminUserUpdateRequest.getImage();
+	       
+	      Set<Image> image= getImage(userimage);
+	       
+	      user.setImage(image);
+	       user.setFirstName(adminUserUpdateRequest.getFirstName());
+	       user.setLastName(adminUserUpdateRequest.getLastName());
+	       user.setEmail(adminUserUpdateRequest.getEmail());
+	       user.setPassword(adminUserUpdateRequest.getPassword());
+	       user.setPhoneNumber(adminUserUpdateRequest.getPhoneNumber());
+	       user.setAddress(adminUserUpdateRequest.getAddress());
+	       user.setBuiltIn(adminUserUpdateRequest.getBuiltIn() );
+	       
+	       user.setRole(roles);
+	       
+	       userRepository.save(user);
+	       
+			
+		}
+
+		private Set<Image> getImage(Set<String> imageUrls) {
+				 Set<Image> images = new HashSet<>();
+			        for (String imageUrl : imageUrls) {
+			            Image image = new Image();
+			            image.setId(imageUrl);   // Eğer Image sınıfında başka alanlar varsa, diğer alanları da ayarlayabilirsiniz
+			            images.add(image);
+			        }
+			        return images;
+			
+		}
+		//-------------- Converts Role methodu--------------
+		public Set<Role> convertRoles(Set<String> pRoles) {
+			Set<Role> roles = new HashSet<>();
+			
+			if(pRoles==null) {
+				 Role userRole =  roleService.findByType(RoleType.ROLE_CUSTOMER);
+				 roles.add(userRole);
+			}else {
+				pRoles.forEach(roleStr->{
+					if(roleStr.equals(RoleType.ROLE_ADMIN.getName())) { // Administrator
+						 Role adminRole = roleService.findByType(RoleType.ROLE_ADMIN);
+						roles.add(adminRole);
+						
+					}else {
+						Role userRole = roleService.findByType(RoleType.ROLE_CUSTOMER);
+						roles.add(userRole);
+					}
+				});
+			}
+			
+			return roles;
+		}
 		
 }
 		

@@ -11,7 +11,8 @@ public class ChatResponse {
 	
 	private String message;
 	private boolean success; 
-	
+	 
+
 	}
 
 

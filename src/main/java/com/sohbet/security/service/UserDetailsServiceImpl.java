@@ -1,23 +1,23 @@
 package com.sohbet.security.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.User;
-import com.sohbet.mapper.UserMapper;
+import com.sohbet.exception.ResourceNotFoundException;
+import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.service.UserService;
 
-import lombok.RequiredArgsConstructor;
 
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService{
 
-	private final UserService userService;
+	@Autowired
+	private UserService userService;
 	
 	
 	
@@ -27,7 +27,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		User user=  userService.getUserByEmail(email);
 		 
+		if (user==null) {
+			throw new ResourceNotFoundException(ErrorMessage.USER_NOT_FOUND_MESSAGE,email);
+			
+		}
 		 return UserDetailsImpl.build(user);
 	}
+	
+	
 
 }

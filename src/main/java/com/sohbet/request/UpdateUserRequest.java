@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequest {
+public class UpdateUserRequest {
 	
 	@Size(max=50)
 	@NotBlank(message="Please provide your First name")
