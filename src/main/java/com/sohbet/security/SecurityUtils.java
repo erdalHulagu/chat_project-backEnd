@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 public class SecurityUtils {
 	// controller katmanında anlık olarak login olan kullanıcıya ihtiyacım olursa buradaki metodu kullanayım
 	
@@ -51,3 +52,4 @@ public class SecurityUtils {
 	
 
 }
+

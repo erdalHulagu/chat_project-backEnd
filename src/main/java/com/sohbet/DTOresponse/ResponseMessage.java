@@ -37,4 +37,6 @@ public class ResponseMessage {
 	public static final String USER_DELETED = "User deleted succesfully";
 
 	public static final String CHAT_CREATED_MESSAGE = "Chat created sucesfully";
+
+	public static final String CHAT_DELETED_MESSAGE = "Chat deleted succesfully";
 }

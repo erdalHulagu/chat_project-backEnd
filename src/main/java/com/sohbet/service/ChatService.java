@@ -1,10 +1,6 @@
 package com.sohbet.service;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-
-import org.apache.poi.xssf.usermodel.XSSFChildAnchor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +8,14 @@ import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.User;
+import com.sohbet.enums.RoleType;
+import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.ChatMapper;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.ChatRepository;
+import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.GroupChatRequest;
 
 @Service
@@ -83,7 +82,7 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 	}
 	
 	
-	//---------------- createGroup chat------------------
+	//---------------- createGroup chat------------------ BUNA KADAR CONTROLLER YAPILDI
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
 		
 		Chat chat= new Chat();
@@ -92,6 +91,7 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 		chat.setChatImage(groupChatRequest.getChatImage());
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);
+		chat.getAdmin().add(user);
 		
 		for (Long userId : groupChatRequest.getUserIds()) {
 			
@@ -103,5 +103,74 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 		return chatDTO;
 		
 	}
+	
+	//-----------add user to group-------------------
+	public ChatDTO addUserToGroup(Long userId, Long id, User user) {
+		ChatDTO chatDTO = findChatById(id);
+		Chat chat =chatMapper.chatDTOToChat(chatDTO);
+	
+		
+		UserDTO userDTO=userService.getUserById(userId);
+		User user1=userMapper.userDTOToUser(userDTO);
+	if (chat.getAdmin().contains(user)) {
+		chat.getUsers().add(user1);
+		
+		chatRepository.save(chat);
+		ChatDTO chatDTO2 =chatMapper.chatToChatDTO(chat);
+		
+		return chatDTO2;
+	}
+	throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+		
+	
+		
+	}
+	
+	
+	//-----------------rename group---------
+	public ChatDTO renameGroup (Long id, String goupName, User user) {
+		
+		ChatDTO chatDTO = findChatById(id);
+		Chat chat =chatMapper.chatDTOToChat(chatDTO);
+		
+		if(chat.getUsers().contains(user)) {
+			chat.setChatName(goupName);
+			Chat cht =chatRepository.save(chat);
+			ChatDTO chatDto1 = chatMapper.chatToChatDTO(cht);
+			return chatDto1;
+		}
+		throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	}
+	
+	//----------------------remove chat group -------------
+   public ChatDTO removeGroup (Long id, Long userId, User user) {
+		
+	     ChatDTO chatDTO = findChatById(id);
+	    Chat chat =chatMapper.chatDTOToChat(chatDTO);
+
+	
+	       UserDTO userDTO=userService.getUserById(userId);
+	    User user1=userMapper.userDTOToUser(userDTO);
+      if (chat.getAdmin().contains(user)||user1.getId().equals(user.getId())) {
+	        chat.getUsers().remove(user1);
+	
+	       chatRepository.save(chat);
+	        ChatDTO chatDTO2 =chatMapper.chatToChatDTO(chat);
+	
+	            return chatDTO2;
+}
+          throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	
+
+	
+}
+   //----------- deleteChat-----------------
+   public void deleteChat (Long id, Long userId) {
+		
+	     ChatDTO chatDTO = findChatById(id);
+	    Chat chat =chatMapper.chatDTOToChat(chatDTO);
+	    chatRepository.deleteById(chat.getId());
+
+   }
 
 }

@@ -1,19 +1,22 @@
 package com.sohbet.domain;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.sohbet.request.AdminUserUpdateRequest;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,8 +34,10 @@ public class Chat {
 	
 	@Column(length = 50, nullable = false)
 	private String chatName;
-	
-    private Set<Image> chatImage;
+		
+   private Set<Image> chatImage=new HashSet<>();
+   
+   private Set<User> admin=new HashSet<>();
 	
 	@Column(name = "is_group")
 	private Boolean isGroup;

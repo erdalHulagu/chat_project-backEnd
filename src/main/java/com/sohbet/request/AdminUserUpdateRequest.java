@@ -3,15 +3,11 @@ package com.sohbet.request;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,7 +55,7 @@ public class AdminUserUpdateRequest {
 	
 	private Boolean builtIn ;
 	
-	private Set<String> roles ;
+	private Set<String> role ;
 
 
 }

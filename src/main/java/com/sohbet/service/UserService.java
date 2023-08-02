@@ -93,9 +93,9 @@ public class UserService {
 		// ------------- find user by email ---------------
 			public User getUserByEmail(String email) {
 				
-		        User	user =	(userRepository.findByEmail
+		        User	user =	userRepository.findByEmail
 				                            (email).orElseThrow(
-				                                  ()-> new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_NOT_FOUND))));
+				                                  ()-> new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_NOT_FOUND)));
 			
 
 		return user;
@@ -186,44 +186,6 @@ public class UserService {
 			
 		}
 		
-		//----------------------- update user ----------------------
-		public UserDTO updateUser(String imageId, UpdateUserRequest userRequest) {
-
-		User user = getCurrentUser();
-		
-	       if ((user==null||user.getBuiltIn())) {
-	    	throw	new ResourceNotFoundException(String.format(ErrorMessage.NO_PERMISSION_MESSAGE ));
-		}
-	       boolean emailExist  = userRepository.existsByEmail(userRequest.getEmail());
-		      
-		      if(emailExist && ! userRequest.getEmail().equals(user.getEmail())) {
-		    	  throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,userRequest.getEmail()));
-		      }
-		    			  
-		    Image imageFile =getImage(imageId);
-	   
-	      
-	        Set<Image> image = new HashSet<>();
-	        image.add(imageFile);
-	        user.setImage(image);
-	       
-	User	usr= userRepository.update(user.getId(),
-
-				 userRequest.getFirstName(),
-				 userRequest.getLastName(),
-				 userRequest.getAddress(),
-				 userRequest.getImage(),
-				 userRequest.getPhoneNumber(),
-				 userRequest.getEmail(),
-				 userRequest.getCreateAt(),
-				 userRequest.getUpdateAt()
-				               
-				                       );
-		         
-		   UserDTO userDTO =  userMapper.userToUserDto(usr);
-		
-		   return userDTO;
-		}
 
 		//------------- delete user -----------------
 		public void deleteUserWithId(Long id) {
@@ -330,7 +292,7 @@ public void updateUserAuth(Long id, AdminUserUpdateRequest adminUserUpdateReques
 	      
 	      // Customer    ----  ROLE_CUSTOMER
 	      // Administrator   ---- ROLE_ADMIN
-	       Set<String> userStrRoles =   adminUserUpdateRequest.getRoles();
+	       Set<String> userStrRoles =   adminUserUpdateRequest.getRole();
 	       
 	       Set<Role> roles = convertRoles(userStrRoles);
 	       

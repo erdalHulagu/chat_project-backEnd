@@ -39,7 +39,7 @@ public class UserDTO {
 	private String address;
 	
 	
-	private Set<String> image;
+	private Set<String> image=new HashSet<>();
 	
 
 	private LocalDateTime createAt;
@@ -50,7 +50,7 @@ public class UserDTO {
 	private Boolean builtIn ; // silinmesini ve değiştirilmesi istenmeyen obje..
 	
 	
-	private  Set<String> roles ;
+	private  Set<String> roles=new HashSet<>() ;
 	
 	public void setRoles(Set<Role> roles) {
 		

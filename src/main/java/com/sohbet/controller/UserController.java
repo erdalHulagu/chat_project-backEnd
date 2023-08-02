@@ -32,8 +32,6 @@ import com.sohbet.request.UpdatePasswordRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.service.UserService;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -62,7 +60,7 @@ public class UserController {
 	//Update Password
 	@PatchMapping("/auth")
 	@PreAuthorize("hasRole('ADMIN') or hasRole('CUSTOMER')")
-	public  ResponseEntity<ChatResponse> updatePassword( @Valid @RequestBody  UpdatePasswordRequest updatePasswordRequest) {
+	public  ResponseEntity<ChatResponse> updatePassword( @Validated @RequestBody  UpdatePasswordRequest updatePasswordRequest) {
 		userService.updatePassword(updatePasswordRequest);
 		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
 		 return ResponseEntity.ok(response) ;
@@ -110,16 +108,16 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 	
 		
 	}	
-	@PutMapping("/admin/auth")
-	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<ChatResponse> upDateUser(@Validated @RequestParam("imageId") String imageId, @RequestBody UpdateUserRequest userRequest){
-		
-		  userService.updateUser(imageId,userRequest);
-		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
-		 
-		 return ResponseEntity.ok(response);
-		
-	}
+//	@PutMapping("/admin/auth")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	public ResponseEntity<ChatResponse> upDateUser(@Validated @RequestParam("imageId") String imageId, @RequestBody UpdateUserRequest userRequest){
+//		
+//		  userService.updateUser(imageId,userRequest);
+//		 ChatResponse response = new ChatResponse(ResponseMessage.USER_UPDATED_MESSAGE, true);
+//		 
+//		 return ResponseEntity.ok(response);
+//		
+//	}
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<ChatResponse> deleteUser(@PathVariable Long id){
@@ -135,41 +133,41 @@ Pageable pageable = PageRequest.of(page, size, Sort.by(direction, prop));
 	
 	}
 	
-	// Admin herhangi bir kullanıcıyı update etsin
-		@PutMapping("/{id}/auth")
-		@PreAuthorize("hasRole('ADMIN')")
-		public ResponseEntity<ChatResponse> updateUserAuth( @PathVariable Long id ,  
-				  @Valid @RequestBody AdminUserUpdateRequest adminUserUpdateRequest ) {
-			
-			 userService.updateUserAuth(id,adminUserUpdateRequest);
-			 
-			 ChatResponse response = new ChatResponse();
-				response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-				response.setSuccess(true);
-				
-				return ResponseEntity.ok(response);
-			
-			
-		}
-	@GetMapping("/profile")
-	public ResponseEntity<UserDTO>getUserProfile(@RequestHeader ("Authorization") String token){
-		
-	UserDTO userDTO=	userService.findUserProfile(token);
-	 return ResponseEntity.ok(userDTO);
-		
-		
-		
-		
-	}
-	
-	@GetMapping("/{query}")
-	public ResponseEntity<List<UserDTO>> searchUser (@PathVariable("query")String query) {
-		
-	List<UserDTO> userDTOs=	userService.searchUsers(query);
-	
-	return ResponseEntity.ok(userDTOs);
-		
-	}
+//	// Admin herhangi bir kullanıcıyı update etsin
+//		@PutMapping("/{id}/auth")
+//		@PreAuthorize("hasRole('ADMIN')")
+//		public ResponseEntity<ChatResponse> updateUserAuth( @PathVariable Long id ,  
+//				  @Valid @RequestBody AdminUserUpdateRequest adminUserUpdateRequest ) {
+//			
+//			 userService.updateUserAuth(id,adminUserUpdateRequest);
+//			 
+//			 ChatResponse response = new ChatResponse();
+//				response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+//				response.setSuccess(true);
+//				
+//				return ResponseEntity.ok(response);
+//			
+//			
+//		}
+//	@GetMapping("/profile")
+//	public ResponseEntity<UserDTO>getUserProfile(@RequestHeader ("Authorization") String token){
+//		
+//	UserDTO userDTO=	userService.findUserProfile(token);
+//	 return ResponseEntity.ok(userDTO);
+//		
+//		
+//		
+//		
+//	}
+//	
+//	@GetMapping("/{query}")
+//	public ResponseEntity<List<UserDTO>> searchUser (@PathVariable("query")String query) {
+//		
+//	List<UserDTO> userDTOs=	userService.searchUsers(query);
+//	
+//	return ResponseEntity.ok(userDTOs);
+//		
+//	}
 	
 	//------- ikinci update token ile olacakti yarim biraktin----------------
 //	@PutMapping("/update")

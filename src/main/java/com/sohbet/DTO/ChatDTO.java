@@ -19,7 +19,7 @@ public class ChatDTO {
 	private String chatName;
 	
 	
-	private Set<String> chatImage;
+	private Set<String> chatImage=new HashSet<>();
 	
 	
 	private Boolean isGroup;

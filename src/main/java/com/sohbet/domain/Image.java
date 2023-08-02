@@ -1,19 +1,23 @@
 package com.sohbet.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -21,8 +25,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "image")
 public class Image {
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID) 
-//	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 
 	@Lob

@@ -22,16 +22,14 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	
 	
+	
 	@Override
 	public UserDetails loadUserByUsername(String  email) throws UsernameNotFoundException {
 		
-		User user=  userService.getUserByEmail(email);
-		 
-		if (user==null) {
-			throw new ResourceNotFoundException(ErrorMessage.USER_NOT_FOUND_MESSAGE,email);
-			
-		}
+		 User user =  userService.getUserByEmail(email);
 		 return UserDetailsImpl.build(user);
+	
+
 	}
 	
 	
