@@ -53,6 +53,7 @@ public class ErrorMessage {
 	public static final String EMAIL_NOT_FOUND = "Email not found";
 	public static final String UNVALID_TOKEN = "Reciev invalid token";
 	public static final String CHAT_NOT_FOUND_MESSAGE = "Chat not found with id %s";
+	public static final String MESSAGE_NOT_FOUND = "Message not found with id %s";
 	
 	
 	

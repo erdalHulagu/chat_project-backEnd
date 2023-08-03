@@ -45,7 +45,7 @@ public class ChatController {
 	}
 	
 	@PostMapping("//single")
-	public ResponseEntity<ChatDTO> createChat(@RequestBody SingleChatRequest singleChatRequest, @RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<ChatDTO> createChat(@RequestBody SingleChatRequest singleChatRequest, @RequestHeader ("Authorization") String jwt){
 		
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);
@@ -64,7 +64,7 @@ public class ChatController {
 	}
 	
 	@GetMapping("/user")
-	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId(@RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId(@RequestHeader ("Authorization") String jwt){
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);	
 		
@@ -75,7 +75,7 @@ public class ChatController {
 	}
 	
 	@PostMapping("/group")
-	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest, @RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest, @RequestHeader ("Autorization") String jwt){
 		
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);
@@ -87,7 +87,7 @@ public class ChatController {
 	}
 	
 	@PutMapping("/{chatId}/add/{userId}")
-	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long id,@PathVariable Long userId, @RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long id,@PathVariable Long userId, @RequestHeader ("Authorization") String jwt){
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);	
 		
@@ -98,7 +98,7 @@ public class ChatController {
 	}
 	
 	@PutMapping("/{chatId}/remove/{userId}")
-	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long id,@PathVariable Long userId, @RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long id,@PathVariable Long userId, @RequestHeader ("Authorization") String jwt){
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);	
 		
@@ -108,7 +108,7 @@ public class ChatController {
 		
 	}
 	@DeleteMapping("/delete/{chatId}")
-	public ResponseEntity<ChatResponse>deleteUserFromGroup(@PathVariable Long id, @RequestHeader ("Auhorization") String jwt){
+	public ResponseEntity<ChatResponse>deleteUserFromGroup(@PathVariable Long id, @RequestHeader ("Authorization") String jwt){
 		UserDTO userDTO=userService.findUserProfile(jwt);
 		User user=userMapper.userDTOToUser(userDTO);	
 		chatService.deleteChat(id,user.getId());
