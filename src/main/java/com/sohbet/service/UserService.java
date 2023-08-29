@@ -1,127 +1,101 @@
 package com.sohbet.service;
 
-
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.visionrent.domain.Role;
-import com.visionrent.domain.User;
-import com.visionrent.domain.enums.RoleType;
-import com.visionrent.dto.UserDTO;
-import com.visionrent.dto.request.AdminUserUpdateRequest;
-import com.visionrent.dto.request.RegisterRequest;
-import com.visionrent.dto.request.UpdatePasswordRequest;
-import com.visionrent.dto.request.UserUpdateRequest;
-import com.visionrent.exception.BadRequestException;
-import com.visionrent.exception.ConflictException;
-import com.visionrent.exception.ResourceNotFoundException;
-import com.visionrent.exception.message.ErrorMessage;
-import com.visionrent.mapper.UserMapper;
-import com.visionrent.repository.UserRepository;
-import com.visionrent.security.SecurityUtils;
+import com.sohbet.DTO.UserDTO;
+import com.sohbet.domain.Image;
+import com.sohbet.domain.Role;
+import com.sohbet.domain.User;
+import com.sohbet.enums.RoleType;
+import com.sohbet.exception.ConflictException;
+import com.sohbet.exception.ResourceNotFoundException;
+import com.sohbet.exception.message.ErrorMessage;
+import com.sohbet.mapper.UserMapper;
+import com.sohbet.repository.UserRepository;
+import com.sohbet.request.RegisterRequest;
+import com.sohbet.request.UserRequest;
+import com.sohbet.security.config.SecurityUtils;
 
 
 @Service
 public class UserService {
 	
-	
 	private UserRepository userRepository;
 	
-	
-	private RoleService roleService ;
-	
-
-	private PasswordEncoder passwordEncoder;
+	private ImageService imageService;
 	
 	private UserMapper userMapper;
 	
-	private ReservationService reservationService;
-	
-	
+	private RoleService roleService;
+		
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public UserService(UserRepository userRepository, RoleService roleService, @Lazy PasswordEncoder passwordEncoder, 
-			UserMapper userMapper,ReservationService reservationService) {
-		super();
-		this.userRepository = userRepository;
-		this.roleService = roleService;
-		this.passwordEncoder = passwordEncoder;
-		this.userMapper = userMapper;
-		this.reservationService = reservationService;
-	}
-
-
-	public User getUserByEmail(String email ) {
+	public UserService(UserRepository userRepository
+			           ,ImageService imageService
+			           ,UserMapper userMapper
+			           ,RoleService roleService
+			           ,PasswordEncoder passwordEncoder) {
 		
-		  User user  =  userRepository.findByEmail(email).orElseThrow(()->
-		  			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, email))
-				);
-		return user ;
+		this.userRepository=userRepository;
+		this.imageService=imageService;
+		this.userMapper=userMapper;
+		this.roleService=roleService;
+		this.passwordEncoder=passwordEncoder;
+		
+		
 	}
+	
+	
+	
+	
+	
+	
+	//------------------  get current user login------------------------
+	public Optional<String> getCurrentUserLogin(){
+		
+	SecurityContext securityContext= SecurityContextHolder.getContext();
+Authentication authentication=	securityContext.getAuthentication();
 
-
-	public void saveUser(RegisterRequest registerRequest) {
-		if(userRepository.existsByEmail(registerRequest.getEmail())) {
-			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
+    return Optional.ofNullable(extractPricipal(authentication));
+		
+	}
+	//------------------  get principal ------------------------
+	private static String extractPricipal(Authentication authentication) {
+		
+		if (authentication==null) {
+			
+			return null;
+			
+		}else if (authentication.getPrincipal() instanceof UserDetails ) {
+			
+			UserDetails secureUser=(UserDetails) authentication.getPrincipal();
+			return secureUser.getUsername();
+			
+		}else if (authentication.getPrincipal() instanceof String) {
+			
+			return (String) authentication.getPrincipal();
+			
 		}
-		
-		Role role = roleService.findByType(RoleType.ROLE_CUSTOMER);
-		
-		Set<Role> roles = new HashSet<>();
-		roles.add(role);
-		
-		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
-		
-		User user = new User();
-		
-		user.setFirstName(registerRequest.getFirstName());
-		user.setLastName(registerRequest.getLastName());
-		user.setEmail(registerRequest.getEmail());
-		user.setPassword(encodedPassword);
-		user.setPhoneNumber(registerRequest.getPhoneNumber());
-		user.setAddress(registerRequest.getAddress());
-		user.setZipCode(registerRequest.getZipCode());
-		user.setRoles(roles);
-		
-		userRepository.save(user);
+		return null;
 		
 		
-		
-	}
-
-
-	public List<UserDTO> getAllUsers() {
-		
-		    List<User> users = userRepository.findAll();
-		     List<UserDTO> userDTOs = userMapper.map(users);
-		     
-		     return userDTOs;
-		
-	}
-
-
-	public UserDTO getPrincipal() {
-		 User currentUser =  getCurrentUser();
-		  // return userMapper.userToUserDTO(currentUser);
-		  UserDTO userDTO = userMapper.userToUserDTO(currentUser);
-		  return userDTO;
-	
 		
 	}
 	
-	public User getCurrentUser() {
+	//------------------  get current user ------------------------
+public User getCurrentUser() {
 		
 		String email = SecurityUtils.getCurrentUserLogin().orElseThrow(()->
 		 new ResourceNotFoundException(ErrorMessage.PRINCIPAL_FOUND_MESSAGE));
@@ -129,244 +103,198 @@ public class UserService {
 		return user ;
 		
 	}
+ //------------------  get current userDTO ------------------------
+   public UserDTO getPrincipal() {
+		 User currentUser =  getCurrentUser();
+		  // return userMapper.userToUserDTO(currentUser);
+		  UserDTO userDTO = userMapper.userToUserDto(currentUser);
+		  return userDTO;
 	
-	/*  BURA ANLATILACAK
-	 * 
-	public Page<UserDTO> getUserPage(Pageable pageable) {
-		Page<User> userPage = userRepository.findAll(pageable);
-		Page<UserDTO> userPageDTO = userPage.map(userMapper::userToUserDTO);
-		return userPageDTO;
-	}
-	*/
-
-	
-	public Page<UserDTO> getUserPage(Pageable pageable) {
-		   Page<User> userPage = userRepository.findAll(pageable);
-		   
-	        return getUserDTOPage(userPage);
-	
-	}
-	
-
-
-	private Page<UserDTO> getUserDTOPage(Page<User> userPage) {
-		
-		 Page<UserDTO> userDTOPage =  userPage.map(new Function<User, UserDTO>() {
-			 @Override
-			public UserDTO apply(User user) {
-				
-				return userMapper.userToUserDTO(user);
-			}
-		});
-		 
-		 return userDTOPage;
 		
 	}
 
-
+	
+	
+	
+// -------------------  get user by id --------------
 	public UserDTO getUserById(Long id) {
-		    User user = userRepository.findById(id).orElseThrow(()->
-		   
-				   new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, id)));
-		    return userMapper.userToUserDTO(user);
+		
+	User user =	userRepository.findById(id).orElseThrow(()-> new  ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE,id)));
+		
+UserDTO userDTO =	userMapper.userToUserDto(user);
+		return userDTO;
+		
+		
+		
 	}
-
-
+//
+//	public Page<User> getAll(Pageable pageable) {
+//
+//		Page<User> userPage = userRepository.findAll(pageable);
+//		
+//		
+//		return userPage;
+//	}
 	
-	public void updatePassword(UpdatePasswordRequest updatePasswordRequest) {
+	
+// get all users
+	public List<UserDTO> getAllUsers() {
+		List<User> userList = userRepository.findAll();
 		
-		     User user = getCurrentUser();
-		     
-		     // builtIn mi kontrol ediyoruz
-		     if(user.getBuiltIn()) {
-		    	 throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
-		    	 
-		     }
-		     // Formda girilen OldPassword bilgisi ile DB deki password aynı mı kontrol ediyoruz
-		     if(!passwordEncoder.matches(updatePasswordRequest.getOldPassword(), user.getPassword())) {
-		    	  throw new BadRequestException(ErrorMessage.PASSWORD_NOT_MATCHED);
-		     }
-		     
-		     // yeni gelen password encode ediliyor
-		     String hashedPassword = passwordEncoder.encode(updatePasswordRequest.getNewPassword());
-		     user.setPassword(hashedPassword);
-		     userRepository.save(user);
-		     
-		    /* transactional açıklaması için eklendi
-		     if(true) {
-		    	 throw new BadRequestException("Exception");
-		     }
-		     */
-		   
-	}
-
-
-	@Transactional  
-	// // Veritabanı üzerinde gerçekleştirilen bir grup SQL işleminin tek bir bütün 
-	//olarak ele alınmasını sağlar, bir veya daha fazla SQL işluseremi tek bir işlem gibi ele alınır.
-	public void updateUser( UserUpdateRequest userUpdateRequest) {
-		
-		User user = getCurrentUser();
-		
-		  // builtIn mi kontrol ediyoruz
-	     if(user.getBuiltIn()) {
-	    	 throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
-	    	 
-	     }
-	    
-	      boolean emailExist  = userRepository.existsByEmail(userUpdateRequest.getEmail());
-	      
-	      if(emailExist && ! userUpdateRequest.getEmail().equals(user.getEmail())) {
-	    	  throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, 
-	    			  																													userUpdateRequest.getEmail()));
-	      }
-	      
-	      userRepository.update(user.getId(), userUpdateRequest.getFirstName(), 
-	    		  																		userUpdateRequest.getLastName(), 
-	    		  																		userUpdateRequest.getPhoneNumber(), 
-	    		  																		userUpdateRequest.getEmail(), 
-	    		  																		userUpdateRequest.getAddress(), 
-	    		  																		userUpdateRequest.getZipCode());
-	      
-	      
-
-	}
-
-
-	public void updateUserAuth(Long id, AdminUserUpdateRequest adminUserUpdateRequest) {
-		
-		User user = getById(id);
-		
-		 // builtIn mi kontrol ediyoruz
-	     if(user.getBuiltIn()) {
-	    	 throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
-	    	 
-	     }
-	    
-	      boolean emailExist  = userRepository.existsByEmail(adminUserUpdateRequest.getEmail());
-	      
-	      if(emailExist && ! adminUserUpdateRequest.getEmail().equals(user.getEmail())) {
-	    	  throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, 
-	    			  adminUserUpdateRequest.getEmail()));
-	      }
-	      
-	      // password boş ise
-	      if(adminUserUpdateRequest.getPassword()==null) {
-	    	  adminUserUpdateRequest.setPassword(user.getPassword());
-	      } else  {
-	    	  String encodedPassword =  passwordEncoder.encode(adminUserUpdateRequest.getPassword());
-	    	  adminUserUpdateRequest.setPassword(encodedPassword);
-	      }
-	      
-	      // Customer    ----  ROLE_CUSTOMER
-	      // Administrator   ---- ROLE_ADMIN
-	       Set<String> userStrRoles =   adminUserUpdateRequest.getRoles();
-	       
-	       Set<Role> roles = convertRoles(userStrRoles);
-	       
-	       user.setFirstName(adminUserUpdateRequest.getFirstName());
-	       user.setLastName(adminUserUpdateRequest.getLastName());
-	       user.setEmail(adminUserUpdateRequest.getEmail());
-	       user.setPassword(adminUserUpdateRequest.getPassword());
-	       user.setPhoneNumber(adminUserUpdateRequest.getPhoneNumber());
-	       user.setAddress(adminUserUpdateRequest.getAddress());
-	       user.setZipCode(adminUserUpdateRequest.getZipCode());
-	       user.setBuiltIn(adminUserUpdateRequest.getBuiltIn() );
-	       
-	       user.setRoles(roles);
-	       
-	       userRepository.save(user);
-	       
-		
-		
-		
-		
-		
+		if (userList.isEmpty()) {
+			new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
+		}
+	List <UserDTO> userDTOList	=userMapper.userToUserDTOList(userList);
+		return userDTOList;
 	}
 	
-	public User getById(Long id) {
-		User user =  userRepository.findUserById(id).orElseThrow(()-> new 
-				ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,id)));
-		return user;
-	}
 	
-	public Set<Role> convertRoles(Set<String> pRoles) {
-		Set<Role> roles = new HashSet<>();
-		
-		if(pRoles==null) {
-			 Role userRole =  roleService.findByType(RoleType.ROLE_CUSTOMER);
-			 roles.add(userRole);
-		}else {
-			pRoles.forEach(roleStr->{
-				if(roleStr.equals(RoleType.ROLE_ADMIN.getName())) { // Administrator
-					 Role adminRole = roleService.findByType(RoleType.ROLE_ADMIN);
-					roles.add(adminRole);
-					
-				}else {
-					Role userRole = roleService.findByType(RoleType.ROLE_CUSTOMER);
-					roles.add(userRole);
-				}
-			});
+////save user
+//	public void createUser(UserRequest userRequest, String imageId) {
+//
+//
+//UserDTO userDTO	=getUserById(userRequest.getId());
+//	
+//	User	user=userMapper.userDTOToUser(userDTO);
+//	
+//	Role role = roleService.findByType(RoleType.ROLE_ADMIN);
+//
+//    Set<Role> roles = new HashSet<>();
+//    roles.add(role);
+//    user.setRoles(roles);
+//	Image imageFile =imageService.findImageByImageId(imageId);
+//	
+//	Integer usedUserImageCount= userRepository.findUserCountByImageId(imageFile);
+//		
+//	if (usedUserImageCount > 0) {
+//		throw new ResourceNotFoundException(ErrorMessage.IMAGE_USED_MESSAGE);
+//	}
+//	
+//     Set<Image> image = new HashSet<>();
+//     	 byte[] images = ImageUtils.decompressImage(imageFile.getData());
+//        imageFile.setData(images);
+//		image.add(imageFile);
+//		user.setImage(image);
+//		
+//		userRepository.save(user);
+//		
+//	}
+	//update user
+	public UserDTO updateUser(String imageId, UserRequest userRequest) {
+
+User user=userMapper.userRequestToUser(userRequest);
+
+
+
+       if ((user==null)) {
+    		new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_IS_NOT_MATCH));
+    		
+	}
+       Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+
+       Set<Role> roles = new HashSet<>();
+       roles.add(role);
+       user.setRoles(roles);
+       byte[] imgByt= imageService.getImage(imageId);
+       
+       Image img = new Image();
+       img.setData(imgByt);
+
+   	   Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+
+   	   if (imageCountCheck > 0) {
+   		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+   	  }
+   		
+   		Set<Image> image=new HashSet<>();
+   		
+   		image.add(img);
+       
+	 userRepository.save(user);
+	         
+	   UserDTO userDTO =  userMapper.userToUserDto(user);
+	
+	   return userDTO;
+	}
+//	private Optional<User> getUserByEmail(String email) {
+//		
+//
+//		  User user  =  userRepository.findByEmail(email).orElseThrow(()->
+//		  			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, email))
+//				);
+//		return Optional.of((user)) ;
+//		
+//	}
+
+	//---------------- register user----------------------
+	public void saveUser(String imageId,RegisterRequest registerRequest) {
+		if(userRepository.existsByEmail(registerRequest.getEmail())) {
+			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
 		}
 		
-		return roles;
+	byte[] imgByt= imageService.getImage(imageId);
+	Image img = new Image();
+	img.setData(imgByt);
+
+	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+
+	if (imageCountCheck > 0) {
+		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+	}
+		
+		Set<Image> image=new HashSet<>();
+		
+		image.add(img);
+		
+		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+		
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+		
+		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
+
+		
+
+		User user = new User();
+		user.setImage(image);
+		user.setRoles(roles);
+		user.setPassword(encodedPassword);
+		user.setFirstName(registerRequest.getFirstName());
+		user.setLastName(registerRequest.getLastName());
+		user.setEmail(registerRequest.getEmail());
+		user.setAddress(registerRequest.getAddress());
+		user.setCreateAt(LocalDateTime.now());
+		
+	
+		userRepository.save(user);
+		
+	}
+	
+//	User user=	userMapper.registerUserToUser(registerRequest);
+	
+
+	public void deleteUserWithId(Long id) {
+		
+		userRepository.deleteById(id);
+		
 	}
 
-// ********************** DELETE ***************************************
-	
-	public void removeUserById(Long id) {
-		User user = getById(id);
+//------------- find user by email-------------------
+	public User getUserByEmail(String email ) {
 		
-		// builtIn mi kontrol ediyoruz
-	     if(user.getBuiltIn()) {
-	    	 throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
-	    	 
-	     }
-	     
- boolean exist =  reservationService.existsByUser(user);
-		 
-		 // reservasyon kontrolü
-		 if(exist) {
-			 throw new BadRequestException(ErrorMessage.CAR_USED_BY_RESERVATION_MESSAGE);
-		 }
-		
-	     
-	     
-	     userRepository.deleteById(id);
-	    
-		
-	}
-
-
-	public List<User> getUsers() {
-		return userRepository.findAll() ;
+		  User user  =  userRepository.findByEmail(email).orElseThrow(()->
+		  			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, email))
+				);
+		return user ;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//------------ get image by string id ------------------  extra
+//public Image getImage (String id) {
+//	Image imageFile =imageService.findImageByImageId(id);
+//	return imageFile;
+//}
+//	
+	}
 	
 
-}
+

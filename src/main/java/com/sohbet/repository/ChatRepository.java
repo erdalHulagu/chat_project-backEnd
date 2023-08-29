@@ -25,7 +25,8 @@ public interface ChatRepository extends JpaRepository<Chat, Long>{
 //    		                              @Param("userId") Long userId);
 	@Modifying
 	@Query("SELECT c FROM Chat c WHERE c.isGroup = false AND :user MEMBER OF c.users AND c.id = :id")
-	public Chat findSingleChatByUserIds(@Param("user") User user, @Param("id") Long id);
+	public Chat findSingleChatByUserIds(@Param("user") User user, 
+			                            @Param("id") Long id);
 
 	
 }

@@ -34,6 +34,9 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	
 	
 	Boolean existsByEmail(String email);
+	
+	@Query( "SELECT count(*) from User u join u.image img where img.id=:id")
+	Integer findUserCountByImageId(String id);
 
 	@Modifying // JpaRepository içinde custom bir query ile DML operasyonları yapılıyor ise  @Modifying konulur
 	   @Query( "UPDATE User u SET u.firstName=:firstName, u.lastName=:lastName, u.address=:address, u.image=:image, u.phoneNumber=:phoneNumber, u.email=:email, u.createAt=:createAt, u.updateAt=:updateAt WHERE u.id=:id" ) 

@@ -1,5 +1,4 @@
 package com.sohbet.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,7 @@ public class ChatController {
 		
 	}
 	
-	@PostMapping("//single")
+	@PostMapping("/single")
 	public ResponseEntity<ChatDTO> createChat(@RequestBody SingleChatRequest singleChatRequest, @RequestHeader ("Authorization") String jwt){
 		
 		UserDTO userDTO=userService.findUserProfile(jwt);

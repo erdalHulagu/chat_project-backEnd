@@ -120,22 +120,3 @@ public class MessageService {
 		}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

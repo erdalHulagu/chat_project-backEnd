@@ -1,4 +1,4 @@
-package com.sohbet.security;
+package com.sohbet.security.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

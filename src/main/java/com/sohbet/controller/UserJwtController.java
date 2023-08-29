@@ -1,6 +1,6 @@
 package com.sohbet.controller;
 
-import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,19 +9,22 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.LoginResponse;
+import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.request.LoginRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.jwt.JwtUtils;
 import com.sohbet.service.UserService;
 
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -38,23 +41,29 @@ public class UserJwtController {
    @Autowired
    private JwtUtils  jwtUtils;
    
+   
    // register
-   @PostMapping("/register")
-   public ResponseEntity<ChatResponse> registerUser(@Valid @PathVariable String imageId, @RequestBody RegisterRequest registerRequest  )  {
+  
+//   @PostMapping("/register/{imageId}")
+   @PostMapping("/register/{imageId}")
+   @Transactional
+   public ResponseEntity<Response> registerUser(@PathVariable String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
 	   userService.saveUser(imageId,registerRequest);
 	   
-	   ChatResponse response = new ChatResponse();
+	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
 	   response.setSuccess(true);
 	   
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-	   
+  
    }
+
    
    
    // login
    @PostMapping("/login")
-   public ResponseEntity<LoginResponse> authenticate( @Valid @RequestBody LoginRequest loginRequest    )  {
+//   @Transactional
+   public ResponseEntity<LoginResponse> authenticate( @Validated @RequestBody LoginRequest loginRequest    )  {
 	   
 	   UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
 			     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());

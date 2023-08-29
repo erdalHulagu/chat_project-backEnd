@@ -1,5 +1,6 @@
 package com.sohbet.security.service;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,17 +30,19 @@ public class UserDetailsImpl implements UserDetails {
 	// roller Granted türünde olmalı
 	private Collection<? extends GrantedAuthority> authorities;
 	
-	// user --> UserDetails dönüşümünü yapacak build() metodu 
+//	 user --> UserDetails dönüşümünü yapacak build() metodu 
 	public static UserDetailsImpl build(User user) {
-		     List<SimpleGrantedAuthority> authorities =   user.getRole()
-		    		                                                    .stream()
-		    		                                                    .map(role->new SimpleGrantedAuthority(role.getType().name()))
-		    		                                                    .collect(Collectors.toList());											
+		     List<SimpleGrantedAuthority> authorities = user.
+		    		                                    getRoles().
+		    		                                    stream().
+		    		 									map(role->new SimpleGrantedAuthority(role.
+		    		 											                             getType().
+		    		 											                             name())).
+		    		 									collect(Collectors.toList());											
 		    		 																																					
 		     return new UserDetailsImpl(user.getEmail(), user.getPassword(), authorities);
 	}
-	
-	
+
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,4 +87,3 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 }
-

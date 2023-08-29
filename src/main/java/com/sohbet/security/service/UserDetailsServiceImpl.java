@@ -7,11 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.sohbet.domain.User;
-import com.sohbet.exception.ResourceNotFoundException;
-import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.service.UserService;
-
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -21,17 +17,11 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	
 	
-	
-	
 	@Override
 	public UserDetails loadUserByUsername(String  email) throws UsernameNotFoundException {
 		
 		 User user =  userService.getUserByEmail(email);
 		 return UserDetailsImpl.build(user);
-	
-
 	}
-	
-	
 
 }

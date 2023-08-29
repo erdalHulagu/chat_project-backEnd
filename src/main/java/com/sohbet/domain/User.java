@@ -1,87 +1,103 @@
 package com.sohbet.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Table(name="user")
 @Entity
+@Table(name = "t_user")
+
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	
-	@Column(length = 50, nullable = false)
-	private String firstName;
-	
-	@Column(length = 50, nullable = false)
-	private String lastName;
-	
-	@Email
-	@Column(length = 80, nullable = false, unique = true)
-	private String email;
-	
-	@Column(length = 120, nullable = false)
-	private String password;
-	
-	@Pattern(message = "Please provide valid phone number",regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$")//(541) 317-8828
-	@Size(min=14, max=14)
-    @NotBlank(message = "Please provide your phone number")
-	@Column(length = 14, nullable = false)
-	private String phoneNumber;
-	
-	@CreationTimestamp
-	@Column(name = "createAt", nullable = false, updatable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	private LocalDateTime createAt;
 
-	@UpdateTimestamp
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	@Column(name = "updateAt")
-	private LocalDateTime updateAt;
 	
-	@Column(length =100, nullable = false)
-	private String address;
-	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name="userId")
-	private Set<Image> image=new HashSet<>();
-	
-	@Column(nullable = false)
-	private Boolean builtIn = false; // silinmesini ve değiştirilmesi istenmeyen obje..
-	
-	
-	@OneToMany   // hibernate defaultta LAZY
-	@JoinTable( name="userRole",joinColumns = @JoinColumn(name="userId"),inverseJoinColumns = @JoinColumn(name="roleId"))
-	private  Set<Role> role = new HashSet<>();
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
+
+@NotNull
+@Column(name="name", nullable = false, length = 100)
+private String firstName;
+
+@NotNull
+@Column(name="surname",nullable = false, length = 100)
+private String lastName;
+
+
+@Email(message = "Please provide valid email")
+@Size(min = 10, max = 80)
+@Column(length = 80, nullable = false, unique=true)
+private String email;
+
+
+@Size(min = 10, max = 80)
+@Column(length = 80, nullable = false, unique=true)
+private String password;
+
+@Size(max= 100)
+@NotBlank(message = "Please provide your address")
+@Column(length = 80, nullable = false, unique=true)
+private String address;
+//
+//@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
+//message = "Please provide valid phone number" ) 
+//@Column(nullable = false)
+//private String phone;
+//
+//@UpdateTimestamp
+//@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//private LocalDateTime updateAt;
+//
+//
+@Column(name = "create_at", updatable = false, nullable = true)
+@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+private LocalDateTime createAt;
+
+
+@OneToMany(fetch = FetchType.LAZY)
+//@JoinColumn(name="user_Id")
+//@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+@JoinColumn(name = "user_id")
+private Set<Image> image;
+
+
+
+@ManyToMany   // hibernate defaultta LAZY
+@JoinTable( name="t_user_role",
+						 joinColumns = @JoinColumn(name="user_id"),
+						 inverseJoinColumns = @JoinColumn(name="role_id"))
+private  Set<Role> roles = new HashSet<>();
+
+
+
 }
-
-
 

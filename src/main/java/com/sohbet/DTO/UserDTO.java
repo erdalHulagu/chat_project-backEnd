@@ -3,8 +3,6 @@ package com.sohbet.DTO;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
-
 import com.sohbet.domain.Role;
 
 import lombok.AllArgsConstructor;
@@ -12,58 +10,51 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
+@AllArgsConstructor
+
 public class UserDTO {
-	
-	private Long id;
-	
-	
-	private String firstName;
-	
-	
-	private String lastName;
-	
-	
-	private String email;
-	
-	
-	private String password;
-	
-	
-	private String phoneNumber;
-	
-	
-	private String address;
-	
-	
-	private Set<String> image=new HashSet<>();
-	
 
-	private LocalDateTime createAt;
+private Long id;
+
+private String firstName;
+
+private String lastName;
+
+private String email;
+
+private String password;
+
+//private  LocalDateTime updateAt;
+//
+////private String phone;
+//
+private LocalDateTime createAt;
+
+private String address;
 
 
-	private LocalDateTime updateAt;
+private Set<String> image;
+
+private  Set<String> roles ;
+
+public void setRoles(Set<Role> roles) {
 	
-	private Boolean builtIn ; // silinmesini ve değiştirilmesi istenmeyen obje..
+	Set<String> roleStr = new HashSet<>();
 	
-	
-	private  Set<String> roles=new HashSet<>() ;
-	
-	public void setRoles(Set<Role> roles) {
+	roles.forEach( r-> {
+		roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
 		
-		Set<String> roleStr = new HashSet<>();
-		
-		roles.forEach( r-> {
-			roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
-			
-		}); 
-		
-		this.roles = roleStr;
-	}
+	}); 
 	
-	
-
+	this.roles = roleStr;
 }
+
+
+	
+}
+
+
+
