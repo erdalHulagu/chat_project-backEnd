@@ -36,7 +36,7 @@ private LocalDateTime createAt;
 private String address;
 
 
-private Set<String> image;
+private Set<String> profileImage;
 
 private  Set<String> roles ;
 

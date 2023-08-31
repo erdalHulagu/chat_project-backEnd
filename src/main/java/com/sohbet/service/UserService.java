@@ -18,6 +18,7 @@ import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
+import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
@@ -26,6 +27,7 @@ import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UserRequest;
 import com.sohbet.security.config.SecurityUtils;
+import com.sohbet.security.jwt.JwtUtils;
 
 
 @Service
@@ -41,18 +43,22 @@ public class UserService {
 		
 	private PasswordEncoder passwordEncoder;
 	
+	private JwtUtils jwtUtils;
+	
 	@Autowired
 	public UserService(UserRepository userRepository
 			           ,ImageService imageService
 			           ,UserMapper userMapper
 			           ,RoleService roleService
-			           ,PasswordEncoder passwordEncoder) {
+			           ,PasswordEncoder passwordEncoder
+			           ,JwtUtils jwtUtils) {
 		
 		this.userRepository=userRepository;
 		this.imageService=imageService;
 		this.userMapper=userMapper;
 		this.roleService=roleService;
 		this.passwordEncoder=passwordEncoder;
+		this.jwtUtils=jwtUtils;
 		
 		
 	}
@@ -62,37 +68,7 @@ public class UserService {
 	
 	
 	
-	//------------------  get current user login------------------------
-	public Optional<String> getCurrentUserLogin(){
-		
-	SecurityContext securityContext= SecurityContextHolder.getContext();
-Authentication authentication=	securityContext.getAuthentication();
 
-    return Optional.ofNullable(extractPricipal(authentication));
-		
-	}
-	//------------------  get principal ------------------------
-	private static String extractPricipal(Authentication authentication) {
-		
-		if (authentication==null) {
-			
-			return null;
-			
-		}else if (authentication.getPrincipal() instanceof UserDetails ) {
-			
-			UserDetails secureUser=(UserDetails) authentication.getPrincipal();
-			return secureUser.getUsername();
-			
-		}else if (authentication.getPrincipal() instanceof String) {
-			
-			return (String) authentication.getPrincipal();
-			
-		}
-		return null;
-		
-		
-		
-	}
 	
 	//------------------  get current user ------------------------
 public User getCurrentUser() {
@@ -135,9 +111,32 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 //		
 //		return userPage;
 //	}
+	//--------------------get user profile------------------------
+	public UserDTO findUserProfile() {
+		
+	
+     User user=	getCurrentUser();
+     
+     if (user==null) {
+    	 throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));
+		
+	}
+   UserDTO userDTO=  userMapper.userToUserDto(user);
+     return userDTO ;
+	
+		
+		
+	}
+//	//--------------------sarch users from list of users with query-----------------------
+//	
+//	public List<UserDTO> seraachUser(String query){
+//		List<User> user=userRepository.searchUser(query);
+//		List<UserDTO> userDTOs=userMapper.userToUserDTOList(user);
+//		return userDTOs;
+//	}
 	
 	
-// get all users
+//--------------------get all users------------------------
 	public List<UserDTO> getAllUsers() {
 		List<User> userList = userRepository.findAll();
 		
@@ -149,36 +148,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 	}
 	
 	
-////save user
-//	public void createUser(UserRequest userRequest, String imageId) {
-//
-//
-//UserDTO userDTO	=getUserById(userRequest.getId());
-//	
-//	User	user=userMapper.userDTOToUser(userDTO);
-//	
-//	Role role = roleService.findByType(RoleType.ROLE_ADMIN);
-//
-//    Set<Role> roles = new HashSet<>();
-//    roles.add(role);
-//    user.setRoles(roles);
-//	Image imageFile =imageService.findImageByImageId(imageId);
-//	
-//	Integer usedUserImageCount= userRepository.findUserCountByImageId(imageFile);
-//		
-//	if (usedUserImageCount > 0) {
-//		throw new ResourceNotFoundException(ErrorMessage.IMAGE_USED_MESSAGE);
-//	}
-//	
-//     Set<Image> image = new HashSet<>();
-//     	 byte[] images = ImageUtils.decompressImage(imageFile.getData());
-//        imageFile.setData(images);
-//		image.add(imageFile);
-//		user.setImage(image);
-//		
-//		userRepository.save(user);
-//		
-//	}
+
 	//update user
 	public UserDTO updateUser(String imageId, UserRequest userRequest) {
 
@@ -256,7 +226,7 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 
 		User user = new User();
-		user.setImage(image);
+		user.setProfileImage(image);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
@@ -270,7 +240,6 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 	}
 	
-//	User user=	userMapper.registerUserToUser(registerRequest);
 	
 
 	public void deleteUserWithId(Long id) {

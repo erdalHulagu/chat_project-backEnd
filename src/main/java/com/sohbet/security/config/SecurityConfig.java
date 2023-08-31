@@ -58,9 +58,10 @@ public class SecurityConfig {
    		return new WebMvcConfigurer() {
    			@Override
    			public void addCorsMappings(CorsRegistry registry) {
-   				registry.addMapping("/**").allowedOrigins("*"). //"http:127.0.0.1/8080 diye spesific adresden gelenleri kabul et de diyebiliriz
-   																			allowedHeaders("*").
-   																			allowedMethods("*");
+   				registry.addMapping("/**")
+   				        .allowedOrigins("*") //"http:127.0.0.1/8080 diye spesific adresden gelenleri kabul et de diyebiliriz
+   						.allowedHeaders("*")
+   						.allowedMethods("*");
    			}
    		};
    	}

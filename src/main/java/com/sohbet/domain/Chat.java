@@ -33,6 +33,7 @@ public class Chat {
 	@Column(length = 50, nullable = false)
 	private String chatName;
 		
+	@Column(name = "chat_id")
    private Set<Image> chatImage=new HashSet<>();
    
    private Set<User> admin=new HashSet<>();

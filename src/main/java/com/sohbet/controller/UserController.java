@@ -44,6 +44,21 @@ public class UserController {
 	
 	}
 	
+	@GetMapping("/profile")
+	public ResponseEntity<UserDTO> findUserProfile(){
+		
+	UserDTO userDTO=	userService.findUserProfile();
+	 
+	return ResponseEntity.ok(userDTO);
+
+	}
+	
+//	@GetMapping("/{query}")
+//	public ResponseEntity<List<UserDTO>> searchUser(@PathVariable ("query") String query ){
+//		List<UserDTO> usersDtos=userService.seraachUser(query);
+//		return ResponseEntity.ok(usersDtos);
+//	}
+	
 //	@GetMapping
 //	public ResponseEntity<Page<User>>getAllUser(
 //			                                     @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -76,18 +91,7 @@ public class UserController {
 		return ResponseEntity.ok(usersDTO);
 		
 	}
-	// create user
-////	@PostMapping("/admin/{imageId}")
-//	@PostMapping("/admin")
-//	public ResponseEntity<Response> createUser(@Validated  @RequestBody  UserRequest userRequest/*, @PathVariable String imageId*/) {
-//		userService.createUser(userRequest/*, imageId*/);
-//		Response response = new  Response();
-//		response.setMessage(ResponseMessage.USER_CREATED);
-//		response.setSuccess(true);
-//		return ResponseEntity.ok(response);
-//		
-//		
-//	}
+
 	@PutMapping("/{imageId}")
 	
 	public ResponseEntity<UserDTO> upDateUser(@Validated @PathVariable String imageId, @RequestBody UserRequest userRequest){

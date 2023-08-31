@@ -18,6 +18,6 @@ public class GroupChatRequest {
 	
 	private String chatName;
 	
-	private Set<Image> chatImage;
+	private Set<String> chatImage;
 
 }

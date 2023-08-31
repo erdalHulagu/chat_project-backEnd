@@ -87,7 +87,7 @@ private LocalDateTime createAt;
 //@JoinColumn(name="user_Id")
 //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
 @JoinColumn(name = "user_id")
-private Set<Image> image;
+private Set<Image> profileImage;
 
 
 

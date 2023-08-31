@@ -42,9 +42,8 @@ public class UserJwtController {
    private JwtUtils  jwtUtils;
    
    
-   // register
+   // --------------------register user---------------------
   
-//   @PostMapping("/register/{imageId}")
    @PostMapping("/register/{imageId}")
    @Transactional
    public ResponseEntity<Response> registerUser(@PathVariable String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
@@ -60,7 +59,7 @@ public class UserJwtController {
 
    
    
-   // login
+   // ------------------------login user-----------------------------
    @PostMapping("/login")
 //   @Transactional
    public ResponseEntity<LoginResponse> authenticate( @Validated @RequestBody LoginRequest loginRequest    )  {

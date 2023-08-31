@@ -51,9 +51,9 @@ public class MessageController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<MessageDTO>sendMessage(@RequestBody SendMessageRequest sendMessageRequest, @RequestHeader("Authorization") String jwt){
+	public ResponseEntity<MessageDTO>sendMessage(@RequestBody SendMessageRequest sendMessageRequest){
 
-		UserDTO userDTO=userService.findUserProfile(jwt);
+		UserDTO userDTO=userService.findUserProfile();
 		User user =userMapper.userDTOToUser(userDTO);
 		sendMessageRequest.setUserId(user.getId());
 		
@@ -64,9 +64,9 @@ public class MessageController {
 	}
 	
 	@GetMapping("/chat/{chatId}")
-	public ResponseEntity<List<MessageDTO>>getChatMessage(@PathVariable Long chatId, @RequestHeader("Authorization") String jwt){
+	public ResponseEntity<List<MessageDTO>>getChatMessage(@PathVariable Long chatId){
 
-		UserDTO userDTO=userService.findUserProfile(jwt);
+		UserDTO userDTO=userService.findUserProfile();
 		User user =userMapper.userDTOToUser(userDTO);
 		
 		
@@ -76,9 +76,9 @@ public class MessageController {
 		
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<ChatResponse>deleteMessage(@PathVariable Long id, @RequestHeader("Authorization") String jwt){
+	public ResponseEntity<ChatResponse>deleteMessage(@PathVariable Long id){
 
-		UserDTO userDTO=userService.findUserProfile(jwt);
+		UserDTO userDTO=userService.findUserProfile();
 		User user =userMapper.userDTOToUser(userDTO);
 		
 		messageService.deleteMessage(id,user);

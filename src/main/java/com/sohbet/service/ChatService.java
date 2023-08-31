@@ -1,12 +1,16 @@
 package com.sohbet.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Chat;
+import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
 import com.sohbet.exception.BadRequestException;
@@ -29,6 +33,8 @@ public class ChatService {
      
      private ChatMapper chatMapper;
      
+     private ImageService imageService;
+     
      @Autowired
     public ChatService(ChatRepository chatRepository,UserService userService,UserMapper userMapper,ChatMapper chatMapper) {
     	this.chatRepository=chatRepository;
@@ -42,7 +48,7 @@ public class ChatService {
 	UserDTO userDto=	userService.getUserById(userId);
     User usr=userMapper.userDTOToUser(userDto);
 	
-	Chat isChatExist= chatRepository.findSingleChatByUserIds(user, userId);
+	Chat isChatExist= chatRepository.findSingleChatByUserIds(usr, userId);
 	
 	if (isChatExist!=null) {                                                       
 	ChatDTO chatDTO=	chatMapper.chatToChatDTO(isChatExist);
@@ -86,9 +92,9 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
 		
 		Chat chat= new Chat();
-		
+		Set<Image> image= stringToImageMap (groupChatRequest.getChatImage()); // we called stringToImageMap for string image to set Strin image that we created in this class
 		chat.setIsGroup(true);
-		chat.setChatImage(groupChatRequest.getChatImage());
+		chat.setChatImage(image);
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);
 		chat.getAdmin().add(user);
@@ -172,5 +178,22 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 	    chatRepository.deleteById(chat.getId());
 
    }
+   //---------------------stringToImageMap---------------------
+   public  Set<Image> stringToImageMap(Set<String> imageUrls) {
+		 Set<Image> images = new HashSet<>();
+	        for (String imageUrl : imageUrls) {
+	            Image image = new Image();
+	            image.setId(imageUrl);   // Eğer Image sınıfında başka alanlar varsa, diğer alanları da ayarlayabilirsiniz
+	            images.add(image);
+	        }
+	        return images;
+	 }
+
+	//------------ get image by string id ------------------  extra
+public Image getImage (String id) {
+	Image imageFile =imageService.findImageByImageId(id);
+	return imageFile;
+}
+
 
 }

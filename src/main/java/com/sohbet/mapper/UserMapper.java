@@ -23,27 +23,28 @@ public interface UserMapper  {
 	
 	
 	@Mapping(target = "id", ignore=true)
-	@Mapping(target = "image" , ignore = true )
+	@Mapping(target = "profileImage" , ignore = true )
 	@Mapping(target = "roles",ignore = true)
 	User userDTOToUser(UserDTO userDTO);
 	
 	
 	@Mapping(target = "id", ignore=true)
-	@Mapping(target = "image" , ignore = true )
+	@Mapping(target = "profileImage" , ignore = true )
 	@Mapping(target = "roles",ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
   
 	
 	@Mapping(target = "id", ignore=true)
 //	@Mapping(target = "image",source = "image",qualifiedByName = "getImageAsLong")
-	@Mapping(target = "image" , ignore = true )
+	@Mapping(target = "profileImage" , ignore = true )
 	@Mapping(target = "roles",ignore = true)
+	@Mapping(target = "createAt",ignore = true)
 //	@Mapping(target = "password", ignore=true)
 	User userRequestToUser(UserRequest userRequest);
 	
 
 
-	@Mapping(target = "image",source = "image",qualifiedByName = "getImageAsString")
+	@Mapping(target = "profileImage",source = "profileImage",qualifiedByName = "getImageAsString")
 	@Mapping(target = "roles",ignore = true)
 	UserDTO userToUserDto(User user);
 	

@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "furkanVakfiChat.app.SECRETKEY",
+    "type": "java.lang.String",
+    "description": "A description for 'furkanVakfiChat.app.SECRETKEY'"
+  },
+  {
+    "name": "furkanVakfiChat.app.JwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'furkanVakfiChat.app.JwtExpirationMs'"
+  }
+]}

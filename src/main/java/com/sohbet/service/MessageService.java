@@ -67,7 +67,7 @@ public class MessageService {
 		message.setUser(user);
 		message.setChat(chat);
 		message.setContent(sendMessageRequest.getContent());
-		message.setCreateTime(LocalDateTime.now());
+		message.setCreateAt(LocalDateTime.now());
 		
 		MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
 		return messageDTO;

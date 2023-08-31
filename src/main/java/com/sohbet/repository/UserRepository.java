@@ -38,21 +38,21 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	@Query( "SELECT count(*) from User u join u.image img where img.id=:id")
 	Integer findUserCountByImageId(String id);
 
-	@Modifying // JpaRepository içinde custom bir query ile DML operasyonları yapılıyor ise  @Modifying konulur
-	   @Query( "UPDATE User u SET u.firstName=:firstName, u.lastName=:lastName, u.address=:address, u.image=:image, u.phoneNumber=:phoneNumber, u.email=:email, u.createAt=:createAt, u.updateAt=:updateAt WHERE u.id=:id" ) 
-	   		
-	User update(@Param("id") Long id,
-			   	@Param("firstName") String firstName,
-			   	@Param("lastName") String lastName,
-			   	@Param("address") String address,
-			   	@Param("image") Set<String> image,
-			   	@Param("phoneNumber") String phoneNumber,
-			   	@Param("email") String email,
-			   	@Param("createAt")  LocalDateTime createAt,
-			   	@Param("updateAt")  LocalDateTime updateAt
-			   	);
-	@Modifying
-	@Query("SELECT u FROM User u WHERE u.firstName LIKE CONCAT('%', :query, '%') OR u.email LIKE CONCAT('%', :query, '%')")
-	public List<User>searchUser(@Param("query") String query);
+//	@Modifying // JpaRepository içinde custom bir query ile DML operasyonları yapılıyor ise  @Modifying konulur
+//	   @Query( "UPDATE User u SET u.firstName=:firstName, u.lastName=:lastName, u.address=:address, u.image=:image, u.phoneNumber=:phoneNumber, u.email=:email, u.createAt=:createAt, u.updateAt=:updateAt WHERE u.id=:id" ) 
+//	   		
+//	User update(@Param("id") Long id,
+//			   	@Param("firstName") String firstName,
+//			   	@Param("lastName") String lastName,
+//			   	@Param("address") String address,
+//			   	@Param("image") Set<String> image,
+//			   	@Param("phoneNumber") String phoneNumber,
+//			   	@Param("email") String email,
+//			   	@Param("createAt")  LocalDateTime createAt,
+//			   	@Param("updateAt")  LocalDateTime updateAt
+//			   	);
+//	@Modifying
+//	@Query("SELECT u FROM User u WHERE u.firstName LIKE CONCAT('%', :query, '%') OR u.email LIKE CONCAT('%', :query, '%')")
+//	public List<User>searchUser(@Param("query") String query);
 }
 

@@ -30,7 +30,7 @@ public class Message {
 	private String content;
 	
 	@Column
-	private LocalDateTime createTime;
+	private LocalDateTime createAt;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -39,5 +39,7 @@ public class Message {
 	@ManyToOne
 	@JoinColumn(name = "chatId")
 	private Chat chat;
+	
+	
 
 }

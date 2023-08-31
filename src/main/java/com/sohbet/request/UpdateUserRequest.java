@@ -42,8 +42,6 @@ public class UpdateUserRequest {
 	@NotBlank(message="Please provide your address")
 	private String address;
 	
-	@NotBlank(message="Please provide your update time")
-	private LocalDateTime createAt;
 
 	@NotBlank(message="Please provide your update time")
 	private LocalDateTime updateAt;

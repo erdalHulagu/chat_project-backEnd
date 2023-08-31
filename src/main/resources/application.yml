@@ -5,18 +5,24 @@ server:
   include-message: always
   
 spring: 
- main: 
+ main:
   allow-circular-references: true # 8 ve 9 yeni eklendi
- datasource: 
-  url: jdbc:mysql://localhost:3306/furkanvakfi
-  username: root
+ jackson: 
+  serialization: 
+   write-dates-as-timestamps: false
+ datasource:
+  hikari:
+   autoCommit : false
+  url: jdbc:postgresql://localhost:5434/furkanFoundationChat
+  username: postgres
   password: aylaadem233
-  driver-class-name: com.mysql.cj.jdbc.Driver
+  driver-class-name: org.postgresql.Driver
+  
  jpa:
   hibernate: 
    ddl-auto: update
   show-sql: true
-  database-platform: org.hibernate.dialect.MySQLDialect
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
   properties:
    '[hibernate.format_sql]': true
    
@@ -48,10 +54,11 @@ logging:
   '[org.hibernate]' : INFO
   '[com.ecommerce.games]' : DEBUG
 
-furkanVakfi: 
- app: 
-  jwtSecret: secret123245151312
-  jwtExpirationMs: 86400000
+  # secretkey
+furkanVakfiChat :
+ app :
+  SECRETKEY : furkanVakfiChat@!Aylaadem233
+  JwtExpirationMs : 86400000 #bu rakam bir gune tekabul ediyor yani 24saat/milisanie
   
 #actuator deneme 
 management: 
