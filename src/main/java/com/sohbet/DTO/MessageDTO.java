@@ -17,7 +17,7 @@ public class MessageDTO {
 	
 	private String content;
 	
-	private LocalDateTime createTime;
+	private LocalDateTime createAt;
 	
 
 	private User user;

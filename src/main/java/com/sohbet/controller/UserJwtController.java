@@ -46,7 +46,7 @@ public class UserJwtController {
   
    @PostMapping("/register/{imageId}")
    @Transactional
-   public ResponseEntity<Response> registerUser(@PathVariable String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
+   public ResponseEntity<Response> registerUser(@PathVariable("imageId") String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
 	   userService.saveUser(imageId,registerRequest);
 	   
 	   Response response = new Response();

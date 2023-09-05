@@ -34,9 +34,12 @@ public class Chat {
 	private String chatName;
 		
 	@Column(name = "chat_id")
+	@ManyToMany 
    private Set<Image> chatImage=new HashSet<>();
    
-   private Set<User> admin=new HashSet<>();
+	@Column(name = "admin")
+	@OneToMany
+    private Set<User> admin=new HashSet<>();
 	
 	@Column(name = "is_group")
 	private Boolean isGroup;

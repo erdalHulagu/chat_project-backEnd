@@ -170,11 +170,11 @@ User user=userMapper.userRequestToUser(userRequest);
        Image img = new Image();
        img.setData(imgByt);
 
-   	   Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
-
-   	   if (imageCountCheck > 0) {
-   		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-   	  }
+//   	   Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+//
+//   	   if (imageCountCheck > 0) {
+//   		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//   	  }
    		
    		Set<Image> image=new HashSet<>();
    		
@@ -206,11 +206,11 @@ User user=userMapper.userRequestToUser(userRequest);
 	Image img = new Image();
 	img.setData(imgByt);
 
-	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
-
-	if (imageCountCheck > 0) {
-		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-	}
+//	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+//
+//	if (imageCountCheck > 0) {
+//		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//	}
 		
 		Set<Image> image=new HashSet<>();
 		
