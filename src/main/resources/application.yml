@@ -1,5 +1,5 @@
 server: 
- port: 8080
+ port: 8081
  error: 
   include-binding-errors: always
   include-message: always
@@ -13,7 +13,7 @@ spring:
  datasource:
   hikari:
    autoCommit : false
-  url: jdbc:postgresql://localhost:5434/furkanFoundationChat
+  url: jdbc:postgresql://localhost:5432/postgres
   username: postgres
   password: aylaadem233
   driver-class-name: org.postgresql.Driver

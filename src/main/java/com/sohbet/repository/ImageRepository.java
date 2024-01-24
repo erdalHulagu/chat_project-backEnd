@@ -7,7 +7,7 @@ import com.sohbet.domain.Image;
 import java.util.Optional;
 
 
-public interface ImageRepository extends JpaRepository<Image,Long> {
+public interface ImageRepository extends JpaRepository<Image,String> {
 	
 
 	

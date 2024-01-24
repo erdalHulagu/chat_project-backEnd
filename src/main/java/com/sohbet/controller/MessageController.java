@@ -88,16 +88,16 @@ public class MessageController {
 	return ResponseEntity.ok(chatResponse);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
 		
 	}
-	@DeleteMapping("/{id}")
-	public ResponseEntity<MessageDTO>getMessage(@PathVariable Long id){
-
-	Message message=	messageService.getMessageById(id);
-	
-	MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
-	
-	return ResponseEntity.ok(messageDTO);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
-		
-	}
+//	@DeleteMapping("/{id}")
+//	public ResponseEntity<MessageDTO>getMessage(@PathVariable Long id){
+//
+//	Message message=	messageService.getMessageById(id);
+//	
+//	MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
+//	
+//	return ResponseEntity.ok(messageDTO);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+//		
+//	}
 	
 
 }
