@@ -21,9 +21,7 @@ public class RoleService {
 		    		   ErrorMessage.ROLE_NOT_FOUND_MESSAGE, roleType.name())));
 		
 		return role ; 
-		
-		
-		
+		//--------
 	}
 
 }
