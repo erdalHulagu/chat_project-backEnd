@@ -233,6 +233,7 @@ User user=userMapper.userRequestToUser(userRequest);
 		user.setLastName(registerRequest.getLastName());
 		user.setEmail(registerRequest.getEmail());
 		user.setAddress(registerRequest.getAddress());
+//		user.setPhone(registerRequest.getPhoneNumber());
 		user.setCreateAt(LocalDateTime.now());
 		
 	

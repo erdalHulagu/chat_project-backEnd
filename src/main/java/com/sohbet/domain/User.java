@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -65,12 +66,12 @@ private String password;
 @NotBlank(message = "Please provide your address")
 @Column(length = 80, nullable = false, unique=true)
 private String address;
-//
-//@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
-//message = "Please provide valid phone number" ) 
-//@Column(nullable = false)
-//private String phone;
-//
+
+@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
+message = "Please provide valid phone number" ) 
+@Column(nullable = false)
+private String phone;
+
 //@UpdateTimestamp
 //@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 //private LocalDateTime updateAt;
@@ -95,7 +96,14 @@ private Set<Image> profileImage;
 						 inverseJoinColumns = @JoinColumn(name="role_id"))
 private  Set<Role> roles = new HashSet<>();
 
+//
+//@OneToMany(fetch = FetchType.LAZY)
+////@JoinColumn(name="user_Id")
+////@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+//@JoinColumn(name = "user_id")
+//private Set<Image> myImages;
 
+//su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
 
 }
 

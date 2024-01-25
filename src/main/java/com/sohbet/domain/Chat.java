@@ -35,7 +35,7 @@ public class Chat {
 		
 	@Column(name = "chat_id")
 	@ManyToMany 
-   private Set<Image> chatImage=new HashSet<>();
+    private Set<Image> chatImage=new HashSet<>();
    
 	@Column(name = "admin")
 	@OneToMany

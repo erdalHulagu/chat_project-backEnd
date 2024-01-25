@@ -29,8 +29,8 @@ private String password;
 
 //private  LocalDateTime updateAt;
 //
-////private String phone;
-//
+private String phone;
+
 private LocalDateTime createAt;
 
 private String address;

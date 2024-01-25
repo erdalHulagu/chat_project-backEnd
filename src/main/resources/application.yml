@@ -4,7 +4,8 @@ server:
   include-binding-errors: always
   include-message: always
   
-spring: 
+spring:
+  
  main:
   allow-circular-references: true # 8 ve 9 yeni eklendi
  jackson: 
@@ -19,6 +20,7 @@ spring:
   driver-class-name: org.postgresql.Driver
   
  jpa:
+  open-in-view: false # bu satir uyari veriyordu diye yapildi  kaldirabilirisin
   hibernate: 
    ddl-auto: update
   show-sql: true

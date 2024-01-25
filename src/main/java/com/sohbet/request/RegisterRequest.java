@@ -1,13 +1,19 @@
 package com.sohbet.request;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sohbet.domain.Role;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -37,11 +43,11 @@ public class RegisterRequest {
 	@NotBlank(message="Please provide your password")
 	private String password;
 	
-	 @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$", //(541) 317-8828
-	            message = "Please provide valid phone number")
-	@Size(min=14, max=14)
-    @NotBlank(message = "Please provide your phone number")
-	private String phoneNumber;
+//	 @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$", //(541) 317-8828
+//	            message = "Please provide valid phone number")
+//	@Size(min=14, max=14)
+//    @NotBlank(message = "Please provide your phone number")
+//	private String phoneNumber;
 	
     @Size(max= 100)
     @NotBlank(message = "Please provide your address")
@@ -57,4 +63,10 @@ public class RegisterRequest {
     private LocalDateTime updateAt;
 
     private Set<String> image;
+    
+    @ManyToMany   // hibernate defaultta LAZY
+    @JoinTable( name="t_user_role",
+    						 joinColumns = @JoinColumn(name="user_id"),
+    						 inverseJoinColumns = @JoinColumn(name="role_id"))
+    private  Set<Role> roles = new HashSet<>();
 }
