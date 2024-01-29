@@ -32,12 +32,12 @@ public class AdminUserUpdateRequest {
 	@Size(min=4, max=20, message="Please provide Correct Size of Password")
 	@NotBlank(message="Please provide your password")
 	private String password;
-	
-	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",  
-            message = "Please provide valid phone number")
-	@Size(max=14)
-	@NotBlank(message="Please provide your phone number")
-	private String phoneNumber;
+//	
+//	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",  
+//            message = "Please provide valid phone number")
+//	@Size(max=14)
+//	@NotBlank(message="Please provide your phone number")
+//	private String phoneNumber;
 	
 	@Size(max=100)
 	@NotBlank(message="Please provide your address")

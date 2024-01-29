@@ -42,11 +42,11 @@ private String password;
 //@NotNull
 //@NotBlank(message="Please provide updateTime")
 //private  LocalDateTime updateAt;
-//
-@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
-message = "Please provide valid phone number" ) 
-@Column(nullable = false)
-private String phone;
+////
+//@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
+//message = "Please provide valid phone number" ) 
+//@Column(nullable = false)
+//private String phone;
 //
 //
 //@NotNull

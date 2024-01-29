@@ -32,11 +32,11 @@ public class UpdateUserRequest {
 	@Email(message="Please provide your email")
 	private String email;
 	
-	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",  
-            message = "Please provide valid phone number")
-	@Size(max=14)
-	@NotBlank(message="Please provide your phone number")
-	private String phoneNumber;
+//	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",  
+//            message = "Please provide valid phone number")
+//	@Size(max=14)
+//	@NotBlank(message="Please provide your phone number")
+//	private String phoneNumber;
 	
 	@Size(max=100)
 	@NotBlank(message="Please provide your address")
