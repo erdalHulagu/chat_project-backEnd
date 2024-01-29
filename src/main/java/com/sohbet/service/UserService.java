@@ -257,6 +257,59 @@ User user=userMapper.userRequestToUser(userRequest);
 				);
 		return user ;
 	}
+
+
+
+
+
+
+
+
+	public void save(String imageId, UserRequest userRequest) {
+		byte[] imgByt= imageService.getImage(imageId);
+		Image img = new Image();
+		img.setData(imgByt);
+
+//		Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+	//
+//		if (imageCountCheck > 0) {
+//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//		}
+			
+			Set<Image> image=new HashSet<>();
+			
+			image.add(img);
+			
+			Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+			
+			Set<Role> roles = new HashSet<>();
+			roles.add(role);
+			
+
+			
+
+			User user = new User();
+			user.setProfileImage(image);
+			user.setRoles(roles);
+			user.setFirstName(userRequest.getFirstName());
+			user.setLastName(userRequest.getLastName());
+			user.setEmail(userRequest.getEmail());
+			user.setAddress(userRequest.getAddress());
+//			user.setPhone(registerRequest.getPhoneNumber());
+			user.setCreateAt(LocalDateTime.now());
+			
+		
+			userRepository.save(user);
+		
+	}
+
+
+
+
+
+
+
+
 	
 	//------------ get image by string id ------------------  extra
 //public Image getImage (String id) {

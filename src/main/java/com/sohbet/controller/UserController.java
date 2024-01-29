@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.domain.Image;
 import com.sohbet.request.UserRequest;
 import com.sohbet.service.UserService;
 
@@ -43,6 +44,18 @@ public class UserController {
 		return ResponseEntity.ok(userDTO);
 	
 	}
+	public ResponseEntity<Response> saveUser(@PathVariable ("imageId") String imageId, @RequestBody UserRequest userRequest) {
+		
+		Response response = new Response();
+		response.setMessage(ResponseMessage.USER_CREATED_SUCCESFULLY);
+		
+		userService.save(imageId, userRequest);
+		
+		return ResponseEntity.ok(response);
+		
+	}
+	
+	
 	
 	@GetMapping("/profile")
 	public ResponseEntity<UserDTO> findUserProfile(){

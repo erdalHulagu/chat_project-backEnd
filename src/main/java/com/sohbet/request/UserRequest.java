@@ -1,5 +1,6 @@
 package com.sohbet.request;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -49,9 +50,9 @@ private String password;
 //private String phone;
 //
 //
-//@NotNull
-//@NotBlank(message="Please provide createTime")
-//private LocalDateTime createAt;
+@NotNull
+@NotBlank(message="Please provide createTime")
+private LocalDateTime createAt;
 
 @NotNull
 @NotBlank(message="Please provide your address")

@@ -6,6 +6,7 @@ public class ResponseMessage {
 
 
 	public final static String IMAGE_SAVED_RESPONSE_MESSAGE  = " Image has been succesfully uploaded";
+	
 	public final static String IMAGE_DELETE_RESPONSE_MESSAGE = " Image has been succesfully deleted";
 
 	public static final String REGISTER_RESPONSE_MESSAGE = "Registeration is successfull.";
@@ -27,4 +28,6 @@ public class ResponseMessage {
 	public static final String CHAT_DELETED_MESSAGE = "Chat deleted succesfully";
 
 	public static final String MESSAGE_DELETED_MESSAGE = "Message deleted succesfully";
+	
+	public static final String USER_CREATED_SUCCESFULLY = "User created succesfull";
 }
