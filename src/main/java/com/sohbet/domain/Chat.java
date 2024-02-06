@@ -33,11 +33,11 @@ public class Chat {
 	@Column(length = 50, nullable = false)
 	private String chatName;
 		
-	@Column(name = "chat_id")
+	@JoinColumn(name = "chat_id")
 	@ManyToMany 
     private Set<Image> chatImage=new HashSet<>();
    
-	@Column(name = "admin")
+	@JoinColumn(name = "admin")
 	@OneToMany
     private Set<User> admin=new HashSet<>();
 	

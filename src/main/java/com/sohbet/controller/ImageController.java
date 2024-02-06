@@ -42,7 +42,18 @@ public class ImageController {
 
 	}
 
+	
+
+
 	@Transactional
+	@PostMapping("/file")
+	public ResponseEntity<String> uploadImageToFIleSystem(@RequestParam("image")MultipartFile file) throws IOException {
+		String uploadImage = imageService.uploadImageToFileSystem(file);
+		 new Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE,true);
+		return ResponseEntity.ok().body(uploadImage);
+	}
+
+	    @Transactional
 		@GetMapping("/display/{id}")
 		public ResponseEntity<byte[]> getImage(@PathVariable String id)throws IOException{
 			byte[] imageData=imageService.getImage(id);
@@ -65,16 +76,6 @@ public class ImageController {
 			return ResponseEntity.ok(response);
 		}
 		
-		
-
-
-		@Transactional
-		@PostMapping("/file")
-		public ResponseEntity<String> uploadImageToFIleSystem(@RequestParam("image")MultipartFile file) throws IOException {
-			String uploadImage = imageService.uploadImageToFileSystem(file);
-			 new Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE,true);
-			return ResponseEntity.ok().body(uploadImage);
-		}
 
 		@Transactional
 		@GetMapping("/{id}")

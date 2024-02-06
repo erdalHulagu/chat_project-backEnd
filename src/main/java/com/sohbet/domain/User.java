@@ -82,7 +82,7 @@ private String address;
 private LocalDateTime createAt;
 
 
-@OneToMany(fetch = FetchType.LAZY)
+@OneToMany(fetch = FetchType.EAGER)
 //@JoinColumn(name="user_Id")
 //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
 @JoinColumn(name = "user_id")
