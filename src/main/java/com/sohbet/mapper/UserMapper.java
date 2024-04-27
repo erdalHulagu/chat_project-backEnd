@@ -44,8 +44,9 @@ public interface UserMapper  {
 	
 
 
-	@Mapping(target = "profileImage",source = "profileImage",qualifiedByName = "getImageAsString")
+//	@Mapping(target = "profileImage",source = "profileImage",qualifiedByName = "getImageAsString")
 	@Mapping(target = "roles",ignore = true)
+	@Mapping(target = "profileImage",ignore = true)
 	UserDTO userToUserDto(User user);
 	
 	

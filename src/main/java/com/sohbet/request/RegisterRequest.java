@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 
 import jakarta.persistence.Column;
@@ -62,11 +63,13 @@ public class RegisterRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime updateAt;
 
-    private Set<String> image;
+    private Image image;
     
     @ManyToMany   // hibernate defaultta LAZY
     @JoinTable( name="t_user_role",
     						 joinColumns = @JoinColumn(name="user_id"),
     						 inverseJoinColumns = @JoinColumn(name="role_id"))
     private  Set<Role> roles = new HashSet<>();
+
+
 }

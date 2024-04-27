@@ -82,11 +82,12 @@ private String address;
 private LocalDateTime createAt;
 
 
-@OneToMany(fetch = FetchType.EAGER)
-//@JoinColumn(name="user_Id")
-//@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-@JoinColumn(name = "user_id")
-private Set<Image> profileImage;
+//@OneToMany(fetch = FetchType.EAGER)
+////@JoinColumn(name="user_Id")
+////@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+//@JoinColumn(name = "user_id")
+
+private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
 
 
 

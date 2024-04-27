@@ -197,14 +197,17 @@ User user=userMapper.userRequestToUser(userRequest);
 //	}
 
 	//---------------- register user----------------------
-	public void saveUser(String imageId,RegisterRequest registerRequest) {
+	public void saveUser(RegisterRequest registerRequest) {
 		if(userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
 		}
 		
-	byte[] imgByt= imageService.getImage(imageId);
+		
+		
+		Image imgByt= registerRequest.getImage();
+	byte[] imgData=	imgByt.getData();
 	Image img = new Image();
-	img.setData(imgByt);
+	img.setData(imgData);
 
 //	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
 //
@@ -212,9 +215,7 @@ User user=userMapper.userRequestToUser(userRequest);
 //		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 //	}
 		
-		Set<Image> image=new HashSet<>();
-		
-		image.add(img);
+	
 		
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 		
@@ -226,7 +227,7 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 
 		User user = new User();
-		user.setProfileImage(image);
+		user.setProfileImage(img);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
@@ -240,6 +241,50 @@ User user=userMapper.userRequestToUser(userRequest);
 		userRepository.save(user);
 		
 	}
+//	//---------------- register user----------------------ustteki methid yani image icerden kullanildiginda  register yanlis olursa  bu methodu geri yap
+//	public void saveUser(String imageId,RegisterRequest registerRequest) {
+//		if(userRepository.existsByEmail(registerRequest.getEmail())) {
+//			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
+//		}
+//		
+//		byte[] imgByt= imageService.getImage(imageId);
+//		Image img = new Image();
+//		img.setData(imgByt);
+//		
+////	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+////
+////	if (imageCountCheck > 0) {
+////		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+////	}
+//		
+//		Set<Image> image=new HashSet<>();
+//		
+//		image.add(img);
+//		
+//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+//		
+//		Set<Role> roles = new HashSet<>();
+//		roles.add(role);
+//		
+//		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
+//		
+//		
+//		
+//		User user = new User();
+//		user.setProfileImage(image);
+//		user.setRoles(roles);
+//		user.setPassword(encodedPassword);
+//		user.setFirstName(registerRequest.getFirstName());
+//		user.setLastName(registerRequest.getLastName());
+//		user.setEmail(registerRequest.getEmail());
+//		user.setAddress(registerRequest.getAddress());
+////		user.setPhone(registerRequest.getPhoneNumber());
+//		user.setCreateAt(LocalDateTime.now());
+//		
+//		
+//		userRepository.save(user);
+//		
+//	}
 	
 	
 

@@ -45,17 +45,29 @@ public class UserJwtController {
    
    // --------------------register user---------------------
   
-   @PostMapping("/register/{imageId}")
+//   @PostMapping("/register/{imageId}")
+//   @Transactional
+//   public ResponseEntity<Response> registerUser(@PathVariable("imageId") String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
+//	   userService.saveUser(imageId,registerRequest);
+//	   
+//	   Response response = new Response();
+//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+//	   response.setSuccess(true);
+//	   
+//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
+//  
+//   }
+   @PostMapping("/register")
    @Transactional
-   public ResponseEntity<Response> registerUser(@PathVariable("imageId") String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
-	   userService.saveUser(imageId,registerRequest);
+   public ResponseEntity<Response> registerUser( @Valid @RequestBody RegisterRequest registerRequest  )  {
+	   userService.saveUser(registerRequest);
 	   
 	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
 	   response.setSuccess(true);
 	   
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-  
+	   
    }
 
    

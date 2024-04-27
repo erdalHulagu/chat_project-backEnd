@@ -3,6 +3,8 @@ package com.sohbet.DTO;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 
 import lombok.AllArgsConstructor;
@@ -36,7 +38,7 @@ private LocalDateTime createAt;
 private String address;
 
 
-private Set<String> profileImage;
+private Image profileImage;
 
 private  Set<String> roles ;
 

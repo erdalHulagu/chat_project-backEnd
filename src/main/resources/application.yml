@@ -16,7 +16,7 @@ spring:
    autoCommit : false
   url: jdbc:postgresql://localhost:5432/postgres
   username: postgres
-  password: aylaadem233
+  password: password
   driver-class-name: org.postgresql.Driver
   
  jpa:
