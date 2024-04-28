@@ -11,13 +11,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -63,7 +65,9 @@ public class RegisterRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime updateAt;
 
-    private Image image;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+    private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
+
     
     @ManyToMany   // hibernate defaultta LAZY
     @JoinTable( name="t_user_role",

@@ -3,6 +3,8 @@ package com.sohbet.request;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.sohbet.domain.Image;
+
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -58,7 +60,7 @@ private LocalDateTime createAt;
 @NotBlank(message="Please provide your address")
 private String address;
 
-private Set<String> image; 
+private Image image; 
 
 
 

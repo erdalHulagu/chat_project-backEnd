@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,6 +65,7 @@ public class UserController {
 	
 //	@Transactional
 	@GetMapping("/profile")
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<UserDTO> findUserProfile(){
 		
 	UserDTO userDTO=	userService.findUserProfile();

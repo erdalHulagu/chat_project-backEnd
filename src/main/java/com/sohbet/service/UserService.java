@@ -204,7 +204,7 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 		
 		
-		Image imgByt= registerRequest.getImage();
+		Image imgByt= registerRequest.getProfileImage();
 	byte[] imgData=	imgByt.getData();
 	Image img = new Image();
 	img.setData(imgData);
