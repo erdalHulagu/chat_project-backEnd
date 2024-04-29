@@ -2,6 +2,8 @@ package com.sohbet.controller;
 
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import jakarta.validation.Valid;
 @RestController
 public class UserJwtController {
 	
+	
+//	private static final Logger logger = LoggerFactory.getLogger(UserJwtController.class);
 	// Bu classımda sadece login ve register işlemleri yapılacak
 	
    @Autowired
@@ -60,16 +64,16 @@ public class UserJwtController {
    @PostMapping("/register")
    @Transactional
    public ResponseEntity<Response> registerUser( @Valid @RequestBody RegisterRequest registerRequest  )  {
+	 
+	
 	   userService.saveUser(registerRequest);
 	   
 	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
 	   response.setSuccess(true);
-	   
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-	   
+	
    }
-
    
    
    // ------------------------login user-----------------------------

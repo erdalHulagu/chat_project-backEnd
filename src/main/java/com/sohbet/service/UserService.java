@@ -29,6 +29,8 @@ import com.sohbet.request.UserRequest;
 import com.sohbet.security.config.SecurityUtils;
 import com.sohbet.security.jwt.JwtUtils;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class UserService {
@@ -197,6 +199,7 @@ User user=userMapper.userRequestToUser(userRequest);
 //	}
 
 	//---------------- register user----------------------
+	@Transactional
 	public void saveUser(RegisterRequest registerRequest) {
 		if(userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
@@ -205,9 +208,18 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 		
 		Image imgByt= registerRequest.getProfileImage();
+		
 	byte[] imgData=	imgByt.getData();
 	Image img = new Image();
 	img.setData(imgData);
+		
+	Set<Image> image=new HashSet<>();
+//	
+	image.add(img);
+
+//		byte[] imgByt= imageService.getImage(imageId);
+//		Image img = new Image();
+//		img.setData(imgByt);
 
 //	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
 //

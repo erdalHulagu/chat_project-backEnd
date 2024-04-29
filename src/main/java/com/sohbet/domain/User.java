@@ -90,6 +90,7 @@ private LocalDateTime createAt;
 
 
 @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+@JoinColumn(name = "user_id", referencedColumnName = "id")
 private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
 
 
