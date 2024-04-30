@@ -49,10 +49,10 @@ logging:
  file: 
   name: log/chat_project_backEnd.log
  pattern:
-  console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+#  console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
   file: "%d %-5level [%thread] %logger:%msg%n"
  level:
-  root : INFO # burasi info yerine WARN vardi degistir sonra
+  root : WARN # burasi info yerine WARN vardi degistir sonra
   '[org.springframework.web]' : WARN
   '[org.hibernate]' : INFO
   '[com.ecommerce.games]' : DEBUG

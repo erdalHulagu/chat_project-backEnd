@@ -206,16 +206,16 @@ User user=userMapper.userRequestToUser(userRequest);
 		}
 		
 		
-		
-		Image imgByt= registerRequest.getProfileImage();
-		
-	byte[] imgData=	imgByt.getData();
-	Image img = new Image();
-	img.setData(imgData);
-		
-	Set<Image> image=new HashSet<>();
-//	
-	image.add(img);
+//		
+//		Image imgByt= registerRequest.getProfileImage();
+//		
+//	byte[] imgData=	imgByt.getData();
+//	Image img = new Image();
+//	img.setData(imgData);
+//		
+//	Set<Image> image=new HashSet<>();
+////	
+//	image.add(img);
 
 //		byte[] imgByt= imageService.getImage(imageId);
 //		Image img = new Image();
@@ -239,7 +239,7 @@ User user=userMapper.userRequestToUser(userRequest);
 		
 
 		User user = new User();
-		user.setProfileImage(img);
+//		user.setProfileImage(img);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
