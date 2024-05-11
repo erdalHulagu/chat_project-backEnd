@@ -65,8 +65,8 @@ public class RegisterRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime updateAt;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-    private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+//    private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
 
     
     @ManyToMany   // hibernate defaultta LAZY

@@ -18,13 +18,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -88,10 +87,10 @@ private LocalDateTime createAt;
 ////@JoinColumn(name="user_Id")
 //@JoinColumn(name = "user_id")
 
-
-@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-@JoinColumn(name = "user_id", referencedColumnName = "id")
-private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
+//
+//@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+//@JoinColumn(name = "user_id", referencedColumnName = "id")
+//private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
 
 
 
@@ -101,7 +100,7 @@ private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada
 						 inverseJoinColumns = @JoinColumn(name="role_id"))
 private  Set<Role> roles = new HashSet<>();
 
-//
+
 //@OneToMany(fetch = FetchType.LAZY)
 ////@JoinColumn(name="user_Id")
 ////@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
@@ -109,6 +108,12 @@ private  Set<Role> roles = new HashSet<>();
 //private Set<Image> myImages;
 
 //su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
+
+@OneToMany(orphanRemoval = true, mappedBy = "user")
+private List<Message>messages=new ArrayList<>();
+	
+@OneToMany(mappedBy = "createdBy")
+private List<Chat> chats;
 
 }
 

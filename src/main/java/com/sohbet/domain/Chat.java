@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -48,12 +49,18 @@ public class Chat {
 	@ManyToOne
 	private User createdBy;
 	
-	@ManyToMany()
-	private Set<User> users=new HashSet<>();
 	
-	@OneToMany(orphanRemoval = true)
+	@OneToMany(orphanRemoval = true,mappedBy = "chat")
 	private List<Message>messages=new ArrayList<>();
 		
+	
+	@ManyToMany
+    @JoinTable(
+        name = "chat",
+        joinColumns = @JoinColumn(name = "chat_id"),
+        inverseJoinColumns = @JoinColumn(name = "userId")
+    )
+	private Set<User> users=new HashSet<>();
 	}
 	
 	
