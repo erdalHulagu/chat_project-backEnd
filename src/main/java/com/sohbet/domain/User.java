@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -113,7 +114,16 @@ private  Set<Role> roles = new HashSet<>();
 private List<Message>messages=new ArrayList<>();
 	
 @OneToMany(mappedBy = "createdBy")
-private List<Chat> chats;
+private List<Chat> chat;
+
+@ManyToMany(mappedBy = "users")
+private Set<Chat> chats = new HashSet<>();
+
+@ManyToMany   // hibernate defaultta LAZY
+@JoinTable( name="t_user_friend",
+						 joinColumns = @JoinColumn(name="user_id"),
+						 inverseJoinColumns = @JoinColumn(name="friend_id"))
+private List<Friend>friends= new ArrayList<>();
 
 }
 

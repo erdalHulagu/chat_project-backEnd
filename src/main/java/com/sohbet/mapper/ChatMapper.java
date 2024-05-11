@@ -18,6 +18,7 @@ public interface ChatMapper {
 	
 	
 	@Mapping(target = "chatImage",source = "chatImage",qualifiedByName = "getImageAsString")
+	
     ChatDTO chatToChatDTO (Chat chat);
  
  

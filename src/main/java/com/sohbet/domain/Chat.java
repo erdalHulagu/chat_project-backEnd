@@ -56,7 +56,7 @@ public class Chat {
 	
 	@ManyToMany
     @JoinTable(
-        name = "chat",
+        name = "chat_users",
         joinColumns = @JoinColumn(name = "chat_id"),
         inverseJoinColumns = @JoinColumn(name = "userId")
     )
