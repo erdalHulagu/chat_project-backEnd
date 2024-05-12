@@ -29,7 +29,7 @@ public interface UserMapper  {
 	
 	
 	@Mapping(target = "id", ignore=true)
-//	@Mapping(target = "profileImage" , ignore = true )
+	@Mapping(target = "profileImage" , ignore = true )
 	@Mapping(target = "roles",ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
   

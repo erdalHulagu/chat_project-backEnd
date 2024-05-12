@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -186,7 +188,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 	}
 
 	//---------------- register user----------------------
-	@Transactional
+	
 	public void saveUser(RegisterRequest registerRequest) {
 		if(userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
@@ -194,11 +196,12 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		
 		
 //		
-//		Image imgByt= registerRequest.getProfileImage();
+		String imgByt= registerRequest.getProfileImage();
+		Image img=imageService.findImageByImageId(imgByt);
 //		
-//	byte[] imgData=	imgByt.getData();
-//	Image img = new Image();
-//	img.setData(imgData);
+	byte[] imgData=	img.getData();
+	Image profileImage = new Image();
+	profileImage.setData(imgData);
 //		
 //	Set<Image> image=new HashSet<>();
 ////	
@@ -223,7 +226,10 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		
 		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
 
-		Image profileImage = new Image();
+		
+//		 Image profileImage=  new Image();
+	     
+	  
 		
 		
 
@@ -242,6 +248,8 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		userRepository.save(user);
 		
 	}
+	
+	
 //	//---------------- register user----------------------ustteki methid yani image icerden kullanildiginda  register yanlis olursa  bu methodu geri yap
 //	public void saveUser(String imageId,RegisterRequest registerRequest) {
 //		if(userRepository.existsByEmail(registerRequest.getEmail())) {

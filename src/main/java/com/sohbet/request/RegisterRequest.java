@@ -63,14 +63,9 @@ public class RegisterRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime updateAt;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-//    private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
 
-    
-    @ManyToMany   // hibernate defaultta LAZY
-    @JoinTable( name="t_user_role",
-    						 joinColumns = @JoinColumn(name="user_id"),
-    						 inverseJoinColumns = @JoinColumn(name="role_id"))
+    private String profileImage;
+
     private  Set<Role> roles = new HashSet<>();
 
 
