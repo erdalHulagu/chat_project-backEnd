@@ -73,7 +73,7 @@ private String address;
 //
 @Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
 message = "Please provide valid phone number" ) 
-@Column(nullable = true) // ONEMLI hatayi duzelttikten sonra burada nullable=false yap
+@Column(nullable = true) 
 private String phone;
 
 @UpdateTimestamp

@@ -184,15 +184,6 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
      	user.setPhone(userDTO.getPhone());
    		
 	}
-//	private Optional<User> getUserByEmail(String email) {
-//		
-//
-//		  User user  =  userRepository.findByEmail(email).orElseThrow(()->
-//		  			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, email))
-//				);
-//		return Optional.of((user)) ;
-//		
-//	}
 
 	//---------------- register user----------------------
 	@Transactional
@@ -233,6 +224,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
 
 		Image profileImage = new Image();
+		
 		
 
 		User user = new User();
@@ -313,9 +305,29 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 	}
 
 
+//------------ convert roles------------------
+	public Set<Role> convertRoles(Set<String> pRoles) {
+		Set<Role> roles = new HashSet<>();
+		
+		if(pRoles==null) {
+			 Role userRole =  roleService.findByType(RoleType.ROLE_ADMIN);
+			 roles.add(userRole);
+		}else {
+			pRoles.forEach(roleStr->{
+				if(roleStr.equals(RoleType.ROLE_ADMIN.getName())) { // Administrator
+					 Role adminRole = roleService.findByType(RoleType.ROLE_ADMIN);
+					roles.add(adminRole);
+					
+				}else {
+					Role userRole = roleService.findByType(RoleType.ROLE_ADMIN);
+					roles.add(userRole);
+				}
+			});
+		}
 
-
-
+	
+	return roles;
+	}
 
 
 //
@@ -371,7 +383,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 //	return imageFile;
 //}
 //	
-	}
 	
+}
 
 

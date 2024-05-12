@@ -42,6 +42,10 @@ public class Friend {
 	
 	@Column
 	@NotBlank
+	private String phone;
+	
+	@Column
+	@NotBlank
 	private String email;
 	
 	@ManyToMany(mappedBy = "friends")
