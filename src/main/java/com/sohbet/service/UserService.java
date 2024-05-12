@@ -28,6 +28,7 @@ import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UserRequest;
 import com.sohbet.security.config.SecurityUtils;
 import com.sohbet.security.jwt.JwtUtils;
+import com.visionrent.domain.Car;
 
 import jakarta.transaction.Transactional;
 
@@ -152,10 +153,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 	
 
 	//update user
-	public UserDTO updateUser(String imageId, UserRequest userRequest) {
-
-User user=userMapper.userRequestToUser(userRequest);
-
+	public void updateUser(User user, String imageId, UserDTO userDTO) {
 
 
        if ((user==null)) {
@@ -167,26 +165,26 @@ User user=userMapper.userRequestToUser(userRequest);
        Set<Role> roles = new HashSet<>();
        roles.add(role);
        user.setRoles(roles);
-       byte[] imgByt= imageService.getImage(imageId);
        
-       Image img = new Image();
-       img.setData(imgByt);
-
-//   	   Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
-//
-//   	   if (imageCountCheck > 0) {
-//   		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//   	  }
-   		
-   		Set<Image> image=new HashSet<>();
-   		
-   		image.add(img);
+     Image image=  imageService.findImageByImageId(imageId);
+     
+     List<User> userList=userRepository.findUserByImageId(image.getId());
        
-	 userRepository.save(user);
-	         
-	   UserDTO userDTO =  userMapper.userToUserDto(user);
-	
-	   return userDTO;
+     for(User u: userList) {
+			// bana gelen car Id si ile yukardakiList türündeki car Id leri eşit olmaları lazım,
+			//eğer eşit değilse girilenm image başka bir araç için yüklenmiş
+			if(user.getId().longValue()!=u.getId().longValue()) {
+				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+			}
+			
+		}
+   	  
+   		user.setAddress(userDTO.getAddress());
+   		user.setFirstName(userDTO.getFirstName());
+   		user.setLastName(userDTO.getLastName());
+//   	user.setProfileImage(userDTO.getProfileImage());
+//   	user.setPhone(userDTO.getPhone());
+   		
 	}
 //	private Optional<User> getUserByEmail(String email) {
 //		

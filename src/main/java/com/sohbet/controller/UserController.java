@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Image;
+import com.sohbet.domain.User;
 import com.sohbet.request.UserRequest;
 import com.sohbet.service.UserService;
 
@@ -114,14 +116,16 @@ public class UserController {
 		
 	}
 	@Transactional
-	@PutMapping("/{imageId}")
-	
-	public ResponseEntity<UserDTO> upDateUser(@Validated @PathVariable String imageId, @RequestBody UserRequest userRequest){
-		
-		 UserDTO updateduser = userService.updateUser(imageId,userRequest);
+	@PutMapping("/auth")
+	public ResponseEntity<Response> upDateUser( @RequestParam("imageId") String imageId,
+			                                   @Validated @RequestBody UserDTO userDTO){
+		User user=userService.getCurrentUser();
+		 userService.updateUser(user,imageId,userDTO);
+		 
+		 
 		 Response response = new Response();
 		 response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-		 return ResponseEntity.ok(updateduser);
+		 return ResponseEntity.ok(response);
 		
 	}
 	
