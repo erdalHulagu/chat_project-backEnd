@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -56,7 +58,7 @@ private String lastName;
 
 @Email(message = "Please provide valid email")
 @Size(min = 10, max = 80)
-@Column(length = 80, nullable = false, unique=true)
+@Column(length = 80, nullable = false, unique=true, updatable = false)
 private String email;
 
 
@@ -69,44 +71,34 @@ private String password;
 @Column(length = 80, nullable = false, unique=true)
 private String address;
 //
-//@Pattern(regexp = "\\\\d{3}-\\\\d{3}-\\\\d{4}",	// 999-999-9999
-//message = "Please provide valid phone number" ) 
-//@Column(nullable = false)
-//private String phone;
+@Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
+message = "Please provide valid phone number" ) 
+@Column(nullable = true) // ONEMLI hatayi duzelttikten sonra burada nullable=false yap
+private String phone;
 
-//@UpdateTimestamp
-//@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-//private LocalDateTime updateAt;
-//
-//
+@UpdateTimestamp
+@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+private LocalDateTime updateAt;
+
+
 @Column(name = "create_at", updatable = false, nullable = true)
 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 private LocalDateTime createAt;
 
-
-//@OneToMany(fetch = FetchType.EAGER)
-////@JoinColumn(name="user_Id")
-//@JoinColumn(name = "user_id")
-
-//
-//@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-//@JoinColumn(name = "user_id", referencedColumnName = "id")
-//private Image profileImage;// burayi Set<String> yapma ihtimalin var yani burada bir islem yapacaksin register icin
-
-
-
-@ManyToMany   // hibernate defaultta LAZY
+@ManyToMany   
 @JoinTable( name="t_user_role",
 						 joinColumns = @JoinColumn(name="user_id"),
 						 inverseJoinColumns = @JoinColumn(name="role_id"))
 private  Set<Role> roles = new HashSet<>();
 
 
-//@OneToMany(fetch = FetchType.LAZY)
-////@JoinColumn(name="user_Id")
-////@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-//@JoinColumn(name = "user_id")
-//private Set<Image> myImages;
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+@JoinColumn(name = "user_id")
+private Set<Image> myImages;
+
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "profile_image_id", referencedColumnName = "id")
+private Image profileImage;
 
 //su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
 

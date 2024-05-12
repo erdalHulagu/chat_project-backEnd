@@ -20,6 +20,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,11 +47,8 @@ public class RegisterRequest {
 	@NotBlank(message="Please provide your password")
 	private String password;
 	
-//	 @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$", //(541) 317-8828
-//	            message = "Please provide valid phone number")
-//	@Size(min=14, max=14)
-//    @NotBlank(message = "Please provide your phone number")
-//	private String phoneNumber;
+    @NotBlank(message = "Please provide your phone number")
+	private String phone;
 	
     @Size(max= 100)
     @NotBlank(message = "Please provide your address")

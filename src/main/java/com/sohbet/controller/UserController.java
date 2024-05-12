@@ -117,7 +117,7 @@ public class UserController {
 	}
 	@Transactional
 	@PutMapping("/auth")
-	public ResponseEntity<Response> upDateUser( @RequestParam("imageId") String imageId,
+	public ResponseEntity<Response> upDateUser(@RequestParam("imageId") String imageId,
 			                                   @Validated @RequestBody UserDTO userDTO){
 		User user=userService.getCurrentUser();
 		 userService.updateUser(user,imageId,userDTO);

@@ -18,17 +18,14 @@ import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
-import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
-import com.sohbet.request.UserRequest;
 import com.sohbet.security.config.SecurityUtils;
 import com.sohbet.security.jwt.JwtUtils;
-import com.visionrent.domain.Car;
 
 import jakarta.transaction.Transactional;
 
@@ -48,7 +45,7 @@ public class UserService {
 	
 	private JwtUtils jwtUtils;
 	
-	@Autowired
+	
 	public UserService(UserRepository userRepository
 			           ,ImageService imageService
 			           ,UserMapper userMapper
@@ -171,19 +168,20 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
      List<User> userList=userRepository.findUserByImageId(image.getId());
        
      for(User u: userList) {
-			// bana gelen car Id si ile yukardakiList türündeki car Id leri eşit olmaları lazım,
-			//eğer eşit değilse girilenm image başka bir araç için yüklenmiş
+			// bana gelen user Id si ile yukardakiList türündeki user Id leri eşit olmaları lazım,
+			//eğer eşit değilse girilenm image başka bir user için yüklenmiş
 			if(user.getId().longValue()!=u.getId().longValue()) {
 				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 			}
 			
 		}
    	  
+        user.setUpdateAt(LocalDateTime.now());
    		user.setAddress(userDTO.getAddress());
    		user.setFirstName(userDTO.getFirstName());
    		user.setLastName(userDTO.getLastName());
-//   	user.setProfileImage(userDTO.getProfileImage());
-//   	user.setPhone(userDTO.getPhone());
+   	    user.setProfileImage(userDTO.getProfileImage());
+     	user.setPhone(userDTO.getPhone());
    		
 	}
 //	private Optional<User> getUserByEmail(String email) {
@@ -234,17 +232,18 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		
 		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
 
+		Image profileImage = new Image();
 		
 
 		User user = new User();
-//		user.setProfileImage(img);
+		user.setProfileImage(profileImage);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
 		user.setLastName(registerRequest.getLastName());
 		user.setEmail(registerRequest.getEmail());
 		user.setAddress(registerRequest.getAddress());
-//		user.setPhone(registerRequest.getPhoneNumber());
+		user.setPhone(registerRequest.getPhone());
 		user.setCreateAt(LocalDateTime.now());
 		
 	
