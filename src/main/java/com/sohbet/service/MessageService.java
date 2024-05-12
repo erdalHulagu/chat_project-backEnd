@@ -113,7 +113,7 @@ public class MessageService {
 		}
 	
 	//--------- method find by id-------------
-	public Message getMessageById(Long id) {
+	public Message  getMessageById(Long id) {
 		Message message=	messageRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.MESSAGE_NOT_FOUND, id)));
 		
 		return message;

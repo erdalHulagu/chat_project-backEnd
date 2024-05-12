@@ -64,7 +64,7 @@ public class MessageController {
 	}
 	
 	@GetMapping("/chat/{chatId}")
-	public ResponseEntity<List<MessageDTO>>getChatMessage(@PathVariable Long chatId){
+	public ResponseEntity<List<MessageDTO>>getChatMessages(@PathVariable Long chatId){
 
 		UserDTO userDTO=userService.findUserProfile();
 		User user =userMapper.userDTOToUser(userDTO);
@@ -91,9 +91,7 @@ public class MessageController {
 	@GetMapping("/{id}")
 	public ResponseEntity<MessageDTO>getMessage(@PathVariable Long id){
 
-	Message message=	messageService.getMessageById(id);
-	
-	MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
+	MessageDTO messageDTO=	messageService.findMessageById(id);
 	
 	return ResponseEntity.ok(messageDTO);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
 		

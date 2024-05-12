@@ -35,7 +35,7 @@ public class Chat {
 	private String chatName;
 		
 	@JoinColumn(name = "chat_id")
-	@ManyToMany 
+	@ManyToMany
     private Set<Image> chatImage=new HashSet<>();
    
 	@JoinColumn(name = "admin")
@@ -61,9 +61,7 @@ public class Chat {
         inverseJoinColumns = @JoinColumn(name = "userId")
     )
 	private Set<User> users=new HashSet<>();
-	}
-	
-	
-	
 	
 
+}
+	

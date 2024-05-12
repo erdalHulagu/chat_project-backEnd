@@ -102,8 +102,8 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 		for (Long userId : groupChatRequest.getUserIds()) {
 			
 			UserDTO userDTO=userService.getUserById(userId);
-		User usrs=	userMapper.userDTOToUser(userDTO);
-			chat.getUsers().add(usrs);
+		User usr=	userMapper.userDTOToUser(userDTO);
+			chat.getUsers().add(usr);
 		}
 	  ChatDTO chatDTO= chatMapper.chatToChatDTO(chat);
 		return chatDTO;

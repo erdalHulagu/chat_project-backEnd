@@ -34,7 +34,7 @@ public class ChatController {
 	private UserService userService;
 	private UserMapper userMapper;
 	
-	@Autowired
+	
 	public ChatController(ChatService chatService, UserService userService, UserMapper userMapper) {
 	
 		this.chatService=chatService;
