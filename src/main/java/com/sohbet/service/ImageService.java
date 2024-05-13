@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sohbet.DTOresponse.ChatResponse;
+import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.FileData;
 import com.sohbet.domain.Image;
@@ -46,7 +46,7 @@ public class ImageService {
 					           .build());
 			if(imageData!=null){
 
-				return new ChatResponse(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) + file.getOriginalFilename();
+				return new Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) + file.getOriginalFilename();
 
 		  }
 	     return null;
@@ -85,7 +85,7 @@ public class ImageService {
         file.transferTo(new File(filePath));
 
         if (fileData != null) {
-            return new ChatResponse(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) + filePath;
+            return new Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) + filePath;
         }
         return null;
     }

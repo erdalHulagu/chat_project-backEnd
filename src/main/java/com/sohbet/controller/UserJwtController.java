@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTOresponse.LoginResponse;
 import com.sohbet.DTOresponse.Response;
@@ -64,10 +66,12 @@ public class UserJwtController {
 //   }
    @PostMapping("/register")
    @Transactional
-   public ResponseEntity<Response> registerUser( @Valid  @RequestBody RegisterRequest registerRequest  )  {
+   public ResponseEntity<Response> registerUser(MultipartFile imageFile, 
+		                                        @Valid  @RequestBody RegisterRequest registerRequest)  
+   {
 	 
 	
-	   userService.saveUser(registerRequest);
+	   userService.saveUser(imageFile,registerRequest);
 	   
 	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);

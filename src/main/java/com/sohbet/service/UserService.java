@@ -1,5 +1,6 @@
 package com.sohbet.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
@@ -24,11 +26,11 @@ import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
+import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.config.SecurityUtils;
 import com.sohbet.security.jwt.JwtUtils;
-
 import jakarta.transaction.Transactional;
 
 
@@ -189,19 +191,25 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 
 	//---------------- register user----------------------
 	
-	public void saveUser(RegisterRequest registerRequest) {
+	public void saveUser(MultipartFile imageFile, RegisterRequest registerRequest) throws IOException {
 		if(userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
 		}
 		
+	String	imag=imageService.uploadImageToFileSystem(imageFile);
+	
+	
+		registerRequest.setProfileImage(imag);
 		
-//		
-		String imgByt= registerRequest.getProfileImage();
-		Image img=imageService.findImageByImageId(imgByt);
-//		
-	byte[] imgData=	img.getData();
-	Image profileImage = new Image();
-	profileImage.setData(imgData);
+		Image image =new Image(imag.getBytes());
+	String idLong=	image.getId();
+byte[] imageByt=imageService.getImage(idLong);
+Image image2=new Image();
+		image2.setData(imageByt);
+////		
+//	byte[] imgData=	img.getData();
+//	Image profileImage = new Image();
+//	profileImage.setData(imgData);
 //		
 //	Set<Image> image=new HashSet<>();
 ////	
@@ -234,7 +242,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 		
 
 		User user = new User();
-		user.setProfileImage(profileImage);
+		user.setProfileImage(image2);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());

@@ -9,6 +9,9 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
@@ -29,7 +32,7 @@ public interface UserMapper  {
 	
 	
 	@Mapping(target = "id", ignore=true)
-	@Mapping(target = "profileImage" , ignore = true )
+	@Mapping(target = "profileImage", ignore=true)
 	@Mapping(target = "roles",ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
   
@@ -64,19 +67,35 @@ public interface UserMapper  {
 		
 		return roleStr;
 	}
-	
+	@Named("getImageAsLong")
+	public static Set<Image> mapping(Set<String> imageUrls) {
+	    Set<Image> images = new HashSet<>();
+	    for (String imageUrl : imageUrls) {
+	        Image image = new Image();
+	        image.setId(imageUrl); // Varsayılan olarak sadece id atanıyor
+
+	        // Diğer alanlar da varsa onları da ayarlayabilirsiniz
+	        // Örneğin:
+	        // image.setName("Image Name"); // İsim belirlenmesi gerekiyorsa
+	        // image.setType("jpg"); // Tip belirlenmesi gerekiyorsa
+	        // image.setData(yourImageData); // Resim verisi atanması gerekiyorsa
+
+	        images.add(image);
+	    }
+	    return images;
+	}
 	  
 	 // long turunde image i image turunde image e cevidik
-	 @Named("getImageAsLong")
-   public static Set<Image> map(Set<String> imageUrls) {
-		 Set<Image> images = new HashSet<>();
-	        for (String imageUrl : imageUrls) {
-	            Image image = new Image();
-	            image.setId(imageUrl);   // Eğer Image sınıfında başka alanlar varsa, diğer alanları da ayarlayabilirsiniz
-	            images.add(image);
-	        }
-	        return images;
-	 }
+//	 @Named("getImageAsLong")
+//   public static Set<Image> map(Set<String> imageUrls) {
+//		 Set<Image> images = new HashSet<>();
+//	        for (String imageUrl : imageUrls) {
+//	            Image image = new Image();
+//	            image.setId(imageUrl);   // Eğer Image sınıfında başka alanlar varsa, diğer alanları da ayarlayabilirsiniz
+//	            images.add(image);
+//	        }
+//	        return images;
+//	 }
 	 @Named("getImageAsString")
 		public static  Set<String> getImageIds( Set<Image> imageFiles) {
 			Set<String> imgs = new HashSet<>();
@@ -92,6 +111,6 @@ public interface UserMapper  {
 //			imgs = imageFiles.stream().map(imFile->imFile.
 //			 return imgs;
 //		}
-//	
+	
 }
 	
