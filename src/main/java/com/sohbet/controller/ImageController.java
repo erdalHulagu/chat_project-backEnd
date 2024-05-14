@@ -3,6 +3,8 @@ package com.sohbet.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sohbet.DTOresponse.ImageSavedResponse;
 import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.domain.Image;
 import com.sohbet.service.ImageService;
 
 import jakarta.transaction.Transactional;
@@ -84,5 +87,15 @@ public class ImageController {
 			return ResponseEntity.ok().contentType(MediaType.valueOf("image/png")).body(imageData);
 
 		}
+		@GetMapping("/add/{imageId}")
+		public  ResponseEntity<byte[]> findImageByImageId(@PathVariable String imageId) {
+			
+		Image image= imageService.findImageByImageId(imageId);
+		 HttpHeaders header = new HttpHeaders();
+	      header.setContentType(MediaType.IMAGE_PNG);
+
+	      return new ResponseEntity<>(image.getData(), header, HttpStatus.OK);
+		}
+		
 	
 }

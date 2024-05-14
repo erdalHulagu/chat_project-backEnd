@@ -2,6 +2,8 @@ package com.sohbet.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,7 +48,7 @@ public class ImageService {
 					           .build());
 			if(imageData!=null){
 
-				return new Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) + file.getOriginalFilename();
+				return new   Response(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE, true) +" file: "+ file.getOriginalFilename()+" image ID : "+imageData.getId();
 
 		  }
 	     return null;
@@ -55,20 +57,31 @@ public class ImageService {
 //--------------------------------------------------------------------------------------------
 
     public byte[] getImage(String id) {
-        Optional<Image> dbImageData = Optional.of(imageRepository.findImageById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true))));
-        byte[] images = ImageUtils.decompressImage(dbImageData.get().getData());
+        Image dbImageData = imageRepository.findImageById(id).orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
+        byte[] images = ImageUtils.decompressImage(dbImageData.getData());
         return images;
     }
 //--------------------------------------------------------------------------------------------
     public void removeById(String id) {
+    	HttpHeaders header = new HttpHeaders();
+	      header.setContentType(MediaType.IMAGE_PNG);
 		Image imageData = findImageByImageId(id);
 		imageRepository.delete(imageData);
 
 	}
-
+  //--------------------------------------------------------------------------------------------
 	public Image findImageByImageId(String id) {
-		return imageRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
+		Image image= imageRepository.findById(id).orElseThrow(()->
+                                new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
 
+		
+		byte[] images=ImageUtils.decompressImage(image.getData());
+
+		Image imgImage=new Image();
+		imgImage.setData(images);
+		
+		return  imgImage;
+		
 	}
 
 

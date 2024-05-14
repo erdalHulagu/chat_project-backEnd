@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,7 +47,7 @@ public class UserJwtController {
    private UserService userService;
    
    @Autowired
-   private AuthenticationManager authenticationManager;
+   private  AuthenticationManager authenticationManager;
    
    @Autowired
    private JwtUtils  jwtUtils;
@@ -54,34 +55,34 @@ public class UserJwtController {
    
    // --------------------register user---------------------
   
-//   @PostMapping("/register/{imageId}")
-//   @Transactional
-//   public ResponseEntity<Response> registerUser(@PathVariable("imageId") String imageId , @Valid @RequestBody RegisterRequest registerRequest  )  {
-//	   userService.saveUser(imageId,registerRequest);
-//	   
-//	   Response response = new Response();
-//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
-//	   response.setSuccess(true);
-//	   
-//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-//  
-//   }
-   @PostMapping("/register")
+   @PostMapping("/register/{id}")
    @Transactional
-   public ResponseEntity<Response> registerUser(@RequestParam("File")MultipartFile imageFile, 
-		                                        @Valid  @RequestBody RegisterRequest registerRequest) throws IOException  
-   {
-	 
-	
-	   userService.saveUser(imageFile,registerRequest);
+   public ResponseEntity<Response> registerUser( @PathVariable String id ,@Valid @RequestBody RegisterRequest registerRequest  )  {
+	   userService.saveUser(id,registerRequest);
 	   
 	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
 	   response.setSuccess(true);
+	   
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-	
+  
    }
-   
+//   @PostMapping("/register")
+//   @Transactional
+//   public ResponseEntity<Response> registerUser(@RequestPart("imageFile")MultipartFile imageFile, 
+//		                                        @Valid  @RequestBody RegisterRequest registerRequest) throws IOException  
+//   {
+//	 
+//	
+//	   userService.saveUser(imageFile,registerRequest);
+//	   
+//	   Response response = new Response();
+//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+//	   response.setSuccess(true);
+//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
+//	
+//   }
+//   
    
    // ------------------------login user-----------------------------
    @PostMapping("/login")

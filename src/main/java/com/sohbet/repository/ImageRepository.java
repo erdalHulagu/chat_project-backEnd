@@ -15,8 +15,6 @@ public interface ImageRepository extends JpaRepository<Image,String> {
 	Optional<Image> findImageById(String id);
 
 
-//	FileData save(FileData build);
-
 	@EntityGraph(attributePaths = "id") 
 	Optional<Image> findById(String id);
 

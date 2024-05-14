@@ -96,9 +96,9 @@ private  Set<Role> roles = new HashSet<>();
 @JoinColumn(name = "user_id")
 private Set<Image> myImages;
 
-@OneToOne(cascade = CascadeType.ALL)
+@OneToMany(cascade = CascadeType.ALL)
 @JoinColumn(name = "profile_image_id", referencedColumnName = "id")
-private Image profileImage;
+private Set<Image>profileImage;
 
 //su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
 

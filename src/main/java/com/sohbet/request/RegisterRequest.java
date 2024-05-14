@@ -64,8 +64,6 @@ public class RegisterRequest {
     private LocalDateTime updateAt;
 
 
-    private String profileImage;
-
     private  Set<Role> roles = new HashSet<>();
 
 

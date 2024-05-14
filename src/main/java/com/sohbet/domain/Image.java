@@ -34,7 +34,7 @@ public class Image {
 	private String id;
 
 	@Lob
-	@Column(name = "imagedata")
+	@Column(name = "imagedata",length = 5000)
 	private byte[] data;
 
 	@NotBlank(message = "Please provide a name.")
