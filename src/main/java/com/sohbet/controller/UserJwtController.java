@@ -2,6 +2,8 @@ package com.sohbet.controller;
 
 
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +68,8 @@ public class UserJwtController {
 //   }
    @PostMapping("/register")
    @Transactional
-   public ResponseEntity<Response> registerUser(MultipartFile imageFile, 
-		                                        @Valid  @RequestBody RegisterRequest registerRequest)  
+   public ResponseEntity<Response> registerUser(@RequestParam("File")MultipartFile imageFile, 
+		                                        @Valid  @RequestBody RegisterRequest registerRequest) throws IOException  
    {
 	 
 	

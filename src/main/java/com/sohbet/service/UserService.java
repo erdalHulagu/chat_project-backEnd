@@ -1,6 +1,7 @@
 package com.sohbet.service;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -189,6 +190,7 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
    		
 	}
 
+
 	//---------------- register user----------------------
 	
 	public void saveUser(MultipartFile imageFile, RegisterRequest registerRequest) throws IOException {
@@ -196,16 +198,10 @@ UserDTO userDTO =	userMapper.userToUserDto(user);
 			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
 		}
 		
-	String	imag=imageService.uploadImageToFileSystem(imageFile);
-	
-	
-		registerRequest.setProfileImage(imag);
-		
-		Image image =new Image(imag.getBytes());
-	String idLong=	image.getId();
-byte[] imageByt=imageService.getImage(idLong);
-Image image2=new Image();
-		image2.setData(imageByt);
+	String	img = imageService.uploadImageToFileSystem(imageFile);
+		registerRequest.setProfileImage(img);
+		Image profileImage = new Image();
+         profileImage.setId(img);
 ////		
 //	byte[] imgData=	img.getData();
 //	Image profileImage = new Image();
@@ -242,7 +238,7 @@ Image image2=new Image();
 		
 
 		User user = new User();
-		user.setProfileImage(image2);
+		user.setProfileImage(profileImage);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
