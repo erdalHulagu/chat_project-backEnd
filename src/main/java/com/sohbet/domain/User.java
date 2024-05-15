@@ -93,7 +93,7 @@ private  Set<Role> roles = new HashSet<>();
 
 
 @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-@JoinColumn(name = "user_id")
+@JoinColumn(name = "user_id",nullable = true)
 private Set<Image> myImages;
 
 @OneToOne(cascade = CascadeType.ALL)
