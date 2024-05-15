@@ -41,7 +41,7 @@ public class UserService {
 
 	private UserRepository userRepository;
 
-	private ImageService imageService;
+	private  ImageService imageService;
 	
 	private ImageController imageController;
 
@@ -148,7 +148,7 @@ public class UserService {
 		roles.add(role);
 		user.setRoles(roles);
 
-		Image image = imageService.findImageByImageId(imageId);
+		Image image = imageService.getImageById(imageId);
 
 		List<User> userList = userRepository.findUserByImageId(image.getId());
 
@@ -171,36 +171,80 @@ public class UserService {
 
 	}
 
-//	// ---------------- register user----------------------
-//
-//	public void saveUser( String id,  RegisterRequest registerRequest) {
-//		
-//
-//		 Image profileImage = imageService.findImageByImageId(id);
-//		
+	// ---------------- register user----------------------
+
+	public void saveUser( String id,  RegisterRequest registerRequest) {
+		
+
+		 Image profileImage = imageService.getImageById(id);
+		
 //		Image image=new Image();
 //		image.setData(profileImage.getData());
-//		
-//		
-//		
-//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-//
-//		if (usedUserImage > 0) {
-//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+		
+		
+		
+		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+
+		if (usedUserImage > 0) {
+			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+		}
+		
+		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+			throw new ConflictException(
+					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
+		}
+
+		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+
+		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
+
+		User user = new User();
+		user.setProfileImage(profileImage);
+		user.setRoles(roles);
+		user.setPassword(encodedPassword);
+		user.setFirstName(registerRequest.getFirstName());
+		user.setLastName(registerRequest.getLastName());
+		user.setEmail(registerRequest.getEmail());
+		user.setAddress(registerRequest.getAddress());
+		user.setPhone(registerRequest.getPhone());
+		user.setCreateAt(LocalDateTime.now());
+
+		userRepository.save(user);
+
+	}
+
+//	//---------------- register user----------------------ustteki methid yani image icerden kullanildiginda  register yanlis olursa  bu methodu geri yap
+//	public void saveUser(String imageId,RegisterRequest registerRequest) {
+//		if(userRepository.existsByEmail(registerRequest.getEmail())) {
+//			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
 //		}
 //		
-//		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-//			throw new ConflictException(
-//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
-//		}
-//
+//		 byte[] imgByt= imageService.getImage(imageId);
+//		Image img = new Image();
+//		img.setData(imgByt);
+//		
+////	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
+////
+////	if (imageCountCheck > 0) {
+////		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+////	}
+//		
+//		Set<Image> image=new HashSet<>();
+//		
+//		image.add(img);
+//		
 //		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-//
+//		
 //		Set<Role> roles = new HashSet<>();
 //		roles.add(role);
-//
-//		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
-//
+//		
+//		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
+//		
+//		
+//		
 //		User user = new User();
 //		user.setProfileImage(image);
 //		user.setRoles(roles);
@@ -211,55 +255,11 @@ public class UserService {
 //		user.setAddress(registerRequest.getAddress());
 //		user.setPhone(registerRequest.getPhone());
 //		user.setCreateAt(LocalDateTime.now());
-//
+//		
+//		
 //		userRepository.save(user);
-//
+//		
 //	}
-
-	//---------------- register user----------------------ustteki methid yani image icerden kullanildiginda  register yanlis olursa  bu methodu geri yap
-	public void saveUser(String imageId,RegisterRequest registerRequest) {
-		if(userRepository.existsByEmail(registerRequest.getEmail())) {
-			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
-		}
-		
-		byte[] imgByt= imageService.getImage(imageId);
-		Image img = new Image();
-		img.setData(imgByt);
-		
-//	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
-//
-//	if (imageCountCheck > 0) {
-//		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//	}
-		
-		Set<Image> image=new HashSet<>();
-		
-		image.add(img);
-		
-		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-		
-		Set<Role> roles = new HashSet<>();
-		roles.add(role);
-		
-		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
-		
-		
-		
-		User user = new User();
-		user.setProfileImage(image);
-		user.setRoles(roles);
-		user.setPassword(encodedPassword);
-		user.setFirstName(registerRequest.getFirstName());
-		user.setLastName(registerRequest.getLastName());
-		user.setEmail(registerRequest.getEmail());
-		user.setAddress(registerRequest.getAddress());
-		user.setPhone(registerRequest.getPhone());
-		user.setCreateAt(LocalDateTime.now());
-		
-		
-		userRepository.save(user);
-		
-	}
 
 	public void deleteUserWithId(Long id) {
 

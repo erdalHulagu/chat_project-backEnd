@@ -6,6 +6,8 @@ package com.sohbet.imageUtils;
 	import java.util.zip.Deflater;
 	import java.util.zip.Inflater;
 
+import jakarta.transaction.Transactional;
+
 	public class ImageUtils {
 
 

@@ -25,7 +25,7 @@ import com.sohbet.request.GroupChatRequest;
 @Service
 public class ChatService {
 	
-     private ChatRepository chatRepository;
+     private ChatRepository chatRepository;       //23528429-6870-4b91-b125-6f18af9d23de    2e7f20af-ddfe-451f-8b24-5a2ee3c19d59   2fe789b6-1cde-4832-80b7-f52b7d52c6e2 
      
      private  UserService userService;
      
@@ -191,7 +191,7 @@ List<ChatDTO> chatDTOs=	chatMapper.mapChatListToChatDTOList(chats);
 
 	//------------ get image by string id ------------------  extra
 public Image getImage (String id) {
-	Image imageFile =imageService.findImageByImageId(id);
+	Image imageFile =imageService.getImageById(id);
 	return imageFile;
 }
 

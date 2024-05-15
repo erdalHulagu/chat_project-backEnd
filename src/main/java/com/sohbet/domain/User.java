@@ -96,9 +96,9 @@ private  Set<Role> roles = new HashSet<>();
 @JoinColumn(name = "user_id")
 private Set<Image> myImages;
 
-@OneToMany(cascade = CascadeType.ALL)
-@JoinColumn(name = "profile_image_id", referencedColumnName = "id")
-private Set<Image>profileImage;
+@OneToOne(cascade = CascadeType.ALL)
+@JoinColumn(name = "profile_imageId", referencedColumnName = "id")
+private Image profileImage;
 
 //su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
 
