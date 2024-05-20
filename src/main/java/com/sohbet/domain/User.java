@@ -70,18 +70,19 @@ private String password;
 @NotBlank(message = "Please provide your address")
 @Column(length = 80, nullable = false, unique=true)
 private String address;
-//
+
 @Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
 message = "Please provide valid phone number" ) 
 @Column(nullable = true) 
 private String phone;
 
-@UpdateTimestamp
+
 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+@Column(name = "update_at",length = 30, nullable = false, updatable = true)
 private LocalDateTime updateAt;
 
 
-@Column(name = "create_at", updatable = false, nullable = true)
+@Column(name = "create_at", length = 30, updatable = false, nullable = true)
 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 private LocalDateTime createAt;
 
@@ -117,5 +118,19 @@ private Set<Chat> chats = new HashSet<>();
 						 inverseJoinColumns = @JoinColumn(name="friend_id"))
 private List<Friend>friends= new ArrayList<>();
 
+
+
+
+
+
+
+public void setCreateTime(LocalDateTime createAt) {
+	
+createAt=LocalDateTime.now();
+
+this.createAt=createAt;
+this.updateAt=createAt;
+
+}
 }
 
