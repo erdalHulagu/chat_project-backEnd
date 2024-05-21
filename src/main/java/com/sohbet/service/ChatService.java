@@ -44,7 +44,7 @@ public class ChatService {
 	}
 	
      //-------------------- create chat with user-----------------
-	public ChatDTO createChat (User user, Long userId ) {
+	public ChatDTO createChat (User currentUser, Long userId ) {
 	UserDTO userDto=	userService.getUserById(userId);
     User usr=userMapper.userDTOToUser(userDto);
 	
@@ -58,9 +58,9 @@ public class ChatService {
 	}
 
 	Chat chat =new Chat();
-	chat.setCreatedBy(user);
+	chat.setCreatedBy(currentUser);
 	chat.getUsers().add(usr);
-	chat.getUsers().add(user);
+	chat.getUsers().add(currentUser);
 	chat.setIsGroup(false);
 
 	ChatDTO chatDTO=chatMapper.chatToChatDTO(chat);

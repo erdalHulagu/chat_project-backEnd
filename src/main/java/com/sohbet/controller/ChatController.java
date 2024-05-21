@@ -31,12 +31,13 @@ public class ChatController {
 	
 	
 	private ChatService chatService;
+	
 	private UserService userService;
+	
 	private UserMapper userMapper;
 	
 	
 	public ChatController(ChatService chatService, UserService userService, UserMapper userMapper) {
-	
 		this.chatService=chatService;
 		this.userService=userService;
 		this.userMapper=userMapper;
