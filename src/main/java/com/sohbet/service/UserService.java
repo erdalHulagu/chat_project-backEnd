@@ -1,26 +1,13 @@
 package com.sohbet.service;
 
-import java.io.IOException;
-import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.sohbet.DTO.UserDTO;
-import com.sohbet.controller.ImageController;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
@@ -29,21 +16,16 @@ import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
-import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.config.SecurityUtils;
-import com.sohbet.security.jwt.JwtUtils;
-import jakarta.transaction.Transactional;
 
 @Service
 public class UserService {
 
 	private UserRepository userRepository;
 
-	private  ImageService imageService;
-	
-	private ImageController imageController;
+	private ImageService imageService;
 
 	private UserMapper userMapper;
 
@@ -51,17 +33,14 @@ public class UserService {
 
 	private PasswordEncoder passwordEncoder;
 
-	private JwtUtils jwtUtils;
-
-	public UserService(UserRepository userRepository,@Lazy ImageService imageService, UserMapper userMapper,
-			RoleService roleService, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
+	public UserService(UserRepository userRepository, @Lazy ImageService imageService, UserMapper userMapper,
+			RoleService roleService, PasswordEncoder passwordEncoder) {
 
 		this.userRepository = userRepository;
 		this.imageService = imageService;
 		this.userMapper = userMapper;
 		this.roleService = roleService;
 		this.passwordEncoder = passwordEncoder;
-		this.jwtUtils = jwtUtils;
 
 	}
 
@@ -78,7 +57,6 @@ public class UserService {
 	// ------------------ get current userDTO ------------------------
 	public UserDTO getPrincipal() {
 		User currentUser = getCurrentUser();
-		// return userMapper.userToUserDTO(currentUser);
 		UserDTO userDTO = userMapper.userToUserDto(currentUser);
 		return userDTO;
 
@@ -135,7 +113,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	// update user
+	// ------------------update user---------------------
 	public void updateUser(User user, String imageId, UserDTO userDTO) {
 
 		if ((user == null)) {
@@ -161,34 +139,24 @@ public class UserService {
 			}
 
 		}
-
 		user.setUpdateAt(LocalDateTime.now());
-		user.setAddress(userDTO.getAddress());
-		user.setFirstName(userDTO.getFirstName());
-		user.setLastName(userDTO.getLastName());
-//		user.setProfileImage(userDTO.getProfileImage());
-		user.setPhone(userDTO.getPhone());
+		User usr = userMapper.userDTOToUser(userDTO);
 
+		userRepository.save(usr);
 	}
 
 	// ---------------- register user----------------------
 
-	public void saveUser( String id,  RegisterRequest registerRequest) {
-		
+	public void saveUser(String id, RegisterRequest registerRequest) {
 
-		 Image profileImage = imageService.getImageById(id);
-		
-//		Image image=new Image();
-//		image.setData(profileImage.getData());
-		
-		
-		
+		Image profileImage = imageService.getImageById(id);
+
 		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
 
 		if (usedUserImage > 0) {
 			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 		}
-		
+
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
@@ -210,7 +178,6 @@ public class UserService {
 		user.setEmail(registerRequest.getEmail());
 		user.setAddress(registerRequest.getAddress());
 		user.setPhone(registerRequest.getPhone());
-		user.setCreateAt(LocalDateTime.now());
 
 		userRepository.save(user);
 

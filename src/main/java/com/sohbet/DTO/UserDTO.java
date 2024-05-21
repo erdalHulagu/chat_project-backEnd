@@ -1,12 +1,11 @@
 package com.sohbet.DTO;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +18,6 @@ import lombok.Setter;
 
 public class UserDTO {
 
-private Long id;
-
 private String firstName;
 
 private String lastName;
@@ -29,16 +26,13 @@ private String email;
 
 private String password;
 
-//private  LocalDateTime updateAt;
-//
 private String phone;
-
-private LocalDateTime createAt;
 
 private String address;
 
+private byte[] profileImage;
 
-private Image profileImage;
+private Set<String>  myImages;
 
 private  Set<String> roles ;
 
@@ -53,6 +47,7 @@ public void setRoles(Set<Role> roles) {
 	
 	this.roles = roleStr;
 }
+
 
 
 	

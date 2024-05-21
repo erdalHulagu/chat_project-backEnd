@@ -1,26 +1,10 @@
 package com.sohbet.request;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -53,18 +37,26 @@ public class RegisterRequest {
     @Size(max= 100)
     @NotBlank(message = "Please provide your address")
 	private String address;
+    
+    private byte[] profileImage;
+    
+    private Set<String> myImages=new HashSet<>();
 
-	
-    @CreationTimestamp
-    @Column(name = "creatAt", nullable = false, updatable = false)
-    private LocalDateTime createAt;
-
-    @UpdateTimestamp
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private LocalDateTime updateAt;
+    private boolean builtIn;
 
 
-    private  Set<Role> roles = new HashSet<>();
+    private  Set<String> roles = new HashSet<>();
 
+    public void setRoles(Set<Role> roles) {
+    	
+    	Set<String> roleStr = new HashSet<>();
+    	
+    	roles.forEach( r-> {
+    		roleStr.add(r.getType().getName()); // Administrator veya Anonymous gözükecek
+    		
+    	}); 
+    	
+    	this.roles = roleStr;
+    }
 
 }

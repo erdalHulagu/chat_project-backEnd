@@ -52,19 +52,7 @@ public class UserController {
 		return ResponseEntity.ok(userDTO);
 	
 	}
-//	@PostMapping("/saveUser")
-//	public ResponseEntity<Response> saveUser(@PathVariable ("imageId") String imageId, @RequestBody UserRequest userRequest) {
-//		
-//		Response response = new Response();
-//		response.setMessage(ResponseMessage.USER_CREATED_SUCCESFULLY);
-//		
-//		userService.save(imageId, userRequest);
-//		
-//		return ResponseEntity.ok(response);
-//		
-//	}
-	
-	
+
 	@Transactional
 	@GetMapping("/profile")
 	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
@@ -107,15 +95,13 @@ public class UserController {
 	@GetMapping("/admin")
 	public ResponseEntity<List<UserDTO>>getAllUser(){
    
-
-		
 		List<UserDTO> usersDTO = userService.getAllUsers();
 		
 
 		return ResponseEntity.ok(usersDTO);
 		
 	}
-	@Transactional
+
 	@PutMapping("/auth")
 	public ResponseEntity<Response> upDateUser(@RequestParam("imageId") String imageId,
 			                                   @Validated @RequestBody UserDTO userDTO){
