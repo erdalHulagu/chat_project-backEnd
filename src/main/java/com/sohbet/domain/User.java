@@ -92,13 +92,13 @@ private LocalDateTime createAt;
 						 inverseJoinColumns = @JoinColumn(name="role_id"))
 private  Set<Role> roles = new HashSet<>();
 
-
-@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-@JoinColumn(name = "user_id",nullable = true)
-private Set<Image> myImages;
+//
+//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+//@JoinColumn(name = "user_image_ids",nullable = true)
+//private Set<Image> myImages;
 
 @OneToOne(cascade = CascadeType.ALL)
-@JoinColumn(name = "profile_imageId", referencedColumnName = "id")
+@JoinColumn(name = "profile_imageId", referencedColumnName = "id",nullable = true)
 private Image profileImage;
 
 //su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time

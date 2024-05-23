@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
+import com.sohbet.domain.ImageData;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
@@ -16,6 +17,7 @@ import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
+import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.config.SecurityUtils;
@@ -32,6 +34,8 @@ public class UserService {
 	private RoleService roleService;
 
 	private PasswordEncoder passwordEncoder;
+	
+	private ImageRepository imageRepository;
 
 	public UserService(UserRepository userRepository, @Lazy ImageService imageService, UserMapper userMapper,
 			RoleService roleService, PasswordEncoder passwordEncoder) {
@@ -71,6 +75,16 @@ public class UserService {
 		UserDTO userDTO = userMapper.userToUserDto(user);
 		return userDTO;
 
+	}
+// -------------------  get user by id --------------
+	public User getUser(Long id) {
+		
+		User user = userRepository.findUserById(id).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
+//
+//		UserDTO userDTO = userMapper.userToUserDto(user);
+//		return userDTO;
+		return user;
 	}
 
 //
@@ -150,6 +164,13 @@ public class UserService {
 	public void saveUser(String id, RegisterRequest registerRequest) {
 
 		Image profileImage = imageService.getImageById(id);
+		
+		
+		if (profileImage==null) {
+			
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,id);
+			
+		}
 
 		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
 
@@ -182,51 +203,7 @@ public class UserService {
 		userRepository.save(user);
 
 	}
-
-//	//---------------- register user----------------------ustteki methid yani image icerden kullanildiginda  register yanlis olursa  bu methodu geri yap
-//	public void saveUser(String imageId,RegisterRequest registerRequest) {
-//		if(userRepository.existsByEmail(registerRequest.getEmail())) {
-//			throw new ConflictException(String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE,registerRequest.getEmail()));
-//		}
-//		
-//		 byte[] imgByt= imageService.getImage(imageId);
-//		Image img = new Image();
-//		img.setData(imgByt);
-//		
-////	Integer imageCountCheck = userRepository.findUserCountByImageId(img.getId());
-////
-////	if (imageCountCheck > 0) {
-////		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-////	}
-//		
-//		Set<Image> image=new HashSet<>();
-//		
-//		image.add(img);
-//		
-//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-//		
-//		Set<Role> roles = new HashSet<>();
-//		roles.add(role);
-//		
-//		String encodedPassword =  passwordEncoder.encode(registerRequest.getPassword());
-//		
-//		
-//		
-//		User user = new User();
-//		user.setProfileImage(image);
-//		user.setRoles(roles);
-//		user.setPassword(encodedPassword);
-//		user.setFirstName(registerRequest.getFirstName());
-//		user.setLastName(registerRequest.getLastName());
-//		user.setEmail(registerRequest.getEmail());
-//		user.setAddress(registerRequest.getAddress());
-//		user.setPhone(registerRequest.getPhone());
-//		user.setCreateAt(LocalDateTime.now());
-//		
-//		
-//		userRepository.save(user);
-//		
-//	}
+	
 
 	public void deleteUserWithId(Long id) {
 

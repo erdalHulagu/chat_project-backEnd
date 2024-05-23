@@ -44,13 +44,21 @@ public class UserController {
 	@Autowired
     private UserService userService;
 	
-	@GetMapping("/{id}")
+	@GetMapping("/user/{id}")
 	public ResponseEntity<UserDTO> getUser(@PathVariable @Lazy Long id){
 		
 		UserDTO userDTO=userService. getUserById(id);
 		
 		return ResponseEntity.ok(userDTO);
 	
+	}
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable @Lazy Long id){
+		
+		User user=userService. getUser(id);
+		
+		return ResponseEntity.ok(user);
+		
 	}
 
 	@Transactional

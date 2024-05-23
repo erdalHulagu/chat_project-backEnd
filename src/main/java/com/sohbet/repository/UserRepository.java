@@ -36,6 +36,9 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	
 	@Query( "SELECT count(*) from User u join u.profileImage pImg where pImg.id=:id")
 	Integer findUserCountByImageId(@Param("id") String id);
+
+	@EntityGraph(attributePaths = "profileImage")
+	Optional<User> findUserById(Long id);
 	
 //	@Query("SELECT COUNT(*) FROM User u JOIN u.image img WHERE img.id = :id")
 //	Integer findUserCountByImageId(@Param("id") String id);

@@ -67,22 +67,8 @@ public class UserJwtController {
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
   
    }
-//   @PostMapping("/register")
-//   @Transactional
-//   public ResponseEntity<Response> registerUser(@RequestPart("imageFile")MultipartFile imageFile, 
-//		                                        @Valid  @RequestBody RegisterRequest registerRequest) throws IOException  
-//   {
-//	 
-//	
-//	   userService.saveUser(imageFile,registerRequest);
-//	   
-//	   Response response = new Response();
-//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
-//	   response.setSuccess(true);
-//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-//	
-//   }
-//   
+   
+   
    
    // ------------------------login user-----------------------------
    @PostMapping("/login")

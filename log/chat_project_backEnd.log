@@ -1,15 +1,13 @@
-2024-05-22 16:25:32,457 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-05-22 16:25:32,785 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
-2024-05-22 16:25:32,807 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
-2024-05-22 16:25:34,069 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-05-22 16:25:42,733 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-05-22 16:25:49,126 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-05-22 16:25:49,324 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@32395414] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-05-22 16:29:26,915 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-05-22 16:29:27,128 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-05-22 16:29:59,735 ERROR [http-nio-8081-exec-7] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.Image.getImageData()" because "image" is null
-2024-05-22 16:29:59,819 WARN  [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.Image.getImageData()" because "image" is null]
-2024-05-22 16:55:46,676 WARN  [RMI TCP Connection(35)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-05-23 20:28:29,968 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:28:30,067 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
+2024-05-23 20:28:30,074 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
+2024-05-23 20:28:30,299 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:28:31,478 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:28:32,463 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:28:32,495 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1a132a68] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:28:37,088 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session
+2024-05-23 20:28:37,210 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session]
+2024-05-23 20:31:16,805 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -19,3 +17,416 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:31:18,659 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:31:18,675 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:31:18,798 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:31:18,952 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:31:18,953 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7d041882] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:31:28,401 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session
+2024-05-23 20:31:28,422 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session]
+2024-05-23 20:32:22,344 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:32:22Z, a difference of 501852343 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:32:22,358 ERROR [http-nio-8081-exec-4] com.sohbet.exception.FurkanChatExceptionHandler:failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session
+2024-05-23 20:32:22,360 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.sohbet.domain.User.myImages: could not initialize proxy - no Session]
+2024-05-23 20:33:42,885 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:33:45,955 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:33:45,972 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:33:46,224 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:33:46,367 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:33:46,368 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7a24e4b5] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:33:52,292 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:33:52Z, a difference of 501942292 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:33:52,323 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:33:52,332 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:36:10,974 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:36:12,177 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:36:12,189 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:36:12,278 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:36:12,400 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:36:12,401 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@424956a3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:36:16,778 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:36:16Z, a difference of 502086778 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:36:16,835 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:36:16,866 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:38:35,054 WARN  [Thread-15] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:38:35,872 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:38:35,880 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:38:35,959 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:38:36,053 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:38:36,054 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@34e4d419] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:38:40,306 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:38:40Z, a difference of 502230306 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:38:40,346 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:38:40,365 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:39:13,492 WARN  [Thread-19] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-5 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:39:18,366 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:39:18,376 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:39:18,478 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:39:18,642 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:39:18,652 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@23235859] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:39:25,179 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:39:25Z, a difference of 502275178 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:39:25,207 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:39:25,218 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:44:03,309 WARN  [Thread-23] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-6 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:44:05,059 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:44:05,075 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:44:05,193 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:44:05,282 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:44:05,284 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@400d6d74] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:44:05,560 ERROR [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatStarter:Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'securityConfig': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'userDetailsServiceImpl': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userService' defined in file [/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes/com/sohbet/service/UserService.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.sohbet.mapper.UserMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-05-23 20:44:05,564 WARN  [restartedMain] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-7 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:44:05,567 WARN  [restartedMain] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-7 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/sun.nio.ch.Net.poll(Native Method)
+ java.base@17.0.10/sun.nio.ch.NioSocketImpl.park(NioSocketImpl.java:186)
+ java.base@17.0.10/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:290)
+ java.base@17.0.10/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:314)
+ java.base@17.0.10/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:355)
+ java.base@17.0.10/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:808)
+ java.base@17.0.10/java.net.Socket$SocketInputStream.read(Socket.java:966)
+ app//org.postgresql.core.VisibleBufferedInputStream.readMore(VisibleBufferedInputStream.java:161)
+ app//org.postgresql.core.VisibleBufferedInputStream.ensureBytes(VisibleBufferedInputStream.java:128)
+ app//org.postgresql.core.VisibleBufferedInputStream.ensureBytes(VisibleBufferedInputStream.java:113)
+ app//org.postgresql.core.VisibleBufferedInputStream.read(VisibleBufferedInputStream.java:73)
+ app//org.postgresql.core.PGStream.receiveChar(PGStream.java:465)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.enableSSL(ConnectionFactoryImpl.java:589)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:191)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+ app//org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+ app//org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+ app//org.postgresql.Driver.makeConnection(Driver.java:443)
+ app//org.postgresql.Driver.connect(Driver.java:297)
+ app//com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+ app//com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+ app//com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+ app//com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+ app//com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+ app//com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+ java.base@17.0.10/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:44:05,568 WARN  [restartedMain] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-05-23 20:44:05,644 ERROR [restartedMain] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter:
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.sohbet.service.UserService required a bean of type 'com.sohbet.mapper.UserMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.sohbet.mapper.UserMapper' in your configuration.
+
+2024-05-23 20:45:43,605 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:45:43,684 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
+2024-05-23 20:45:43,688 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
+2024-05-23 20:45:43,847 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:45:44,604 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:45:45,495 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:45:45,517 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2be95064] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:45:52,193 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:45:52Z, a difference of 502662176 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:45:53,387 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:45:53,668 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:48:45,553 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:48:46,417 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:48:46,429 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:48:46,530 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:48:46,675 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:48:46,676 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4af4991a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:48:50,413 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:48:50Z, a difference of 502840412 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:48:50,500 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:48:50,537 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 20:49:41,660 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:49:42,577 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:49:42,586 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:49:42,667 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:49:42,787 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:49:42,787 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@632a4cba] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:51:36,867 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:51:37,868 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:51:37,879 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:51:37,989 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:51:38,139 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:51:38,145 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@74b261b9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:51:42,096 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:51:42Z, a difference of 503012096 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:51:42,248 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: failed to lazily initialize a collection of role: com.sohbet.domain.User.roles: could not initialize proxy - no Session]
+2024-05-23 20:53:32,508 WARN  [Thread-15] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:53:33,260 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:53:33,269 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:53:33,354 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:53:33,450 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:53:33,451 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2f34c996] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:53:36,832 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:53:36Z, a difference of 503126832 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:53:36,868 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Handler dispatch failed: java.lang.Error: Unresolved compilation problem: 
+	Type mismatch: cannot convert from String to User
+
+2024-05-23 20:53:36,926 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.Error: Unresolved compilation problem: <EOL>?Type mismatch: cannot convert from String to User<EOL>]
+2024-05-23 20:54:09,702 WARN  [Thread-19] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-5 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:54:10,540 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:54:10,546 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:54:10,628 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:54:10,729 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:54:10,730 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2bbf46d6] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:54:59,991 WARN  [Thread-23] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-6 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:55:01,026 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:55:01,035 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:55:01,121 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:55:01,227 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:55:01,228 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@772cccac] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:56:47,573 WARN  [Thread-27] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-7 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:56:48,649 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:56:48,656 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:56:48,746 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:56:48,871 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:56:48,885 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@40e5ca07] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:57:16,941 WARN  [Thread-31] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-8 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:57:17,670 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:57:17,679 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:57:17,772 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:57:17,858 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:57:17,858 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@48231f60] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:57:45,723 WARN  [Thread-35] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-9 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:57:46,400 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:57:46,408 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:57:46,484 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:57:46,565 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:57:46,566 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@137b5548] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:58:53,014 WARN  [Thread-39] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-10 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 20:58:53,858 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 20:58:53,867 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:58:53,985 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 20:58:54,099 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 20:58:54,099 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5477d06f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 20:59:04,212 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-05-18T00:08:10Z. Current time: 2024-05-23T19:59:04Z, a difference of 503454212 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-05-23 20:59:04,273 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null
+2024-05-23 20:59:04,280 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [java.lang.NullPointerException: Cannot invoke "com.sohbet.domain.ImageData.getData()" because the return value of "com.sohbet.domain.Image.getImageData()" is null]
+2024-05-23 21:07:53,685 WARN  [Thread-43] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-11 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 21:07:54,531 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-23 21:07:54,540 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 21:07:54,621 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-05-23 21:07:54,740 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-05-23 21:07:54,741 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@30dd17f0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-05-23 21:07:55,081 ERROR [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatStarter:Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'securityConfig': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'userDetailsServiceImpl': Unsatisfied dependency expressed through field 'userService': Error creating bean with name 'userService' defined in file [/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes/com/sohbet/service/UserService.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.sohbet.mapper.UserMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2024-05-23 21:07:55,088 WARN  [restartedMain] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-12 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 21:07:55,090 WARN  [restartedMain] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-12 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/sun.security.provider.SHA2.implCompress0(SHA2.java:149)
+ java.base@17.0.10/sun.security.provider.SHA2.implCompress(SHA2.java:122)
+ java.base@17.0.10/sun.security.provider.DigestBase.implCompressMultiBlock0(DigestBase.java:150)
+ java.base@17.0.10/sun.security.provider.DigestBase.implCompressMultiBlock(DigestBase.java:144)
+ java.base@17.0.10/sun.security.provider.DigestBase.engineUpdate(DigestBase.java:131)
+ java.base@17.0.10/java.security.MessageDigest$Delegate.engineUpdate(MessageDigest.java:658)
+ java.base@17.0.10/java.security.MessageDigest.update(MessageDigest.java:359)
+ java.base@17.0.10/com.sun.crypto.provider.HmacCore.engineUpdate(HmacCore.java:193)
+ java.base@17.0.10/javax.crypto.Mac.update(Mac.java:504)
+ java.base@17.0.10/com.sun.crypto.provider.PBKDF2KeyImpl.deriveKey(PBKDF2KeyImpl.java:204)
+ java.base@17.0.10/com.sun.crypto.provider.PBKDF2KeyImpl.<init>(PBKDF2KeyImpl.java:119)
+ java.base@17.0.10/com.sun.crypto.provider.PBKDF2Core.engineGenerateSecret(PBKDF2Core.java:70)
+ java.base@17.0.10/javax.crypto.SecretKeyFactory.generateSecret(SecretKeyFactory.java:340)
+ app//org.postgresql.shaded.com.ongres.scram.common.util.CryptoUtil.hi(CryptoUtil.java:120)
+ app//org.postgresql.shaded.com.ongres.scram.common.ScramMechanisms.saltedPassword(ScramMechanisms.java:154)
+ app//org.postgresql.shaded.com.ongres.scram.common.ScramFunctions.saltedPassword(ScramFunctions.java:59)
+ app//org.postgresql.shaded.com.ongres.scram.client.ScramSession$ClientFinalProcessor.<init>(ScramSession.java:196)
+ app//org.postgresql.shaded.com.ongres.scram.client.ScramSession$ClientFinalProcessor.<init>(ScramSession.java:163)
+ app//org.postgresql.shaded.com.ongres.scram.client.ScramSession$ServerFirstProcessor.clientFinalProcessor(ScramSession.java:130)
+ app//org.postgresql.jre7.sasl.ScramAuthenticator.processServerFirstMessage(ScramAuthenticator.java:147)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:863)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:203)
+ app//org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+ app//org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+ app//org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+ app//org.postgresql.Driver.makeConnection(Driver.java:443)
+ app//org.postgresql.Driver.connect(Driver.java:297)
+ app//com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+ app//com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+ app//com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+ app//com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+ app//com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:733)
+ app//com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:712)
+ java.base@17.0.10/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-05-23 21:07:55,092 WARN  [restartedMain] org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-05-23 21:07:55,175 ERROR [restartedMain] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter:
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.sohbet.service.UserService required a bean of type 'com.sohbet.mapper.UserMapper' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.sohbet.mapper.UserMapper' in your configuration.
+
