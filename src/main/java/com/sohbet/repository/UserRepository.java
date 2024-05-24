@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
 
 @Repository
@@ -39,6 +40,13 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 
 	@EntityGraph(attributePaths = "profileImage")
 	Optional<User> findUserById(Long id);
+
+	@Query("SELECT u FROM User u join u.profileImage pimg where pimg.id= : profileImage.id")
+	Long getImage(@Param("id")String id);
+
+	
+//@Query("SELECT u FROM User u join u.profileImage pimg where pimg.id= : profileImage.id")
+//	Long getImage(@Param("profileImage")Image profileImage);
 	
 //	@Query("SELECT COUNT(*) FROM User u JOIN u.image img WHERE img.id = :id")
 //	Integer findUserCountByImageId(@Param("id") String id);

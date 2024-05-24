@@ -3,6 +3,7 @@ package com.sohbet.service;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -81,9 +82,12 @@ public class UserService {
 		
 		User user = userRepository.findUserById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
-//
+		
+	Long imgId =userRepository.getImage(user.getProfileImage().getId());
 //		UserDTO userDTO = userMapper.userToUserDto(user);
 //		return userDTO;
+Optional<Image> strId=imageRepository.findById(imgId.toString());
+	user.getProfileImage().setId(strId.toString());
 		return user;
 	}
 

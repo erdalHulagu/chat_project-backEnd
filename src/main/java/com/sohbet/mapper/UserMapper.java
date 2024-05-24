@@ -26,8 +26,9 @@ public interface UserMapper {
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "createTime", ignore = true)
+	@Mapping(target = "profileImage", ignore = true)
 //	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
 	User userDTOToUser(UserDTO userDTO);
 
 	@Mapping(target = "id", ignore = true)
@@ -39,8 +40,9 @@ public interface UserMapper {
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "createTime", ignore = true)
+	@Mapping(target = "profileImage", ignore = true)
 //	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
 	User registerUserToUser(RegisterRequest registerRequest);
 
 	@Mapping(target = "id", ignore = true)
@@ -52,14 +54,16 @@ public interface UserMapper {
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "createTime", ignore = true)
+	@Mapping(target = "profileImage", ignore = true)
 //	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
 	User userRequestToUser(UserRequest userRequest);
 
 	
 	@Mapping(target = "roles", ignore = true)
+	@Mapping(target = "profileImage", ignore = true)
 //	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsString")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsString")
+//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsString")
 	UserDTO userToUserDto(User user);
 
 	List<UserDTO> userToUserDTOList(List<User> userList);
