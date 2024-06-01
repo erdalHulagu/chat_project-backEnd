@@ -83,11 +83,11 @@ public class UserService {
 		User user = userRepository.findUserById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
 		
-	Long imgId =userRepository.getImage(user.getProfileImage().getId());
-//		UserDTO userDTO = userMapper.userToUserDto(user);
-//		return userDTO;
-Optional<Image> strId=imageRepository.findById(imgId.toString());
-	user.getProfileImage().setId(strId.toString());
+//	Long imgId =userRepository.getImage(user.getProfileImage().getId());
+////		UserDTO userDTO = userMapper.userToUserDto(user);
+////		return userDTO;
+//Optional<Image> strId=imageRepository.findById(imgId.toString());
+//	user.getProfileImage().setId(strId.toString());
 		return user;
 	}
 
