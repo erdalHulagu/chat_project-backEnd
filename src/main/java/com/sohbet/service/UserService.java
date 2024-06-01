@@ -145,6 +145,8 @@ Optional<Image> strId=imageRepository.findById(imgId.toString());
 		user.setRoles(roles);
 
 		Image image = imageService.getImageById(imageId);
+		Set<Image>images=new HashSet<>();
+		images.add(image);
 
 		List<User> userList = userRepository.findUserByImageId(image.getId());
 
@@ -157,6 +159,8 @@ Optional<Image> strId=imageRepository.findById(imgId.toString());
 			}
 
 		}
+	
+		user.getMyImages().add(image);
 		user.setUpdateAt(LocalDateTime.now());
 		User usr = userMapper.userDTOToUser(userDTO);
 
@@ -169,6 +173,9 @@ Optional<Image> strId=imageRepository.findById(imgId.toString());
 
 		Image profileImage = imageService.getImageById(id);
 		
+		Set<Image>images=new HashSet<>();
+		
+		images.add(profileImage);
 		
 		if (profileImage==null) {
 			
@@ -195,6 +202,7 @@ Optional<Image> strId=imageRepository.findById(imgId.toString());
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 
 		User user = new User();
+		user.getMyImages().add(profileImage);
 		user.setProfileImage(profileImage);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);

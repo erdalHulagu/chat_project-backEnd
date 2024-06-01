@@ -92,10 +92,10 @@ private LocalDateTime createAt;
 						 inverseJoinColumns = @JoinColumn(name="role_id"))
 private  Set<Role> roles = new HashSet<>();
 
-//
-//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-//@JoinColumn(name = "user_image_ids",nullable = true)
-//private Set<Image> myImages;
+
+@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
+@JoinColumn(name = "user_images",nullable = true)
+private Set<Image> myImages;
 
 @OneToOne(cascade = CascadeType.ALL)
 @JoinColumn(name = "profile_imageId", referencedColumnName = "id",nullable = true)
