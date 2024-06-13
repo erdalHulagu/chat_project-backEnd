@@ -14,13 +14,16 @@ import com.sohbet.domain.ImageData;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
+import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
+import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.RegisterRequest;
+import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
 
 @Service
@@ -132,18 +135,33 @@ public class UserService {
 	}
 
 	// ------------------update user---------------------
-	public void updateUser(User user, String imageId, UserDTO userDTO) {
-
+	public void updateUser( String imageId,UpdateUserRequest updateUserRequest) {
+		User user = getCurrentUser();
+		
 		if ((user == null)) {
 			new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_IS_NOT_MATCH));
 
 		}
+		
+		if (user.getBuiltIn()) {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+		}
+			
+			boolean emailExist =userRepository.existsByEmail(updateUserRequest.getEmail());
+
+			if (emailExist && !updateUserRequest.getEmail().equals(user.getEmail())) {
+				throw new ConflictException(
+						String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
+			}
+
+		
+		
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 
 		Set<Role> roles = new HashSet<>();
 		roles.add(role);
-		user.setRoles(roles);
-
+		
+		
 		Image image = imageService.getImageById(imageId);
 		Set<Image>images=new HashSet<>();
 		images.add(image);
@@ -160,15 +178,14 @@ public class UserService {
 
 		}
 	
-		user.getMyImages().add(image);
+		user.setProfileImage(image);
+		user.setRoles(roles);
 		user.setUpdateAt(LocalDateTime.now());
-		user.setFirstName(userDTO.getFirstName());
-		user.setLastName(userDTO.getLastName());
-		user.setAddress(userDTO.getAddress());
-		user.setPhone(userDTO.getPhone());
-		user.setEmail(userDTO.getEmail());
-		user.setPassword(userDTO.getPassword());
-		
+		user.setFirstName(updateUserRequest.getFirstName());
+		user.setLastName(updateUserRequest.getLastName());
+		user.setAddress(updateUserRequest.getAddress());
+		user.setPhone(updateUserRequest.getPhone());
+		user.setEmail(updateUserRequest.getEmail());
 
 		userRepository.save(user);
 	}

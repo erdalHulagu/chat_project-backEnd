@@ -41,6 +41,7 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	@EntityGraph(attributePaths = "profileImage")
 	Optional<User> findUserById(Long id);
 
+
 //	@Query("SELECT u FROM User u join u.profileImage pimg where pimg.id= : profileImage.id")
 //	Long getImage(@Param("id")String id);
 

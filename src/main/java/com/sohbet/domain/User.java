@@ -71,6 +71,14 @@ private String password;
 @Column(length = 80, nullable = false, unique=true)
 private String address;
 
+
+@Size(max= 20)
+@NotBlank(message = "Please provide post code")
+@Column(length = 10, nullable = true, unique=true)
+private String postCode;
+
+
+
 @Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
 message = "Please provide valid phone number" ) 
 @Column(nullable = true) 
@@ -85,6 +93,8 @@ private LocalDateTime updateAt;
 @Column(name = "create_at", length = 30, updatable = false, nullable = true)
 @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 private LocalDateTime createAt;
+
+private Boolean builtIn;
 
 @ManyToMany   
 @JoinTable( name="t_user_role",
@@ -101,7 +111,6 @@ private Set<Image> myImages;
 @JoinColumn(name = "profile_imageId", referencedColumnName = "id",nullable = true)
 private Image profileImage;
 
-//su_an = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")  su method su anin tarihini alir yani current time
 
 @OneToMany(orphanRemoval = true, mappedBy = "user")
 private List<Message>messages=new ArrayList<>();

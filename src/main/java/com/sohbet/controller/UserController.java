@@ -31,10 +31,12 @@ import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
+import com.sohbet.request.AdminUserUpdateRequest;
+import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.request.UserRequest;
 import com.sohbet.service.UserService;
-
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -112,9 +114,9 @@ public class UserController {
 
 	@PutMapping("/auth")
 	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
-			                                   @Validated @RequestBody UserDTO userDTO){
-		User user=userService.getCurrentUser();
-		 userService.updateUser(user,imageId,userDTO);
+			@Valid @RequestBody UpdateUserRequest updateUserRequest){
+		
+		 userService.updateUser(imageId,updateUserRequest);
 		 
 		 
 		 Response response = new Response();
