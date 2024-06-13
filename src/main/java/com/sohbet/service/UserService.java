@@ -162,9 +162,15 @@ public class UserService {
 	
 		user.getMyImages().add(image);
 		user.setUpdateAt(LocalDateTime.now());
-		User usr = userMapper.userDTOToUser(userDTO);
+		user.setFirstName(userDTO.getFirstName());
+		user.setLastName(userDTO.getLastName());
+		user.setAddress(userDTO.getAddress());
+		user.setPhone(userDTO.getPhone());
+		user.setEmail(userDTO.getEmail());
+		user.setPassword(userDTO.getPassword());
+		
 
-		userRepository.save(usr);
+		userRepository.save(user);
 	}
 
 	// ---------------- register user----------------------
