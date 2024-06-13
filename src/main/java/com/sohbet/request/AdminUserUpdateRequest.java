@@ -3,6 +3,8 @@ package com.sohbet.request;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import com.sohbet.domain.Image;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -32,18 +34,17 @@ public class AdminUserUpdateRequest {
 	@Size(min=4, max=20, message="Please provide Correct Size of Password")
 	@NotBlank(message="Please provide your password")
 	private String password;
-//	
-//	@Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",  
-//            message = "Please provide valid phone number")
-//	@Size(max=14)
-//	@NotBlank(message="Please provide your phone number")
-//	private String phoneNumber;
+	
+	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$",  
+            message = "Please provide valid phone number")
+	@Size(max=14)
+	@NotBlank(message="Please provide your phone number")
+	private String phone;
 	
 	@Size(max=100)
 	@NotBlank(message="Please provide your address")
 	private String address;
 	
-
 	
 	private LocalDateTime createAt;
 
@@ -51,6 +52,8 @@ public class AdminUserUpdateRequest {
 	private LocalDateTime updateAt;
 	
 	private Set<String> image ;
+	
+	private String profileImage;
 	
 	private Boolean builtIn ;
 	
