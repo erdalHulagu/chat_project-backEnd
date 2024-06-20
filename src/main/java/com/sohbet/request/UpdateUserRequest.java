@@ -33,7 +33,6 @@ public class UpdateUserRequest {
 	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", // 9999 999 99 99
 			message = "Please provide valid phone number")
 	@Size(max = 14)
-	@NotBlank(message = "Please provide your phone number")
 	private String phone;
 
 	@Size(max = 100)
