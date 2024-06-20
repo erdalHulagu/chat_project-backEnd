@@ -64,7 +64,7 @@ public class ChatController {
 	}
 	
 	
-	@GetMapping("/user")
+	@GetMapping("/allChats")
 	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId(){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
