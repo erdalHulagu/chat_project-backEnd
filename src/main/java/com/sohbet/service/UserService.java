@@ -239,6 +239,15 @@ public class UserService {
 
 	}
 	
+	public List<User> searchUserByName(String firstName) {
+		
+	List<User> searchedUsers=userRepository.searchUsersByUserName(firstName);
+		
+		
+		return searchedUsers;
+	}
+
+	
 
 	public void deleteUserWithId(Long id) {
 
@@ -276,6 +285,7 @@ public class UserService {
 
 		return roles;
 	}
+
 
 //
 //	public void save(String imageId, UserRequest userRequest) {

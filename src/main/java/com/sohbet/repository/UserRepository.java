@@ -40,6 +40,9 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 
 	@EntityGraph(attributePaths = "profileImage")
 	Optional<User> findUserById(Long id);
+	
+	@Query("SELECT u FROM User u WHERE u.firstName LIKE %:firstName%")
+	List<User> searchUsersByUserName(String firstName);
 
 
 //	@Query("SELECT u FROM User u join u.profileImage pimg where pimg.id= : profileImage.id")

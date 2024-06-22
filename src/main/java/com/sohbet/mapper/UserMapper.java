@@ -67,6 +67,9 @@ public interface UserMapper {
 	UserDTO userToUserDto(User user);
 
 	List<UserDTO> userToUserDTOList(List<User> userList);
+	
+	
+	Set<UserDTO> userToUserDTOSetList(Set<User> setUsers);
 
 	@Named("getRoleAsString")
 	public static Set<String> mapRoles(Set<Role> roles) {
@@ -153,5 +156,7 @@ public interface UserMapper {
 //			imgs = imageFiles.stream().map(imFile->imFile.
 //			 return imgs;
 //		}
+
+	
 
 }

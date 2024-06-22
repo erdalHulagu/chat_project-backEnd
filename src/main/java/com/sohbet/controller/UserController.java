@@ -1,8 +1,10 @@
  package com.sohbet.controller;
 
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.repository.cdi.Eager;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -31,6 +34,7 @@ import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
+import com.sohbet.mapper.UserMapper;
 import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.request.UserRequest;
@@ -45,6 +49,10 @@ public class UserController {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+	private UserMapper userMapper;
+	
 	
 	@GetMapping("/user/{id}")
 	public ResponseEntity<UserDTO> getUser(@PathVariable @Lazy Long id){
@@ -137,17 +145,22 @@ public class UserController {
 		
 	
 	}
-//	@GetMapping("/email")
-//	public ResponseEntity<UserDTO> getUserByEmailEntity (@RequestBody String email){
-//		
-//	UserDTO  emaillUser = userService.getUserByEmail(email);
-//	
-//	return ResponseEntity.ok(emaillUser);
-//	
-//		
-//		
-//		
-//		}
+	@GetMapping("/search")
+	public ResponseEntity<Set<UserDTO>>searchUser (@RequestParam ("firstName") String firstName){
+		
+		List<User>users=userService.searchUserByName(firstName);
+		
+		Set<User> setUsers=new HashSet<>(users);
+		
+		Set<UserDTO> userDTOs= userMapper.userToUserDTOSetList(setUsers);
+		
+	
+	return new ResponseEntity<>(userDTOs,HttpStatus.ACCEPTED);
+	
+		
+		
+		
+		}
 	
 	
 }
