@@ -55,10 +55,10 @@ public class UserJwtController {
    
    // --------------------register user---------------------
   
-   @PostMapping("/register/{id}")
+   @PostMapping("/register")
    @Transactional
-   public ResponseEntity<Response> registerUser( @PathVariable String id ,@Valid @RequestBody RegisterRequest registerRequest  )  {
-	   userService.saveUser(id,registerRequest);
+   public ResponseEntity<Response> registerUser( @Valid @RequestBody RegisterRequest registerRequest  )  {
+	   userService.saveUser(registerRequest);
 	   
 	   Response response = new Response();
 	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);

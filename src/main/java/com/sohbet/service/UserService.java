@@ -178,7 +178,7 @@ public class UserService {
 
 		}
 	
-		user.setProfileImage(image);
+//		user.setProfileImage(image);
 		user.setRoles(roles);
 		user.setUpdateAt(LocalDateTime.now());
 		user.setFirstName(updateUserRequest.getFirstName());
@@ -192,25 +192,25 @@ public class UserService {
 
 	// ---------------- register user----------------------
 
-	public void saveUser(String id, RegisterRequest registerRequest) {
+	public void saveUser(RegisterRequest registerRequest) {
 
-		Image profileImage = imageService.getImageById(id);
-		
-		Set<Image>images=new HashSet<>();
-		
-		images.add(profileImage);
-		
-		if (profileImage==null) {
-			
-			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,id);
-			
-		}
+//		Image profileImage = imageService.getImageById(id);
+//		
+//		Set<Image>images=new HashSet<>();
+//		
+//		images.add(profileImage);
+//		
+//		if (profileImage==null) {
+//			
+//			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,id);
+//			
+//		}
 
-		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-
-		if (usedUserImage > 0) {
-			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-		}
+//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+//
+//		if (usedUserImage > 0) {
+//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//		}
 
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(
@@ -225,8 +225,8 @@ public class UserService {
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 
 		User user = new User();
-		user.getMyImages().add(profileImage);
-		user.setProfileImage(profileImage);
+//		user.getMyImages().add(profileImage);
+//		user.setProfileImage(profileImage);
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
@@ -238,14 +238,10 @@ public class UserService {
 		userRepository.save(user);
 
 	}
-	
-	public List<User> searchUserByName(String firstName) {
-		
-	List<User> searchedUsers=userRepository.searchUsersByUserName(firstName);
-		
-		
-		return searchedUsers;
-	}
+	 public List<User> searchUserByName(String firstName) {
+		 
+	        return userRepository.searchUsersByUserName(firstName);
+	    }
 
 	
 
