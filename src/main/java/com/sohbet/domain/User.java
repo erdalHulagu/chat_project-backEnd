@@ -71,11 +71,11 @@ private String password;
 @Column(length = 80, nullable = false, unique=true)
 private String address;
 
-
-@Size(max= 20)
-@NotBlank(message = "Please provide post code")
-@Column(length = 10, nullable = true, unique=true)
-private String postCode;
+//
+//@Size(max= 20)
+//@NotBlank(message = "Please provide post code")
+//@Column(length = 10, nullable = true, unique=true)
+//private String postCode;
 
 
 

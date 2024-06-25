@@ -1,12 +1,32 @@
-2024-06-24 16:02:03,109 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-24 16:02:03,246 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
-2024-06-24 16:02:03,250 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
-2024-06-24 16:02:03,473 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 16:02:05,268 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 16:02:06,385 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-06-24 16:02:06,418 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1f7e3f02] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-06-24 16:12:04,560 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'firstName' for method parameter type String is not present]
-2024-06-24 16:23:54,513 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-06-25 16:43:11,721 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 16:43:11,842 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
+2024-06-25 16:43:11,849 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
+2024-06-25 16:43:12,093 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:43:13,599 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:43:14,756 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 16:43:14,800 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@606cd87] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 16:44:38,511 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Bad credentials
+2024-06-25 16:44:38,546 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2024-06-25 16:45:05,358 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:06,795 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:11,909 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:12,833 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:14,007 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:14,119 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:14,971 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:15,162 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:15,568 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:17,802 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:19,831 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:45:20,626 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 16:48:37,431 WARN  [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:49:40,117 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:50:16,991 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:50:46,296 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:55:23,296 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:56:40,121 WARN  [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:57:21,907 WARN  [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 16:58:09,528 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -16,243 +36,12 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-06-24 16:23:58,288 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-24 16:23:58,330 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 16:23:59,023 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 16:23:59,523 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-06-24 16:23:59,526 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6b013baa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-06-24 16:24:36,535 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'firstName' for method parameter type String is not present]
-2024-06-24 16:27:51,684 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:30:41,058 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:37:22,287 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:39:23,299 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:03,894 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:08,329 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:29,187 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:29,327 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:29,418 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:29,477 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:31,316 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:56,624 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:58,192 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:41:58,436 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:23,414 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:28,141 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:29,414 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:30,829 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:35,389 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:36,376 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:36,535 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:37,569 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:39,098 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:39,302 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:49:39,405 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:08,264 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:08,420 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:09,682 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:12,168 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:12,369 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:13,320 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:15,663 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:15,831 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:16,902 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:53:22,927 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:03,873 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:04,032 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:05,885 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:06,840 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:08,966 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:09,154 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:10,336 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:11,345 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:13,151 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:16,735 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:18,456 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:19,224 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:20,167 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:20,310 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:21,153 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:21,312 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:21,511 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 16:54:24,337 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:17,997 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:19,472 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:24,259 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:25,170 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:25,328 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:25,494 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:25,648 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:26,335 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:26,518 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:26,686 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:26,858 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:56,853 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:58,513 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:58,797 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:58,799 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:59,388 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:59,517 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:59,684 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:06:59,868 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:07:22,566 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:08:25,244 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:08:27,491 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:08:33,218 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:08:33,440 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:08:34,321 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:25,831 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:25,945 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:27,050 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:49,948 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:50,102 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:50,294 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:50,938 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:51,507 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:53,533 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:53,678 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:56,289 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:56,433 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:13:58,080 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:06,905 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:07,048 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:07,292 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:07,488 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:08,691 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:08,832 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:08,977 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:09,097 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:10,762 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:10,992 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:11,257 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:12,219 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:44,689 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:44,898 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:46,406 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:46,550 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:47,964 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:48,212 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:14:48,452 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:03,948 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:04,122 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:04,299 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:04,427 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:05,683 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:15,128 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:15,436 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:15,707 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:15:16,115 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:20:29,741 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:42,834 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:42,936 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:43,791 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:43,980 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:44,758 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:44,957 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:45,160 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:53,902 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:54,102 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:27:55,393 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:36,654 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:38,237 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:38,437 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:39,597 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:42,432 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:42,558 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:43,633 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:43,810 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:44,001 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:46,045 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:46,332 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:46,984 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:47,845 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:48,749 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:49,594 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:51,128 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:51,335 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:29:53,063 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:30:53,977 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:30:53,988 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:30:55,610 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:30:55,615 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:30:56,313 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:30:56,314 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:31:00,600 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:31:00,624 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:31:01,525 WARN  [http-nio-8081-exec-5] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:31:01,531 WARN  [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:31:02,184 WARN  [http-nio-8081-exec-7] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 17:31:02,186 WARN  [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 17:39:33,187 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:39:34,496 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:39:35,639 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:39:35,822 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:39:37,255 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:40:47,248 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:40:47,424 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:40:50,138 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:40:51,270 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:40:52,769 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:22,086 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:22,274 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:27,514 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:28,641 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:29,034 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:29,253 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:29,346 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:30,477 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:30,683 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:41:30,874 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:42:37,446 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:42:47,181 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:43:01,087 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:43:01,602 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:43:07,392 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:33,149 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:33,274 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:36,889 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:38,332 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:38,488 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:39,016 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:39,274 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:41,074 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:41,393 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:46:41,665 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:04,362 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:04,514 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:04,703 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:04,851 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:05,698 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:05,970 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:07,204 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:49,937 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:50,105 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:47:52,475 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:48:20,336 ERROR [http-nio-8081-exec-6] com.sohbet.exception.FurkanChatExceptionHandler:Access Denied
-2024-06-24 17:48:20,371 WARN  [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.security.access.AccessDeniedException: Access Denied]
-2024-06-24 17:51:07,606 ERROR [http-nio-8081-exec-9] com.sohbet.exception.FurkanChatExceptionHandler:Bad credentials
-2024-06-24 17:51:07,613 WARN  [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
-2024-06-24 17:52:01,257 ERROR [http-nio-8081-exec-10] com.sohbet.exception.FurkanChatExceptionHandler:Bad credentials
-2024-06-24 17:52:01,259 WARN  [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
-2024-06-24 17:52:19,033 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Bad credentials
-2024-06-24 17:52:19,061 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
-2024-06-24 17:53:09,399 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:09,538 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:10,704 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:45,739 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:46,535 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:46,712 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:53:48,788 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:08,230 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:08,372 ERROR [http-nio-8081-exec-4] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:11,462 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:12,500 ERROR [http-nio-8081-exec-6] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:12,632 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:13,746 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 17:54:14,743 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
-2024-06-24 18:46:52,085 WARN  [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=30m22s264ms).
-2024-06-24 19:04:54,573 WARN  [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=17m32s479ms).
-2024-06-24 20:39:20,489 WARN  [HikariPool-2 housekeeper] com.zaxxer.hikari.pool.HikariPool:HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=30m25s1ms).
-2024-06-24 20:55:55,904 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-06-25 16:58:11,501 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 16:58:11,518 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:58:11,883 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:58:12,108 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 16:58:12,110 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2ed4272b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 16:58:15,171 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -262,18 +51,23 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-06-24 20:55:57,043 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-24 20:55:57,052 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:55:57,292 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:55:57,551 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-06-24 20:55:57,552 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@31405c6f] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-06-24 20:58:14,018 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 20:58:14,070 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 20:58:15,519 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 20:58:15,569 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 20:58:16,391 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 20:58:16,394 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 20:59:02,030 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-06-25 16:58:15,175 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1061)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 16:58:17,306 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 16:58:17,364 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:58:17,654 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:58:18,065 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 16:58:18,066 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1bcd0e] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 16:59:09,949 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 16:59:09,961 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 16:59:50,126 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -283,14 +77,21 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-06-24 20:59:04,297 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-24 20:59:04,307 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:59:04,432 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:59:04,538 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-06-24 20:59:04,540 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6d4d3ba3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-06-24 20:59:27,177 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.PageNotFound:Request method 'POST' is not supported
-2024-06-24 20:59:27,394 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
-2024-06-24 20:59:49,108 WARN  [Thread-15] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-06-25 16:59:56,368 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 16:59:56,378 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:59:56,549 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 16:59:56,783 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 16:59:56,783 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@72e8e2b1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:00:13,706 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:00:13,862 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
+2024-06-25 17:00:13,875 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
+2024-06-25 17:00:14,165 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:00:15,240 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:00:16,391 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:00:16,420 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5105c642] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:00:52,769 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 17:00:52,800 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 17:01:13,986 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -300,14 +101,133 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-06-24 20:59:50,082 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-06-24 20:59:50,089 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:59:50,170 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-06-24 20:59:50,295 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-06-24 20:59:50,295 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6e0549af] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-06-24 21:00:00,655 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
-2024-06-24 21:02:54,195 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
-2024-06-24 21:03:41,328 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
-2024-06-24 21:04:13,012 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
-2024-06-24 21:06:57,962 WARN  [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
-2024-06-24 21:07:42,416 WARN  [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [null]; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 17:01:15,193 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:01:15,201 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:01:15,348 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:01:15,594 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:01:15,596 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@547395f5] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:01:21,241 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 17:01:21,246 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 17:10:15,299 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:10:17,655 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:10:17,678 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:10:17,800 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:10:18,113 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:10:18,115 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@34d8ffc5] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:10:26,688 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 17:10:26,706 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 17:12:11,018 WARN  [Thread-11] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:12:11,995 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:12:12,006 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:12:12,108 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:12:12,265 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:12:12,265 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@783299f8] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:12:52,563 WARN  [Thread-15] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:12:53,533 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:12:53,541 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:12:53,628 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:12:53,725 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:12:53,726 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@717be97c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:12:55,326 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value []; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 17:14:06,145 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value []; codes [NotBlank.registerRequest.phone,NotBlank.phone,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone]]; default message [Please provide your phone number]] ]
+2024-06-25 17:14:13,377 WARN  [Thread-19] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-5 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:14:14,173 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:14:14,183 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:14:14,284 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:14:14,386 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:14:14,386 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@db5caef] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:14:28,834 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 17:14:28,841 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 17:15:08,629 WARN  [Thread-23] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-6 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:15:09,464 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:15:09,471 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:15:09,575 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:15:09,781 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:15:09,782 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1cce6e96] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:15:41,871 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Could not commit JPA transaction
+2024-06-25 17:15:41,875 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction]
+2024-06-25 17:18:29,979 WARN  [Thread-27] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-7 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:18:31,759 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:18:31,768 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:18:31,874 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:18:31,956 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:18:31,957 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@1f0e906c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:19:43,727 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [07586654863]; codes [Pattern.registerRequest.phone,Pattern.phone,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone],[Ljakarta.validation.constraints.Pattern$Flag;@7784a5fe,^(\d{4} \d{3} \d{2} \d{2})$]; default message [Please provide valid phone number]] ]
+2024-06-25 17:20:17,268 ERROR [http-nio-8081-exec-3] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:20:21,955 ERROR [http-nio-8081-exec-5] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:20:22,355 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:20:25,539 ERROR [http-nio-8081-exec-8] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:22:21,651 WARN  [Thread-31] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-8 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-06-25 17:22:22,946 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-25 17:22:22,960 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:22:23,130 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-06-25 17:22:23,262 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-06-25 17:22:23,263 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@59ea31d1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-06-25 17:25:45,494 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.sohbet.DTOresponse.Response> com.sohbet.controller.UserJwtController.registerUser(com.sohbet.request.RegisterRequest): [Field error in object 'registerRequest' on field 'phone': rejected value [(525)-252-52 52]; codes [Pattern.registerRequest.phone,Pattern.phone,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequest.phone,phone]; arguments []; default message [phone],[Ljakarta.validation.constraints.Pattern$Flag;@7784a5fe,^(\d{4} \d{3} \d{2} \d{2})$]; default message [Please provide valid phone number]] ]
+2024-06-25 17:26:55,473 ERROR [http-nio-8081-exec-7] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:26:56,559 ERROR [http-nio-8081-exec-9] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:26:57,671 ERROR [http-nio-8081-exec-10] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0
+2024-06-25 17:26:59,415 ERROR [http-nio-8081-exec-1] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT strings must contain exactly 2 period characters. Found: 0

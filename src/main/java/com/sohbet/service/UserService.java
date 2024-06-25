@@ -26,6 +26,8 @@ import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -191,7 +193,7 @@ public class UserService {
 	}
 
 	// ---------------- register user----------------------
-
+@Transactional
 	public void saveUser(RegisterRequest registerRequest) {
 
 //		Image profileImage = imageService.getImageById(id);
