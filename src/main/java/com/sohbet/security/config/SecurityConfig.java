@@ -37,11 +37,14 @@ public class SecurityConfig {
 	        return http.csrf(AbstractHttpConfigurer::disable)
 	                .authorizeHttpRequests(auth->{
 	                    auth.requestMatchers("/"
-		                         ,"images/**"
-		                         ,"users/**"
-		                         ,"login"
+		                         ,"/images/**"
+		                         ,"/users/**"
+		                         ,"/login"
 		                         ,"/register/**"
+		                         ,"/chats/single"
+		                         ,"/messages/**"
 		                         ,"/js"
+		                         ,"/jsx"
 		                         ,"/css").permitAll()
 	                            .anyRequest().authenticated();
 	                })
@@ -53,19 +56,34 @@ public class SecurityConfig {
 	
     //*************** cors Ayarları ****************************
     
+//    @Bean
+//   	public WebMvcConfigurer corsConfigurer() {
+//   		return new WebMvcConfigurer() {
+//   			@Override
+//   			public void addCorsMappings(CorsRegistry registry) {
+//   				registry
+//   				.addMapping("/**")
+//                .allowedOrigins("http://localhost:3000") // Sadece bu adresten gelen isteklere izin ver
+//                .allowedMethods("GET", "POST") // Sadece GET ve POST metodlarına izin ver
+//                .allowedHeaders("Content-Type"); // Sadece "Content-Type" başlığına izin ver
+//    }
+//   			
+//   		};
+//   	}
     @Bean
-   	public WebMvcConfigurer corsConfigurer() {
-   		return new WebMvcConfigurer() {
-   			@Override
-   			public void addCorsMappings(CorsRegistry registry) {
-   				registry.addMapping("/**")
-   				        .allowedOrigins("*") //"http:127.0.0.1/8080 diye spesific adresden gelenleri kabul et de diyebiliriz
-   						.allowedHeaders("*")
-   						.allowedMethods("*");
-   			}
-   		};
-   	}
-    
+    public WebMvcConfigurer corsConfigurer() {
+    	return new WebMvcConfigurer() {
+    		@Override
+    		public void addCorsMappings(CorsRegistry registry) {
+    			registry
+    			.addMapping("/**")
+    			.allowedOrigins("*") //"http:127.0.0.1/8080 diye spesific adresden gelenleri kabul et de diyebiliriz
+    			.allowedHeaders("*")
+    			.allowedMethods("*");
+    		}
+    	};
+    }
+//    
 //    //*******************SWAGGER***********************
 //    
 //    private static final String [] AUTH_WHITE_LIST= {

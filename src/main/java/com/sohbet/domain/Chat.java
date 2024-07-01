@@ -33,6 +33,7 @@ public class Chat {
 	
 	@Column(length = 50, nullable = false)
 	private String chatName;
+	
 		
 	@JoinColumn(name = "chat_id")
 	@ManyToMany

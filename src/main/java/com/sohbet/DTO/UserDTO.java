@@ -1,11 +1,11 @@
 package com.sohbet.DTO;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
-
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +17,8 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class UserDTO {
+	
+private Long id;
 
 private String firstName;
 
@@ -30,12 +32,18 @@ private String phone;
 
 private String address;
 
-private byte[] profileImage;
+private String postCode;
+
+private Boolean builtIn;
+
+private Set<String> profileImage;
 
 private Set<String>  myImages;
 
 private  Set<String> roles ;
 
+
+//--------------------
 public void setRoles(Set<Role> roles) {
 	
 	Set<String> roleStr = new HashSet<>();
@@ -47,10 +55,33 @@ public void setRoles(Set<Role> roles) {
 	
 	this.roles = roleStr;
 }
+//public void setMyimgs(Set<Image> images) {
+//    Set<String> imageStr = new HashSet<>();
+//    images.forEach(img->{
+//    	imageStr.add(String.valueOf(img.getId()));
+//    });
+//    this.myImages=imageStr;
+//}
 
 
+//---------------------
+//public void setMyimages(Set<Image> images) {
+//    Set<String> imageStr = new HashSet<>();
+//    for (Image image : images) {
+//        imageStr.add(String.valueOf(image.getId())); // Assuming Image class has a getUrl method
+//    }
+//    this.myImages = imageStr;
+//}
+//----------------------
+public void setProfileImage(Set<Image> images) {
+	Set<String> imageStr = new HashSet<>();
+	for (Image image : images) {
+		imageStr.add(String.valueOf(image.getId())); // Assuming Image class has a getUrl method
+	}
+	this.profileImage = imageStr;
+}
 
-	
+
 }
 
 

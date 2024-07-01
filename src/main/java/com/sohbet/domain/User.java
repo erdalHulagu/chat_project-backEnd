@@ -42,104 +42,84 @@ import lombok.Setter;
 
 public class User {
 
-	
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-@NotNull
-@Column(name="name", nullable = false, length = 100)
-private String firstName;
+	@NotNull
+	@Column(name = "name", nullable = false, length = 100)
+	private String firstName;
 
-@NotNull
-@Column(name="surname",nullable = false, length = 100)
-private String lastName;
+	@NotNull
+	@Column(name = "surname", nullable = false, length = 100)
+	private String lastName;
 
+	@Email(message = "Please provide valid email")
+	@Size(min = 10, max = 80)
+	@Column(length = 80, nullable = false, unique = true, updatable = false)
+	private String email;
 
-@Email(message = "Please provide valid email")
-@Size(min = 10, max = 80)
-@Column(length = 80, nullable = false, unique=true, updatable = false)
-private String email;
+	@Size(min = 10, max = 80)
+	@Column(length = 80, nullable = false, unique = true)
+	private String password;
 
+	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", // 9999 999 99 99
+			message = "Please provide valid phone number")
+	@Column(nullable = true)
+	private String phone;
 
-@Size(min = 10, max = 80)
-@Column(length = 80, nullable = false, unique=true)
-private String password;
+	@Size(max = 100)
+	@NotBlank(message = "Please provide your address")
+	@Column(length = 80, nullable = false, unique = true)
+	private String address;
 
-@Size(max= 100)
-@NotBlank(message = "Please provide your address")
-@Column(length = 80, nullable = false, unique=true)
-private String address;
+	@Size(max = 20)
+	@NotBlank(message = "Please provide post code")
+	@Column(length = 10, nullable = true, unique = true)
+	private String postCode;
 
-//
-//@Size(max= 20)
-//@NotBlank(message = "Please provide post code")
-//@Column(length = 10, nullable = true, unique=true)
-//private String postCode;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	@Column(name = "update_at", length = 30, nullable = false, updatable = true)
+	private LocalDateTime updateAt;
 
+	@Column(name = "create_at", length = 30, updatable = false, nullable = true)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private LocalDateTime createAt;
 
+	private Boolean builtIn;
 
-@Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
-message = "Please provide valid phone number" ) 
-@Column(nullable = true) 
-private String phone;
+	@ManyToMany
+	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
+	@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken
+																// kullanıcıyı da siler
+	@JoinColumn(name = "user_images", nullable = true)
+	private Set<Image> myImages;
 
-@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-@Column(name = "update_at",length = 30, nullable = false, updatable = true)
-private LocalDateTime updateAt;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_imageId", referencedColumnName = "id", nullable = true)
+	private Set<Image> profileImage;
 
+	@OneToMany(orphanRemoval = true, mappedBy = "user")
+	private List<Message> messages = new ArrayList<>();
 
-@Column(name = "create_at", length = 30, updatable = false, nullable = true)
-@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-private LocalDateTime createAt;
+	@OneToMany(mappedBy = "createdBy")
+	private List<Chat> chat;
 
-private Boolean builtIn;
+	@ManyToMany(mappedBy = "users")
+	private Set<Chat> chats = new HashSet<>();
 
-@ManyToMany   
-@JoinTable( name="t_user_role",
-						 joinColumns = @JoinColumn(name="user_id"),
-						 inverseJoinColumns = @JoinColumn(name="role_id"))
-private  Set<Role> roles = new HashSet<>();
+	@ManyToMany // hibernate defaultta LAZY
+	@JoinTable(name = "t_user_friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	private List<Friend> friends = new ArrayList<>();
 
+	public void setCreateTime(LocalDateTime createAt) {
 
-@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken kullanıcıyı da siler
-@JoinColumn(name = "user_images",nullable = true)
-private Set<Image> myImages;
+		createAt = LocalDateTime.now();
 
-@OneToOne(cascade = CascadeType.ALL)
-@JoinColumn(name = "profile_imageId", referencedColumnName = "id",nullable = true)
-private Image profileImage;
+		this.createAt = createAt;
+		this.updateAt = createAt;
 
-
-@OneToMany(orphanRemoval = true, mappedBy = "user")
-private List<Message>messages=new ArrayList<>();
-	
-@OneToMany(mappedBy = "createdBy")
-private List<Chat> chat;
-
-@ManyToMany(mappedBy = "users")
-private Set<Chat> chats = new HashSet<>();
-
-@ManyToMany   // hibernate defaultta LAZY
-@JoinTable( name="t_user_friend",
-						 joinColumns = @JoinColumn(name="user_id"),
-						 inverseJoinColumns = @JoinColumn(name="friend_id"))
-private List<Friend>friends= new ArrayList<>();
-
-
-
-
-
-
-
-public void setCreateTime(LocalDateTime createAt) {
-	
-createAt=LocalDateTime.now();
-
-this.createAt=createAt;
-this.updateAt=createAt;
-
+	}
 }
-}
-

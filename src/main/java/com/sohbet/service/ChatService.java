@@ -46,9 +46,9 @@ public class ChatService {
      //-------------------- create chat with user-----------------
 	public ChatDTO createChat (User currentUser, Long userId ) {
 	UserDTO userDto=	userService.getUserById(userId);
-    User usr=userMapper.userDTOToUser(userDto);
+    User user=userMapper.userDTOToUser(userDto);
 	
-	Chat isChatExist= chatRepository.findSingleChatByUserIds(usr, userId);
+	Chat isChatExist= chatRepository.findSingleChatByUserIds(currentUser, user);
 	
 	if (isChatExist!=null) {                                                       
 	ChatDTO chatDTO=	chatMapper.chatToChatDTO(isChatExist);
@@ -59,7 +59,7 @@ public class ChatService {
 
 	Chat chat =new Chat();
 	chat.setCreatedBy(currentUser);
-	chat.getUsers().add(usr);
+	chat.getUsers().add(user);
 	chat.getUsers().add(currentUser);
 	chat.setIsGroup(false);
 

@@ -3,7 +3,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +18,12 @@ import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.ResponseMessage;
-import com.sohbet.domain.Chat;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.request.GroupChatRequest;
 import com.sohbet.request.SingleChatRequest;
 import com.sohbet.service.ChatService;
 import com.sohbet.service.UserService;
-
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController("/chats")
@@ -45,12 +45,13 @@ public class ChatController {
 	}
 	
 	@PostMapping("/single")
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')  " )
 	public ResponseEntity<ChatDTO> createSingleChat(@RequestBody SingleChatRequest singleChatRequest){
 		
 		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);
+		User currentUser=userMapper.userDTOToUser(userDTO);
 		
-		ChatDTO chatDto=chatService.createChat(user, singleChatRequest.getUserId());
+		ChatDTO chatDto=chatService.createChat(currentUser, singleChatRequest.getUserId());
 		
 		return ResponseEntity.ok(chatDto);
 		

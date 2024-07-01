@@ -3,7 +3,7 @@ package com.sohbet.enums;
 public enum RoleType {
 	
 	ROLE_ADMIN("Administrator"),
-	ROLE_ANONYMOUS("anonymous"),
+	ROLE_ANONYMOUS("Anonymous"),
 	 ;
 	
 	private String name;
@@ -17,6 +17,9 @@ public enum RoleType {
 		return name ;
 	}
 	
+	public void setName(String name) {
+	this.name=name;
 	
+	}
 
 }

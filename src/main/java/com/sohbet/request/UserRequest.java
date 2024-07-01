@@ -41,9 +41,7 @@ private String password;
 @NotBlank(message="Please provide your password")
 private Set<String>  myImages;
 
-@Pattern(regexp ="^(\\d{4} \\d{3} \\d{2} \\d{2})$",	// 9999 999 99 99
-message = "Please provide valid phone number" ) 
-@Column(nullable = false)
+
 private String phone;
 
 
@@ -52,7 +50,7 @@ private String phone;
 private String address;
 
 
-private byte[] profileImage; 
+private Set<String> profileImage; 
 
 
 
