@@ -25,15 +25,16 @@ import com.sohbet.request.SingleChatRequest;
 import com.sohbet.service.ChatService;
 import com.sohbet.service.UserService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.transaction.Transactional;
 
 @RestController("/chats")
 public class ChatController {
 	
-	
+	@Autowired
 	private ChatService chatService;
-	
+	@Autowired
 	private UserService userService;
-	
+	@Autowired
 	private UserMapper userMapper;
 	
 	
@@ -44,8 +45,8 @@ public class ChatController {
 		
 	}
 	
+	@Transactional
 	@PostMapping("/single")
-	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')  " )
 	public ResponseEntity<ChatDTO> createSingleChat(@RequestBody SingleChatRequest singleChatRequest){
 		
 		UserDTO userDTO=userService.findUserProfile();

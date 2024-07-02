@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.sohbet.DTO.ChatDTO;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.User;
 
@@ -27,6 +28,8 @@ public interface ChatRepository extends JpaRepository<Chat, Long>{
 	@Query("SELECT c FROM Chat c WHERE c.isGroup = false AND :user MEMBER OF c.users AND :currentUser MEMBER OF c.users")
 	public Chat findSingleChatByUserIds(@Param("user") User user, 
 			                            @Param("currentUser") User currentUser);
+
+	
 
 	
 }

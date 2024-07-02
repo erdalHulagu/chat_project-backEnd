@@ -53,25 +53,25 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 	
-	
+	@Transactional
 	@GetMapping("/user/{id}")
-	public ResponseEntity<UserDTO> getUser(@PathVariable @Lazy Long id){
+	public ResponseEntity<UserDTO> getUser(@PathVariable  Long id){
 		
 		UserDTO userDTO=userService. getUserById(id);
 		
 		return ResponseEntity.ok(userDTO);
 	
 	}
-	@GetMapping("/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable @Lazy Long id){
-		
-		User user=userService. getUser(id);
-		
-		return ResponseEntity.ok(user);
-		
-	}
+//	@GetMapping("/{id}")
+//	public ResponseEntity<User> getUserById(@PathVariable @Lazy Long id){
+//		
+//		User user=userService. getUser(id);
+//		
+//		return ResponseEntity.ok(user);
+//		
+//	}
 
-	@Transactional
+	
 	@GetMapping("/profile")
 	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<UserDTO> findUserProfile(){
