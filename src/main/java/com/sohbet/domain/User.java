@@ -43,7 +43,7 @@ import lombok.Setter;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull
@@ -54,11 +54,13 @@ public class User {
 	@Column(name = "surname", nullable = false, length = 100)
 	private String lastName;
 
+	@NotNull
 	@Email(message = "Please provide valid email")
 	@Size(min = 10, max = 80)
 	@Column(length = 80, nullable = false, unique = true, updatable = false)
 	private String email;
 
+	@NotNull
 	@Size(min = 10, max = 80)
 	@Column(length = 80, nullable = false, unique = true)
 	private String password;
@@ -69,13 +71,13 @@ public class User {
 	private String phone;
 
 	@Size(max = 100)
-	@NotBlank(message = "Please provide your address")
+	@NotNull(message = "Please provide your address")
 	@Column(length = 80, nullable = false, unique = true)
 	private String address;
 
 	@Size(max = 20)
-	@NotBlank(message = "Please provide post code")
-	@Column(length = 10, nullable = true, unique = true)
+	@NotNull(message = "Please provide post code")
+	@Column(length = 10, nullable = true,unique = true)
 	private String postCode;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -89,7 +91,9 @@ public class User {
 	private Boolean builtIn;
 
 	@ManyToMany
-	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "t_user_role", joinColumns = 
+	@JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken
@@ -97,9 +101,9 @@ public class User {
 	@JoinColumn(name = "user_images", nullable = true)
 	private Set<Image> myImages;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "profile_imageId", referencedColumnName = "id", nullable = true)
-	private Set<Image> profileImage;
+	 @OneToOne(cascade = CascadeType.ALL)
+	 @JoinColumn(name = "profile_image_id", referencedColumnName = "id",nullable = true)
+	 private Image profileImage;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();

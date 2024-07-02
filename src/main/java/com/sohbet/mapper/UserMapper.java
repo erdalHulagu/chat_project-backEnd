@@ -27,7 +27,7 @@ public interface UserMapper {
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageCollectionAsImage")
+	@Mapping(target = "profileImage",ignore = true)
 	User userDTOToUser(UserDTO userDTO);
 
 	@Mapping(target = "builtIn", ignore = true)
@@ -53,10 +53,10 @@ public interface UserMapper {
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageCollectionAsImage")
+	@Mapping(target = "profileImage", ignore = true)
 	User userRequestToUser(UserRequest userRequest);
 
-	
+	@Mapping(target = "profileImage", ignore = true)
 	UserDTO userToUserDto(User user);
 	
 	
@@ -98,6 +98,20 @@ public interface UserMapper {
 		return imgs;
 	}
 
-	
+	@Named("imageToString")
+    default String imageToString(Image image) {
+        return image != null ? image.getId() : null;
+    }
+
+    @Named("stringToImage")
+    default Image stringToImage(String id) {
+        if (id == null) {
+            return null;
+        }
+        Image image = new Image();
+        image.setId(id);
+        return image;
+    }
+
 
 }

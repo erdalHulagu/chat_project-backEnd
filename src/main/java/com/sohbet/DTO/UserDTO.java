@@ -39,7 +39,7 @@ private String postCode;
 
 private Boolean builtIn;
 
-private Set<String> profileImage;
+private Image profileImage;
 
 private Set<String>  myImages;
 
@@ -67,13 +67,13 @@ public void setMyImages(Set<Image> images) {
 	this.myImages=imgs;
 }
 //----------------------
-public void setProfileImage(Set<Image> images) {
-	Set<String> imageStr = new HashSet<>();
-	for (Image image : images) {
-		imageStr.add(String.valueOf(image.getId())); // Assuming Image class has a getUrl method
-	}
-	this.profileImage = imageStr;
-}
+//public void setProfileImage(Set<Image> images) {
+//	Set<String> imageStr = new HashSet<>();
+//	for (Image image : images) {
+//		imageStr.add(String.valueOf(image.getId())); // Assuming Image class has a getUrl method
+//	}
+//	this.profileImage = imageStr;
+//}
 
 
 

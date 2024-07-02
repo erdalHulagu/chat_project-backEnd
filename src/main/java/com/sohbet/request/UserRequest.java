@@ -46,7 +46,7 @@ private String address;
 
 private Boolean postCode;
 
-private Set<String> profileImage; 
+private String profileImage; 
 
 @NotBlank(message="Please provide your password")
 private Set<String>  myImages;

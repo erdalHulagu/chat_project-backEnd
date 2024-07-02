@@ -235,6 +235,7 @@ public class UserService {
 		user.setLastName(registerRequest.getLastName());
 		user.setEmail(registerRequest.getEmail());
 		user.setAddress(registerRequest.getAddress());
+		user.setPostCode(registerRequest.getPostCode());
 		user.setPhone(registerRequest.getPhone());
 
 		userRepository.save(user);
