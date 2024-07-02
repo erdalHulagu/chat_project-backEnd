@@ -15,24 +15,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ChatDTO {
-	
-	private Long id;
-	
-	private String chatName;
-	
-	
-	private Set<String> chatImage=new HashSet<>();
-	
-	
-	private Boolean isGroup;
-	
-	
-	private User createdBy;
-	
 
-	private Set<User> users=new HashSet<>();
+	private Long id;
+
+	private String chatName;
+
+	private Boolean isGroup;
+
+	private String createdBy;
+
+	private Set<String> admin = new HashSet<>();
+
+	private Set<String> users = new HashSet<>();
+
+	private List<String> messages = new ArrayList<>();
 	
-	
-	private List<Message>messages=new ArrayList<>();
-		
+	private Set<String> chatImage = new HashSet<>();
+
 }

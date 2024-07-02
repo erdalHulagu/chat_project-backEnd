@@ -105,7 +105,7 @@ public class User {
 	private List<Message> messages = new ArrayList<>();
 
 	@OneToMany(mappedBy = "createdBy")
-	private List<Chat> chat;
+	private List<Chat> chatlist;
 
 	@ManyToMany(mappedBy = "users")
 	private Set<Chat> chats = new HashSet<>();
@@ -114,12 +114,13 @@ public class User {
 	@JoinTable(name = "t_user_friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<Friend> friends = new ArrayList<>();
 
-	public void setCreateTime(LocalDateTime createAt) {
+	public void setCreateTime(LocalDateTime createAt,LocalDateTime updateChat) {
 
 		createAt = LocalDateTime.now();
+		updateAt=LocalDateTime.now();
 
 		this.createAt = createAt;
-		this.updateAt = createAt;
+		this.updateAt = updateChat;
 
 	}
 }

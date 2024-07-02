@@ -34,15 +34,6 @@ public class Chat {
 	@Column(length = 50, nullable = false)
 	private String chatName;
 	
-		
-	@JoinColumn(name = "chat_id")
-	@ManyToMany
-    private Set<Image> chatImage=new HashSet<>();
-   
-	@JoinColumn(name = "admin")
-	@OneToMany
-    private Set<User> admin=new HashSet<>();
-	
 	@Column(name = "is_group")
 	private Boolean isGroup;
 	
@@ -50,19 +41,34 @@ public class Chat {
 	@ManyToOne
 	private User createdBy;
 	
-	
-	@OneToMany(orphanRemoval = true,mappedBy = "chat")
-	private List<Message>messages=new ArrayList<>();
-		
+	@ManyToMany
+    @JoinTable(
+        name = "chat_admins",
+        joinColumns = @JoinColumn(name = "chat_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+	private Set<User> admin = new HashSet<>();
 	
 	@ManyToMany
     @JoinTable(
         name = "chat_users",
         joinColumns = @JoinColumn(name = "chat_id"),
-        inverseJoinColumns = @JoinColumn(name = "userId")
+        inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-	private Set<User> users=new HashSet<>();
+	private Set<User> users = new HashSet<>();
+	
+	@OneToMany(orphanRemoval = true, mappedBy = "chat")
+	private List<Message> messages = new ArrayList<>();
+	
+	@ManyToMany
+    @JoinTable(
+        name = "chat_images",
+        joinColumns = @JoinColumn(name = "chat_id"),
+        inverseJoinColumns = @JoinColumn(name = "image_id")
+    )
+	private Set<Image> chatImage = new HashSet<>();
+}
+	
 	
 
-}
 	

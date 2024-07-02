@@ -37,22 +37,19 @@ private String email;
 private String password;
 
 
-
-@NotBlank(message="Please provide your password")
-private Set<String>  myImages;
-
-
 private String phone;
-
 
 
 @NotBlank(message="Please provide your address")
 private String address;
 
 
+private Boolean postCode;
+
 private Set<String> profileImage; 
 
-
+@NotBlank(message="Please provide your password")
+private Set<String>  myImages;
 
 
 

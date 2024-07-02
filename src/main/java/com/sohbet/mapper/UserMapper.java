@@ -18,26 +18,29 @@ import com.sohbet.request.UserRequest;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-//	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "builtIn", ignore = true)
-	@Mapping(target = "roles", source = "roles", qualifiedByName = "getRoleAsString")
+	@Mapping(target = "roles", ignore = true)
 	@Mapping(target = "createAt", ignore = true)
 	@Mapping(target = "updateAt", ignore = true)
-	@Mapping(target = "chat", ignore = true)
+	@Mapping(target = "chatlist", ignore = true)
 	@Mapping(target = "chats", ignore = true)
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
-	@Mapping(target = "createTime", ignore = true)
-	@Mapping(target = "profileImage", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageCollectionAsImage")
 	User userDTOToUser(UserDTO userDTO);
 
+	@Mapping(target = "builtIn", ignore = true)
+	@Mapping(target = "createAt", ignore = true)
+	@Mapping(target = "updateAt", ignore = true)
+	@Mapping(target = "chatlist", ignore = true)
+	@Mapping(target = "chats", ignore = true)
+	@Mapping(target = "friends", ignore = true)
+	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "id", ignore = true)
-	@Mapping(target = "roles", source = "roles", qualifiedByName = "getRoleAsString")
 	@Mapping(target = "profileImage", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+	@Mapping(target = "roles", ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
 
 	@Mapping(target = "id", ignore = true)
@@ -45,19 +48,18 @@ public interface UserMapper {
 	@Mapping(target = "roles", ignore = true)
 	@Mapping(target = "createAt", ignore = true)
 	@Mapping(target = "updateAt", ignore = true)
-	@Mapping(target = "chat", ignore = true)
+	@Mapping(target = "chatlist", ignore = true)
 	@Mapping(target = "chats", ignore = true)
 	@Mapping(target = "friends", ignore = true)
 	@Mapping(target = "messages", ignore = true)
-	@Mapping(target = "createTime", ignore = true)
-	@Mapping(target = "profileImage", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-//	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageAsByte")
+	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "getImageCollectionAsImage")
 	User userRequestToUser(UserRequest userRequest);
 
 	
-
-	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsString")UserDTO userToUserDto(User user);
+	UserDTO userToUserDto(User user);
+	
+	
 	List<UserDTO> userToUserDTOList(List<User> userList);
 	
 	
@@ -75,9 +77,8 @@ public interface UserMapper {
 
 		return roleStr;
 	}
+
 	
-
-
 
 	@Named("getImageCollectionAsImage")
 	public static Set<Image> mapping(Set<String> imageUrls) {

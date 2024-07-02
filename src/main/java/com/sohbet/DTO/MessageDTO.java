@@ -20,9 +20,9 @@ public class MessageDTO {
 	private LocalDateTime createAt;
 	
 
-	private User user;
+	private String user;
 	
 	
-	private Chat chat;
+	private String chat;
 
 }
