@@ -49,8 +49,7 @@ public class ChatController {
 	@PostMapping("/single")
 	public ResponseEntity<ChatDTO> createSingleChat(@RequestBody SingleChatRequest singleChatRequest){
 		
-		UserDTO userDTO=userService.findUserProfile();
-		User currentUser=userMapper.userDTOToUser(userDTO);
+		User currentUser=userService.getCurrentUser();
 		
 		ChatDTO chatDto=chatService.createChat(currentUser, singleChatRequest.getUserId());
 		

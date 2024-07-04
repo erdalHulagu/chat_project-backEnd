@@ -49,6 +49,8 @@ public class ChatService {
 	public ChatDTO createChat(User currentUser, Long userId) {
 		UserDTO userDto = userService.getUserById(userId);
 		User user = userMapper.userDTOToUser(userDto);
+		
+		
 
 		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
 
@@ -60,6 +62,8 @@ public class ChatService {
 		}
 
 		Chat chat = new Chat();
+	
+		
 		chat.setCreatedBy(currentUser);
 		chat.getUsers().add(user);
 		chat.getUsers().add(currentUser);
