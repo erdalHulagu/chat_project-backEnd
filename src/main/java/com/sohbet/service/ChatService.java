@@ -68,11 +68,12 @@ public class ChatService {
 		chat.getUsers().add(user);
 		chat.getUsers().add(currentUser);
 		chat.setIsGroup(false);
-		Chat savedchat = chatRepository.save(chat); // su satiri sonradan sen ekledin degistirebilirsin
+		 chatRepository.save(chat); // su satiri sonradan sen ekledin degistirebilirsin
+		return null;
 
-		ChatDTO chatDTO = chatMapper.chatToChatDTO(savedchat);
 
-		return chatDTO;
+
+		
 	}
 
 	// ----------- find chat by id---------------
