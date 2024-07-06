@@ -61,8 +61,8 @@ logging:
   # secretkey
 furkanVakfiChat :
  app :
-  SECRETKEY : furkanVakfiChat@!Aylaadem233
-  JwtExpirationMs : 86400000 #bu rakam bir gune tekabul ediyor yani 24saat/milisanie
+  jwtSecret: furkanVakfiChat@!Aylaadem233
+  jwtExpirationMs: 86400000 #bu rakam bir gune tekabul ediyor yani 24saat/milisanie
   
 #actuator deneme 
 management: 

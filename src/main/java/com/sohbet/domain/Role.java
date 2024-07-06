@@ -19,25 +19,23 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-@Table(name="t_role")
+@Table(name = "t_role")
 @Entity
 public class Role {
-	
-	@Id
-	@GeneratedValue(strategy =  GenerationType.AUTO)
-	private Integer id;      // 1- customer / 2 admin 
-	
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20,nullable = false)
-	private RoleType type;
 
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", name=" + type + "]";
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id; // 1- customer / 2 admin
 
-	
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
+    private RoleType type;
+
+    @Override
+    public String toString() {
+        return "Role [id=" + id + ", name=" + type + "]";
+    }
+
 	
 	
 	

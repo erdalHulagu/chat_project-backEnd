@@ -22,6 +22,8 @@ import com.sohbet.repository.ChatRepository;
 import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.GroupChatRequest;
 
+import jakarta.validation.Valid;
+
 @Service
 public class ChatService {
 
@@ -52,12 +54,10 @@ public class ChatService {
 
 		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
 
-		if (isChatExist == null) {
-//			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-//
-//			return chatDTO;
-			
-			throw new ResourceNotFoundException(ErrorMessage.AUTHENTICATION_USER_NOT_FOUND_MESSAGE);
+		if (isChatExist != null) {
+			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+
+			return chatDTO;
 
 		}
 		
@@ -69,8 +69,8 @@ public class ChatService {
 		chat.getUsers().add(user);
 		chat.getUsers().add(currentUser);
 		chat.setIsGroup(false);
-		Chat cht=chatRepository.save(chat) ; // su satiri sonradan sen ekledin degistirebilirsin
-		 return chatMapper.chatToChatDTO(cht);
+		  // su satiri sonradan sen ekledin degistirebilirsin
+		 return chatMapper.chatToChatDTO(chat);
 
 
 
@@ -203,4 +203,39 @@ public class ChatService {
 		return imageFile;
 	}
 
+	public void createDummyChat( @Valid Long id) {
+	User	usr=userService.getUser(id);
+	Set<User> user= new HashSet<>();
+	Chat chat=new Chat();
+	chat.setAdmin(user);
+	chat.setAdmin(user);
+	chat.setCreatedBy(usr);
+	chat.setIsGroup(false);
+	chat.setUsers(user);
+	 chatRepository.save(chat);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -8,5 +8,10 @@
     "name": "furkanVakfiChat.app.JwtExpirationMs",
     "type": "java.lang.String",
     "description": "A description for 'furkanVakfiChat.app.JwtExpirationMs'"
+  },
+  {
+    "name": "furkanVakfiChat.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'furkanVakfiChat.app.jwtExpirationMs'"
   }
 ]}

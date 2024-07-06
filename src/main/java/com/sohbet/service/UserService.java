@@ -263,7 +263,7 @@ public class UserService {
 		Set<Role> roles = new HashSet<>();
 
 		if (pRoles == null) {
-			Role userRole = roleService.findByType(RoleType.ROLE_ADMIN);
+			Role userRole = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 			roles.add(userRole);
 		} else {
 			pRoles.forEach(roleStr -> {
@@ -272,7 +272,7 @@ public class UserService {
 					roles.add(adminRole);
 
 				} else {
-					Role userRole = roleService.findByType(RoleType.ROLE_ADMIN);
+					Role userRole = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 					roles.add(userRole);
 				}
 			});

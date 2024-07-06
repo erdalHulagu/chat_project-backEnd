@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
+import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
@@ -26,6 +27,7 @@ import com.sohbet.service.ChatService;
 import com.sohbet.service.UserService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController("/chats")
 public class ChatController {
@@ -42,6 +44,21 @@ public class ChatController {
 		this.chatService=chatService;
 		this.userService=userService;
 		this.userMapper=userMapper;
+		
+	}
+	
+	@PostMapping("/dummy/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
+	public ResponseEntity<Response> dummy(@Valid @PathVariable Long id){
+		
+//	User currentUser	=userService.getCurrentUser();
+	chatService.createDummyChat(id);
+	
+	Response response=new Response(
+			ResponseMessage.CHAT_DUMMY_SUCCESFULL, true);
+	
+	return ResponseEntity.ok(response);
+	
 		
 	}
 	
