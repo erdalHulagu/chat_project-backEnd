@@ -15,10 +15,10 @@ public class RoleService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	public Role findByType(RoleType roleType) {
-		Role role =  roleRepository.findByType(roleType).orElseThrow(()->
+	public Role findByType(RoleType name) {
+		Role role =  roleRepository.findByType(name).orElseThrow(()->
 		       new ResourceNotFoundException(String.format(
-		    		   ErrorMessage.ROLE_NOT_FOUND_MESSAGE, roleType.name())));
+		    		   ErrorMessage.ROLE_NOT_FOUND_MESSAGE, name.name())));
 		
 		return role ; 
 		//--------

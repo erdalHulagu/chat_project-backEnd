@@ -40,7 +40,7 @@ public class UserService {
 	private RoleService roleService;
 
 	private PasswordEncoder passwordEncoder;
-	
+
 	private ImageRepository imageRepository;
 
 	public UserService(UserRepository userRepository, @Lazy ImageService imageService, UserMapper userMapper,
@@ -81,12 +81,13 @@ public class UserService {
 		return userDTO;
 
 	}
+
 // -------------------  get user by id --------------
 	public User getUser(Long id) {
-		
+
 		User user = userRepository.findUserById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
-		
+
 //	Long imgId =userRepository.getImage(user.getProfileImage().getId());
 ////		UserDTO userDTO = userMapper.userToUserDto(user);
 ////		return userDTO;
@@ -136,35 +137,32 @@ public class UserService {
 	}
 
 	// ------------------update user---------------------
-	public void updateUser( String imageId,UpdateUserRequest updateUserRequest) {
+	public void updateUser(String imageId, UpdateUserRequest updateUserRequest) {
 		User user = getCurrentUser();
-		
+
 		if ((user == null)) {
 			new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_IS_NOT_MATCH));
 
 		}
-		
+
 		if (user.getBuiltIn()) {
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 		}
-			
-			boolean emailExist =userRepository.existsByEmail(updateUserRequest.getEmail());
 
-			if (emailExist && !updateUserRequest.getEmail().equals(user.getEmail())) {
-				throw new ConflictException(
-						String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
-			}
+		boolean emailExist = userRepository.existsByEmail(updateUserRequest.getEmail());
 
-		
-		
+		if (emailExist && !updateUserRequest.getEmail().equals(user.getEmail())) {
+			throw new ConflictException(
+					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
+		}
+
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 
 		Set<Role> roles = new HashSet<>();
 		roles.add(role);
-		
-		
+
 		Image image = imageService.getImageById(imageId);
-		Set<Image>images=new HashSet<>();
+		Set<Image> images = new HashSet<>();
 		images.add(image);
 
 		List<User> userList = userRepository.findUserByImageId(image.getId());
@@ -178,7 +176,7 @@ public class UserService {
 			}
 
 		}
-	
+
 //		user.setProfileImage(image);
 		user.setRoles(roles);
 		user.setUpdateAt(LocalDateTime.now());
@@ -192,7 +190,7 @@ public class UserService {
 	}
 
 	// ---------------- register user----------------------
-@Transactional
+	@Transactional
 	public void saveUser(RegisterRequest registerRequest) {
 
 //		Image profileImage = imageService.getImageById(id);
@@ -224,10 +222,10 @@ public class UserService {
 		roles.add(role);
 
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
-
 		User user = new User();
 //		user.getMyImages().add(profileImage);
 //		user.setProfileImage(profileImage);
+		user.setCreateAt(LocalDateTime.now());
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
@@ -240,12 +238,11 @@ public class UserService {
 		userRepository.save(user);
 
 	}
-	 public List<User> searchUserByName(String firstName) {
-		 
-	        return userRepository.searchUsersByUserName(firstName);
-	    }
 
-	
+	public List<User> searchUserByName(String firstName) {
+
+		return userRepository.searchUsersByUserName(firstName);
+	}
 
 	public void deleteUserWithId(Long id) {
 
@@ -283,7 +280,5 @@ public class UserService {
 
 		return roles;
 	}
-
-
 
 }

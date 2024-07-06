@@ -62,14 +62,7 @@ public class UserController {
 		return ResponseEntity.ok(userDTO);
 	
 	}
-//	@GetMapping("/{id}")
-//	public ResponseEntity<User> getUserById(@PathVariable @Lazy Long id){
-//		
-//		User user=userService. getUser(id);
-//		
-//		return ResponseEntity.ok(user);
-//		
-//	}
+
 
 	@Transactional
 	@GetMapping("/profile")

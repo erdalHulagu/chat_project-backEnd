@@ -20,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name="role")
+@Table(name="t_role")
 @Entity
 public class Role {
 	
@@ -29,13 +29,16 @@ public class Role {
 	private Integer id;      // 1- customer / 2 admin 
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
+	@Column(length = 20,nullable = false)
 	private RoleType type;
 
 	@Override
 	public String toString() {
-		return "Role [type=" + type + "]";
+		return "Role [id=" + id + ", name=" + type + "]";
 	}
+
+	
+	
 	
 	
 	

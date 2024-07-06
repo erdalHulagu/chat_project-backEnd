@@ -9,12 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
 
 @Repository
@@ -41,11 +38,6 @@ public interface UserRepository extends JpaRepository<User, Long>  {
 	@EntityGraph(attributePaths = "profileImage")
 	Optional<User> findUserById(Long id);
 	
-//	@Query("SELECT u FROM User u WHERE u.firstName LIKE %:firstName%")
-//	List<User> searchUsersByUserName(String firstName);
-//	
-//	@Query("SELECT u FROM User u WHERE u.firstName LIKE %:firstName%")
-//	List<User> searchUsersByUserName(@Param("firstName") String firstName);
 	@Query("SELECT u FROM User u WHERE u.firstName = :firstName")
 	List<User> searchUsersByUserName(@Param("firstName") String firstName);
 

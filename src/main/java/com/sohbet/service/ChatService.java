@@ -47,19 +47,20 @@ public class ChatService {
 
 	// -------------------- create chat with user-----------------
 	public ChatDTO createChat(User currentUser, Long userId) {
-		UserDTO userDto = userService.getUserById(userId);
-		User user = userMapper.userDTOToUser(userDto);
 		
-		
+		User user = userService.getUser(userId);
 
 		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
 
-		if (isChatExist != null) {
-			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-
-			return chatDTO;
+		if (isChatExist == null) {
+//			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+//
+//			return chatDTO;
+			
+			throw new ResourceNotFoundException(ErrorMessage.AUTHENTICATION_USER_NOT_FOUND_MESSAGE);
 
 		}
+		
 
 		Chat chat = new Chat();
 	
@@ -68,8 +69,8 @@ public class ChatService {
 		chat.getUsers().add(user);
 		chat.getUsers().add(currentUser);
 		chat.setIsGroup(false);
-		 chatRepository.save(chat); // su satiri sonradan sen ekledin degistirebilirsin
-		return null;
+		Chat cht=chatRepository.save(chat) ; // su satiri sonradan sen ekledin degistirebilirsin
+		 return chatMapper.chatToChatDTO(cht);
 
 
 

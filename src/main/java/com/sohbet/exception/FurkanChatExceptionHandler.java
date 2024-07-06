@@ -159,6 +159,10 @@ public class FurkanChatExceptionHandler  extends ResponseEntityExceptionHandler{
 		return buildResponseEntity(error);
 
 }
+	@ExceptionHandler(ResourceForbiddenException.class)
+    public ResponseEntity<String> handleForbiddenException(ResourceForbiddenException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("403 Forbidden: " + ex.getMessage());
+    }
 	
 
 

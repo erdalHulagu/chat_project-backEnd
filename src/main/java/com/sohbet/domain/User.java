@@ -77,11 +77,12 @@ public class User {
 
 	@Size(max = 20)
 	@NotNull(message = "Please provide post code")
-	@Column(length = 10, nullable = true,unique = true)
+	@Column(length = 10, nullable = true)
 	private String postCode;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	@Column(name = "update_at", length = 30, nullable = false, updatable = true)
+	@UpdateTimestamp
 	private LocalDateTime updateAt;
 
 	@Column(name = "create_at", length = 30, updatable = false, nullable = true)
@@ -91,19 +92,19 @@ public class User {
 	private Boolean builtIn;
 
 	@ManyToMany
-	@JoinTable(name = "t_user_role", joinColumns = 
-	@JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "t_user_role", 
+	           joinColumns = @JoinColumn(name = "user_id"), 
+	           inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken
-																// kullanıcıyı da siler
+	@OneToMany(orphanRemoval = true, fetch = FetchType.EAGER) // CascadeType.ALL: Eşleşen resim verisini silerken															// kullanıcıyı da siler
 	@JoinColumn(name = "user_images", nullable = true)
 	private Set<Image> myImages;
 
-	 @OneToOne(cascade = CascadeType.ALL)
-	 @JoinColumn(name = "profile_image_id", referencedColumnName = "id",nullable = true)
-	 private Image profileImage;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "profile_image_id", 
+	            referencedColumnName = "id", nullable = true)
+	private Image profileImage;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "user")
 	private List<Message> messages = new ArrayList<>();
@@ -115,16 +116,9 @@ public class User {
 	private Set<Chat> chats = new HashSet<>();
 
 	@ManyToMany // hibernate defaultta LAZY
-	@JoinTable(name = "t_user_friend", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	@JoinTable(name = "t_user_friend", 
+	           joinColumns = @JoinColumn(name = "user_id"), 
+	           inverseJoinColumns = @JoinColumn(name = "friend_id"))
 	private List<Friend> friends = new ArrayList<>();
 
-	public void setCreateTime(LocalDateTime createAt,LocalDateTime updateChat) {
-
-		createAt = LocalDateTime.now();
-		updateAt=LocalDateTime.now();
-
-		this.createAt = createAt;
-		this.updateAt = updateChat;
-
-	}
 }
