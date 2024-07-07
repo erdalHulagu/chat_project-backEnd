@@ -1,6 +1,4 @@
 package com.sohbet.security.service;
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,31 +20,27 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-	
 	private static final long serialVersionUID = 1L;
 
-	private String email ; // user email ile login olacağı için ekledik
+	private String email; // user email ile login olacağı için ekledik
 
 	private String password;
-	
 	// roller Granted türünde olmalı
-	private Collection<? extends GrantedAuthority> authorities;
-	
+	private List<GrantedAuthority> authorities;
+
 //	 user --> UserDetails dönüşümünü yapacak build() metodu 
-	public static UserDetailsImpl build(User user) {
-		     List<SimpleGrantedAuthority> authorities = user.
-		    		                                    getRoles().
-		    		                                    stream().
-		    		 									map(role->new SimpleGrantedAuthority(role.getType().name())).
-		    		 									collect(Collectors.toList());											
-		    		 																																					
-		     return new UserDetailsImpl(user.getEmail(), user.getPassword(), authorities);
+	public UserDetailsImpl build(User user) {
+		email = user.getEmail();
+		password = user.getPassword();
+		authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getType().name()))
+				.collect(Collectors.toList());
+
+		return new UserDetailsImpl(email, password, authorities);
 	}
 
-	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
+
 		return authorities;
 	}
 

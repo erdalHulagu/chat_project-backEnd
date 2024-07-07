@@ -15,6 +15,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	UserDetailsImpl userDetailsImpl;
 	
 	
 	@Override
@@ -22,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		
 		 User user =  userService.getUserByEmail(email);
 		 
-		 return UserDetailsImpl.build(user);
+		 return userDetailsImpl.build(user); //return UserDetailsImpl.build(user) statik idi biz onu normal yaptik
 	}
 
 }
