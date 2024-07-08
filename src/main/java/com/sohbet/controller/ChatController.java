@@ -64,6 +64,7 @@ public class ChatController {
 	
 	@Transactional
 	@PostMapping("/single")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
 //	@PreAuthorize( "hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
 	public ResponseEntity<ChatDTO> createSingleChat(@RequestBody SingleChatRequest singleChatRequest){
 		
