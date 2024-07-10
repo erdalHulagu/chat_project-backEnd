@@ -1,5 +1,4 @@
 package com.sohbet.security.config;
-
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;

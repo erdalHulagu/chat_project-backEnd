@@ -1,9 +1,5 @@
 package com.sohbet.security.jwt;
-
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,32 +8,34 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.util.StringUtils;
-import java.io.IOException;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.StringUtils;
 
-@Component
-public class JwtAuthFilter extends OncePerRequestFilter {
+public class AuthTokenFilter extends OncePerRequestFilter{
+	
+	@Autowired
+	private JwtUtils jwtUtils;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
-    @Autowired
-    private JwtService jwtService;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    private static final Logger logger = LoggerFactory.getLogger(JwtAuthFilter.class);
-    
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String jwtToken = parseJwt(request);
 		
 		try {
-			if(jwtToken!=null && jwtService.validateJwtToken(jwtToken)) {
-				String email = jwtService.getEmailFromToken(jwtToken);
+			if(jwtToken!=null && jwtUtils.validateJwtToken(jwtToken)) {
+				String email = jwtUtils.getEmailFromToken(jwtToken);
 				UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 				
 				// Valide edilen User bilgilerini SecurityContext e gönderiyoruz
@@ -71,4 +69,3 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	}
 
 }
-
