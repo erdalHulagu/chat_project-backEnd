@@ -203,15 +203,15 @@ public class ChatService {
 		return imageFile;
 	}
 
-	public void createDummyChat( @Valid Long id) {
-	User	usr=userService.getUser(id);
-	Set<User> user= new HashSet<>();
+	public void createDummyChat(User currentUser) {
+	
+	
 	Chat chat=new Chat();
-	chat.setAdmin(user);
-	chat.setAdmin(user);
-	chat.setCreatedBy(usr);
+	chat.getAdmin().add(currentUser);
+	chat.setCreatedBy(currentUser);
 	chat.setIsGroup(false);
-	chat.setUsers(user);
+	chat.getUsers().add(currentUser);
+	currentUser.getChats().add(chat);
 	 chatRepository.save(chat);
 	
 	

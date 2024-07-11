@@ -47,12 +47,12 @@ public class ChatController {
 		
 	}
 	
-	@PostMapping("/dummy/{id}")
+	@PostMapping("/dummy")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
-	public ResponseEntity<Response> dummy(@Valid @PathVariable Long id){
+	public ResponseEntity<Response> dummy(){
 		
-//	User currentUser	=userService.getCurrentUser();
-	chatService.createDummyChat(id);
+	User currentUser	=userService.getCurrentUser();
+	chatService.createDummyChat(currentUser);
 	
 	Response response=new Response(
 			ResponseMessage.CHAT_DUMMY_SUCCESFULL, true);
@@ -75,6 +75,8 @@ public class ChatController {
 		return ResponseEntity.ok(chatDto);
 		
 	}
+	
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<ChatDTO>getChatById(@PathVariable Long id){
 		
