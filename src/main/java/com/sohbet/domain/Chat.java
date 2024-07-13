@@ -47,7 +47,7 @@ public class Chat {
         joinColumns = @JoinColumn(name = "chat_id"),
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-	private Set<User> admin = new HashSet<>();
+	private Set<User> admins = new HashSet<>();
 	
 	@ManyToMany
     @JoinTable(

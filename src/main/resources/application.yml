@@ -52,11 +52,12 @@ logging:
  pattern:
 #  console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
   file: "%d %-5level [%thread] %logger:%msg%n"
- level:
-  root : WARN # burasi info yerine WARN vardi degistir sonra
+ level: 
+  #root : WARN # burasi info yerine WARN vardi degistir sonra
   '[org.springframework.web]' : DEBUG # burasi DEBUG yerine WARN vardi
-  '[org.hibernate]' : DEBUG # burasi INFO yerine WARN vardi
-  '[com.ecommerce.games]' : DEBUG
+  '[org.hibernate]' : INFO # burasi INFO yerine WARN vardi
+  '[com.erdal.furkanVakfi]' : DEBUG
+  '[org.furkanVakfi]' : DEBUG
 
   # secretkey
 furkanVakfiChat :

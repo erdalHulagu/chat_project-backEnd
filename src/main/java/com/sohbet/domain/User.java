@@ -108,6 +108,9 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     private Set<Chat> chats = new HashSet<>();
+    
+    @ManyToMany(mappedBy = "admins")
+    private Set<Chat> admins = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "t_user_friend",

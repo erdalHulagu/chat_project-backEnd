@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChatDTO {
 
-	private Long id;
 
 	private String chatName;
 
@@ -24,7 +23,7 @@ public class ChatDTO {
 
 	private String createdBy;
 
-	private Set<String> admin = new HashSet<>();
+	private Set<String> admins = new HashSet<>();
 
 	private Set<String> users = new HashSet<>();
 

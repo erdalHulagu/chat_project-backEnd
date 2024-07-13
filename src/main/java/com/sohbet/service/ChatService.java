@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,29 +29,71 @@ import jakarta.validation.Valid;
 @Service
 public class ChatService {
 
+	@Autowired
 	private ChatRepository chatRepository; // 23528429-6870-4b91-b125-6f18af9d23de 2e7f20af-ddfe-451f-8b24-5a2ee3c19d59
 											// 2fe789b6-1cde-4832-80b7-f52b7d52c6e2
-
+	@Autowired
 	private UserService userService;
 
+	@Autowired
 	private UserMapper userMapper;
 
+	@Autowired
 	private ChatMapper chatMapper;
 
+	@Autowired
 	private ImageService imageService;
 
-	@Autowired
-	public ChatService(ChatRepository chatRepository, UserService userService, UserMapper userMapper,
-			ChatMapper chatMapper) {
-		this.chatRepository = chatRepository;
-		this.userService = userService;
-		this.userMapper = userMapper;
-		this.chatMapper = chatMapper;
+//	
+//	public ChatService(ChatRepository chatRepository, UserService userService, UserMapper userMapper,
+//			ChatMapper chatMapper) {
+//		this.chatRepository = chatRepository;
+//		this.userService = userService;
+//		this.userMapper = userMapper;
+//		this.chatMapper = chatMapper;
+//	}
+
+	public ChatDTO createSingleChat(Long userId) {
+
+		User currentUser = userService.getCurrentUser();
+		User user = userService.getUser(userId);
+
+		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+
+		if (isChatExist != null) {
+			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+
+			return chatDTO;
+
+		}
+
+		Set<User> users = new HashSet<>();
+		users.add(user);
+		users.add(currentUser);
+		
+		Set<User> adminSet=new HashSet<>();
+		adminSet.add(currentUser);
+
+		Chat chat = new Chat();
+		chat.setCreatedBy(currentUser);
+		chat.setAdmins(adminSet);
+		chat.setUsers(users);
+		chat.setIsGroup(false);
+
+//		Chat newChat = chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(chat);
+//		return chatRepository.save(chat);
+////		Chat newChat = chatRepository.save(chat);
+////		return chatMapper.chatToChatDTO(newChat);
+
 	}
 
 	// -------------------- create chat with user-----------------
-	public ChatDTO createChat(User currentUser, Long userId) {
-		
+	public ChatDTO createChat(Long userId) {
+
+		UserDTO currentUserDTO = userService.findUserProfile();
+		User currentUser = userMapper.userDTOToUser(currentUserDTO);
+
 		User user = userService.getUser(userId);
 
 		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
@@ -62,19 +106,24 @@ public class ChatService {
 		}
 		
 
+		Set<User> users = new HashSet<>();
+		users.add(user);
+		users.add(currentUser);
+
+
+		Set<User> adminSet=new HashSet<>();
+		adminSet.add(currentUser);
+		
 		Chat chat = new Chat();
-	
-		
+
 		chat.setCreatedBy(currentUser);
-		chat.getUsers().add(user);
-		chat.getUsers().add(currentUser);
+		chat.setAdmins(adminSet);
+		chat.setUsers(users);
 		chat.setIsGroup(false);
-		  // su satiri sonradan sen ekledin degistirebilirsin
-		 return chatMapper.chatToChatDTO(chat);
-
-
-
 		
+//		Chat newChat = chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(chat);
+
 	}
 
 	// ----------- find chat by id---------------
@@ -109,7 +158,7 @@ public class ChatService {
 		chat.setChatImage(image);
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);
-		chat.getAdmin().add(user);
+		chat.getAdmins().add(user);
 
 		for (Long userId : groupChatRequest.getUserIds()) {
 
@@ -129,7 +178,7 @@ public class ChatService {
 
 		UserDTO userDTO = userService.getUserById(userId);
 		User user1 = userMapper.userDTOToUser(userDTO);
-		if (chat.getAdmin().contains(user)) {
+		if (chat.getAdmins().contains(user)) {
 			chat.getUsers().add(user1);
 
 			chatRepository.save(chat);
@@ -164,7 +213,7 @@ public class ChatService {
 
 		UserDTO userDTO = userService.getUserById(userId);
 		User user1 = userMapper.userDTOToUser(userDTO);
-		if (chat.getAdmin().contains(user) || user1.getId().equals(user.getId())) {
+		if (chat.getAdmins().contains(user) || user1.getId().equals(user.getId())) {
 			chat.getUsers().remove(user1);
 
 			chatRepository.save(chat);
@@ -203,39 +252,18 @@ public class ChatService {
 		return imageFile;
 	}
 
-	public void createDummyChat(User currentUser) {
-	
-	
-	Chat chat=new Chat();
-	chat.getAdmin().add(currentUser);
-	chat.setCreatedBy(currentUser);
-	chat.setIsGroup(false);
-	chat.getUsers().add(currentUser);
-	currentUser.getChats().add(chat);
-	 chatRepository.save(chat);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
+	public ChatDTO createDummyChat(User currentUser) {
+
+		Chat chat = new Chat();
+		chat.getAdmins().add(currentUser);
+		chat.setCreatedBy(currentUser);
+		chat.setIsGroup(false);
+		chat.getUsers().add(currentUser);
+		currentUser.getChats().add(chat);
+		Chat newChat = chatRepository.save(chat);
+
+		return chatMapper.chatToChatDTO(newChat);
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

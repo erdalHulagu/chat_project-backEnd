@@ -1,6 +1,5 @@
 package com.sohbet.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,6 +33,7 @@ public class ImageController {
 	// *********** Upload ********************
 	@Transactional
 	@PostMapping("/upload")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ImageSavedResponse> uploadImage(@RequestParam("imageFile") MultipartFile file)
 			throws IOException {
 

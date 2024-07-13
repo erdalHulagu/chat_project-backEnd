@@ -1,6 +1,7 @@
 package com.sohbet.enums;
 public enum RoleType {
 
+	ROLE_MANAGER("Manager"),
     ROLE_ADMIN("Administrator"),
     ROLE_ANONYMOUS("Anonymous");
 

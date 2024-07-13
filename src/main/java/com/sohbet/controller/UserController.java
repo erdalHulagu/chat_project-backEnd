@@ -54,7 +54,7 @@ public class UserController {
 	private UserMapper userMapper;
 	
 	@Transactional
-	@GetMapping("/user/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<UserDTO> getUser(@PathVariable  Long id){
 		
 		UserDTO userDTO=userService. getUserById(id);
@@ -104,6 +104,7 @@ public class UserController {
 	//get all users
 //	@Transactional
 	@GetMapping("/admin")
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('CUSTOMER')  " )
 	public ResponseEntity<List<UserDTO>>getAllUser(){
    
 		List<UserDTO> usersDTO = userService.getAllUsers();
@@ -114,6 +115,7 @@ public class UserController {
 	}
 
 	@PutMapping("/auth")
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
 			@Valid @RequestBody UpdateUserRequest updateUserRequest){
 		

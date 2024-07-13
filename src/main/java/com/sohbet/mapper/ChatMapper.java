@@ -19,7 +19,7 @@ import com.sohbet.domain.User;
 public interface ChatMapper {
 
 	@Mapping(target = "createdBy", source = "createdBy.id") // User'dan username alarak atama yap
-	@Mapping(target = "admin", source = "admin", qualifiedByName = "getUserCollectionAsString")
+	@Mapping(target = "admins", source = "admins", qualifiedByName = "getUserCollectionAsString")
 	@Mapping(target = "messages", source = "messages", qualifiedByName = "getMessageCollectionAsString")
 	@Mapping(target = "users", source = "users", qualifiedByName = "getUserCollectionAsString")
 	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
@@ -28,7 +28,7 @@ public interface ChatMapper {
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
 
 	@Mapping(target = "id", ignore = true)
-	@Mapping(target = "admin", ignore = true) // Admin seti ayrı bir işlemde setlenebilir
+	@Mapping(target = "admins", ignore = true) // Admin seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "users", ignore = true) // Users seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "createdBy", ignore = true) // CreatedBy ayrı bir işlemde setlenebilir

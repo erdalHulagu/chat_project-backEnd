@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,28 +35,38 @@ import jakarta.transaction.Transactional;
 @Service
 public class UserService {
 
+	@Autowired
 	private UserRepository userRepository;
 
-	private ImageService imageService;
+	@Autowired
+	private  ImageService imageService;
 
+	@Autowired
 	private UserMapper userMapper;
 
+	@Autowired
 	private RoleService roleService;
 
+	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	@Autowired
 	private ImageRepository imageRepository;
+//
+//	public UserService(UserRepository userRepository, ImageService imageService, UserMapper userMapper,
+//			RoleService roleService, PasswordEncoder passwordEncoder) {
+//
+//		this.userRepository = userRepository;
+//		this.imageService = imageService;
+//		this.userMapper = userMapper;
+//		this.roleService = roleService;
+//		this.passwordEncoder = passwordEncoder;
+//
+//	}
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
-	public UserService(UserRepository userRepository, @Lazy ImageService imageService, UserMapper userMapper,
-			RoleService roleService, PasswordEncoder passwordEncoder) {
-
-		this.userRepository = userRepository;
-		this.imageService = imageService;
-		this.userMapper = userMapper;
-		this.roleService = roleService;
-		this.passwordEncoder = passwordEncoder;
-
-	}
 
 	// ------------------ get current user ------------------------
 	public User getCurrentUser() {
@@ -60,6 +74,7 @@ public class UserService {
 		String email = SecurityUtils.getCurrentUserLogin()
 				.orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.PRINCIPAL_FOUND_MESSAGE));
 		User user = getUserByEmail(email);
+	
 		return user;
 
 	}
@@ -77,22 +92,19 @@ public class UserService {
 
 		User user = getUser(id);
 
+		
 		UserDTO userDTO = userMapper.userToUserDto(user);
 		return userDTO;
 
 	}
 
 // -------------------  get user by id --------------
+	
 	public User getUser(Long id) {
 
 		User user = userRepository.findUserById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
 
-//	Long imgId =userRepository.getImage(user.getProfileImage().getId());
-////		UserDTO userDTO = userMapper.userToUserDto(user);
-////		return userDTO;
-//Optional<Image> strId=imageRepository.findById(imgId.toString());
-//	user.getProfileImage().setId(strId.toString());
 		return user;
 	}
 
@@ -108,6 +120,7 @@ public class UserService {
 	public UserDTO findUserProfile() {
 
 		User user = getCurrentUser();
+		
 
 		if (user == null) {
 			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));

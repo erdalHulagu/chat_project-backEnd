@@ -6,7 +6,7 @@ public class ErrorMessage {
 	public final static String CATEGORY_NOT_FOUND_MESSAGE = "Category with id %s not found";
 	public final static String BRAND_NOT_FOUND_MESSAGE = "Brand with id %s not found";
 	public final static String COUPON_NOT_FOUND_MESSAGE = "Coupon with id %s not found";
-	public final static String USER_NOT_FOUND_MESSAGE = "User not found";
+	public final static String USER_NOT_FOUND_MESSAGE = "User not found %s";
 	public final static String REVIEW_NOT_FOUND_MESSAGE = "Brand with id %s not found";
 	public static final String ORDER_NOT_FOUND_MESSAGE = "Order with id %s not found";
 	public final static String IMAGE_NOT_FOUND_MESSAGE = "ImageFile with id %s not found";

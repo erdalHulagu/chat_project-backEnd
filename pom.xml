@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.erdal.furkanVakfi</groupId>
-	<artifactId>com.furkanVakfi.chat</artifactId>
+	<artifactId>furkanVakfi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>com.furkanVakfi.chat</name>
 	<description>Chat BackEnd Project</description>
