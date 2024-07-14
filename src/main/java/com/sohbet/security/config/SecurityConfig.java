@@ -40,29 +40,53 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+//	@Bean
+//	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//	    http.csrf(csrf -> csrf.disable())
+//	        .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+//	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//	            .requestMatchers(
+//	                "/login",
+//	                "/register",
+//	                "/chats/dummy",
+//	                "/users/**",
+//	                "/files/download/**",
+//	                "/chats/singleChat",
+//	                "/chats/single/**",
+//	                "/actuator/info",
+//	                "/actuator/health"
+//	            ).permitAll().requestMatchers("/users/admin").hasRole("ADMIN")
+//	            .anyRequest().authenticated()
+//	        );
+//	    
+//	    http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//	    return http.build();
+//	}
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	    http.csrf(csrf -> csrf.disable())
-	        .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	        .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-	            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-	            .requestMatchers(
-	                "/login",
-	                "/register",
-	                "/chats/dummy",
-	                "/users/**",
-	                "/files/download/**",
-	                "/chats/singleChat",
-	                "/chats/single/**",
-	                "/actuator/info",
-	                "/actuator/health"
-	            ).permitAll()
-	            .anyRequest().authenticated()
-	        );
-	    
-	    http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-	    return http.build();
-	}
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers(
+                    "/login",
+                    "/register",
+                    "/chats/dummy",
+                    "/users/admin",
+                    "/files/download/**",
+                    "/chats/singleChat",
+                    "/chats/single/**",
+                    "/actuator/info",
+                    "/actuator/health"
+                ).permitAll()
+                .requestMatchers("/admin").hasRole("ADMIN")
+                .anyRequest().authenticated()
+            );
+        
+        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        return http.build();
+    }
     //*************** cors Ayarları ****************************
     
     @Bean

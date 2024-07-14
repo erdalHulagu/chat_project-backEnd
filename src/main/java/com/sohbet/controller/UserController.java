@@ -55,6 +55,8 @@ public class UserController {
 	
 	@Transactional
 	@GetMapping("/{id}")
+
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<UserDTO> getUser(@PathVariable  Long id){
 		
 		UserDTO userDTO=userService. getUserById(id);
@@ -101,10 +103,10 @@ public class UserController {
 //		
 //	}
 	
-	//get all users
-//	@Transactional
+	
+	@Transactional
 	@GetMapping("/admin")
-	@PreAuthorize( "hasRole('ADMIN') or hasRole('CUSTOMER')  " )
+	@PreAuthorize( "hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')  " )
 	public ResponseEntity<List<UserDTO>>getAllUser(){
    
 		List<UserDTO> usersDTO = userService.getAllUsers();
