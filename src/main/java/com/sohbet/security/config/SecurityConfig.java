@@ -63,44 +63,44 @@ public class SecurityConfig {
 //	    http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 //	    return http.build();
 //	}
-	@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-            .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers(
-                    "/login",
-                    "/register",
-                    "/chats/dummy",
-                    "/users/admin",
-                    "/files/download/**",
-                    "/chats/singleChat",
-                    "/chats/single/**",
-                    "/actuator/info",
-                    "/actuator/health"
-                ).permitAll()
-                .requestMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            );
-        
-        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+	 @Bean
+	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	        http.csrf(AbstractHttpConfigurer::disable)
+	            .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	            .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+	                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+	                .requestMatchers(
+	                    "/login",
+	                    "/register",
+	                    "/chats/dummy",
+	                    "/users/admin",
+	                    "/files/download/**",
+	                    "/chats/singleChat",
+	                    "/chats/single/**",
+	                    "/actuator/info",
+	                    "/actuator/health"
+	                ).permitAll()
+//	                .requestMatchers("/admin").hasRole("ADMIN")
+	                .anyRequest().authenticated()
+	            )
+	            .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+	        
+	        return http.build();
+	    }
     //*************** cors Ayarları ****************************
     
-    @Bean
-   	public WebMvcConfigurer corsConfigurer() {
-   		return new WebMvcConfigurer() {
-   			@Override
-   			public void addCorsMappings(CorsRegistry registry) {
-   				registry.addMapping("/**")
-   				        .allowedOrigins("*") //"http:127.0.0.1/8080 diye spesific adresden gelenleri kabul et de diyebiliriz
-   						.allowedHeaders("*")
-   						.allowedMethods("*");
-   			}
-   		};
-   	}
+	  @Bean
+	    public WebMvcConfigurer corsConfigurer() {
+	        return new WebMvcConfigurer() {
+	            @Override
+	            public void addCorsMappings(CorsRegistry registry) {
+	                registry.addMapping("/**")
+	                        .allowedOrigins("*")
+	                        .allowedHeaders("*")
+	                        .allowedMethods("*");
+	            }
+	        };
+	    }
     
     //*******************SWAGGER***********************
     
@@ -153,13 +153,12 @@ public class SecurityConfig {
 //    }
     @Bean
     public DaoAuthenticationProvider authProvider() {
-    	DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    	authenticationProvider.setUserDetailsService(userDetailsService);
-    	authenticationProvider.setPasswordEncoder(passwordEncoder());
-    	
-    	return authenticationProvider;
-    	
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
     }
+
 //    
 //    @Bean
 //    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -167,14 +166,12 @@ public class SecurityConfig {
 //    }
     
     @Bean
-    public AuthenticationManager authManager( HttpSecurity http) throws Exception {
-    	
-    	return http.getSharedObject(AuthenticationManagerBuilder.class).
-    								authenticationProvider(authProvider() ).
-    								build();
-    	
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                   .authenticationProvider(authProvider())
+                   .build();
     }
-    
+
     
     }
     

@@ -56,7 +56,7 @@ public class UserController {
 	@Transactional
 	@GetMapping("/{id}")
 
-	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
+	@PreAuthorize( "hasRole('ADMIN')")
 	public ResponseEntity<UserDTO> getUser(@PathVariable  Long id){
 		
 		UserDTO userDTO=userService. getUserById(id);
@@ -68,7 +68,7 @@ public class UserController {
 
 	@Transactional
 	@GetMapping("/profile")
-//	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
+	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<UserDTO> findUserProfile(){
 		
 	UserDTO userDTO=	userService.findUserProfile();
@@ -106,7 +106,7 @@ public class UserController {
 	
 	@Transactional
 	@GetMapping("/admin")
-	@PreAuthorize( "hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')  " )
+	@PreAuthorize( "hasRole('ADMIN') " )
 	public ResponseEntity<List<UserDTO>>getAllUser(){
    
 		List<UserDTO> usersDTO = userService.getAllUsers();

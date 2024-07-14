@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.sohbet.domain.User;
 import com.sohbet.service.UserService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
@@ -17,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String  email) throws UsernameNotFoundException {
 		
 		 User user =  userService.getUserByEmail(email);

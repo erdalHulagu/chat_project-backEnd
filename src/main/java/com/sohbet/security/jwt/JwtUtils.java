@@ -37,7 +37,7 @@ public class JwtUtils {
 		return Jwts.builder().setSubject(userDetails.getUsername())
 				             .setIssuedAt(new Date(System.currentTimeMillis()))
                              .setExpiration(new Date(System.currentTimeMillis()+86400000))
-                             .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
+                             .signWith(getSignKey(), SignatureAlgorithm.HS512).compact();
 	}
 	
 	
@@ -52,10 +52,10 @@ public class JwtUtils {
 		
 	}
 	
-	// JWT token valide edecek
+//	 JWT token valide edecek
 	public boolean validateJwtToken(String token) {
 		try {
-			Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
+			 Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
 			return true;
 		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException |  
 				SecurityException | IllegalArgumentException e ) {
@@ -63,6 +63,24 @@ public class JwtUtils {
 		}
 		return false ;
 	}
+//	 public boolean validateJwtToken(String token) {
+//	        try {
+//	            Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
+//	            return true;
+//	        } catch (ExpiredJwtException e) {
+//	            logger.error("Expired JWT token: {}", e.getMessage());
+//	        } catch (UnsupportedJwtException e) {
+//	            logger.error("Unsupported JWT token: {}", e.getMessage());
+//	        } catch (MalformedJwtException e) {
+//	            logger.error("Malformed JWT token: {}", e.getMessage());
+//	        } catch (SecurityException e) {
+//	            logger.error("Invalid JWT signature: {}", e.getMessage());
+//	        } catch (IllegalArgumentException e) {
+//	            logger.error("JWT token compact of handler are invalid: {}", e.getMessage());
+//	        }
+//	        return false;
+//	    }
+
 		 private Key getSignKey() {
 		        byte[] keyBytes= Decoders.BASE64.decode(secretKey);
 		        return Keys.hmacShaKeyFor(keyBytes);
