@@ -15,6 +15,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -55,13 +56,16 @@ public class JwtUtils {
 //	 JWT token valide edecek
 	public boolean validateJwtToken(String token) {
 		try {
+			Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
 			 Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
-			return true;
+			 return true;
 		} catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException |  
-				SecurityException | IllegalArgumentException e ) {
+				 IllegalArgumentException |SecurityException e ) {
 			logger.error(String.format(ErrorMessage.JWTTOKEN_ERROR_MESSAGE, e.getMessage()));
 		}
 		return false ;
+		
+		
 	}
 //	 public boolean validateJwtToken(String token) {
 //	        try {

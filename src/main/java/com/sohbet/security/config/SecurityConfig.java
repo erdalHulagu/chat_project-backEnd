@@ -75,12 +75,12 @@ public class SecurityConfig {
 	                    "/chats/dummy",
 	                    "/users/admin",
 	                    "/files/download/**",
-	                    "/chats/singleChat",
+	                    "/chats/single",
 	                    "/chats/single/**",
+	                    "/chats/**",
 	                    "/actuator/info",
 	                    "/actuator/health"
 	                ).permitAll()
-//	                .requestMatchers("/admin").hasRole("ADMIN")
 	                .anyRequest().authenticated()
 	            )
 	            .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);

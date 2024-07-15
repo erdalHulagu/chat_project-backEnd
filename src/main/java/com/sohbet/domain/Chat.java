@@ -7,6 +7,7 @@ import com.sohbet.request.AdminUserUpdateRequest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +42,7 @@ public class Chat {
 	@ManyToOne
 	private User createdBy;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "chat_admins",
         joinColumns = @JoinColumn(name = "chat_id"),
@@ -49,7 +50,7 @@ public class Chat {
     )
 	private Set<User> admins = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "chat_users",
         joinColumns = @JoinColumn(name = "chat_id"),
@@ -57,10 +58,10 @@ public class Chat {
     )
 	private Set<User> users = new HashSet<>();
 	
-	@OneToMany(orphanRemoval = true, mappedBy = "chat")
+	@OneToMany(orphanRemoval = true, mappedBy = "chat",fetch = FetchType.EAGER)
 	private List<Message> messages = new ArrayList<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "chat_images",
         joinColumns = @JoinColumn(name = "chat_id"),

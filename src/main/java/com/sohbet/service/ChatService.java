@@ -52,41 +52,41 @@ public class ChatService {
 //		this.userMapper = userMapper;
 //		this.chatMapper = chatMapper;
 //	}
-
-	public ChatDTO createSingleChat(Long userId) {
-
-		User currentUser = userService.getCurrentUser();
-		User user = userService.getUser(userId);
-
-		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
-
-		if (isChatExist != null) {
-			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-
-			return chatDTO;
-
-		}
-
-		Set<User> users = new HashSet<>();
-		users.add(user);
-		users.add(currentUser);
-		
-		Set<User> adminSet=new HashSet<>();
-		adminSet.add(currentUser);
-
-		Chat chat = new Chat();
-		chat.setCreatedBy(currentUser);
-		chat.setAdmins(adminSet);
-		chat.setUsers(users);
-		chat.setIsGroup(false);
-
-//		Chat newChat = chatRepository.save(chat);
-		return chatMapper.chatToChatDTO(chat);
+//
+//	public ChatDTO createSingleChat(Long userId) {
+//
+//		User currentUser = userService.getCurrentUser();
+//		User user = userService.getUser(userId);
+//
+//		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+//
+//		if (isChatExist != null) {
+//			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+//
+//			return chatDTO;
+//
+//		}
+//
+//		Set<User> users = new HashSet<>();
+//		users.add(user);
+//		users.add(currentUser);
+//		
+//		Set<User> adminSet=new HashSet<>();
+//		adminSet.add(currentUser);
+//
+//		Chat chat = new Chat();
+//		chat.setCreatedBy(currentUser);
+//		chat.setAdmins(adminSet);
+//		chat.setUsers(users);
+//		chat.setIsGroup(false);
+//
+//		 chatRepository.save(chat);
+//		return   chatMapper.chatToChatDTO(chat);
 //		return chatRepository.save(chat);
-////		Chat newChat = chatRepository.save(chat);
-////		return chatMapper.chatToChatDTO(newChat);
-
-	}
+//		Chat newChat = chatRepository.save(chat);
+//		return chatMapper.chatToChatDTO(newChat);
+//
+//	}
 
 	// -------------------- create chat with user-----------------
 	public ChatDTO createChat(Long userId) {
@@ -121,7 +121,7 @@ public class ChatService {
 		chat.setUsers(users);
 		chat.setIsGroup(false);
 		
-//		Chat newChat = chatRepository.save(chat);
+		Chat newChat = chatRepository.save(chat);
 		return chatMapper.chatToChatDTO(chat);
 
 	}
@@ -137,10 +137,7 @@ public class ChatService {
 	// ---------------- get all user chats------------
 	public List<ChatDTO> findAllUserChats(Long userId) {
 
-		UserDTO userDto = userService.getUserById(userId);
-		User user = userMapper.userDTOToUser(userDto);
-
-		List<Chat> chats = chatRepository.findChatByUserId(user.getId());
+		List<Chat> chats = chatRepository.findChatByUserId(userId);
 		List<ChatDTO> chatDTOs = chatMapper.mapChatListToChatDTOList(chats);
 
 		return chatDTOs;
@@ -252,18 +249,6 @@ public class ChatService {
 		return imageFile;
 	}
 
-	public ChatDTO createDummyChat(User currentUser) {
-
-		Chat chat = new Chat();
-		chat.getAdmins().add(currentUser);
-		chat.setCreatedBy(currentUser);
-		chat.setIsGroup(false);
-		chat.getUsers().add(currentUser);
-		currentUser.getChats().add(chat);
-		Chat newChat = chatRepository.save(chat);
-
-		return chatMapper.chatToChatDTO(newChat);
-
-	}
+	
 
 }

@@ -30,25 +30,29 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 @RequestMapping("/messages")
 public class MessageController {
 	
+	@Autowired
 	private MessageService messageService;
 	
+	@Autowired
 	private UserService userService;
 	
+	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
 	private MessageMapper messageMapper;
 	
-	@Autowired
-	public MessageController( MessageService messageService
-			                 ,UserService userService
-			                 ,UserMapper userMapper
-			                 ,MessageMapper messageMapper) {
-		
-		this.messageService=messageService;
-		this.userService=userService;
-		this.userMapper=userMapper;
-		this.messageMapper=messageMapper;
-	}
+
+//	public MessageController( MessageService messageService
+//			                 ,UserService userService
+//			                 ,UserMapper userMapper
+//			                 ,MessageMapper messageMapper) {
+//		
+//		this.messageService=messageService;
+//		this.userService=userService;
+//		this.userMapper=userMapper;
+//		this.messageMapper=messageMapper;
+//	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<MessageDTO>sendMessage(@RequestBody SendMessageRequest sendMessageRequest){

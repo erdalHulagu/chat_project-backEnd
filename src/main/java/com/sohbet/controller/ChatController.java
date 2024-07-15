@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
+import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
@@ -58,26 +60,24 @@ public class ChatController {
 //	}
 	
 
-	 @Transactional
-	@PostMapping("/single/{id}")
+//	 @Transactional
+//	@PostMapping("/single/{id}")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-	public ResponseEntity<ChatDTO> createSingleChat(@PathVariable Long id){
-		
-		ChatDTO chatDTO=chatService.createChat(id);
-		
+//	public ResponseEntity<ChatDTO> createSingleChat(@PathVariable Long id){
+//		
+//		ChatDTO chatDTO=chatService.createChat(id);
+//		
 //		Response response= new Response(ResponseMessage.CHAT_DUMMY_SUCCESFULL,true);
-		
-		return ResponseEntity.ok(chatDTO);
-		
-	}
+//		
+//		return ResponseEntity.ok(chatDTO);
+//		
+//	}
 	
-	@PostMapping("/singleChat")
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
+	@PostMapping("/single")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
 	public ResponseEntity<ChatDTO> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){
 		
-		    
-	
-		ChatDTO chatDto=chatService.createSingleChat(singleChatRequest.getUserId());
+		ChatDTO chatDto=chatService.createChat(singleChatRequest.getUserId());
 		
 		return ResponseEntity.ok(chatDto);
 		
@@ -93,7 +93,7 @@ public class ChatController {
 		
 	}
 	
-	
+	@Transactional
 	@GetMapping("/allChats")
 	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId(){
 		UserDTO userDTO=userService.findUserProfile();
