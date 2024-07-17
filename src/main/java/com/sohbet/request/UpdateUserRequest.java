@@ -1,5 +1,9 @@
 package com.sohbet.request;
-import jakarta.persistence.Column;
+
+
+import java.util.Set;
+
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -39,6 +43,6 @@ public class UpdateUserRequest {
 	@NotBlank(message = "Please provide your address")
 	private String address;
 
-	
+
 
 }

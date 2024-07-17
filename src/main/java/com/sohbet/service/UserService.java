@@ -5,11 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.sohbet.DTO.UserDTO;
@@ -30,6 +33,7 @@ import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -52,17 +56,7 @@ public class UserService {
 	
 	@Autowired
 	private ImageRepository imageRepository;
-//
-//	public UserService(UserRepository userRepository, ImageService imageService, UserMapper userMapper,
-//			RoleService roleService, PasswordEncoder passwordEncoder) {
-//
-//		this.userRepository = userRepository;
-//		this.imageService = imageService;
-//		this.userMapper = userMapper;
-//		this.roleService = roleService;
-//		this.passwordEncoder = passwordEncoder;
-//
-//	}
+
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -79,7 +73,7 @@ public class UserService {
 
 	}
 
-	// ------------------ get current userDTO ------------------------
+	// ------------------ get principal userDTO ------------------------
 	public UserDTO getPrincipal() {
 		User currentUser = getCurrentUser();
 		UserDTO userDTO = userMapper.userToUserDto(currentUser);
@@ -87,7 +81,7 @@ public class UserService {
 
 	}
 
-// -------------------  get user by id --------------
+// -------------------  get userDTO by id --------------
 	public UserDTO getUserById(Long id) {
 
 		User user = getUser(id);
@@ -108,14 +102,6 @@ public class UserService {
 		return user;
 	}
 
-//
-//	public Page<User> getAll(Pageable pageable) {
-//
-//		Page<User> userPage = userRepository.findAll(pageable);
-//		
-//		
-//		return userPage;
-//	}
 	// --------------------get user profile------------------------
 	public UserDTO findUserProfile() {
 
@@ -130,20 +116,41 @@ public class UserService {
 		return userDTO;
 
 	}
-//	//--------------------sarch users from list of users with query-----------------------
-//	
-//	public List<UserDTO> seraachUser(String query){
-//		List<User> user=userRepository.searchUser(query);
-//		List<UserDTO> userDTOs=userMapper.userToUserDTOList(user);
-//		return userDTOs;
-//	}
+
+	public Page<UserDTO> getAllByPage(Pageable pageable) {
+		Page<User> userPage = userRepository.findAll(pageable);
+
+		return getUserDTOPage(userPage);
+
+	}
+	//--------------------get all users pageable------------------------
+	private Page<UserDTO> getUserDTOPage(Page<User> userPage) {
+
+		Page<UserDTO> usersDTOPage = userPage.map(new Function<User, UserDTO>() {
+			
+			
+			
+			@Override
+			public UserDTO apply(User user) {
+
+				return userMapper.userToUserDto(user);
+			}
+		});
+		
+		if (usersDTOPage.isEmpty()) {
+			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
+		}
+
+		return usersDTOPage;
+
+	}
 
 //--------------------get all users------------------------
 	public List<UserDTO> getAllUsers() {
 		List<User> userList = userRepository.findAll();
 
 		if (userList.isEmpty()) {
-			new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
+			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
 		}
 		List<UserDTO> userDTOList = userMapper.userToUserDTOList(userList);
 		return userDTOList;
@@ -154,7 +161,7 @@ public class UserService {
 		User user = getCurrentUser();
 
 		if ((user == null)) {
-			new ResourceNotFoundException(String.format(ErrorMessage.EMAIL_IS_NOT_MATCH));
+			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE));
 
 		}
 
@@ -190,7 +197,8 @@ public class UserService {
 
 		}
 
-//		user.setProfileImage(image);
+		user.setProfileImage(image);
+		user.setMyImages(images);
 		user.setRoles(roles);
 		user.setUpdateAt(LocalDateTime.now());
 		user.setFirstName(updateUserRequest.getFirstName());
@@ -203,26 +211,26 @@ public class UserService {
 	}
 
 	// ---------------- register user----------------------
-	@Transactional
-	public void saveUser(RegisterRequest registerRequest) {
+	
+	public void saveUser(String imageId,RegisterRequest registerRequest) {
 
-//		Image profileImage = imageService.getImageById(id);
-//		
-//		Set<Image>images=new HashSet<>();
-//		
-//		images.add(profileImage);
-//		
-//		if (profileImage==null) {
-//			
-//			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,id);
-//			
-//		}
+		Image profileImage = imageService.getImageById(imageId);
+		
+		Set<Image>images=new HashSet<>();
+		
+		images.add(profileImage);
+		
+		if (profileImage==null) {
+			
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId);
+			
+		}
 
-//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-//
-//		if (usedUserImage > 0) {
-//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//		}
+		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+
+		if (usedUserImage > 0) {
+			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+		}
 
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(
@@ -236,8 +244,8 @@ public class UserService {
 
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 		User user = new User();
-//		user.getMyImages().add(profileImage);
-//		user.setProfileImage(profileImage);
+		user.getMyImages().add(profileImage);
+		user.setProfileImage(profileImage);
 		user.setCreateAt(LocalDateTime.now());
 		user.setRoles(roles);
 		user.setPassword(encodedPassword);
@@ -251,13 +259,13 @@ public class UserService {
 		userRepository.save(user);
 
 	}
-
+//--------------------search users by name-----------------
 	public List<User> searchUserByName(String firstName) {
 
 		return userRepository.searchUsersByUserName(firstName);
 	}
 
-	public void deleteUserWithId(Long id) {
+	public void deleteUserById(Long id) {
 
 		userRepository.deleteById(id);
 
@@ -293,5 +301,8 @@ public class UserService {
 
 		return roles;
 	}
+
+
+	
 
 }

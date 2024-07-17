@@ -83,25 +83,25 @@ public class UserController {
 //		return ResponseEntity.ok(usersDtos);
 //	}
 	
-//	@GetMapping
-//	public ResponseEntity<Page<User>>getAllUser(
-//			                                     @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-//		                                         @RequestParam(value = "size", required = false, defaultValue = "20") int size,
-//				                                 @RequestParam(value = "type", required = false, defaultValue = "ASC") Direction direction
-//				){
-//     Pageable pageable = PageRequest.of(page, size, Sort.by(direction));
-//
-//		
-//		Page<User> users = userService.getAll(pageable);
-//		
-//
-//		return ResponseEntity.ok(users);
-//		
-//		
-//		
-//		
-//		
-//	}
+	@GetMapping
+	public ResponseEntity<Page<UserDTO>>getAllUser(
+			                                     @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+		                                         @RequestParam(value = "size", required = false, defaultValue = "20") int size,
+				                                 @RequestParam(value = "type", required = false, defaultValue = "ASC") Direction direction
+				){
+     Pageable pageable = PageRequest.of(page, size, Sort.by(direction));
+
+		
+		Page<UserDTO> users = userService.getAllByPage(pageable);
+		
+
+		return ResponseEntity.ok(users);
+		
+		
+		
+		
+		
+	}
 	
 	
 	@Transactional
@@ -133,7 +133,7 @@ public class UserController {
 	@DeleteMapping("{id}")
 	public ResponseEntity<Response> deleteUser(@PathVariable Long id){
 		
-		userService.deleteUserWithId(id);
+		userService.deleteUserById(id);
 		Response response = new Response();
 		 response.setMessage(ResponseMessage.USER_DELETED);
 		
