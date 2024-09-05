@@ -38,40 +38,7 @@ public class ChatController {
 	@Autowired
 	private UserMapper userMapper;
 	
-//	
-//	public ChatController(ChatService chatService, UserService userService, UserMapper userMapper) {
-//		this.chatService=chatService;
-//		this.userService=userService;
-//		this.userMapper=userMapper;
-//		
-//	}
-	
-//	@PostMapping("/dummy")
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
-//	public ResponseEntity<ChatDTO> dummy(){
-//	
-//		User currentUser= userService.getCurrentUser();
-//	ChatDTO chatDTO= chatService.createDummyChat(currentUser);
-//	
-//	
-//	return ResponseEntity.ok(chatDTO);
-//	
-//		
-//	}
-	
 
-//	 @Transactional
-//	@PostMapping("/single/{id}")
-//	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-//	public ResponseEntity<ChatDTO> createSingleChat(@PathVariable Long id){
-//		
-//		ChatDTO chatDTO=chatService.createChat(id);
-//		
-//		Response response= new Response(ResponseMessage.CHAT_DUMMY_SUCCESFULL,true);
-//		
-//		return ResponseEntity.ok(chatDTO);
-//		
-//	}
 	
 	@PostMapping("/single")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")

@@ -27,38 +27,45 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 	private UserDetailsService userDetailsService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
-
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		String jwtToken = parseJwt(request);
-		
-		try {
-			if(jwtToken!=null && jwtUtils.validateJwtToken(jwtToken)) {
-				String email = jwtUtils.getEmailFromToken(jwtToken);
-				UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-				
-				// Valide edilen User bilgilerini SecurityContext e gönderiyoruz
-				UsernamePasswordAuthenticationToken authenticationToken = new 
-						UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
-				
-				SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-				
-			}
-		} catch (Exception e) {
-			logger.error("User not Found{} :" , e.getMessage());
-		}
-		
-		filterChain.doFilter(request, response);
+	        throws ServletException, IOException {
+	    String jwtToken = parseJwt(request);
+	    
+	    logger.info("Extracted JWT Token: {}", jwtToken);  // Add this line to log the token.
+	    
+	    try {
+	        if(jwtToken != null && jwtUtils.validateJwtToken(jwtToken)) {
+	            String email = jwtUtils.getEmailFromToken(jwtToken);
+	            UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+	            
+	            UsernamePasswordAuthenticationToken authenticationToken = new 
+	                    UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+	            
+	            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+	        }
+	    } catch (Exception e) {
+	        logger.error("User not Found: {}", e.getMessage());
+	    }
+	    
+	    filterChain.doFilter(request, response);
 	}
 
 	private String parseJwt(HttpServletRequest request) {
-		String header = request.getHeader("Authorization");
-		if(StringUtils.hasText(header) && header.startsWith("Bearer ")) {
-			return header.substring(7);
-		}
-		return null;
+	    String header = request.getHeader("Authorization");
+	    if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
+	        String token = header.substring(7);
+	        // Check if the token contains 2 periods (valid JWT format)
+	        if (token.chars().filter(ch -> ch == '.').count() == 2) {
+	            return token;
+	        }
+	        logger.error("Invalid JWT format: {}", token);
+	    }
+	    return null;
 	}
+
+	
 	
 	// filtrelenmemesini istediğim end-pointler
 	@Override

@@ -68,7 +68,7 @@ public class UserController {
 
 	@Transactional
 	@GetMapping("/profile")
-	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
+//	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<UserDTO> findUserProfile(){
 		
 	UserDTO userDTO=	userService.findUserProfile();
