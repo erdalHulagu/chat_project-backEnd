@@ -54,15 +54,23 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 
 	private String parseJwt(HttpServletRequest request) {
 	    String header = request.getHeader("Authorization");
+	    logger.info("Authorization Header: " + header);  // Add this for debugging
 	    if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
 	        String token = header.substring(7);
 	        // Check if the token contains 2 periods (valid JWT format)
 	        if (token.chars().filter(ch -> ch == '.').count() == 2) {
 	            return token;
 	        }
+//	        String jwt = parseJwt(request);
+//	    	if (jwt == null) {
+//	    	    logger.error("JWT token is missing or invalid");
+//	    	} else {
+//	    	    logger.info("Extracted JWT Token: " + jwt);
+//	    	}
 	        logger.error("Invalid JWT format: {}", token);
 	    }
 	    return null;
+	    
 	}
 
 	

@@ -73,7 +73,7 @@ public class SecurityConfig {
 	                    "/login",
 	                    "/register",
 	                    "/chats/dummy",
-	                    "/users/admin",
+	                    "/users/search",
 	                    "/files/download/**",
 	                    "/chats/single",
 	                    "/chats/single/**",
