@@ -32,7 +32,7 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 100, nullable = true)
 	private String chatName;
 	
 	@Column(name = "is_group")

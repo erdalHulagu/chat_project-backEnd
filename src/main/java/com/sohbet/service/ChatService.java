@@ -91,40 +91,78 @@ public class ChatService {
 	// -------------------- create chat with user-----------------
 	public ChatDTO createChat(Long userId) {
 
-		UserDTO currentUserDTO = userService.findUserProfile();
-		User currentUser = userMapper.userDTOToUser(currentUserDTO);
+	    UserDTO currentUserDTO = userService.findUserProfile();
+	    User currentUser = userMapper.userDTOToUser(currentUserDTO);
 
-		User user = userService.getUser(userId);
+	    User user = userService.getUser(userId);
+	    
+	    
+	    
+	    
 
-		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+	    Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
 
-		if (isChatExist != null) {
-			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-
-			return chatDTO;
-
+	    if (isChatExist != null) {
+	        ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+	        return chatDTO;
+	    }
+	
+	    Chat newChat = new Chat();
+	    newChat.setCreatedBy(currentUser);
+	    newChat.setIsGroup(false);
+      if (currentUser.getId().equals(user.getId())) {
+	    	
+	    	newChat.getAdmins().add(currentUser);
+	    	
 		}
-		
+	  
 
-		Set<User> users = new HashSet<>();
-		users.add(user);
-		users.add(currentUser);
+	    // Chat name kontrolü
+	    if (newChat.getChatName() == null || newChat.getChatName().isEmpty()) {
+	        newChat.setChatName(currentUser.getFirstName() + "-" + user.getFirstName());
+	    }
 
+	    chatRepository.save(newChat);
 
-		Set<User> adminSet=new HashSet<>();
-		adminSet.add(currentUser);
-		
-		Chat chat = new Chat();
-
-		chat.setCreatedBy(currentUser);
-		chat.setAdmins(adminSet);
-		chat.setUsers(users);
-		chat.setIsGroup(false);
-		
-		Chat newChat = chatRepository.save(chat);
-		return chatMapper.chatToChatDTO(chat);
-
+	    return chatMapper.chatToChatDTO(newChat);
 	}
+//	// -------------------- create chat with user-----------------
+//	public ChatDTO createChat(Long userId) {
+//		
+//		UserDTO currentUserDTO = userService.findUserProfile();
+//		User currentUser = userMapper.userDTOToUser(currentUserDTO);
+//		
+//		User user = userService.getUser(userId);
+//		
+//		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+//		
+//		if (isChatExist != null) {
+//			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+//			
+//			return chatDTO;
+//			
+//		}
+//		
+//		
+//		Set<User> users = new HashSet<>();
+//		users.add(user);
+//		users.add(currentUser);
+//		
+//		
+//		Set<User> adminSet=new HashSet<>();
+//		adminSet.add(currentUser);
+//		
+//		Chat chat = new Chat();
+//		
+//		chat.setCreatedBy(currentUser);
+//		chat.setAdmins(adminSet);
+//		chat.setUsers(users);
+//		chat.setIsGroup(false);
+//		
+//		Chat newChat = chatRepository.save(chat);
+//		return chatMapper.chatToChatDTO(chat);
+//		
+//	}
 
 	// ----------- find chat by id---------------
 	public ChatDTO findChatById(Long id) {

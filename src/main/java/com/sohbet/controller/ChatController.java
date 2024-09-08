@@ -18,6 +18,7 @@ import com.sohbet.DTO.UserDTO;
 import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.Response;
 import com.sohbet.DTOresponse.ResponseMessage;
+import com.sohbet.domain.Chat;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.request.GroupChatRequest;
@@ -38,8 +39,19 @@ public class ChatController {
 	@Autowired
 	private UserMapper userMapper;
 	
-
+//
+//	@Transactional
+//	@PostMapping("/single")
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
+//	public ResponseEntity<Chat> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){
+//		
+//		Chat chat=chatService.createChat(singleChatRequest.getUserId());
+//		
+//		return ResponseEntity.ok(chat);
+//		
+//	}
 	
+	@Transactional
 	@PostMapping("/single")
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
 	public ResponseEntity<ChatDTO> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){

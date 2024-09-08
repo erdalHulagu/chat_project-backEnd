@@ -28,6 +28,7 @@ public interface UserMapper {
 	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "profileImage",ignore = true)
+	@Mapping(target = "admins", ignore = true)
 	User userDTOToUser(UserDTO userDTO);
 
 	@Mapping(target = "builtIn", ignore = true)
@@ -41,6 +42,7 @@ public interface UserMapper {
 	@Mapping(target = "profileImage", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "roles", ignore = true)
+	@Mapping(target = "admins", ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
 
 	@Mapping(target = "id", ignore = true)
