@@ -1,6 +1,8 @@
 package com.sohbet.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -184,13 +186,14 @@ public class ChatService {
 	// ---------------- createGroup chat------------------ BUNA KADAR CONTROLLER
 	// YAPILDI
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
+		
 
 		Chat chat = new Chat();
-		Set<Image> image = stringToImageMap(groupChatRequest.getChatImage()); // we called stringToImageMap for string
-																				// image to set Strin image that we
-																				// created in this class
+//		Set<Image> image = stringToImageMap(groupChatRequest.getChatImage()); // we called stringToImageMap for string
+//																		// image to set Strin image that we
+//																				// created in this class
 		chat.setIsGroup(true);
-		chat.setChatImage(image);
+//		chat.setChatImage(image);
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);
 		chat.getAdmins().add(user);
@@ -201,14 +204,34 @@ public class ChatService {
 			User usr = userMapper.userDTOToUser(userDTO);
 			chat.getUsers().add(usr);
 		}
+		List<String>groupUsers=new ArrayList<>();
+		for(Long id:groupChatRequest.getUserIds()) {
+			
+			UserDTO userDTO = userService.getUserById(id);
+			User usr = userMapper.userDTOToUser(userDTO);
+			
+			groupUsers.add(usr.getFirstName());
+			
+			
+			
+		}
+		String joinedFirstNames = String.join("-", groupUsers);
+			
+		
+		 if (chat.getChatName() == null ||chat.getChatName().isEmpty()) {
+		        chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames+") groupChat");
+		    }
+		 chatRepository.save(chat);
+
+		    
 		ChatDTO chatDTO = chatMapper.chatToChatDTO(chat);
 		return chatDTO;
 
 	}
 
 	// -----------add user to group-------------------
-	public ChatDTO addUserToGroup(Long userId, Long id, User user) {
-		ChatDTO chatDTO = findChatById(id);
+	public ChatDTO addUserToGroup(Long userId, Long ChatId, User user) {
+		ChatDTO chatDTO = findChatById(ChatId);
 		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
 		UserDTO userDTO = userService.getUserById(userId);

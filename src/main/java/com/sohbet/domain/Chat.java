@@ -68,6 +68,7 @@ public class Chat {
         inverseJoinColumns = @JoinColumn(name = "image_id")
     )
 	private Set<Image> chatImage = new HashSet<>();
+//	private Set<String> chatImage = new HashSet<>();
 }
 	
 	

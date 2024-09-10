@@ -63,7 +63,7 @@ public class ChatController {
 	}
 	
 	
-	
+	@Transactional
 	@GetMapping("/{id}")
 	public ResponseEntity<ChatDTO>getChatById(@PathVariable Long id){
 		
@@ -83,7 +83,7 @@ public class ChatController {
 	return ResponseEntity.ok(chatDTOs);
 		
 	}
-	
+	@Transactional
 	@PostMapping("/group")
 	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest){
 		
@@ -96,17 +96,20 @@ public class ChatController {
 		
 	}
 	
+	
+		
+	
 	@PutMapping("/{chatId}/add/{userId}")
-	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long id,@PathVariable Long userId){
+	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long chatId,@PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
 		
-	ChatDTO chatDTOs=	chatService.addUserToGroup(userId,id,user);
+	ChatDTO chatDTOs=	chatService.addUserToGroup(userId,chatId,user);
 	
 	return ResponseEntity.ok(chatDTOs);
 		
 	}
-	
+	@Transactional
 	@PutMapping("/{chatId}/remove/{userId}")
 	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long id,@PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
