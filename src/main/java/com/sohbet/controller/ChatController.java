@@ -88,9 +88,9 @@ public class ChatController {
 	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest){
 		
 		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);
+		User currentUser=userMapper.userDTOToUser(userDTO);
 		
-	ChatDTO chatDto=	chatService.createGroup(groupChatRequest,user);
+	ChatDTO chatDto=	chatService.createGroup(groupChatRequest,currentUser);
 		
 		return ResponseEntity.ok(chatDto);
 		
