@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -272,17 +273,20 @@ public class ChatService {
 
 		UserDTO userDTO = userService.getUserById(userId);
 		User user1 = userMapper.userDTOToUser(userDTO);
-//		if (chat.getAdmins().contains(user)|| !(user1.getId().equals(user.getId()))) {
-	Long  userId=	chat.getAdmins().forEach(u->u.getId().equals(user.getId()));
-			if (chat.getAdmins().contains(user)) {
-			chat.getUsers().remove(user1);
 
-			chatRepository.save(chat);
-			ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
-		
-			
-			return chatDTO2;
-		}
+		boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
+	    boolean isNotSameUser = !user1.getId().equals(user.getId());
+
+	    if (isAdmin || isNotSameUser) {
+	        chat.getUsers().remove(user1);
+	   Chat   newChat=  chatRepository.save(chat);
+	   System.out.println("isAdmin: " + isAdmin);
+	    System.out.println("isNotSameUser: " + isNotSameUser);
+	    System.out.println("Admins: " + chat.getAdmins());
+
+	        return chatMapper.chatToChatDTO(newChat);
+	        
+	    }
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 			
 		
