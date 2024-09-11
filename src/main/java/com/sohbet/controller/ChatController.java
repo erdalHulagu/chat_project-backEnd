@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -98,7 +99,7 @@ public class ChatController {
 	
 	
 		
-	
+	@Transactional
 	@PutMapping("/{chatId}/add/{userId}")
 	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long chatId,@PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
@@ -107,15 +108,15 @@ public class ChatController {
 	ChatDTO chatDTOs=	chatService.addUserToGroup(userId,chatId,user);
 	
 	return ResponseEntity.ok(chatDTOs);
-		
+	
 	}
 	@Transactional
 	@PutMapping("/{chatId}/remove/{userId}")
-	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long id,@PathVariable Long userId){
+	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId,@PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
 		
-	ChatDTO chatDTOs=	chatService.removeGroup(userId,id,user);
+	ChatDTO chatDTOs=	chatService.removeGroup(userId,chatId,user);
 	
 	return ResponseEntity.ok(chatDTOs);
 		

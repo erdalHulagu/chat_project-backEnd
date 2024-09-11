@@ -86,7 +86,7 @@ public class UserService {
 // -------------------  get userDTO by id --------------
 	
 	@Transactional
-	public UserDTO getUserById(@PathVariable Long id) {
+	public UserDTO getUserById( Long id) {
 
 		User user = getUser(id);
 

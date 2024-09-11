@@ -21,10 +21,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -110,13 +112,26 @@ public class User {
     private Set<Chat> chats = new HashSet<>();
     
     @ManyToMany(mappedBy = "admins")
-    private Set<Chat> admins = new HashSet<>();
+    private Set<Chat> chatAdmins = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "t_user_friend",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<Friend> friends = new ArrayList<>();
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {

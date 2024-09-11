@@ -167,9 +167,9 @@ public class ChatService {
 //	}
 
 	// ----------- find chat by id---------------
+	
 	public ChatDTO findChatById(Long id) {
-		Chat chat = chatRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
+		Chat chat = findById(id);
 		ChatDTO chatDTO = chatMapper.chatToChatDTO(chat);
 		return chatDTO;
 	}
@@ -231,20 +231,21 @@ public class ChatService {
 
 	// -----------add user to group-------------------
 	public ChatDTO addUserToGroup(Long userId, Long ChatId, User user) {
-		ChatDTO chatDTO = findChatById(ChatId);
-		Chat chat = chatMapper.chatDTOToChat(chatDTO);
-
+		Chat chat = findById(ChatId);
 		UserDTO userDTO = userService.getUserById(userId);
-		User user1 = userMapper.userDTOToUser(userDTO);
-		if (chat.getAdmins().contains(user)) {
-			chat.getUsers().add(user1);
-
-			chatRepository.save(chat);
-			ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
-
-			return chatDTO2;
+		User userAdd = userMapper.userDTOToUser(userDTO);
+		
+		if (!chat.getAdmins().contains(user)) {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+			
 		}
-		throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+		chat.getUsers().add(userAdd);
+
+		chatRepository.save(chat);
+		ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
+
+		return chatDTO2;
+		
 
 	}
 
@@ -264,23 +265,25 @@ public class ChatService {
 	}
 
 	// ----------------------remove chat group -------------
-	public ChatDTO removeGroup(Long id, Long userId, User user) {
+	public ChatDTO removeGroup(Long userId, Long chatId, User user) {
 
-		ChatDTO chatDTO = findChatById(id);
+		ChatDTO chatDTO = findChatById(userId);
 		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
-		UserDTO userDTO = userService.getUserById(userId);
+		UserDTO userDTO = userService.getUserById(chatId);
 		User user1 = userMapper.userDTOToUser(userDTO);
-		if (chat.getAdmins().contains(user) || user1.getId().equals(user.getId())) {
+		if (chat.getAdmins().contains(user)|| user1.getId().equals(user.getId()) ) {
 			chat.getUsers().remove(user1);
 
-			chatRepository.save(chat);
+			
 			ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
-
+		
+			
 			return chatDTO2;
+		}else {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+			
 		}
-		throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-
 	}
 
 	// ----------- deleteChat-----------------
@@ -310,6 +313,10 @@ public class ChatService {
 		return imageFile;
 	}
 
-	
+	public Chat findById(Long id) {
+		Chat chat = chatRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
+		return chat;
+	}
 
 }
