@@ -121,10 +121,10 @@ public class User {
     private List<Friend> friends = new ArrayList<>();
     
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+    public boolean equals(Object objct) {
+        if (this == objct) return true;
+        if (objct == null || getClass() != objct.getClass()) return false;
+        User user = (User) objct;
         return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
     }
 

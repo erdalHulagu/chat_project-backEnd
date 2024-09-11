@@ -265,43 +265,47 @@ public class ChatService {
 	}
 
 	// ----------------------remove chat group -------------
-	public ChatDTO removeGroup(Long userId, Long chatId, User user) {
+	public ChatDTO removeUserFromGroup(Long userId, Long chatId, User user) {
 
-		ChatDTO chatDTO = findChatById(userId);
+		ChatDTO chatDTO = findChatById(chatId);
 		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
-		UserDTO userDTO = userService.getUserById(chatId);
+		UserDTO userDTO = userService.getUserById(userId);
 		User user1 = userMapper.userDTOToUser(userDTO);
-		if (chat.getAdmins().contains(user)|| user1.getId().equals(user.getId()) ) {
+//		if (chat.getAdmins().contains(user)|| !(user1.getId().equals(user.getId()))) {
+	Long  userId=	chat.getAdmins().forEach(u->u.getId().equals(user.getId()));
+			if (chat.getAdmins().contains(user)) {
 			chat.getUsers().remove(user1);
 
-			
+			chatRepository.save(chat);
 			ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
 		
 			
 			return chatDTO2;
-		}else {
+		}
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 			
-		}
+		
 	}
 
 	// ----------- deleteChat-----------------
-	public void deleteChat(Long id, Long userId) {
+	public void deleteChat(Long chatId, Long userId) {
 
-		ChatDTO chatDTO = findChatById(id);
+		ChatDTO chatDTO = findChatById(chatId);
 		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 		chatRepository.deleteById(chat.getId());
 
 	}
+	
+	//---------- CLASS METHODS BELOWE------------------------
 
-	// ---------------------stringToImageMap---------------------
+	// ---------------------stringToImage---------------------
 	public Set<Image> stringToImageMap(Set<String> imageUrls) {
 		Set<Image> images = new HashSet<>();
 		for (String imageUrl : imageUrls) {
 			Image image = new Image();
-			image.setId(imageUrl); // Eğer Image sınıfında başka alanlar varsa, diğer alanları da
-									// ayarlayabilirsiniz
+			image.setId(imageUrl);
+									
 			images.add(image);
 		}
 		return images;

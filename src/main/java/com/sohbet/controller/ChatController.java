@@ -111,21 +111,21 @@ public class ChatController {
 	
 	}
 	@Transactional
-	@PutMapping("/{chatId}/remove/{userId}")
+	@PatchMapping("/{chatId}/remove/{userId}")
 	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId,@PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
 		
-	ChatDTO chatDTOs=	chatService.removeGroup(userId,chatId,user);
+	ChatDTO chatDTOs=	chatService.removeUserFromGroup(userId,chatId,user);
 	
 	return ResponseEntity.ok(chatDTOs);
 		
 	}
 	@DeleteMapping("/delete/{chatId}")
-	public ResponseEntity<ChatResponse>deleteUserFromGroup(@PathVariable Long id){
+	public ResponseEntity<ChatResponse>deleteUserFromGroup(@PathVariable Long chatId){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
-		chatService.deleteChat(id,user.getId());
+		chatService.deleteChat(chatId,user.getId());
 		
 		
 		ChatResponse chatResponse=new ChatResponse(ResponseMessage.CHAT_DELETED_MESSAGE,true);
