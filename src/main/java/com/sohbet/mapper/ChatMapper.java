@@ -27,7 +27,7 @@ public interface ChatMapper {
 
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
 
-	@Mapping(target = "id", ignore = true)
+	
 	@Mapping(target = "admins", ignore = true) // Admin seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "users", ignore = true) // Users seti ayrı bir işlemde setlenebilir

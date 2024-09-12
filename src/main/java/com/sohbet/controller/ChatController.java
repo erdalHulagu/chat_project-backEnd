@@ -121,6 +121,7 @@ public class ChatController {
 	return ResponseEntity.ok(chatDTOs);
 		
 	}
+	@Transactional
 	@DeleteMapping("/delete/{chatId}")
 	public ResponseEntity<ChatResponse>deleteUserFromGroup(@PathVariable Long chatId){
 		UserDTO userDTO=userService.findUserProfile();

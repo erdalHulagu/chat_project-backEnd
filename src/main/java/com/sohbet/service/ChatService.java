@@ -278,12 +278,12 @@ public class ChatService {
 	    boolean isNotSameUser = !user1.getId().equals(user.getId());
 
 	    if (isAdmin || isNotSameUser) {
-	        chat.getUsers().remove(user1);
+	    	System.out.println("Before removing user: " + chat.getUsers());
+	    	chat.getUsers().remove(user1);
+	    	System.out.println("After removing user: " + chat.getUsers());
+	       
 	   Chat   newChat=  chatRepository.save(chat);
-	   System.out.println("isAdmin: " + isAdmin);
-	    System.out.println("isNotSameUser: " + isNotSameUser);
-	    System.out.println("Admins: " + chat.getAdmins());
-
+	  
 	        return chatMapper.chatToChatDTO(newChat);
 	        
 	    }

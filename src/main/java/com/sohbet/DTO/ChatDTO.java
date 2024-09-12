@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 public class ChatDTO {
 
 
+	private Long id;
+	
 	private String chatName;
 
 	private Boolean isGroup;
