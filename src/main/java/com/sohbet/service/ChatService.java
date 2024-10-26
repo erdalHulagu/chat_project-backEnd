@@ -56,40 +56,40 @@ public class ChatService {
 //		this.chatMapper = chatMapper;
 //	}
 //
-//	public ChatDTO createSingleChat(Long userId) {
-//
-//		User currentUser = userService.getCurrentUser();
-//		User user = userService.getUser(userId);
-//
-//		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
-//
-//		if (isChatExist != null) {
-//			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-//
-//			return chatDTO;
-//
-//		}
-//
-//		Set<User> users = new HashSet<>();
-//		users.add(user);
-//		users.add(currentUser);
-//		
-//		Set<User> adminSet=new HashSet<>();
-//		adminSet.add(currentUser);
-//
-//		Chat chat = new Chat();
-//		chat.setCreatedBy(currentUser);
-//		chat.setAdmins(adminSet);
-//		chat.setUsers(users);
-//		chat.setIsGroup(false);
-//
-//		 chatRepository.save(chat);
-//		return   chatMapper.chatToChatDTO(chat);
+	public ChatDTO createSingleChat(Long userId) {
+
+		User currentUser = userService.getCurrentUser();
+		User user = userService.getUser(userId);
+
+		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+
+		if (isChatExist != null) {
+			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+
+			return chatDTO;
+
+		}
+
+		Set<User> users = new HashSet<>();
+		users.add(user);
+		users.add(currentUser);
+		
+		Set<User> adminSet=new HashSet<>();
+		adminSet.add(currentUser);
+
+		Chat chat = new Chat();
+		chat.setCreatedBy(currentUser);
+		chat.setAdmins(adminSet);
+		chat.setUsers(users);
+		chat.setIsGroup(false);
+
+		 chatRepository.save(chat);
+		return   chatMapper.chatToChatDTO(chat);
 //		return chatRepository.save(chat);
 //		Chat newChat = chatRepository.save(chat);
 //		return chatMapper.chatToChatDTO(newChat);
-//
-//	}
+
+	}
 
 	// -------------------- create chat with user-----------------
 	public ChatDTO createChat(Long userId) {
@@ -268,29 +268,27 @@ public class ChatService {
 	// ----------------------remove chat group -------------
 	public ChatDTO removeUserFromGroup(Long userId, Long chatId, User user) {
 
-		ChatDTO chatDTO = findChatById(chatId);
-		Chat chat = chatMapper.chatDTOToChat(chatDTO);
+	    ChatDTO chatDTO = findChatById(chatId);
+	    Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
-		UserDTO userDTO = userService.getUserById(userId);
-		User user1 = userMapper.userDTOToUser(userDTO);
+	    UserDTO userDTO = userService.getUserById(userId);
+	    User userToRemove = userMapper.userDTOToUser(userDTO);
 
-		boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
-	    boolean isNotSameUser = !user1.getId().equals(user.getId());
+//	    boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
+	    boolean isItSameUser = userToRemove.getId().equals(user.getId());
 
-	    if (isAdmin || isNotSameUser) {
-	    	System.out.println("Before removing user: " + chat.getUsers());
-	    	chat.getUsers().remove(user1);
-	    	System.out.println("After removing user: " + chat.getUsers());
-	       
-	   Chat   newChat=  chatRepository.save(chat);
-	  
-	        return chatMapper.chatToChatDTO(newChat);
-	        
+	    // Admin veya aynı kullanıcı değilse çıkarabilir
+	    if ( !isItSameUser) {
+	    	
+	        chat.getUsers().remove(userToRemove);
+	        Chat updatedChat = chatRepository.save(chat);
+	        return chatMapper.chatToChatDTO(updatedChat);
 	    }
-			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-			
-		
+
+	    // Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
+	    throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 	}
+
 
 	// ----------- deleteChat-----------------
 	public void deleteChat(Long chatId, Long userId) {

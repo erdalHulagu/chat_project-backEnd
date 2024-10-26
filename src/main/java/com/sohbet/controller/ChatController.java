@@ -40,21 +40,11 @@ public class ChatController {
 	@Autowired
 	private UserMapper userMapper;
 	
-//
-//	@Transactional
-//	@PostMapping("/single")
-//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
-//	public ResponseEntity<Chat> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){
-//		
-//		Chat chat=chatService.createChat(singleChatRequest.getUserId());
-//		
-//		return ResponseEntity.ok(chat);
-//		
-//	}
+
 	
 	@Transactional
 	@PostMapping("/single")
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
 	public ResponseEntity<ChatDTO> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){
 		
 		ChatDTO chatDto=chatService.createChat(singleChatRequest.getUserId());
@@ -112,7 +102,7 @@ public class ChatController {
 	}
 	@Transactional
 	@PatchMapping("/{chatId}/remove/{userId}")
-	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId,@PathVariable Long userId){
+	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId, @PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
 		User user=userMapper.userDTOToUser(userDTO);	
 		
