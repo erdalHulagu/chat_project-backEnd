@@ -1,6 +1,7 @@
 package com.sohbet.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -249,6 +250,18 @@ public class ChatService {
 		
 
 	}
+	
+	//-------------- add admin to group ------------------
+public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
+	
+	 Chat chat=findById(chatId);
+	 UserDTO userDTO = userService.getUserById(userId);
+	 
+		User userAddAdmin = userMapper.userDTOToUser(userDTO);
+		
+		
+		return null;
+	}
 
 	// -----------------rename group---------
 	public ChatDTO renameGroup(Long id, String goupName, User user) {
@@ -275,18 +288,18 @@ public class ChatService {
 	    User userToRemove = userMapper.userDTOToUser(userDTO);
 
 //	    boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
-	    boolean isItSameUser = userToRemove.getId().equals(user.getId());
+//	    boolean isItSameUser = userToRemove.getId().equals(user.getId());
 
 	    // Admin veya aynı kullanıcı değilse çıkarabilir
-	    if ( !isItSameUser) {
-	    	
-	        chat.getUsers().remove(userToRemove);
-	        Chat updatedChat = chatRepository.save(chat);
-	        return chatMapper.chatToChatDTO(updatedChat);
+	    if ( chat.getAdmins().contains(user) ||user.equals(userToRemove)) {
+	    	// Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
+		    throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	        
 	    }
-
-	    // Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
-	    throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	    chat.getUsers().remove(userToRemove);
+        Chat updatedChat = chatRepository.save(chat);
+        return chatMapper.chatToChatDTO(updatedChat);
+	    
 	}
 
 
@@ -324,5 +337,7 @@ public class ChatService {
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
 		return chat;
 	}
+
+	
 
 }
