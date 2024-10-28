@@ -102,7 +102,7 @@ public class ChatController {
 	}
 	
 	@Transactional
-	@PatchMapping
+	@PatchMapping("/chatId/addAdmin/userId")
 	public ResponseEntity<ChatDTO> addAdminToGroup(@Valid @PathVariable Long chatId, @PathVariable Long userId){
 		
 		UserDTO userDTO=userService .findUserProfile();

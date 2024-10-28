@@ -42,6 +42,7 @@ public class ErrorMessage {
 	public static final String UNVALID_TOKEN = "Reciev invalid token";
 	public static final String CHAT_NOT_FOUND_MESSAGE = "Chat not found with id %s";
 	public static final String MESSAGE_NOT_FOUND = "Message not found with id %s";
+	public static final String THIS_USER_ALREADY_ADMIN = "%s is already admin ";
 	
 	
 	

@@ -428,3 +428,27 @@
 2024-10-28 12:45:02,610 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
 2024-10-28 12:45:02,632 INFO  [restartedMain] com.sohbet.Application:Started Application in 3.232 seconds (process running for 2219.102)
 2024-10-28 12:45:02,640 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener:Condition evaluation unchanged
+2024-10-28 12:45:37,405 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:Application shutdown requested.
+2024-10-28 12:45:37,407 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-10-28 12:45:37,408 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-10-28 12:45:37,408 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
+2024-10-28 12:45:37,409 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]]
+2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
+2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
+2024-10-28 12:45:37,409 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
+2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-28 12:45:37,412 INFO  [RMI TCP Connection(47)-127.0.0.1] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+2024-10-28 12:45:37,419 WARN  [RMI TCP Connection(47)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-10-28 12:45:37,429 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-28 12:45:37,431 INFO  [RMI TCP Connection(47)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Shutdown initiated...
+2024-10-28 12:45:37,435 INFO  [RMI TCP Connection(47)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Shutdown completed.

@@ -262,17 +262,24 @@ public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
 		boolean userAdmin = chat.getAdmins().contains(user);
 		boolean userToBeAdmin = chat.getAdmins().contains(userAddAdmin);
 		
-		if ( !(userAdmin)||(userAdmin||userToBeAdmin)) {
-			
+		if (!userAdmin || user.equals(userAddAdmin)) {
+
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-			 
-		}
+
+		}else if ((userAdmin && userToBeAdmin)) {
+			
+			throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+			
+		} else {
+
+		
 		chat.getAdmins().add(userAddAdmin);
 
 		chatRepository.save(chat);
 		ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
 
 		return chatDTO2;
+		}
 	}
 
 	// -----------------rename group---------
