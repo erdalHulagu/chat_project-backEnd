@@ -120,18 +120,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<Friend> friends = new ArrayList<>();
     
-//    @Override
-//    public boolean equals(Object objct) {
-//        if (this == objct) return true;
-//        if (objct == null || getClass() != objct.getClass()) return false;
-//        User user = (User) objct;
-//        return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
+    @Override
+    public boolean equals(Object objct) {
+        if (this == objct) return true;
+        if (objct == null || getClass() != objct.getClass()) return false;
+        User user = (User) objct;
+        return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {
