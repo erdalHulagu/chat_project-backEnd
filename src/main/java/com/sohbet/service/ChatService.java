@@ -74,8 +74,8 @@ public class ChatService {
 		Set<User> users = new HashSet<>();
 		users.add(user);
 		users.add(currentUser);
-		
-		Set<User> adminSet=new HashSet<>();
+
+		Set<User> adminSet = new HashSet<>();
 		adminSet.add(currentUser);
 
 		Chat chat = new Chat();
@@ -84,8 +84,8 @@ public class ChatService {
 		chat.setUsers(users);
 		chat.setIsGroup(false);
 
-		 chatRepository.save(chat);
-		return   chatMapper.chatToChatDTO(chat);
+		chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(chat);
 //		return chatRepository.save(chat);
 //		Chat newChat = chatRepository.save(chat);
 //		return chatMapper.chatToChatDTO(newChat);
@@ -95,40 +95,35 @@ public class ChatService {
 	// -------------------- create chat with user-----------------
 	public ChatDTO createChat(Long userId) {
 
-	    UserDTO currentUserDTO = userService.findUserProfile();
-	    User currentUser = userMapper.userDTOToUser(currentUserDTO);
+		UserDTO currentUserDTO = userService.findUserProfile();
+		User currentUser = userMapper.userDTOToUser(currentUserDTO);
 
-	    User user = userService.getUser(userId);
-	    
-	    
-	    
-	    
+		User user = userService.getUser(userId);
 
-	    Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
+		Chat isChatExist = chatRepository.findSingleChatByUserIds(currentUser, user);
 
-	    if (isChatExist != null) {
-	        ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
-	        return chatDTO;
-	    }
-	
-	    Chat newChat = new Chat();
-	    newChat.setCreatedBy(currentUser);
-	    newChat.setIsGroup(false);
-      if (currentUser.getId().equals(user.getId())) {
-	    	
-	    	newChat.getAdmins().add(currentUser);
-	    	
+		if (isChatExist != null) {
+			ChatDTO chatDTO = chatMapper.chatToChatDTO(isChatExist);
+			return chatDTO;
 		}
-	  
 
-	    // Chat name kontrolü
-	    if (newChat.getChatName() == null || newChat.getChatName().isEmpty()) {
-	        newChat.setChatName(currentUser.getFirstName() + "-" + user.getFirstName());
-	    }
+		Chat newChat = new Chat();
+		newChat.setCreatedBy(currentUser);
+		newChat.setIsGroup(false);
+		if (currentUser.getId().equals(user.getId())) {
 
-	    chatRepository.save(newChat);
+			newChat.getAdmins().add(currentUser);
 
-	    return chatMapper.chatToChatDTO(newChat);
+		}
+
+		// Chat name kontrolü
+		if (newChat.getChatName() == null || newChat.getChatName().isEmpty()) {
+			newChat.setChatName(currentUser.getFirstName() + "-" + user.getFirstName());
+		}
+
+		chatRepository.save(newChat);
+
+		return chatMapper.chatToChatDTO(newChat);
 	}
 //	// -------------------- create chat with user-----------------
 //	public ChatDTO createChat(Long userId) {
@@ -169,7 +164,7 @@ public class ChatService {
 //	}
 
 	// ----------- find chat by id---------------
-	
+
 	public ChatDTO findChatById(Long id) {
 		Chat chat = findById(id);
 		ChatDTO chatDTO = chatMapper.chatToChatDTO(chat);
@@ -188,7 +183,6 @@ public class ChatService {
 	// ---------------- createGroup chat------------------ BUNA KADAR CONTROLLER
 	// YAPILDI
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
-		
 
 		Chat chat = new Chat();
 //		Set<Image> image = stringToImageMap(groupChatRequest.getChatImage()); // we called stringToImageMap for string
@@ -206,27 +200,23 @@ public class ChatService {
 			User usr = userMapper.userDTOToUser(userDTO);
 			chat.getUsers().add(usr);
 		}
-		List<String>groupUsers=new ArrayList<>();
-		for(Long id:groupChatRequest.getUserIds()) {
-			
+		List<String> groupUsers = new ArrayList<>();
+		for (Long id : groupChatRequest.getUserIds()) {
+
 			UserDTO userDTO = userService.getUserById(id);
 			User usr = userMapper.userDTOToUser(userDTO);
-			
+
 			groupUsers.add(usr.getFirstName());
-			
-			
-			
+
 		}
 		String joinedFirstNames = String.join("-", groupUsers);
-			
-		
-		 if (chat.getChatName() == null ||chat.getChatName().isEmpty()) {
-		        chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames+") groupChat");
-		    }
-		 chatRepository.save(chat);
 
-		    
-		ChatDTO chatDTO = chatMapper.chatToChatDTO(chat);
+		if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
+			chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames + ") groupChat");
+		}
+		Chat cht=chatRepository.save(chat);
+
+		ChatDTO chatDTO = chatMapper.chatToChatDTO(cht);
 		return chatDTO;
 
 	}
@@ -236,10 +226,10 @@ public class ChatService {
 		Chat chat = findById(ChatId);
 		UserDTO userDTO = userService.getUserById(userId);
 		User userAdd = userMapper.userDTOToUser(userDTO);
-		
+
 		if (!chat.getAdmins().contains(user)) {
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-			
+
 		}
 		chat.getUsers().add(userAdd);
 
@@ -247,39 +237,34 @@ public class ChatService {
 		ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
 
 		return chatDTO2;
-		
 
 	}
+
+	// -------------- add admin to group ------------------
 	
-	//-------------- add admin to group ------------------
-public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
-	
-	 Chat chat=findById(chatId);
-	 UserDTO userDTO = userService.getUserById(userId);
-	 
-		User userAddAdmin = userMapper.userDTOToUser(userDTO);
-		
+	public ChatDTO addAdminToChat(Long chatId, Long userId, User user) {
+	    ChatDTO chatDTO = findChatById(chatId);
+	    Chat chat = chatMapper.chatDTOToChat(chatDTO);
+
+	    UserDTO userDTO = userService.getUserById(userId);
+	    User userAddAdmin = userMapper.userDTOToUser(userDTO);
+
+	    
 		boolean userAdmin = chat.getAdmins().contains(user);
-		boolean userToBeAdmin = chat.getAdmins().contains(userAddAdmin);
-		
-		if (!userAdmin || user.equals(userAddAdmin)) {
+	    boolean userToBeAdmin = chat.getAdmins().contains(userAddAdmin);
+	    if (!userAdmin) {
+	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+//	    } else
+//	     if (userAdmin && userToBeAdmin) {
+//	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+//	    } else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
+//	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	    }
 
-			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-
-		}else if ((userAdmin && userToBeAdmin)) {
-			
-			throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
-			
-		} else {
-
-		
-		chat.getAdmins().add(userAddAdmin);
-
-		chatRepository.save(chat);
-		ChatDTO chatDTO2 = chatMapper.chatToChatDTO(chat);
-
-		return chatDTO2;
-		}
+	    // Add the new admin and save the chat
+	    chat.getAdmins().add(userAddAdmin);
+	    Chat savedChat = chatRepository.save(chat);
+	    return chatMapper.chatToChatDTO(savedChat);
 	}
 
 	// -----------------rename group---------
@@ -300,27 +285,26 @@ public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
 	// ----------------------remove chat group -------------
 	public ChatDTO removeUserFromGroup(Long userId, Long chatId, User user) {
 
-	    ChatDTO chatDTO = findChatById(chatId);
-	    Chat chat = chatMapper.chatDTOToChat(chatDTO);
+		ChatDTO chatDTO = findChatById(chatId);
+		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
-	    UserDTO userDTO = userService.getUserById(userId);
-	    User userToRemove = userMapper.userDTOToUser(userDTO);
+		UserDTO userDTO = userService.getUserById(userId);
+		User userToRemove = userMapper.userDTOToUser(userDTO);
 
 //	    boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
 //	    boolean isItSameUser = userToRemove.getId().equals(user.getId());
 
-	    // Admin veya aynı kullanıcı değilse çıkarabilir
-	    if ( chat.getAdmins().contains(user) ||user.equals(userToRemove)) {
-	    	// Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
-		    throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-	        
-	    }
-	    chat.getUsers().remove(userToRemove);
-        Chat updatedChat = chatRepository.save(chat);
-        return chatMapper.chatToChatDTO(updatedChat);
-	    
-	}
+		// Admin veya aynı kullanıcı değilse çıkarabilir
+		if (chat.getAdmins().contains(user) || user.equals(userToRemove)) {
+			// Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 
+		}
+		chat.getUsers().remove(userToRemove);
+		Chat updatedChat = chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(updatedChat);
+
+	}
 
 	// ----------- deleteChat-----------------
 	public void deleteChat(Long chatId, Long userId) {
@@ -330,8 +314,8 @@ public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
 		chatRepository.deleteById(chat.getId());
 
 	}
-	
-	//---------- CLASS METHODS BELOWE------------------------
+
+	// ---------- CLASS METHODS BELOWE------------------------
 
 	// ---------------------stringToImage---------------------
 	public Set<Image> stringToImageMap(Set<String> imageUrls) {
@@ -339,7 +323,7 @@ public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
 		for (String imageUrl : imageUrls) {
 			Image image = new Image();
 			image.setId(imageUrl);
-									
+
 			images.add(image);
 		}
 		return images;
@@ -356,7 +340,5 @@ public ChatDTO addAdminToChat( @Valid Long chatId, Long userId, User user) {
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
 		return chat;
 	}
-
-	
 
 }

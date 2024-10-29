@@ -1,242 +1,16 @@
-2024-10-28 12:08:05,526 INFO  [restartedMain] com.sohbet.Application:Starting Application using Java 17.0.10 with PID 897 (/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes started by katiehulagu in /Users/katiehulagu/Desktop/chat-project/chat_project-backEnd)
-2024-10-28 12:08:05,541 INFO  [restartedMain] com.sohbet.Application:No active profile set, falling back to 1 default profile: "default"
-2024-10-28 12:08:05,634 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor:Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-10-28 12:08:05,635 INFO  [restartedMain] org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor:For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-10-28 12:08:07,780 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-28 12:08:08,022 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 199 ms. Found 6 JPA repository interfaces.
-2024-10-28 12:08:09,430 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8081 (http)
-2024-10-28 12:08:09,464 INFO  [restartedMain] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-2024-10-28 12:08:09,465 INFO  [restartedMain] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/10.1.10]
-2024-10-28 12:08:09,663 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-2024-10-28 12:08:09,664 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 4028 ms
-2024-10-28 12:08:10,377 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-28 12:08:10,500 INFO  [restartedMain] org.hibernate.Version:HHH000412: Hibernate ORM core version 6.2.5.Final
-2024-10-28 12:08:10,508 INFO  [restartedMain] org.hibernate.cfg.Environment:HHH000406: Using bytecode reflection optimizer
-2024-10-28 12:08:10,802 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:08:11,188 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo:No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-28 12:08:11,249 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-2024-10-28 12:08:17,554 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool:HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2ad41e12
-2024-10-28 12:08:17,561 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-2024-10-28 12:08:18,794 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:08:20,614 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-10-28 12:08:20,707 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4a0edfb9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-10-28 12:08:21,236 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:08:22,238 INFO  [restartedMain] org.springframework.data.jpa.repository.query.QueryEnhancerFactory:Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-10-28 12:08:24,297 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
-2024-10-28 12:08:25,141 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
-2024-10-28 12:08:25,286 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:29 mappings in 'requestMappingHandlerMapping'
-2024-10-28 12:08:26,117 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2024-10-28 12:08:26,637 INFO  [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 15 endpoint(s) beneath base path '/actuator'
-2024-10-28 12:08:26,812 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b3a2425, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ccbbe08, org.springframework.security.web.context.SecurityContextHolderFilter@11dc250b, org.springframework.security.web.header.HeaderWriterFilter@298fe3a0, org.springframework.security.web.authentication.logout.LogoutFilter@59f9852b, com.sohbet.security.jwt.AuthTokenFilter@125455a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@210fd768, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5fe3f4f2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d498e9f, org.springframework.security.web.session.SessionManagementFilter@3b6fbda8, org.springframework.security.web.access.ExceptionTranslationFilter@751c9506, org.springframework.security.web.access.intercept.AuthorizationFilter@2148cbc9]
-2024-10-28 12:08:26,867 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,868 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
-2024-10-28 12:08:26,874 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,874 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
-2024-10-28 12:08:26,875 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,875 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
-2024-10-28 12:08:26,875 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,875 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
-2024-10-28 12:08:26,875 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,875 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
-2024-10-28 12:08:26,876 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,876 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
-2024-10-28 12:08:26,878 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,879 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
-2024-10-28 12:08:26,880 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:08:26,886 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
-2024-10-28 12:08:27,110 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ChatController:
-	
-2024-10-28 12:08:27,111 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.HomeController:
-	
-2024-10-28 12:08:27,112 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ImageController:
-	
-2024-10-28 12:08:27,112 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.MessageController:
-	
-2024-10-28 12:08:27,113 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserController:
-	
-2024-10-28 12:08:27,113 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserJwtController:
-	
-2024-10-28 12:08:27,114 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	o.s.b.a.w.s.e.BasicErrorController:
-	
-2024-10-28 12:08:27,327 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-10-28 12:08:27,468 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-10-28 12:08:27,928 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer:LiveReload server is running on port 35729
-2024-10-28 12:08:28,152 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8081 (http) with context path ''
-2024-10-28 12:08:28,158 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:08:28,159 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:08:28,161 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Starting...
-2024-10-28 12:08:28,162 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]
-2024-10-28 12:08:28,162 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]
-2024-10-28 12:08:28,177 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]]
-2024-10-28 12:08:28,178 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Started.
-2024-10-28 12:08:28,179 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:08:28,179 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:08:28,278 INFO  [restartedMain] com.sohbet.Application:Started Application in 23.422 seconds (process running for 24.898)
-2024-10-28 12:08:29,771 INFO  [RMI TCP Connection(3)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-10-28 12:08:29,777 INFO  [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Initializing Servlet 'dispatcherServlet'
-2024-10-28 12:08:29,779 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Detected StandardServletMultipartResolver
-2024-10-28 12:08:29,780 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Detected AcceptHeaderLocaleResolver
-2024-10-28 12:08:29,780 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Detected FixedThemeResolver
-2024-10-28 12:08:29,792 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5bbf2703
-2024-10-28 12:08:29,795 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.support.SessionFlashMapManager@63975e94
-2024-10-28 12:08:29,796 DEBUG [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2024-10-28 12:08:29,797 INFO  [RMI TCP Connection(3)-127.0.0.1] org.springframework.web.servlet.DispatcherServlet:Completed initialization in 19 ms
-2024-10-28 12:08:44,076 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,079 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,081 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,082 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,083 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,086 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,087 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,087 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,124 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3Mjk5NzkwNzgsImV4cCI6MTczMDA2NTQ3OH0.e-0Ug52nncdm7pBnpw5_JGdXpYIetw-GVQ6uX_E9kHVG5UieUpY7dZo8XOlbDcCvzmoU3JtTTiPqDYpmNTktEA
-2024-10-28 12:08:44,125 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3Mjk5NzkwNzgsImV4cCI6MTczMDA2NTQ3OH0.e-0Ug52nncdm7pBnpw5_JGdXpYIetw-GVQ6uX_E9kHVG5UieUpY7dZo8XOlbDcCvzmoU3JtTTiPqDYpmNTktEA
-2024-10-28 12:08:44,188 ERROR [http-nio-8081-exec-2] com.sohbet.security.jwt.JwtUtils:JWT Token Validation Error: JWT expired at 2024-10-27T21:44:38Z. Current time: 2024-10-28T12:08:44Z, a difference of 51846186 milliseconds.  Allowed clock skew: 0 milliseconds.
-2024-10-28 12:08:44,197 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,197 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,198 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,199 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,199 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,200 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,201 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,202 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,223 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:PATCH "/chats/852/remove/3202", parameters={}
-2024-10-28 12:08:44,270 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:08:44,593 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleResourceNotFoundException(ResourceNotFoundException, WebRequest)
-2024-10-28 12:08:44,594 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:User not found anonymousUser
-2024-10-28 12:08:44,617 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:08:44,620 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@7f6be598]
-2024-10-28 12:08:44,644 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [com.sohbet.exception.ResourceNotFoundException: User not found anonymousUser]
-2024-10-28 12:08:44,645 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 404 NOT_FOUND
-2024-10-28 12:09:27,048 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2024-10-28 12:10:09,354 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,356 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,357 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,358 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,359 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,360 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,362 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,363 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,367 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,369 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:POST "/login", parameters={}
-2024-10-28 12:10:09,370 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
-2024-10-28 12:10:09,450 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor:Read "application/json;charset=UTF-8" to [com.sohbet.request.LoginRequest@767cc192]
-2024-10-28 12:10:09,857 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:10:09,857 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.DTOresponse.LoginResponse@7aa1b55c]
-2024-10-28 12:10:09,861 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2024-10-28 12:10:24,335 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,336 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,342 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,343 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,344 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,344 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,344 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,345 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,345 INFO  [http-nio-8081-exec-6] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:10:24,346 INFO  [http-nio-8081-exec-6] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:10:24,381 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,382 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,382 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,383 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,383 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,384 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,387 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,388 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,389 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:PATCH "/chats/852/remove/3202", parameters={}
-2024-10-28 12:10:24,390 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:10:24,707 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:10:24,711 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [ChatDTO(id=852, chatName=erdal-(ali-fatma-dur) groupChat, isGroup=true, createdBy=null, admins=[], u (truncated)...]
-2024-10-28 12:10:24,714 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2024-10-28 12:10:42,457 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,459 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,460 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,463 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,465 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,465 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,466 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,466 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,467 INFO  [http-nio-8081-exec-7] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: null
-2024-10-28 12:10:42,467 INFO  [http-nio-8081-exec-7] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: null
-2024-10-28 12:10:42,467 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,468 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,468 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,469 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,469 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,469 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,470 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,470 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,471 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:GET "/chats/852", parameters={}
-2024-10-28 12:10:42,471 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#getChatById(Long)
-2024-10-28 12:10:42,514 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:10:42,514 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [ChatDTO(id=852, chatName=erdal-(ali-fatma-dur) groupChat, isGroup=true, createdBy=null, admins=[], u (truncated)...]
-2024-10-28 12:10:42,516 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2024-10-28 12:12:18,410 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,414 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,415 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,416 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,417 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,418 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,418 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,419 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,420 INFO  [http-nio-8081-exec-10] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:12:18,421 INFO  [http-nio-8081-exec-10] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:12:18,467 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,468 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,469 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,470 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,471 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,471 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,471 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,472 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,476 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:POST "/chats/group", parameters={}
-2024-10-28 12:12:18,478 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
-2024-10-28 12:12:18,487 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor:Read "application/json;charset=UTF-8" to [GroupChatRequest(userIds=[3102, 3152, 3202], chatName=null, chatImage=null)]
-2024-10-28 12:12:18,780 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:12:18,780 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [ChatDTO(id=902, chatName=erdal-(ali-fatma-dur) groupChat, isGroup=true, createdBy=3052, admins=[3052 (truncated)...]
-2024-10-28 12:12:18,782 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2024-10-28 12:13:09,433 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,434 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,435 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,436 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,436 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,437 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,437 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,438 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,439 INFO  [http-nio-8081-exec-1] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:13:09,440 INFO  [http-nio-8081-exec-1] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxMTc0MDksImV4cCI6MTczMDIwMzgwOX0.TxvhnRXu-5jy7iUvaZI7ECKS_fTzYHVad7rC04VYsYCPWfqHIhY-EoTYWgcOqcp_VuJClw_8hZnh5AwFA43NCw
-2024-10-28 12:13:09,458 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,459 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,460 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,461 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,469 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,470 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,471 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,472 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,473 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:PATCH "/chats/902/remove/3102", parameters={}
-2024-10-28 12:13:09,474 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#removeUserFromGroup(Long, Long)
-2024-10-28 12:13:09,641 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2024-10-28 12:13:09,641 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [ChatDTO(id=902, chatName=erdal-(ali-fatma-dur) groupChat, isGroup=true, createdBy=null, admins=[], u (truncated)...]
-2024-10-28 12:13:09,644 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2024-10-28 12:25:56,519 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
-2024-10-28 12:25:56,532 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:25:56,533 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:25:56,533 INFO  [Thread-5] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
-2024-10-28 12:25:56,533 INFO  [Thread-5] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]]
-2024-10-28 12:25:56,533 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]
-2024-10-28 12:25:56,533 DEBUG [Thread-5] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@620d8030]
-2024-10-28 12:25:56,534 INFO  [Thread-5] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
-2024-10-28 12:25:56,534 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:25:56,534 DEBUG [Thread-5] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:25:56,538 INFO  [Thread-5] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-2024-10-28 12:25:56,540 INFO  [Thread-5] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-10-28 12:25:56,546 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-10-29 00:00:30,477 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+2024-10-29 00:00:30,490 DEBUG [Thread-114] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-10-29 00:00:30,490 DEBUG [Thread-114] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-10-29 00:00:30,490 INFO  [Thread-114] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
+2024-10-29 00:00:30,490 INFO  [Thread-114] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@134e428c]]
+2024-10-29 00:00:30,490 DEBUG [Thread-114] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@134e428c]
+2024-10-29 00:00:30,490 DEBUG [Thread-114] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@134e428c]
+2024-10-29 00:00:30,490 INFO  [Thread-114] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
+2024-10-29 00:00:30,490 DEBUG [Thread-114] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:00:30,491 DEBUG [Thread-114] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:00:30,496 INFO  [Thread-114] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+2024-10-29 00:00:30,497 INFO  [Thread-114] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-10-29 00:00:30,500 WARN  [Thread-114] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-29 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -246,99 +20,158 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-10-28 12:25:56,575 INFO  [Thread-5] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:25:56,582 INFO  [Thread-5] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-2024-10-28 12:25:56,586 INFO  [Thread-5] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
-2024-10-28 12:25:56,885 INFO  [restartedMain] com.sohbet.Application:Starting Application using Java 17.0.10 with PID 897 (/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes started by katiehulagu in /Users/katiehulagu/Desktop/chat-project/chat_project-backEnd)
-2024-10-28 12:25:56,886 INFO  [restartedMain] com.sohbet.Application:No active profile set, falling back to 1 default profile: "default"
-2024-10-28 12:25:58,027 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-28 12:25:58,101 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 73 ms. Found 6 JPA repository interfaces.
-2024-10-28 12:25:58,469 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8081 (http)
-2024-10-28 12:25:58,470 INFO  [restartedMain] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-2024-10-28 12:25:58,470 INFO  [restartedMain] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/10.1.10]
-2024-10-28 12:25:58,487 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-2024-10-28 12:25:58,487 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1587 ms
-2024-10-28 12:25:58,661 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-28 12:25:58,674 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:25:58,674 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo:No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-28 12:25:58,676 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-2 - Starting...
-2024-10-28 12:25:58,717 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool:HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@69484529
-2024-10-28 12:25:58,718 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-2 - Start completed.
-2024-10-28 12:25:58,792 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:25:58,971 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-10-28 12:25:58,971 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7397d505] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-10-28 12:25:59,149 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:25:59,445 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
-2024-10-28 12:25:59,682 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
-2024-10-28 12:25:59,731 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:30 mappings in 'requestMappingHandlerMapping'
-2024-10-28 12:26:00,121 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2024-10-28 12:26:00,277 INFO  [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 15 endpoint(s) beneath base path '/actuator'
-2024-10-28 12:26:00,341 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3bde2a7b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e325544, org.springframework.security.web.context.SecurityContextHolderFilter@7114715f, org.springframework.security.web.header.HeaderWriterFilter@77d6a3e0, org.springframework.security.web.authentication.logout.LogoutFilter@25120965, com.sohbet.security.jwt.AuthTokenFilter@2c073a38, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@574463cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@15cf0366, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d5dccd7, org.springframework.security.web.session.SessionManagementFilter@44a4daf5, org.springframework.security.web.access.ExceptionTranslationFilter@23a0bada, org.springframework.security.web.access.intercept.AuthorizationFilter@3c85b173]
-2024-10-28 12:26:00,362 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,363 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
-2024-10-28 12:26:00,363 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,364 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
-2024-10-28 12:26:00,369 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,369 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
-2024-10-28 12:26:00,369 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,369 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
-2024-10-28 12:26:00,369 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,369 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
-2024-10-28 12:26:00,370 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,370 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
-2024-10-28 12:26:00,370 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,370 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
-2024-10-28 12:26:00,370 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:26:00,370 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
-2024-10-28 12:26:00,437 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:30,514 INFO  [Thread-114] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 00:00:30,516 INFO  [Thread-114] com.zaxxer.hikari.HikariDataSource:HikariPool-29 - Shutdown initiated...
+2024-10-29 00:00:30,517 INFO  [Thread-114] com.zaxxer.hikari.HikariDataSource:HikariPool-29 - Shutdown completed.
+2024-10-29 00:00:30,795 INFO  [restartedMain] com.sohbet.Application:Starting Application using Java 17.0.10 with PID 1207 (/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes started by katiehulagu in /Users/katiehulagu/Desktop/chat-project/chat_project-backEnd)
+2024-10-29 00:00:30,795 INFO  [restartedMain] com.sohbet.Application:No active profile set, falling back to 1 default profile: "default"
+2024-10-29 00:00:31,949 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-29 00:00:32,040 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 79 ms. Found 6 JPA repository interfaces.
+2024-10-29 00:00:32,642 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8081 (http)
+2024-10-29 00:00:32,642 INFO  [restartedMain] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+2024-10-29 00:00:32,643 INFO  [restartedMain] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/10.1.10]
+2024-10-29 00:00:32,676 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+2024-10-29 00:00:32,677 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1875 ms
+2024-10-29 00:00:33,103 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-29 00:00:33,145 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-10-29 00:00:33,163 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo:No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-29 00:00:33,164 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-30 - Starting...
+2024-10-29 00:00:33,379 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool:HikariPool-30 - Added connection org.postgresql.jdbc.PgConnection@604f8c2d
+2024-10-29 00:00:33,379 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-30 - Start completed.
+2024-10-29 00:00:33,483 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-10-29 00:00:33,764 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-10-29 00:00:33,769 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@48b0c5f3] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-10-29 00:00:34,288 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 00:00:34,577 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
+2024-10-29 00:00:34,866 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2024-10-29 00:00:34,919 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:30 mappings in 'requestMappingHandlerMapping'
+2024-10-29 00:00:35,221 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-10-29 00:00:35,339 INFO  [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-10-29 00:00:35,389 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6ba7f514, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a2379c6, org.springframework.security.web.context.SecurityContextHolderFilter@356909da, org.springframework.security.web.header.HeaderWriterFilter@4aaa9791, org.springframework.security.web.authentication.logout.LogoutFilter@6ed3e4d2, com.sohbet.security.jwt.AuthTokenFilter@243f3606, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@791f181e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@67970eb3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1bd83e42, org.springframework.security.web.session.SessionManagementFilter@232af801, org.springframework.security.web.access.ExceptionTranslationFilter@48d09d54, org.springframework.security.web.access.intercept.AuthorizationFilter@3030a73a]
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,396 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
+2024-10-29 00:00:35,396 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:00:35,398 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.ChatController:
 	
-2024-10-28 12:26:00,438 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.HomeController:
 	
-2024-10-28 12:26:00,438 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.ImageController:
 	
-2024-10-28 12:26:00,438 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.MessageController:
 	
-2024-10-28 12:26:00,438 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.UserController:
 	
-2024-10-28 12:26:00,439 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,445 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.UserJwtController:
 	
-2024-10-28 12:26:00,440 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:00:35,446 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	o.s.b.a.w.s.e.BasicErrorController:
 	
-2024-10-28 12:26:00,489 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-10-28 12:26:00,528 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-10-28 12:26:00,704 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer:LiveReload server is running on port 35729
-2024-10-28 12:26:00,742 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8081 (http) with context path ''
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:26:00,743 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Starting...
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]
-2024-10-28 12:26:00,743 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]]
-2024-10-28 12:26:00,743 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Started.
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:26:00,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:26:00,756 INFO  [restartedMain] com.sohbet.Application:Started Application in 3.944 seconds (process running for 1077.286)
-2024-10-28 12:26:00,759 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener:Condition evaluation unchanged
-2024-10-28 12:27:00,411 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2024-10-28 12:44:59,185 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-10-28 12:44:59,189 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:44:59,189 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:44:59,190 INFO  [Thread-7] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
-2024-10-28 12:44:59,190 INFO  [Thread-7] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]]
-2024-10-28 12:44:59,190 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]
-2024-10-28 12:44:59,190 DEBUG [Thread-7] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@7846f924]
-2024-10-28 12:44:59,190 INFO  [Thread-7] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
-2024-10-28 12:44:59,190 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:44:59,190 DEBUG [Thread-7] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:44:59,196 INFO  [Thread-7] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-2024-10-28 12:44:59,204 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2024-10-29 00:00:35,487 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-10-29 00:00:35,503 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-10-29 00:00:35,716 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer:LiveReload server is running on port 35729
+2024-10-29 00:00:35,742 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8081 (http) with context path ''
+2024-10-29 00:00:35,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-10-29 00:00:35,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-10-29 00:00:35,743 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Starting...
+2024-10-29 00:00:35,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]
+2024-10-29 00:00:35,743 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]
+2024-10-29 00:00:35,744 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]]
+2024-10-29 00:00:35,744 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Started.
+2024-10-29 00:00:35,744 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:00:35,744 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:00:35,755 INFO  [restartedMain] com.sohbet.Application:Started Application in 5.01 seconds (process running for 4248.694)
+2024-10-29 00:00:35,759 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener:Condition evaluation unchanged
+2024-10-29 00:00:47,446 INFO  [http-nio-8081-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-29 00:00:47,448 INFO  [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Initializing Servlet 'dispatcherServlet'
+2024-10-29 00:00:47,448 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected StandardServletMultipartResolver
+2024-10-29 00:00:47,448 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected AcceptHeaderLocaleResolver
+2024-10-29 00:00:47,449 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected FixedThemeResolver
+2024-10-29 00:00:47,450 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3787279c
+2024-10-29 00:00:47,451 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.support.SessionFlashMapManager@c032e53
+2024-10-29 00:00:47,451 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-10-29 00:00:47,451 INFO  [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed initialization in 3 ms
+2024-10-29 00:00:47,452 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,452 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,453 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,457 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,457 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,457 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,458 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,458 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,459 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:00:47,460 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:00:47,504 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,504 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,505 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,505 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,505 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,505 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,505 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,506 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,506 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:POST "/chats/group", parameters={}
+2024-10-29 00:00:47,507 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#createGroupChat(GroupChatRequest)
+2024-10-29 00:00:47,512 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor:Read "application/json;charset=UTF-8" to [GroupChatRequest(userIds=[3102, 3053, 3152, 3202], chatName=null, chatImage=null)]
+2024-10-29 00:00:47,582 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-10-29 00:00:47,592 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [ChatDTO(id=1052, chatName=erdal-(ali-ergun-fatma-dur) groupChat, isGroup=true, createdBy=3052, admin (truncated)...]
+2024-10-29 00:00:47,608 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2024-10-29 00:00:53,773 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,773 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,773 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,773 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,774 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,774 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,774 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,774 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,775 INFO  [http-nio-8081-exec-3] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:00:53,775 INFO  [http-nio-8081-exec-3] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:00:53,787 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,787 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,788 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,790 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,790 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,791 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,792 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,793 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,793 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:PUT "/chats/1002/addAdmin/3102", parameters={}
+2024-10-29 00:00:53,794 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:00:53,846 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleBadRequestException(BadRequestException, WebRequest)
+2024-10-29 00:00:53,847 ERROR [http-nio-8081-exec-3] com.sohbet.exception.FurkanChatExceptionHandler:You don't have permission to change this data.
+2024-10-29 00:00:53,851 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-10-29 00:00:53,851 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@7a1977c4]
+2024-10-29 00:00:53,852 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [com.sohbet.exception.BadRequestException: You don't have permission to change this data.]
+2024-10-29 00:00:53,852 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:Completed 400 BAD_REQUEST
+2024-10-29 00:01:11,601 INFO  [File Watcher] org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-29 00:01:11,604 DEBUG [Thread-118] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-10-29 00:01:11,604 DEBUG [Thread-118] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-10-29 00:01:11,604 INFO  [Thread-118] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
+2024-10-29 00:01:11,605 INFO  [Thread-118] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]]
+2024-10-29 00:01:11,605 DEBUG [Thread-118] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]
+2024-10-29 00:01:11,605 DEBUG [Thread-118] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6e548c47]
+2024-10-29 00:01:11,605 INFO  [Thread-118] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
+2024-10-29 00:01:11,605 DEBUG [Thread-118] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:01:11,605 DEBUG [Thread-118] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:01:11,608 INFO  [Thread-118] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+2024-10-29 00:01:11,609 INFO  [Thread-118] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-10-29 00:01:11,613 WARN  [Thread-118] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-30 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -348,107 +181,118 @@
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-10-28 12:44:59,221 INFO  [Thread-7] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:44:59,222 INFO  [Thread-7] com.zaxxer.hikari.HikariDataSource:HikariPool-2 - Shutdown initiated...
-2024-10-28 12:44:59,228 INFO  [Thread-7] com.zaxxer.hikari.HikariDataSource:HikariPool-2 - Shutdown completed.
-2024-10-28 12:44:59,463 INFO  [restartedMain] com.sohbet.Application:Starting Application using Java 17.0.10 with PID 897 (/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes started by katiehulagu in /Users/katiehulagu/Desktop/chat-project/chat_project-backEnd)
-2024-10-28 12:44:59,464 INFO  [restartedMain] com.sohbet.Application:No active profile set, falling back to 1 default profile: "default"
-2024-10-28 12:45:00,049 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-28 12:45:00,097 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 47 ms. Found 6 JPA repository interfaces.
-2024-10-28 12:45:00,351 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8081 (http)
-2024-10-28 12:45:00,351 INFO  [restartedMain] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-2024-10-28 12:45:00,352 INFO  [restartedMain] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/10.1.10]
-2024-10-28 12:45:00,373 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-2024-10-28 12:45:00,373 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 905 ms
-2024-10-28 12:45:00,548 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-28 12:45:00,562 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:45:00,562 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo:No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-28 12:45:00,565 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Starting...
-2024-10-28 12:45:00,608 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool:HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@2e79f677
-2024-10-28 12:45:00,609 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Start completed.
-2024-10-28 12:45:00,693 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2024-10-28 12:45:00,881 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-10-28 12:45:00,882 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4e0e2ad] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2024-10-28 12:45:01,067 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:45:01,416 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
-2024-10-28 12:45:01,693 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
-2024-10-28 12:45:01,742 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:30 mappings in 'requestMappingHandlerMapping'
-2024-10-28 12:45:02,025 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2024-10-28 12:45:02,203 INFO  [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 15 endpoint(s) beneath base path '/actuator'
-2024-10-28 12:45:02,284 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@675233bc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1c53f450, org.springframework.security.web.context.SecurityContextHolderFilter@76a45397, org.springframework.security.web.header.HeaderWriterFilter@4bc8cdac, org.springframework.security.web.authentication.logout.LogoutFilter@63331927, com.sohbet.security.jwt.AuthTokenFilter@3b667de3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@379e343a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a363ac8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f1e7f73, org.springframework.security.web.session.SessionManagementFilter@4309cdab, org.springframework.security.web.access.ExceptionTranslationFilter@3284a6b, org.springframework.security.web.access.intercept.AuthorizationFilter@2ea14094]
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
-2024-10-28 12:45:02,295 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2024-10-28 12:45:02,295 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:11,620 INFO  [Thread-118] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 00:01:11,621 INFO  [Thread-118] com.zaxxer.hikari.HikariDataSource:HikariPool-30 - Shutdown initiated...
+2024-10-29 00:01:11,622 INFO  [Thread-118] com.zaxxer.hikari.HikariDataSource:HikariPool-30 - Shutdown completed.
+2024-10-29 00:01:11,866 INFO  [restartedMain] com.sohbet.Application:Starting Application using Java 17.0.10 with PID 1207 (/Users/katiehulagu/Desktop/chat-project/chat_project-backEnd/target/classes started by katiehulagu in /Users/katiehulagu/Desktop/chat-project/chat_project-backEnd)
+2024-10-29 00:01:11,866 INFO  [restartedMain] com.sohbet.Application:No active profile set, falling back to 1 default profile: "default"
+2024-10-29 00:01:12,171 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-29 00:01:12,196 INFO  [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 24 ms. Found 6 JPA repository interfaces.
+2024-10-29 00:01:12,565 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8081 (http)
+2024-10-29 00:01:12,571 INFO  [restartedMain] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+2024-10-29 00:01:12,571 INFO  [restartedMain] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/10.1.10]
+2024-10-29 00:01:12,589 INFO  [restartedMain] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+2024-10-29 00:01:12,590 INFO  [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 722 ms
+2024-10-29 00:01:12,839 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-29 00:01:12,852 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-10-29 00:01:12,852 INFO  [restartedMain] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo:No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-29 00:01:12,855 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-31 - Starting...
+2024-10-29 00:01:12,957 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool:HikariPool-31 - Added connection org.postgresql.jdbc.PgConnection@1b022688
+2024-10-29 00:01:12,957 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource:HikariPool-31 - Start completed.
+2024-10-29 00:01:12,993 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
+2024-10-29 00:01:13,065 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-10-29 00:01:13,065 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3a2162ce] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2024-10-29 00:01:13,222 INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 00:01:13,488 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
+2024-10-29 00:01:13,710 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
+2024-10-29 00:01:13,745 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:30 mappings in 'requestMappingHandlerMapping'
+2024-10-29 00:01:13,994 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-10-29 00:01:14,152 INFO  [restartedMain] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-10-29 00:01:14,297 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@46b6d40, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@645af8d1, org.springframework.security.web.context.SecurityContextHolderFilter@3513a8a1, org.springframework.security.web.header.HeaderWriterFilter@47fac837, org.springframework.security.web.authentication.logout.LogoutFilter@7cf38458, com.sohbet.security.jwt.AuthTokenFilter@36bf90d5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5bddfa0c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a773a30, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c6ad096, org.springframework.security.web.session.SessionManagementFilter@7ddc6719, org.springframework.security.web.access.ExceptionTranslationFilter@77c33c6b, org.springframework.security.web.access.intercept.AuthorizationFilter@3b1f19d3]
+2024-10-29 00:01:14,316 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,316 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
+2024-10-29 00:01:14,316 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,321 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
+2024-10-29 00:01:14,322 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,354 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
+2024-10-29 00:01:14,360 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,363 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
+2024-10-29 00:01:14,363 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,364 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
+2024-10-29 00:01:14,364 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,364 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
+2024-10-29 00:01:14,364 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,364 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
+2024-10-29 00:01:14,365 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-10-29 00:01:14,365 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
+2024-10-29 00:01:14,406 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.ChatController:
 	
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,407 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.HomeController:
 	
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,410 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.ImageController:
 	
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,411 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.MessageController:
 	
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,411 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.UserController:
 	
-2024-10-28 12:45:02,357 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,411 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	c.s.c.UserJwtController:
 	
-2024-10-28 12:45:02,358 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
+2024-10-29 00:01:14,413 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
 	o.s.b.a.w.s.e.BasicErrorController:
 	
-2024-10-28 12:45:02,424 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-10-28 12:45:02,463 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-10-28 12:45:02,581 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer:LiveReload server is running on port 35729
-2024-10-28 12:45:02,608 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8081 (http) with context path ''
-2024-10-28 12:45:02,609 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:45:02,609 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:45:02,609 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Starting...
-2024-10-28 12:45:02,609 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
-2024-10-28 12:45:02,609 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
-2024-10-28 12:45:02,609 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]]
-2024-10-28 12:45:02,610 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Started.
-2024-10-28 12:45:02,610 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:45:02,610 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:45:02,632 INFO  [restartedMain] com.sohbet.Application:Started Application in 3.232 seconds (process running for 2219.102)
-2024-10-28 12:45:02,640 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener:Condition evaluation unchanged
-2024-10-28 12:45:37,405 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:Application shutdown requested.
-2024-10-28 12:45:37,407 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2024-10-28 12:45:37,408 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2024-10-28 12:45:37,408 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
-2024-10-28 12:45:37,409 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]]
-2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
-2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22174c48]
-2024-10-28 12:45:37,409 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
-2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:45:37,409 DEBUG [RMI TCP Connection(47)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2024-10-28 12:45:37,412 INFO  [RMI TCP Connection(47)-127.0.0.1] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
-2024-10-28 12:45:37,419 WARN  [RMI TCP Connection(47)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-3 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2024-10-28 12:45:37,429 INFO  [RMI TCP Connection(47)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-28 12:45:37,431 INFO  [RMI TCP Connection(47)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Shutdown initiated...
-2024-10-28 12:45:37,435 INFO  [RMI TCP Connection(47)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-3 - Shutdown completed.
+2024-10-29 00:01:14,486 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-10-29 00:01:14,504 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-10-29 00:01:14,661 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer:LiveReload server is running on port 35729
+2024-10-29 00:01:14,712 INFO  [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8081 (http) with context path ''
+2024-10-29 00:01:14,715 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-10-29 00:01:14,715 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-10-29 00:01:14,715 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Starting...
+2024-10-29 00:01:14,715 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@44dbeb9a]
+2024-10-29 00:01:14,715 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@44dbeb9a]
+2024-10-29 00:01:14,715 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@44dbeb9a]]
+2024-10-29 00:01:14,722 INFO  [restartedMain] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Started.
+2024-10-29 00:01:14,732 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:01:14,732 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-10-29 00:01:14,753 INFO  [restartedMain] com.sohbet.Application:Started Application in 2.907 seconds (process running for 4287.691)
+2024-10-29 00:01:14,763 INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener:Condition evaluation unchanged
+2024-10-29 00:01:16,161 INFO  [http-nio-8081-exec-2] org.apache.catalina.core.ContainerBase.[Tomcat-1].[localhost].[/]:Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-29 00:01:16,161 INFO  [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Initializing Servlet 'dispatcherServlet'
+2024-10-29 00:01:16,161 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected StandardServletMultipartResolver
+2024-10-29 00:01:16,161 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected AcceptHeaderLocaleResolver
+2024-10-29 00:01:16,161 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected FixedThemeResolver
+2024-10-29 00:01:16,163 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@21681290
+2024-10-29 00:01:16,163 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.support.SessionFlashMapManager@c5a6495
+2024-10-29 00:01:16,163 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-10-29 00:01:16,163 INFO  [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed initialization in 2 ms
+2024-10-29 00:01:16,164 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,164 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,164 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,165 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,165 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,165 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,165 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,165 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,166 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Authorization Header: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:01:16,167 INFO  [http-nio-8081-exec-2] com.sohbet.security.jwt.AuthTokenFilter:Extracted JWT Token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmRhbEBlcmRhbC5jb20iLCJpYXQiOjE3MzAxNTU4NzQsImV4cCI6MTczMDI0MjI3NH0.aVY8c75tZp5AY8l6LK9h9_C8KQb4TOSbi__v50daNynPaf2r6OSC6MT5HB0E745i0ASR0p4683x3FV-fkAHAJg
+2024-10-29 00:01:16,183 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,183 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,183 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,184 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,184 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,185 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,185 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,185 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,185 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:PUT "/chats/1002/addAdmin/3102", parameters={}
+2024-10-29 00:01:16,186 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ChatController#addAdminToGroup(Long, Long)
+2024-10-29 00:01:16,244 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleBadRequestException(BadRequestException, WebRequest)
+2024-10-29 00:01:16,244 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:You don't have permission to change this data.
+2024-10-29 00:01:16,247 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2024-10-29 00:01:16,248 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@1740178c]
+2024-10-29 00:01:16,248 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [com.sohbet.exception.BadRequestException: You don't have permission to change this data.]
+2024-10-29 00:01:16,249 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 400 BAD_REQUEST
