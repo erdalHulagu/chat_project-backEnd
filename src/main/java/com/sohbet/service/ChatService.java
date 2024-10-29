@@ -254,17 +254,39 @@ public class ChatService {
 	    boolean userToBeAdmin = chat.getAdmins().contains(userAddAdmin);
 	    if (!userAdmin) {
 	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-//	    } else
-//	     if (userAdmin && userToBeAdmin) {
-//	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
-//	    } else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
-//	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+	    } else
+	     if (userAdmin && userToBeAdmin) {
+	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+	    } else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
+	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 	    }
 
 	    // Add the new admin and save the chat
 	    chat.getAdmins().add(userAddAdmin);
 	    Chat savedChat = chatRepository.save(chat);
 	    return chatMapper.chatToChatDTO(savedChat);
+	}
+	public ChatDTO removeAdminFromGroup(Long chatId, Long userId, User user) {
+		ChatDTO chatDTO =findChatById(chatId);
+		Chat chat=chatMapper.chatDTOToChat(chatDTO);
+		
+	UserDTO userDTO	=userService.getUserById(userId);
+	User user2= userMapper.userDTOToUser(userDTO);
+	
+//	boolean userAdmin = chat.getAdmins().contains(user);
+//    boolean adminToRemove = chat.getAdmins().contains(user2);
+//    if (!userAdmin) {
+//        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+//    } else
+//     if (userAdmin==adminToRemove) {
+//    	 throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+////    } else if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
+////        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+//    }
+    chat.getAdmins().remove(user2);
+   Chat savedChat=chatRepository.save(chat);
+   return chatMapper.chatToChatDTO(savedChat);
+		
 	}
 
 	// -----------------rename group---------
@@ -340,5 +362,7 @@ public class ChatService {
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
 		return chat;
 	}
+
+	
 
 }

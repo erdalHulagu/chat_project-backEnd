@@ -113,6 +113,17 @@ public class ChatController {
 	}
 	
 	@Transactional
+	@PatchMapping("/{chatId}/removeAdmin/{userId}")
+	public ResponseEntity<ChatDTO>deleteAdminFromGroup(@PathVariable Long chatId,@PathVariable Long userId){
+		UserDTO userDTO=userService.findUserProfile();
+		User user=userMapper.userDTOToUser(userDTO);	
+		ChatDTO chatDTO=chatService.removeAdminFromGroup(chatId,userId,user);
+		
+	return ResponseEntity.ok(chatDTO);
+		
+	}
+	
+	@Transactional
 	@PatchMapping("/{chatId}/remove/{userId}")
 	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId, @PathVariable Long userId){
 		UserDTO userDTO=userService.findUserProfile();
