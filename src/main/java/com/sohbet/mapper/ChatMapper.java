@@ -22,7 +22,7 @@ public interface ChatMapper {
 	@Mapping(target = "admins", source = "admins", qualifiedByName = "getUserCollectionAsString")
 	@Mapping(target = "messages", source = "messages", qualifiedByName = "getMessageCollectionAsString")
 	@Mapping(target = "users", source = "users", qualifiedByName = "getUserCollectionAsString")
-	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
+//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
 	ChatDTO chatToChatDTO(Chat chat);
 
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
@@ -32,7 +32,7 @@ public interface ChatMapper {
 	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "users", ignore = true) // Users seti ayrı bir işlemde setlenebilir
 	@Mapping(target = "createdBy", ignore = true) // CreatedBy ayrı bir işlemde setlenebilir
-	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
+//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
 	Chat chatDTOToChat(ChatDTO chatDTO);
 	
 	

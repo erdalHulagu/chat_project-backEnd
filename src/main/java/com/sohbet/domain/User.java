@@ -88,13 +88,13 @@ public class User {
 
     private Boolean builtIn;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "t_user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_images", nullable = true)
     private Set<Image> myImages;
 
@@ -102,36 +102,118 @@ public class User {
     @JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
     private Image profileImage;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "user")
+    @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages = new ArrayList<>();
 
-    @OneToMany(mappedBy = "createdBy")
+    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
     private List<Chat> chatlist;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Set<Chat> chats = new HashSet<>();
-    
-    @ManyToMany(mappedBy = "admins")
+
+    @ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
     private Set<Chat> chatAdmins = new HashSet<>();
 
+//    @ManyToMany
+//    @JoinTable(name = "t_user_friend",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "friend_id"))
+//    private Set<User> friends = new HashSet<>(); // Kendine referanslı arkadaş ilişkisi
+
+//public class User {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
+//
+//    @NotNull
+//    @Column(name = "name", nullable = false, length = 100)
+//    private String firstName;
+//
+//    @NotNull
+//    @Column(name = "surname", nullable = false, length = 100)
+//    private String lastName;
+//
+//    @NotNull
+//    @Email(message = "Please provide a valid email")
+//    @Size(min = 10, max = 80)
+//    @Column(length = 80, nullable = false, unique = true, updatable = false)
+//    private String email;
+//
+//    @NotNull
+//    @Size(min = 10, max = 80)
+//    @Column(length = 80, nullable = false, unique = true)
+//    private String password;
+//
+//    @Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", message = "Please provide a valid phone number")
+//    @Column(nullable = true)
+//    private String phone;
+//
+//    @Size(max = 100)
+//    @NotNull(message = "Please provide your address")
+//    @Column(length = 80, nullable = false, unique = true)
+//    private String address;
+//
+//    @Size(max = 20)
+//    @NotNull(message = "Please provide a post code")
+//    @Column(length = 10, nullable = true)
+//    private String postCode;
+//
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//    @Column(name = "update_at", length = 30, nullable = false, updatable = true)
+//    @UpdateTimestamp
+//    private LocalDateTime updateAt;
+//
+//    @Column(name = "create_at", length = 30, updatable = false, nullable = true)
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+//    private LocalDateTime createAt;
+//
+//    private Boolean builtIn;
+//
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "t_user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles = new HashSet<>();
+//
+//    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_images", nullable = true)
+//    private Set<Image> myImages;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
+//    private Image profileImage;
+//
+//    @OneToMany(orphanRemoval = true, mappedBy = "user")
+//    private List<Message> messages = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "createdBy")
+//    private List<Chat> chatlist;
+//
+//    @ManyToMany(mappedBy = "users")
+//    private Set<Chat> chats = new HashSet<>();
+//    
+//    @ManyToMany(mappedBy = "admins")
+//    private Set<Chat> chatAdmins = new HashSet<>();
+//
     @ManyToMany
     @JoinTable(name = "t_user_friend",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<Friend> friends = new ArrayList<>();
 //    
-//    @Override
-//    public boolean equals(Object objct) {
-//        if (this == objct) return true;
-//        if (objct == null || getClass() != objct.getClass()) return false;
-//        User user = (User) objct;
-//        return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
+    @Override
+    public boolean equals(Object objct) {
+        if (this == objct) return true;
+        if (objct == null || getClass() != objct.getClass()) return false;
+        User user = (User) objct;
+        return Objects.equals(id, user.id);  // User'ları id'ye göre kıyasla
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
     @Override
     public String toString() {

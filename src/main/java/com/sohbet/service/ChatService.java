@@ -249,15 +249,15 @@ public class ChatService {
 	    UserDTO userDTO = userService.getUserById(userId);
 	    User userAddAdmin = userMapper.userDTOToUser(userDTO);
 
-	    
-		boolean userAdmin = chat.getAdmins().contains(user);
-	    boolean userToBeAdmin = chat.getAdmins().contains(userAddAdmin);
-	    if (!userAdmin) {
+ 
+	    if(!chat.getAdmins().contains(user)) {
 	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-	    } else
-	     if (userAdmin && userToBeAdmin) {
+	        
+	    } else if(chat.getAdmins().contains(user)&&chat.getAdmins().contains(userAddAdmin)) {
 	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
-	    } else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
+	        
+	    } 
+	    else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
 	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 	    }
 
@@ -266,21 +266,23 @@ public class ChatService {
 	    Chat savedChat = chatRepository.save(chat);
 	    return chatMapper.chatToChatDTO(savedChat);
 	}
+	
 	public ChatDTO removeAdminFromGroup(Long chatId, Long userId, User user) {
 		ChatDTO chatDTO =findChatById(chatId);
 		Chat chat=chatMapper.chatDTOToChat(chatDTO);
 		
 	UserDTO userDTO	=userService.getUserById(userId);
 	User user2= userMapper.userDTOToUser(userDTO);
-	
-	boolean userAdmin = chat.getAdmins().stream().anyMatch(usr->usr.getId().equals(user.getId()));
-    boolean adminToRemove = chat.getAdmins().stream().anyMatch(usr->usr.getId().equals(user2.getId()));
-    if (!userAdmin) {
+
+
+    if(!chat.getAdmins().contains(user)) {
         throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+        
+    } else if(chat.getAdmins().contains(user)&&chat.getAdmins().contains(user2)) {
+        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+        
     } else
-     if (userAdmin==adminToRemove) {
-    	 throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-    } else if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
+    	if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
         throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
     }
     chat.getAdmins().remove(user2);
