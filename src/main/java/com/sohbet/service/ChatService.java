@@ -273,16 +273,16 @@ public class ChatService {
 	UserDTO userDTO	=userService.getUserById(userId);
 	User user2= userMapper.userDTOToUser(userDTO);
 	
-//	boolean userAdmin = chat.getAdmins().contains(user);
-//    boolean adminToRemove = chat.getAdmins().contains(user2);
-//    if (!userAdmin) {
-//        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-//    } else
-//     if (userAdmin==adminToRemove) {
-//    	 throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-////    } else if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
-////        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-//    }
+	boolean userAdmin = chat.getAdmins().stream().anyMatch(usr->usr.getId().equals(user.getId()));
+    boolean adminToRemove = chat.getAdmins().stream().anyMatch(usr->usr.getId().equals(user2.getId()));
+    if (!userAdmin) {
+        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+    } else
+     if (userAdmin==adminToRemove) {
+    	 throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+    } else if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
+        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+    }
     chat.getAdmins().remove(user2);
    Chat savedChat=chatRepository.save(chat);
    return chatMapper.chatToChatDTO(savedChat);
@@ -313,8 +313,7 @@ public class ChatService {
 		UserDTO userDTO = userService.getUserById(userId);
 		User userToRemove = userMapper.userDTOToUser(userDTO);
 
-//	    boolean isAdmin = chat.getAdmins().stream().anyMatch(admin -> admin.getId().equals(user.getId()));
-//	    boolean isItSameUser = userToRemove.getId().equals(user.getId());
+
 
 		// Admin veya aynı kullanıcı değilse çıkarabilir
 		if (chat.getAdmins().contains(user) || user.equals(userToRemove)) {
