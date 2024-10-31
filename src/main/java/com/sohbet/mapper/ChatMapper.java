@@ -28,9 +28,9 @@ public interface ChatMapper {
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
 
 	
-	@Mapping(target = "admins", ignore = true) // Admin seti ayrı bir işlemde setlenebilir
+	@Mapping(target = "admins", source = "admins", qualifiedByName = "getAdminsAsString")
 	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
-	@Mapping(target = "users", ignore = true) // Users seti ayrı bir işlemde setlenebilir
+	@Mapping(target = "users", source = "admins", qualifiedByName = "getAdminsAsString")
 	@Mapping(target = "createdBy", ignore = true) // CreatedBy ayrı bir işlemde setlenebilir
 //	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
 	Chat chatDTOToChat(ChatDTO chatDTO);
@@ -61,6 +61,22 @@ public interface ChatMapper {
 		}
 		return images;
 	}
+	
+	@Named("getAdminsAsString")
+	public static Set<User> setAdmins(Set<String> usrs) {
+	    Set<User> users = new HashSet<>();
+	    
+	    for (String usrId : usrs) {
+	        User user = new User();
+	        
+	        // String'i Long türüne çeviriyoruz
+	        user.setId(Long.parseLong(usrId));
+	        
+	        users.add(user);
+	    }
+	    return users;
+	}
+	
 
 	
 	
@@ -69,6 +85,7 @@ public interface ChatMapper {
 	public static Set<String> getUserCollectionAsString(Set<User> users) {
 		return users.stream().map(user -> user.getId().toString()).collect(Collectors.toSet());
 	}
+	
 
 	
 	//------------------------------
