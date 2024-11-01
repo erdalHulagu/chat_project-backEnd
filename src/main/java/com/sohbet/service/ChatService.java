@@ -253,7 +253,7 @@ public class ChatService {
 	    if(!chat.getAdmins().contains(user)) {
 	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 	        
-	    } else if(chat.getAdmins().contains(user)&&chat.getAdmins().contains(userAddAdmin)) {
+	    } else if(chat.getAdmins().contains(userAddAdmin)) {
 	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
 	        
 	    } 
@@ -273,17 +273,20 @@ public class ChatService {
 		
 	UserDTO userDTO	=userService.getUserById(userId);
 	User user2= userMapper.userDTOToUser(userDTO);
+	
+	
 
 
     if(!chat.getAdmins().contains(user)) {
         throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
         
-    } else if(chat.getAdmins().contains(user)&&chat.getAdmins().contains(user2)) {
-        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+    } else if(!chat.getAdmins().contains(user2)) {
+        throw new BadRequestException(String.format(ErrorMessage.THIS_USER_IS_NOT_ADMIN, user.getFirstName()));
         
     } else
     	if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
-        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+    		chat.getUsers().add(user2);
+        
     }
     chat.getAdmins().remove(user2);
    Chat savedChat=chatRepository.save(chat);
