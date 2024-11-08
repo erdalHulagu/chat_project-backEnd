@@ -21,9 +21,24 @@ public class MessageDTO {
 	private LocalDateTime createAt;
 	
 
-	private UserDTO user;
+	private Long userId;
 	
 	
-	private ChatDTO chat;
+	private Long chatId;
 
 }
+//public class MessageDTO {
+//	
+//	
+//	private String content;
+//	
+//	
+//	private LocalDateTime createAt;
+//	
+//	
+//	private UserDTO user;
+//	
+//	
+//	private ChatDTO chat;
+//	
+//}

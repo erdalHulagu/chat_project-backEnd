@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.mapstruct.Named;
+
 import com.sohbet.domain.Message;
 import com.sohbet.domain.User;
 
@@ -22,20 +25,19 @@ public class ChatDTO {
 	private Boolean isGroup;
 
 	
-	private UserDTO createdBy;
+	private Long createdBy;
 
 	
-	private Set<UserDTO> admins = new HashSet<>();
+	private Set<Long> admins = new HashSet<>();
 
 	
-	private Set<UserDTO> users = new HashSet<>();
+	private Set<Long> users = new HashSet<>();
 
 	
-	private List<MessageDTO> messages = new ArrayList<>();
+	private List<Long> messages = new ArrayList<>();
 	
 	
 	private Set<String> chatImage = new HashSet<>();
-
 
 
 

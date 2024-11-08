@@ -19,7 +19,8 @@ import com.sohbet.domain.User;
 public interface ChatMapper {
 
 
-//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
+	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
+	@Mapping(target = "createdBy", source = "createdBy.id")
 	ChatDTO chatToChatDTO(Chat chat);
 	
 	
@@ -33,16 +34,23 @@ public interface ChatMapper {
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
 
 	
-//	@Mapping(target = "admins", source = "admins", qualifiedByName = "getAdminsAsString")
-	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
-//	@Mapping(target = "users", source = "admins", qualifiedByName = "getAdminsAsString")
-	@Mapping(target = "createdBy", ignore = true) // CreatedBy ayrı bir işlemde setlenebilir
-//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
+	
+	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
+	@Mapping(target = "admins", source = "admins", qualifiedByName = "getImageAsStringe")
+
 	Chat chatDTOToChat(ChatDTO chatDTO);
 	
 	
-	
-	
+	@Named("mapLongToUser")
+	public static Set<User> mapLongToUser(Set<Long>userIds){
+	Set<User> users =new HashSet<>();
+	for (Long userId : userIds) {
+		User user = new User();
+          user.setId(userId);
+          users.add(user);
+	}
+	return users;
+	}
 //----------------------------
 	@Named("getImageAsString")
 

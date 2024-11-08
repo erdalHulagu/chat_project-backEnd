@@ -15,11 +15,14 @@ import com.sohbet.domain.Message;
 public interface MessageMapper {
 	
 	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "user.id" ,source = "userId")
+	@Mapping(target = "chat.id" ,source = "chatId")
 	Message messageDTOToMessage(MessageDTO messageDTO);
 	
 	List<MessageDTO> messageToMessageDTOList(List<Message> messages);
 	
-
+	@Mapping(target = "userId" ,source = "user.id")
+	@Mapping(target = "chatId" ,source = "chat.id")
 	MessageDTO messageToMessageDTO(Message message);
 	
 	

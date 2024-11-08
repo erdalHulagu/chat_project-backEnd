@@ -67,7 +67,7 @@ public class Chat {
     @ElementCollection // Image yerine sadece görüntü URL'lerini saklamak için basit bir koleksiyon
     @CollectionTable(name = "chat_images", joinColumns = @JoinColumn(name = "chat_id"))
     @Column(name = "image_url")
-    private Set<String> chatImage = new HashSet<>();
+    private Set<Image> chatImage = new HashSet<>();
 }
 	
 

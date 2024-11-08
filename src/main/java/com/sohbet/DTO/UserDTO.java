@@ -87,16 +87,12 @@ public void setMyImages(Set<Image> images) {
 
 //----------------------
 public void setProfileImage(Image image) {
-	if (image!=null) {
-		
-	
-	 this.profileImage=image.getId().toString();
-	
-}
-	
-profileImage=null;
-
-}
+	    if (image != null) {
+	        this.profileImage = image.getId().toString();
+	    } else {
+	        this.profileImage = null;
+	    }
+	}
 }
 
 

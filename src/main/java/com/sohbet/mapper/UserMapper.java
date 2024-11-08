@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
+
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
@@ -18,21 +20,20 @@ import com.sohbet.request.UserRequest;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
+	UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
 	@Mapping(target = "roles", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "stringToImage")
 	User userDTOToUser(UserDTO userDTO);
 
-
-	@Mapping(target = "profileImage", ignore = true)
 	UserDTO userToUserDto(User user);
 	
-	
+
 	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "stringToImage")
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "roles", ignore = true)
-	@Mapping(target = "chatAdmins", ignore = true)
+	@Mapping(target = "roles", source = "roles",ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
 
 	@Mapping(target = "id", ignore = true)
@@ -40,24 +41,15 @@ public interface UserMapper {
 	@Mapping(target = "profileImage", ignore = true)
 	User userRequestToUser(UserRequest userRequest);
 
-	
 	List<UserDTO> userToUserDTOList(List<User> userList);
-	
-	
+
 	Set<UserDTO> userToUserDTOSetList(Set<User> setUsers);
 
-//	@Named("getRoleAsString")
-//	public static Set<String> mapRoles(Set<Role> roles) {
-//
-//		Set<String> roleStr = new HashSet<>();
-//
-//		roles.forEach(r -> {
-//			roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
-//
-//		});
-//
-//		return roleStr;
-//	}
+	@Named("mapRolesToString")
+	public static Set<String> mapRolesToString(Set<Role> roles) {
+		return roles != null ? roles.stream().map(role -> role.getType().getName()).collect(Collectors.toSet())
+				: new HashSet<>();
+	}
 
 	
 
@@ -80,19 +72,18 @@ public interface UserMapper {
 	}
 
 	@Named("imageToString")
-    default String imageToString(Image image) {
-        return image != null ? image.getId() : null;
-    }
+	default String imageToString(Image image) {
+		return image != null ? image.getId() : null;
+	}
 
-    @Named("stringToImage")
-    default Image stringToImage(String id) {
-        if (id == null) {
-            return null;
-        }
-        Image image = new Image();
-        image.setId(id);
-        return image;
-    }
-
+	@Named("stringToImage")
+	default Image stringToImage(String id) {
+		if (id == null) {
+			return null;
+		}
+		Image image = new Image();
+		image.setId(id);
+		return image;
+	}
 
 }
