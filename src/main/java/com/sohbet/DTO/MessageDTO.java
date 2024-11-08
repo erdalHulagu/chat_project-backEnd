@@ -17,12 +17,13 @@ public class MessageDTO {
 	
 	private String content;
 	
+	
 	private LocalDateTime createAt;
 	
 
-	private String user;
+	private UserDTO user;
 	
 	
-	private String chat;
+	private ChatDTO chat;
 
 }

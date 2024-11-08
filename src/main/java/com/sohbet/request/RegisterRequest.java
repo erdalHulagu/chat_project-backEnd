@@ -44,7 +44,7 @@ public class RegisterRequest {
 	@NotBlank(message = "Please provide post code")
 	private String postCode;
 
-	private Set<String> profileImage;
+	private String profileImage;
 
 	private Set<String> myImages = new HashSet<>();
 

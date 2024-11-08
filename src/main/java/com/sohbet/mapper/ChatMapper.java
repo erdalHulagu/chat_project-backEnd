@@ -18,19 +18,24 @@ import com.sohbet.domain.User;
 @Mapper(componentModel = "spring")
 public interface ChatMapper {
 
-	@Mapping(target = "createdBy", source = "createdBy.id") // User'dan username alarak atama yap
-	@Mapping(target = "admins", source = "admins", qualifiedByName = "getUserCollectionAsString")
-	@Mapping(target = "messages", source = "messages", qualifiedByName = "getMessageCollectionAsString")
-	@Mapping(target = "users", source = "users", qualifiedByName = "getUserCollectionAsString")
+
 //	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
 	ChatDTO chatToChatDTO(Chat chat);
+	
+	
+//	@Mapping(target = "createdBy", source = "createdBy.id") // User'dan username alarak atama yap
+//	@Mapping(target = "admins", source = "admins", qualifiedByName = "getUserCollectionAsString")
+//	@Mapping(target = "messages", source = "messages", qualifiedByName = "getMessageCollectionAsString")
+//	@Mapping(target = "users", source = "users", qualifiedByName = "getUserCollectionAsString")
+////	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageAsString")
+//	ChatDTO chatToChatDTO(Chat chat);
 
 	List<ChatDTO> mapChatListToChatDTOList(List<Chat> chatList);
 
 	
-	@Mapping(target = "admins", source = "admins", qualifiedByName = "getAdminsAsString")
+//	@Mapping(target = "admins", source = "admins", qualifiedByName = "getAdminsAsString")
 	@Mapping(target = "messages", ignore = true) // Messages seti ayrı bir işlemde setlenebilir
-	@Mapping(target = "users", source = "admins", qualifiedByName = "getAdminsAsString")
+//	@Mapping(target = "users", source = "admins", qualifiedByName = "getAdminsAsString")
 	@Mapping(target = "createdBy", ignore = true) // CreatedBy ayrı bir işlemde setlenebilir
 //	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "getImageStringAsImage")
 	Chat chatDTOToChat(ChatDTO chatDTO);

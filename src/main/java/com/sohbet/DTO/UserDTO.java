@@ -1,13 +1,17 @@
 package com.sohbet.DTO;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.mapstruct.Named;
 
+import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
+import com.sohbet.domain.Message;
 import com.sohbet.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,13 +41,26 @@ private String address;
 
 private String postCode;
 
+private LocalDateTime updateAt;
+
+private LocalDateTime createAt;
+
 private Boolean builtIn;
 
-private Image profileImage;
+private String profileImage;
+
+private List<MessageDTO> messages;
 
 private Set<String>  myImages;
 
 private  Set<String> roles ;
+
+private List<ChatDTO> chatlist;
+
+private Set<Chat> chats;
+
+private Set<ChatDTO> chatAdmins;
+
 
 
 //--------------------
@@ -66,18 +83,23 @@ public void setMyImages(Set<Image> images) {
 	imgs = images.stream().map(img -> img.getId().toString()).collect(Collectors.toSet());
 	this.myImages=imgs;
 }
+
+
 //----------------------
-//public void setProfileImage(Set<Image> images) {
-//	Set<String> imageStr = new HashSet<>();
-//	for (Image image : images) {
-//		imageStr.add(String.valueOf(image.getId())); // Assuming Image class has a getUrl method
-//	}
-//	this.profileImage = imageStr;
-//}
-
-
+public void setProfileImage(Image image) {
+	if (image!=null) {
+		
+	
+	 this.profileImage=image.getId().toString();
+	
+}
+	
+profileImage=null;
 
 }
+}
+
+
 
 
 

@@ -28,50 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "chat")
 @Entity
-//public class Chat {
-//	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Long id;
-//	
-//	@Column(length = 100, nullable = true)
-//	private String chatName;
-//	
-//	@Column(name = "is_group")
-//	private Boolean isGroup;
-//	
-//	@JoinColumn(name = "createdBy")
-//	@ManyToOne
-//	private User createdBy;
-//	
-//	@ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//        name = "chat_admins",
-//        joinColumns = @JoinColumn(name = "chat_id"),
-//        inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//	private Set<User> admins = new HashSet<>();
-//	
-//	@ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//        name = "chat_users",
-//        joinColumns = @JoinColumn(name = "chat_id"),
-//        inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
-//	private Set<User> users = new HashSet<>();
-//	
-//	@OneToMany(orphanRemoval = true, mappedBy = "chat",fetch = FetchType.EAGER)
-//	private List<Message> messages = new ArrayList<>();
-//	
-//	@ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(
-//        name = "chat_images",
-//        joinColumns = @JoinColumn(name = "chat_id"),
-//        inverseJoinColumns = @JoinColumn(name = "image_id")
-//    )
-//	private Set<Image> chatImage = new HashSet<>();
-////	private Set<String> chatImage = new HashSet<>();
-//}
+
 public class Chat {
 
     @Id

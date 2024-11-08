@@ -18,68 +18,46 @@ import com.sohbet.request.UserRequest;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-	@Mapping(target = "builtIn", ignore = true)
 	@Mapping(target = "roles", ignore = true)
-	@Mapping(target = "createAt", ignore = true)
-	@Mapping(target = "updateAt", ignore = true)
-	@Mapping(target = "chatlist", ignore = true)
-	@Mapping(target = "chats", ignore = true)
-	@Mapping(target = "friends", ignore = true)
-	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
-	@Mapping(target = "profileImage",ignore = true)
-	@Mapping(target = "chatAdmins", ignore = true)
+	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "stringToImage")
 	User userDTOToUser(UserDTO userDTO);
 
-	@Mapping(target = "builtIn", ignore = true)
-	@Mapping(target = "createAt", ignore = true)
-	@Mapping(target = "updateAt", ignore = true)
-	@Mapping(target = "chatlist", ignore = true)
-	@Mapping(target = "chats", ignore = true)
-	@Mapping(target = "friends", ignore = true)
-	@Mapping(target = "messages", ignore = true)
-	@Mapping(target = "id", ignore = true)
+
 	@Mapping(target = "profileImage", ignore = true)
+	UserDTO userToUserDto(User user);
+	
+	
+	@Mapping(target = "id", ignore = true)
+	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "stringToImage")
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "roles", ignore = true)
 	@Mapping(target = "chatAdmins", ignore = true)
 	User registerUserToUser(RegisterRequest registerRequest);
 
 	@Mapping(target = "id", ignore = true)
-	@Mapping(target = "builtIn", ignore = true)
-	@Mapping(target = "roles", ignore = true)
-	@Mapping(target = "createAt", ignore = true)
-	@Mapping(target = "updateAt", ignore = true)
-	@Mapping(target = "chatlist", ignore = true)
-	@Mapping(target = "chats", ignore = true)
-	@Mapping(target = "friends", ignore = true)
-	@Mapping(target = "messages", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "profileImage", ignore = true)
-	@Mapping(target = "chatAdmins", ignore = true)
 	User userRequestToUser(UserRequest userRequest);
 
-	@Mapping(target = "profileImage", ignore = true)
-	UserDTO userToUserDto(User user);
-	
 	
 	List<UserDTO> userToUserDTOList(List<User> userList);
 	
 	
 	Set<UserDTO> userToUserDTOSetList(Set<User> setUsers);
 
-	@Named("getRoleAsString")
-	public static Set<String> mapRoles(Set<Role> roles) {
-
-		Set<String> roleStr = new HashSet<>();
-
-		roles.forEach(r -> {
-			roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
-
-		});
-
-		return roleStr;
-	}
+//	@Named("getRoleAsString")
+//	public static Set<String> mapRoles(Set<Role> roles) {
+//
+//		Set<String> roleStr = new HashSet<>();
+//
+//		roles.forEach(r -> {
+//			roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
+//
+//		});
+//
+//		return roleStr;
+//	}
 
 	
 
