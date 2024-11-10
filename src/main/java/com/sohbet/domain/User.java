@@ -106,7 +106,7 @@ public class User {
     private List<Message> messages = new ArrayList<>();
 
     @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
-    private List<Chat> chatlist;
+    private List<Chat> chatList;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private Set<Chat> chats = new HashSet<>();

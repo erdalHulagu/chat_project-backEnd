@@ -13,6 +13,8 @@ import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Message;
 import com.sohbet.domain.Role;
+import com.sohbet.domain.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -55,11 +57,11 @@ private Set<String>  myImages;
 
 private  Set<String> roles ;
 
-private List<ChatDTO> chatlist;
+private Set<Long> chatList;
 
-private Set<Chat> chats;
+private Set<Long> chats;
 
-private Set<ChatDTO> chatAdmins;
+private Set<Long> chatAdmins;
 
 
 
@@ -93,6 +95,9 @@ public void setProfileImage(Image image) {
 	        this.profileImage = null;
 	    }
 	}
+
+
+
 }
 
 

@@ -10,10 +10,10 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import com.sohbet.DTO.UserDTO;
+import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
-import com.sohbet.enums.RoleType;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UserRequest;
 
@@ -25,8 +25,15 @@ public interface UserMapper {
 	@Mapping(target = "roles", ignore = true)
 	@Mapping(target = "myImages", source = "myImages", qualifiedByName = "getImageCollectionAsImage")
 	@Mapping(target = "profileImage", source = "profileImage", qualifiedByName = "stringToImage")
+	@Mapping(target = "chatList", source = "chatList", qualifiedByName = "mapLongToChat")
+	@Mapping(target = "chats", source = "chats", qualifiedByName = "mapLongToChat")
+	@Mapping(target = "chatAdmins", source = "chatAdmins", qualifiedByName = "mapLongToChat")
 	User userDTOToUser(UserDTO userDTO);
 
+	@Mapping(target = "chatList", source = "chatList", qualifiedByName = "mapChatSetToLong")
+	@Mapping(target = "chatAdmins", source = "chatAdmins", qualifiedByName = "mapChatSetToLong")
+	@Mapping(target = "chats", source = "chats", qualifiedByName = "mapChatSetToLong")
+	
 	UserDTO userToUserDto(User user);
 	
 
@@ -50,19 +57,33 @@ public interface UserMapper {
 		return roles != null ? roles.stream().map(role -> role.getType().getName()).collect(Collectors.toSet())
 				: new HashSet<>();
 	}
-
+	@Named("mapChatSetToLong")
+	public static Set<Long> mapChatSetToLong(Set<Chat> chats) {
+	    return chats != null ? chats.stream().map(Chat::getId).collect(Collectors.toSet()) : new HashSet<>();
+	}
 	
+	@Named("mapLongToChat")
+	public static Set<Chat> mapLongToChat(Set<Long> ids) {
+	    Set<Chat> chats = new HashSet<>();
+	    ids.forEach(id -> {
+	        Chat chat = new Chat();
+	        chat.setId(id); // Assumes only setting ID is safe
+	        chats.add(chat);
+	    });
+	    return chats;
+	}
 
 	@Named("getImageCollectionAsImage")
 	public static Set<Image> mapping(Set<String> imageUrls) {
-		Set<Image> images = new HashSet<>();
-		for (String imageUrl : imageUrls) {
-			Image image = new Image();
-			image.setId(imageUrl);
-			images.add(image);
-		}
-		return images;
+	    Set<Image> images = new HashSet<>();
+	    imageUrls.forEach(imageUrl -> {
+	        Image image = new Image();
+	        image.setId(imageUrl); // Adjust here if ID is Long
+	        images.add(image);
+	    });
+	    return images;
 	}
+	
 
 	@Named("getImageCollectionAsString")
 	public static Set<String> getImageIds(Set<Image> imageFiles) {
