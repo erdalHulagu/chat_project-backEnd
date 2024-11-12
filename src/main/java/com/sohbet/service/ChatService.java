@@ -217,15 +217,15 @@ public class ChatService {
 	}
 
 	// -----------add user to group-------------------
-	public ChatDTO addUserToGroup(Long userId, Long ChatId, User user) {
-		Chat chat = findById(ChatId);
+	public ChatDTO addUserToGroup(Long userId, Long chatId, User user) {
+		Chat chat = findById(chatId);
 		UserDTO userDTO = userService.getUserById(userId);
 		User userAdd = userMapper.userDTOToUser(userDTO);
 
-//		if (!chat.getAdmins().contains(user)) {
-//			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-//
-//		}
+		if (!chat.getAdmins().contains(user)) {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+
+		}
 		chat.getUsers().add(userAdd);
 
 		chatRepository.save(chat);
