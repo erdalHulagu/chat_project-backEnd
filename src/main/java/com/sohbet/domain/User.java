@@ -109,7 +109,7 @@ public class User {
     private List<Chat> chatList;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
-    private Set<Chat> chats = new HashSet<>();
+    private List<Chat> chats = new ArrayList<>();
 
     @ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
     private Set<Chat> chatAdmins = new HashSet<>();

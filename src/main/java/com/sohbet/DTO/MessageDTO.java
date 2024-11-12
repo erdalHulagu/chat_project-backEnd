@@ -27,18 +27,4 @@ public class MessageDTO {
 	private Long chatId;
 
 }
-//public class MessageDTO {
-//	
-//	
-//	private String content;
-//	
-//	
-//	private LocalDateTime createAt;
-//	
-//	
-//	private UserDTO user;
-//	
-//	
-//	private ChatDTO chat;
-//	
-//}
+

@@ -156,7 +156,7 @@ public class UserService {
 		if (userList.isEmpty()) {
 			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
 		}
-		List<UserDTO> userDTOList = userMapper.userToUserDTOList(userList);
+		List<UserDTO> userDTOList = userMapper.mapUserListToUserDTOList(userList);
 		return userDTOList;
 	}
 

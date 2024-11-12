@@ -1,6 +1,7 @@
 package com.sohbet.DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -26,81 +27,70 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class UserDTO {
-	
-private Long id;
 
-private String firstName;
+	private Long id;
 
-private String lastName;
+	private String firstName;
 
-private String email;
+	private String lastName;
 
-private String password;
+	private String email;
 
-private String phone;
+	private String password;
 
-private String address;
+	private String phone;
 
-private String postCode;
+	private String address;
 
-private LocalDateTime updateAt;
+	private String postCode;
 
-private LocalDateTime createAt;
+	private LocalDateTime updateAt;
 
-private Boolean builtIn;
+	private LocalDateTime createAt;
 
-private String profileImage;
+	private Boolean builtIn;
 
-private List<MessageDTO> messages;
+	private String profileImage;
 
-private Set<String>  myImages;
+	private List<Message> messages = new ArrayList<>();
 
-private  Set<String> roles ;
+	private Set<String> myImages = new HashSet<>();
 
-private Set<Long> chatList;
+	private Set<String> roles = new HashSet<>();
 
-private Set<Long> chats;
+	private List<Long> chatList = new ArrayList<>();
 
-private Set<Long> chatAdmins;
+	private List<Long> chats = new ArrayList<>();
 
-
+	private Set<Long> chatAdmins = new HashSet<>();
 
 //--------------------
-public void setRoles(Set<Role> roles) {
-	
-	Set<String> roleStr = new HashSet<>();
-	
-	roles.forEach( r-> {
-		roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
-		
-	}); 
-	
-	this.roles = roleStr;
-}
+	public void setRoles(Set<Role> roles) {
 
+		Set<String> roleStr = new HashSet<>();
 
-//---------------------
-public void setMyImages(Set<Image> images) {
-    Set<String> imgs = new HashSet<>();
-	imgs = images.stream().map(img -> img.getId().toString()).collect(Collectors.toSet());
-	this.myImages=imgs;
-}
+		roles.forEach(r -> {
+			roleStr.add(r.getType().getName()); // Administrator veya Customer gözükecek
 
+		});
 
-//----------------------
-public void setProfileImage(Image image) {
-	    if (image != null) {
-	        this.profileImage = image.getId().toString();
-	    } else {
-	        this.profileImage = null;
-	    }
+		this.roles = roleStr;
 	}
 
-
-
+////---------------------
+//	public void setMyImages(Set<Image> images) {
+//		Set<String> imgs = new HashSet<>();
+//		imgs = images.stream().map(img -> img.getId().toString()).collect(Collectors.toSet());
+//		this.myImages = imgs;
+//	}
+//
+////----------------------
+//	public void setProfileImage(Image image) {
+//		if (image != null) {
+//			this.profileImage = image.getId().toString();
+//		} else {
+//			this.profileImage = null;
+//		}
+//	}
+//
 }
-
-
-
-
-
