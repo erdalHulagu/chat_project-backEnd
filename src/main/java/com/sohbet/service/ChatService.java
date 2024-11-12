@@ -184,41 +184,36 @@ public class ChatService {
 	// YAPILDI
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
 
-		Chat chat = new Chat();
-//		Set<Image> image = stringToImageMap(groupChatRequest.getChatImage()); // we called stringToImageMap for string
-//																		// image to set Strin image that we
-//																				// created in this class
-		chat.setIsGroup(true);
-//		chat.setChatImage(image);
-		chat.setChatName(groupChatRequest.getChatName());
-		chat.setCreatedBy(user);
-		chat.getAdmins().add(user);
+	    // Yeni bir Chat nesnesi oluştur
+	    Chat chat = new Chat();
+	    chat.setIsGroup(true);
 
-		for (Long userId : groupChatRequest.getUserIds()) {
+	    // Chat adı ve kullanıcıları ayarla
+	    chat.setChatName(groupChatRequest.getChatName());
+	    chat.setCreatedBy(user);
+	    chat.getAdmins().add(user);
 
-			UserDTO userDTO = userService.getUserById(userId);
-			User usr = userMapper.userDTOToUser(userDTO);
-			chat.getUsers().add(usr);
-		}
-		List<String> groupUsers = new ArrayList<>();
-		for (Long id : groupChatRequest.getUserIds()) {
+	    // Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
+	    List<String> groupUsers = new ArrayList<>();
+	    for (Long userId : groupChatRequest.getUserIds()) {
+	        UserDTO userDTO = userService.getUserById(userId);
+	        User usr = userMapper.userDTOToUser(userDTO);
+	        
+	        chat.getUsers().add(usr); // Chat nesnesine kullanıcıyı ekle
+	        groupUsers.add(usr.getFirstName()); // Kullanıcı adını listeye ekle
+	    }
 
-			UserDTO userDTO = userService.getUserById(id);
-			User usr = userMapper.userDTOToUser(userDTO);
+	    // Eğer chatName boş ise, kullanıcı adlarıyla dinamik bir isim oluştur
+	    if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
+	        String joinedFirstNames = String.join("-", groupUsers);
+	        chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames + ") groupChat");
+	    }
 
-			groupUsers.add(usr.getFirstName());
+	    // Chat nesnesini kaydet
+	    Chat savedChat = chatRepository.save(chat);
 
-		}
-		String joinedFirstNames = String.join("-", groupUsers);
-
-		if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
-			chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames + ") groupChat");
-		}
-		Chat cht=chatRepository.save(chat);
-
-		ChatDTO chatDTO = chatMapper.chatToChatDTO(cht);
-		return chatDTO;
-
+	    // DTO'ya dönüştür ve geri döndür
+	    return chatMapper.chatToChatDTO(savedChat);
 	}
 
 	// -----------add user to group-------------------
@@ -227,10 +222,10 @@ public class ChatService {
 		UserDTO userDTO = userService.getUserById(userId);
 		User userAdd = userMapper.userDTOToUser(userDTO);
 
-		if (!chat.getAdmins().contains(user)) {
-			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-
-		}
+//		if (!chat.getAdmins().contains(user)) {
+//			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+//
+//		}
 		chat.getUsers().add(userAdd);
 
 		chatRepository.save(chat);
