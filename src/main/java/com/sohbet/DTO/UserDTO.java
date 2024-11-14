@@ -52,17 +52,17 @@ public class UserDTO {
 
 	private String profileImage;
 
-	private List<Message> messages = new ArrayList<>();
+	private List<MessageDTO> messages = new ArrayList<>();
 
 	private Set<String> myImages = new HashSet<>();
 
 	private Set<String> roles = new HashSet<>();
 
-	private List<Long> chatList = new ArrayList<>();
+	private List<ChatDTO> chatList = new ArrayList<>();
 
-	private List<Long> chats = new ArrayList<>();
+	private List<ChatDTO> chats = new ArrayList<>();
 
-	private Set<Long> chatAdmins = new HashSet<>();
+	private Set<ChatDTO> chatAdmins = new HashSet<>();
 
 //--------------------
 	public void setRoles(Set<Role> roles) {

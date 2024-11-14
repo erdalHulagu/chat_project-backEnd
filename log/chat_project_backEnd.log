@@ -1902,3 +1902,28 @@ Identify and stop the process that's listening on port 8081 or configure this ap
 2024-11-12 23:46:51,242 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [com.sohbet.exception.BadRequestException: You don't have permission to change this data.]
 2024-11-12 23:46:51,247 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:Completed 400 BAD_REQUEST
 2024-11-12 23:47:38,417 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2024-11-12 23:50:02,973 INFO  [RMI TCP Connection(8)-127.0.0.1] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:Application shutdown requested.
+2024-11-12 23:50:02,976 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-11-12 23:50:02,977 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-11-12 23:50:02,977 INFO  [RMI TCP Connection(8)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopping...
+2024-11-12 23:50:02,977 INFO  [RMI TCP Connection(8)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2d30c17d]]
+2024-11-12 23:50:02,977 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2d30c17d]
+2024-11-12 23:50:02,977 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2d30c17d]
+2024-11-12 23:50:02,977 INFO  [RMI TCP Connection(8)-127.0.0.1] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler:Stopped.
+2024-11-12 23:50:02,977 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-11-12 23:50:02,978 DEBUG [RMI TCP Connection(8)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-11-12 23:50:02,982 INFO  [RMI TCP Connection(8)-127.0.0.1] org.apache.catalina.core.StandardService:Stopping service [Tomcat]
+2024-11-12 23:50:02,984 INFO  [RMI TCP Connection(8)-127.0.0.1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-11-12 23:50:02,989 WARN  [RMI TCP Connection(8)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
+2024-11-12 23:50:03,003 INFO  [RMI TCP Connection(8)-127.0.0.1] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-12 23:50:03,007 INFO  [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+2024-11-12 23:50:03,010 INFO  [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
