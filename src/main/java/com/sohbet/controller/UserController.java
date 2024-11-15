@@ -149,7 +149,7 @@ public class UserController {
 		
 		Set<User> setUsers=new HashSet<>(users);
 		
-		Set<UserDTO> userDTOs= userMapper.userToUserDTOSetList(setUsers);
+		Set<UserDTO> userDTOs= userMapper.mapUserSetListToUserDTOList(setUsers);
 		
 	
 	return new ResponseEntity<>(userDTOs,HttpStatus.ACCEPTED);

@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sohbet.request.AdminUserUpdateRequest;
 
 import jakarta.persistence.CollectionTable;
@@ -41,6 +43,7 @@ public class Chat {
     @Column(name = "is_group")
     private Boolean isGroup;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "createdBy")
     private User createdBy;

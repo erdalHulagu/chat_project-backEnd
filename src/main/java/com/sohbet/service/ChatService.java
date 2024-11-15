@@ -175,7 +175,7 @@ public class ChatService {
 	public List<ChatDTO> findAllUserChats(Long userId) {
 
 		List<Chat> chats = chatRepository.findChatByUserId(userId);
-		List<ChatDTO> chatDTOs = chatMapper.mapChatListToChatDTOList(chats);
+		List<ChatDTO> chatDTOs = chatMapper.chatListToChatDTOList(chats);
 
 		return chatDTOs;
 	}

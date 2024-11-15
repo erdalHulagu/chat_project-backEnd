@@ -29,13 +29,13 @@ public class ChatDTO {
 	private Long createdBy;
 
 	
-	private Set<Long> admins = new HashSet<>();
+	private Set<UserDTO> admins = new HashSet<>();
 
 	
-	private Set<Long> users = new HashSet<>();
+	private Set<UserDTO> users = new HashSet<>();
 
 	
-	private List<Long> messages = new ArrayList<>();
+	private List<MessageDTO> messages = new ArrayList<>();
 	
 	
 	private Set<String> chatImage = new HashSet<>();

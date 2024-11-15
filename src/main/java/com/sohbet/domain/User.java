@@ -27,6 +27,8 @@ import java.util.Set;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -108,6 +110,7 @@ public class User {
     @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
     private List<Chat> chatList;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Chat> chats = new ArrayList<>();
 
