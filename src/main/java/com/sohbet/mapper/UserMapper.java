@@ -17,62 +17,54 @@ import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { ChatMapper.class })
 public interface UserMapper {
 
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    // UserDTO -> User dönüşümü
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "myImages", ignore = true)
     @Mapping(target = "profileImage", ignore = true)
-    @Mapping(target = "chatList", ignore = true)
+    @Mapping(target = "chatList", ignore = true) // Avoid loops with chatList
     @Mapping(target = "chats", ignore = true)
     @Mapping(target = "chatAdmins", ignore = true)
     User userDTOToUser(UserDTO userDTO);
 
-    // User -> UserDTO dönüşümü
-
     @Mapping(source = "myImages", target = "myImages", qualifiedByName = "mapImages")
     @Mapping(source = "profileImage.id", target = "profileImage")
-    @Mapping(source = "chatList", target = "chatList", qualifiedByName = "mapChats")
+    @Mapping(source = "chatList", target = "chatList", qualifiedByName = "mapChatsToChatDTOList")
     @Mapping(target = "chats", ignore = true)
-    @Mapping(source = "chatAdmins", target = "chatAdmins", qualifiedByName = "mapChats")
+    @Mapping(source = "chatAdmins", target = "chatAdmins", qualifiedByName = "mapChatsToChatDTOSet")
     UserDTO userToUserDto(User user);
 
-    List<UserDTO> mapUserListToUserDTOList(List<User> chatList);
-    Set<UserDTO> mapUserSetListToUserDTOList(Set<User> chatList);
- // Role -> String dönüşümü
+    Set<UserDTO> mapUserListToUserDTOList(Set<User> userList);
+
     @Named("mapRolesToSetString")
     default Set<String> mapRolesToSetString(Set<Role> roles) {
-        return roles.stream().map(role -> role.getType().getName()).collect(Collectors.toSet());
+        return roles != null ? roles.stream().map(role -> role.getType().getName()).collect(Collectors.toSet()) : Set.of();
     }
 
     @Named("mapRolesToSetRole")
-    default Set<Role> mapRolesToSetRole(Set<String> roles) {
-        return roles.stream().map(roleName -> {
+    default Set<Role> mapRolesToSetRole(Set<String> roleNames) {
+        return roleNames != null ? roleNames.stream().map(roleName -> {
             Role role = new Role();
-            // Convert String role name to RoleType
-            role.setType(RoleType.valueOf(roleName)); // Ensure roleName matches enum values
+            role.setType(RoleType.valueOf(roleName));
             return role;
-        }).collect(Collectors.toSet());
+        }).collect(Collectors.toSet()) : Set.of();
     }
 
-
-    // Image -> String dönüşümü
     @Named("mapImages")
     default Set<String> mapImages(Set<Image> images) {
-        return images.stream().map(Image::getId).collect(Collectors.toSet());
+        return images != null ? images.stream().map(Image::getId).collect(Collectors.toSet()) : Set.of();
     }
 
-    // Chat -> ChatDTO dönüşümü için yardımcı metot
-    @Named("mapChats")
-    default List<ChatDTO> mapChats(List<Chat> chats) {
-        return chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toList());
+    @Named("mapChatsToChatDTOList")
+    default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
+        return chats != null ? chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toList()) : List.of();
     }
 
-    @Named("mapChats")
-    default Set<ChatDTO> mapChats(Set<Chat> chats) {
-        return chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toSet());
+    @Named("mapChatsToChatDTOSet")
+    default Set<ChatDTO> mapChatsToChatDTOSet(Set<Chat> chats) {
+        return chats != null ? chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toSet()) : Set.of();
     }
 }

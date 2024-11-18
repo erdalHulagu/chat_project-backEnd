@@ -107,6 +107,7 @@ public class User {
     @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Message> messages = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
     private List<Chat> chatList;
 

@@ -107,9 +107,9 @@ public class UserController {
 	@Transactional
 	@GetMapping("/admin")
 	@PreAuthorize( "hasRole('ADMIN') " )
-	public ResponseEntity<List<UserDTO>>getAllUser(){
+	public ResponseEntity<Set<UserDTO>>getAllUser(){
    
-		List<UserDTO> usersDTO = userService.getAllUsers();
+		Set<UserDTO> usersDTO = userService.getAllUsers();
 		
 
 		return ResponseEntity.ok(usersDTO);
@@ -149,7 +149,7 @@ public class UserController {
 		
 		Set<User> setUsers=new HashSet<>(users);
 		
-		Set<UserDTO> userDTOs= userMapper.mapUserSetListToUserDTOList(setUsers);
+		Set<UserDTO> userDTOs= userMapper.mapUserListToUserDTOList(setUsers);
 		
 	
 	return new ResponseEntity<>(userDTOs,HttpStatus.ACCEPTED);
