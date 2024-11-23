@@ -44,7 +44,7 @@ public class Chat {
     @Column(name = "is_group")
     private Boolean isGroup;
 
-    @JsonBackReference
+   
     @ManyToOne
     @JoinColumn(name = "createdBy")
     private User createdBy;
@@ -64,7 +64,7 @@ public class Chat {
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     
-    @JsonBackReference
+   
     private Set<User> users = new HashSet<>();
 
     @OneToMany(orphanRemoval = true, mappedBy = "chat", fetch = FetchType.LAZY) // LAZY yükleme ve orphanRemoval korundu

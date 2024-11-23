@@ -20,7 +20,7 @@ import com.sohbet.domain.Role;
 @Mapper(componentModel = "spring", uses = { ChatMapper.class })
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+    UserMapper USERMAPPER = Mappers.getMapper(UserMapper.class);
 
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "myImages", ignore = true)
@@ -33,7 +33,9 @@ public interface UserMapper {
     @Mapping(source = "myImages", target = "myImages", qualifiedByName = "mapImages")
     @Mapping(source = "profileImage.id", target = "profileImage")
     @Mapping(source = "chatList", target = "chatList", qualifiedByName = "mapChatsToChatDTOList")
-    @Mapping(target = "chats", ignore = true)
+//    @Mapping(target = "chatList", ignore = true)
+//    @Mapping(target = "chats", ignore = true)
+    @Mapping(target = "chats", source = "chats", qualifiedByName = "mapChatsToChatDTOList" )
     @Mapping(source = "chatAdmins", target = "chatAdmins", qualifiedByName = "mapChatsToChatDTOSet")
     UserDTO userToUserDto(User user);
 
@@ -60,11 +62,11 @@ public interface UserMapper {
 
     @Named("mapChatsToChatDTOList")
     default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
-        return chats != null ? chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toList()) : List.of();
+        return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
     }
 
     @Named("mapChatsToChatDTOSet")
     default Set<ChatDTO> mapChatsToChatDTOSet(Set<Chat> chats) {
-        return chats != null ? chats.stream().map(ChatMapper.INSTANCE::chatToChatDTO).collect(Collectors.toSet()) : Set.of();
+        return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toSet()) : Set.of();
     }
 }

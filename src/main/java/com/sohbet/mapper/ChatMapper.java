@@ -19,10 +19,11 @@ import com.sohbet.domain.User;
 @Mapper(componentModel = "spring")
 public interface ChatMapper {
 
-    ChatMapper INSTANCE = Mappers.getMapper(ChatMapper.class);
+    ChatMapper CHATMAPPER = Mappers.getMapper(ChatMapper.class);
 
     @Mapping(target = "createdBy", source = "createdBy.id")
-    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
+//    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
+    @Mapping(target = "admins", ignore = true)
     @Mapping(target = "users", ignore = true)
     @Mapping(target = "messages", ignore = true) // Avoid potential loops
     @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapImageIdToString")
@@ -30,7 +31,9 @@ public interface ChatMapper {
 
     @Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "mapLongToUser")
     @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUserDTOsToUsers")
-    @Mapping(target = "users", ignore = true) // Prevent cyclic reference
+//    @Mapping(target = "admins", ignore = true)
+//    @Mapping(target = "users", ignore = true) // Prevent cyclic reference
+    @Mapping(target = "users", source = "users", qualifiedByName = "mapUserDTOsToUsers")
     @Mapping(target = "messages", ignore = true)
     @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapStringToImage")
     Chat chatDTOToChat(ChatDTO chatDTO);
@@ -40,12 +43,12 @@ public interface ChatMapper {
     // Mapping helpers
     @Named("mapUsersToUserDTOs")
     static Set<UserDTO> mapUsersToUserDTOs(Set<User> users) {
-        return users != null ? users.stream().map(UserMapper.INSTANCE::userToUserDto).collect(Collectors.toSet()) : new HashSet<>();
+        return users != null ? users.stream().map(UserMapper.USERMAPPER::userToUserDto).collect(Collectors.toSet()) : new HashSet<>();
     }
 
     @Named("mapUserDTOsToUsers")
     static Set<User> mapUserDTOsToUsers(Set<UserDTO> userDTOs) {
-        return userDTOs != null ? userDTOs.stream().map(UserMapper.INSTANCE::userDTOToUser).collect(Collectors.toSet()) : new HashSet<>();
+        return userDTOs != null ? userDTOs.stream().map(UserMapper.USERMAPPER::userDTOToUser).collect(Collectors.toSet()) : new HashSet<>();
     }
 
     @Named("mapLongToUser")
