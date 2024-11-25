@@ -1,5 +1,6 @@
 package com.sohbet.service;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
@@ -177,19 +179,16 @@ public class UserService {
 
 		boolean emailExist = userRepository.existsByEmail(updateUserRequest.getEmail());
 
-		if (emailExist && !updateUserRequest.getEmail().equals(user.getEmail())) {
+		if (emailExist && (!updateUserRequest.getEmail().equals(user.getEmail()))) {
 			throw new ConflictException(
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
 		}
 
+		
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 
-		Set<Role> roles = new HashSet<>();
-		roles.add(role);
 
 		Image image = imageService.getImageById(imageId);
-		Set<Image> images = new HashSet<>();
-		images.add(image);
 
 		List<User> userList = userRepository.findUserByImageId(image.getId());
 
@@ -203,9 +202,9 @@ public class UserService {
 
 		}
 
-		user.setProfileImage(image);
-		user.setMyImages(images);
-		user.setRoles(roles);
+		user.setProfileImage(image.getId());
+		user.getMyImages().add(image);
+		user.getRoles().add(role);
 		user.setUpdateAt(LocalDateTime.now());
 		user.setFirstName(updateUserRequest.getFirstName());
 		user.setLastName(updateUserRequest.getLastName());
@@ -218,42 +217,91 @@ public class UserService {
 
 	// ---------------- register user----------------------
 	
+//	public void saveUser(RegisterRequest registerRequest,MultipartFile  profileImageUpload) throws IOException  {
+//		
+//		
+//	String imageId=	imageService.uploadImage(profileImageUpload);
+//	
+//	registerRequest.setProfileImageId(imageId);
+//	
+//		Image profileImage = imageService.getImageById(registerRequest.getProfileImageId());
+//		
+//		
+//		if (profileImage==null) {
+//			
+//			throw new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, registerRequest.getProfileImageId()));
+//			
+//		}
+//
+//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+//
+//		if (usedUserImage > 0) {
+//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//		}
+//
+//		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+//			throw new ConflictException(
+//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
+//		}
+//
+//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+//
+//		Set<Role> roles = new HashSet<>();
+//		roles.add(role);
+//
+//		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
+//		User user = new User();
+//		user.getMyImages().add(profileImage);
+//		user.setProfileImage(profileImage.getId());
+//		user.setCreateAt(LocalDateTime.now());
+//		user.setRoles(roles);
+//		user.setPassword(encodedPassword);
+//		user.setFirstName(registerRequest.getFirstName());
+//		user.setLastName(registerRequest.getLastName());
+//		user.setEmail(registerRequest.getEmail());
+//		user.setAddress(registerRequest.getAddress());
+//		user.setPostCode(registerRequest.getPostCode());
+//		user.setPhone(registerRequest.getPhone());
+//
+//		userRepository.save(user);
+//
+//	}
+//	
 	public void saveUser(String imageId,RegisterRequest registerRequest) {
-
+		
+		
+		// get image 
 		Image profileImage = imageService.getImageById(imageId);
-		
-		Set<Image>images=new HashSet<>();
-		
-		images.add(profileImage);
 		
 		if (profileImage==null) {
 			
 			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId);
 			
 		}
-
+		
 		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-
+		
 		if (usedUserImage > 0) {
 			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 		}
-
+		
+		//check email if exist
 		if (userRepository.existsByEmail(registerRequest.getEmail())) {
 			throw new ConflictException(
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
 		}
-
+		
+		//set user role
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-
-		Set<Role> roles = new HashSet<>();
-		roles.add(role);
-
+		
+		
+		
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 		User user = new User();
 		user.getMyImages().add(profileImage);
 		user.setProfileImage(profileImage);
 		user.setCreateAt(LocalDateTime.now());
-		user.setRoles(roles);
+		user.getRoles().add(role);
 		user.setPassword(encodedPassword);
 		user.setFirstName(registerRequest.getFirstName());
 		user.setLastName(registerRequest.getLastName());
@@ -261,9 +309,9 @@ public class UserService {
 		user.setAddress(registerRequest.getAddress());
 		user.setPostCode(registerRequest.getPostCode());
 		user.setPhone(registerRequest.getPhone());
-
+		
 		userRepository.save(user);
-
+		
 	}
 //--------------------search users by name-----------------
 	public List<User> searchUserByName(String firstName) {

@@ -1,7 +1,10 @@
 package com.sohbet.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +14,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTOresponse.LoginResponse;
 import com.sohbet.DTOresponse.Response;
@@ -20,7 +25,6 @@ import com.sohbet.request.LoginRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.jwt.JwtUtils;
 import com.sohbet.service.UserService;
-
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -56,6 +60,22 @@ public class UserJwtController {
 	   return new ResponseEntity<>(response,HttpStatus.CREATED);
   
    }
+   
+   
+//   @PostMapping(value="/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//   @Transactional
+//   public ResponseEntity<Response> registerUser( @RequestPart("user") @Valid RegisterRequest registerRequest,
+//	                                             @RequestPart("profileImage") MultipartFile profileImageUpload) throws IOException {
+// 
+//	   userService.saveUser(registerRequest,profileImageUpload);
+//	   
+//	   Response response = new Response();
+//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+//	   response.setSuccess(true);
+//	   
+//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
+//	   
+//   }
   
    
    // ------------------------login user-----------------------------

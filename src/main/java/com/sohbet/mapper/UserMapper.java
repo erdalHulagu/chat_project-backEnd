@@ -31,11 +31,9 @@ public interface UserMapper {
     User userDTOToUser(UserDTO userDTO);
 
     @Mapping(source = "myImages", target = "myImages", qualifiedByName = "mapImages")
-    @Mapping(source = "profileImage.id", target = "profileImage")
+    @Mapping(source = "profileImage", ignore = true)
     @Mapping(source = "chatList", target = "chatList", qualifiedByName = "mapChatsToChatDTOList")
-//    @Mapping(target = "chatList", ignore = true)
-//    @Mapping(target = "chats", ignore = true)
-    @Mapping(target = "chats", source = "chats", qualifiedByName = "mapChatsToChatDTOList" )
+    @Mapping(source = "chats", target= "chats", qualifiedByName = "mapChatsToChatDTOList" )
     @Mapping(source = "chatAdmins", target = "chatAdmins", qualifiedByName = "mapChatsToChatDTOSet")
     UserDTO userToUserDto(User user);
 

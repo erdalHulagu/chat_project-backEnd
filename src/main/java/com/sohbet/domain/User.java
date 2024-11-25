@@ -100,6 +100,9 @@ public class User {
     @JoinColumn(name = "user_images", nullable = true)
     private Set<Image> myImages;
 
+//    @Column(name = "profile_image_path", length = 255)
+//    private Image profileImage;
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
     private Image profileImage;
