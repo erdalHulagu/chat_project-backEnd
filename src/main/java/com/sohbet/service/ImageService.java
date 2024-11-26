@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,9 +36,7 @@ public class ImageService {
 
 	   private  ImageRepository imageRepository;
 
-	   
-
-		@Autowired
+	  
 		public ImageService(ImageRepository imageRepository,  FileDataRepository fileDataRepository) {
 
 			this.imageRepository = imageRepository;
@@ -84,7 +83,8 @@ public class ImageService {
   //--------------------------------------------------------------------------------------------
     
 	public Image getImageById(String id) {
-		Image image= imageRepository.findById(id).orElseThrow(()->
+		UUID uuid = UUID.fromString(id);
+		Image image= imageRepository.findById(uuid.toString()).orElseThrow(()->
                                 new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
 
 		return image;

@@ -33,7 +33,7 @@ public class ImageController {
 	// *********** Upload ********************
 	@Transactional
 	@PostMapping("/upload")
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<ImageSavedResponse> uploadImage(@RequestParam("imageFile") MultipartFile file)
 			throws IOException {
 
@@ -71,7 +71,7 @@ public class ImageController {
 	}
 
 	// *************************GetAllimages*******************
-	@GetMapping
+	@GetMapping("/all")
 //	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<List<ImageDTO>> getAllImages() {
 
@@ -83,7 +83,7 @@ public class ImageController {
 
 	// *****************Delete Images ******************
 	@Transactional
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 //			@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Response> deleteImageFile(@PathVariable String id) {
 		imageService.removeById(id);

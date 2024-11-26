@@ -37,7 +37,6 @@ import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
-
 import ch.qos.logback.core.joran.conditional.IfAction;
 import jakarta.transaction.Transactional;
 
@@ -272,6 +271,10 @@ public class UserService {
 		
 		// get image 
 		Image profileImage = imageService.getImageById(imageId);
+		Set<Image> imFiles = new HashSet<>();
+		imFiles.add(profileImage);
+
+		
 		
 		if (profileImage==null) {
 			
@@ -298,7 +301,7 @@ public class UserService {
 		
 		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 		User user = new User();
-		user.getMyImages().add(profileImage);
+		user.setMyImages(imFiles);
 		user.setProfileImage(profileImage);
 		user.setCreateAt(LocalDateTime.now());
 		user.getRoles().add(role);
