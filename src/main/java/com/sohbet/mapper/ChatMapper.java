@@ -22,7 +22,6 @@ public interface ChatMapper {
     ChatMapper CHATMAPPER = Mappers.getMapper(ChatMapper.class);
 
     @Mapping(target = "createdBy", source = "createdBy.id")
-//    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
     @Mapping(target = "admins", ignore = true)
     @Mapping(target = "users", ignore = true)
     @Mapping(target = "messages", ignore = true) // Avoid potential loops
@@ -31,8 +30,6 @@ public interface ChatMapper {
 
     @Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "mapLongToUser")
     @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUserDTOsToUsers")
-//    @Mapping(target = "admins", ignore = true)
-//    @Mapping(target = "users", ignore = true) // Prevent cyclic reference
     @Mapping(target = "users", source = "users", qualifiedByName = "mapUserDTOsToUsers")
     @Mapping(target = "messages", ignore = true)
     @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapStringToImage")

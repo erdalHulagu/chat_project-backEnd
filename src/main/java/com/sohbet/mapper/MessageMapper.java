@@ -11,29 +11,30 @@ import com.sohbet.domain.Chat;
 import com.sohbet.domain.Message;
 
 
-@Mapper(componentModel = "spring")
-public interface MessageMapper {
-	
-	@Mapping(target = "id", ignore = true)
-	@Mapping(target = "user.id" ,source = "userId")
-	@Mapping(target = "chat.id" ,source = "chatId")
-	Message messageDTOToMessage(MessageDTO messageDTO);
-	
-	List<MessageDTO> messageToMessageDTOList(List<Message> messages);
-	
-	@Mapping(target = "userId" ,source = "user.id")
-	@Mapping(target = "chatId" ,source = "chat.id")
-	MessageDTO messageToMessageDTO(Message message);
-	
-	
-	 @Named("getChatIdAsString")
-	    public static String getChatIdAsString(Chat chat) {
-	        return chat.getId().toString();
-	    }
-	 
-	 @Named("longToString")
-	    public static String longToString(Long value) {
-	        return value != null ? value.toString() : null;
-	    }
 
+
+@Mapper(componentModel = "spring", uses = {UserMapper.class, ChatMapper.class})
+public interface MessageMapper {
+
+    @Mapping(target = "id", ignore = true) // Yeni mesaj oluşturulurken ID yok sayılır
+    @Mapping(target = "user.id", source = "userId")
+    @Mapping(target = "chat.id", source = "chatId")
+    Message messageDTOToMessage(MessageDTO messageDTO);
+
+    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "chatId", source = "chat.id")
+    MessageDTO messageToMessageDTO(Message message);
+
+    List<MessageDTO> messageToMessageDTOList(List<Message> messages);
+
+//    @Named("getChatIdAsString")
+//    static String getChatIdAsString(Chat chat) {
+//        return chat != null && chat.getId() != null ? chat.getId().toString() : null;
+//    }
+//
+//    @Named("longToString")
+//    static String longToString(Long value) {
+//        return value != null ? value.toString() : null;
+//    }
 }
+

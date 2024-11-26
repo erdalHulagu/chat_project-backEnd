@@ -202,7 +202,7 @@ public class UserService {
 
 		}
 
-		user.setProfileImage(image.getId());
+		user.setProfileImage(image);
 		user.getMyImages().add(image);
 		user.getRoles().add(role);
 		user.setUpdateAt(LocalDateTime.now());

@@ -52,7 +52,7 @@ public class UserDTO {
 
 	private String profileImage;
 
-	private List<MessageDTO> messages = new ArrayList<>();
+	private List<Message> messages = new ArrayList<>();
 
 	private Set<String> myImages = new HashSet<>();
 
