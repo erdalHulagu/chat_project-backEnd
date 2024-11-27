@@ -1,9 +1,5 @@
 package com.sohbet.service;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,11 +12,8 @@ import com.sohbet.domain.Image;
 import com.sohbet.domain.ImageData;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
-import com.sohbet.imageUtils.ImageUtils;
 import com.sohbet.repository.FileDataRepository;
 import com.sohbet.repository.ImageRepository;
-
-import jakarta.transaction.Transactional;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,8 +76,7 @@ public class ImageService {
   //--------------------------------------------------------------------------------------------
     
 	public Image getImageById(String id) {
-		UUID uuid = UUID.fromString(id);
-		Image image= imageRepository.findById(uuid.toString()).orElseThrow(()->
+		Image image= imageRepository.findImageById(id).orElseThrow(()->
                                 new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
 
 		return image;

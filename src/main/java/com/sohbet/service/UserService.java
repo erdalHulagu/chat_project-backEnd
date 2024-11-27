@@ -17,12 +17,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.Image;
-import com.sohbet.domain.ImageData;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
@@ -33,11 +30,9 @@ import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
-import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
-import ch.qos.logback.core.joran.conditional.IfAction;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -271,38 +266,45 @@ public class UserService {
 		
 		// get image 
 		Image profileImage = imageService.getImageById(imageId);
-		Set<Image> imFiles = new HashSet<>();
-		imFiles.add(profileImage);
 
-		
-		
 		if (profileImage==null) {
 			
 			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId);
 			
 		}
+		Set<Image> imFiles = new HashSet<>();
+		imFiles.add(profileImage);
 		
-		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-		
-		if (usedUserImage > 0) {
-			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-		}
-		
-		//check email if exist
-		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-			throw new ConflictException(
-					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
-		}
 		
 		//set user role
-		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+				Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+				
+		//encode password		
+				String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 		
+				//check email if exist
+				if (userRepository.existsByEmail(registerRequest.getEmail())) {
+					throw new ConflictException(
+							String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
+				}
 		
-		
-		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
 		User user = new User();
 		user.setMyImages(imFiles);
 		user.setProfileImage(profileImage);
+		
+		
+//		
+//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+//		
+//		if (usedUserImage > 0) {
+//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//		}
+		
+		
+		
+		
+		
+		
 		user.setCreateAt(LocalDateTime.now());
 		user.getRoles().add(role);
 		user.setPassword(encodedPassword);

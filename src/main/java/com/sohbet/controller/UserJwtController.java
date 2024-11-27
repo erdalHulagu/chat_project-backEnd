@@ -1,12 +1,7 @@
 package com.sohbet.controller;
 
-import java.io.IOException;
-import java.util.UUID;
-
-import org.hibernate.validator.cfg.defs.UUIDDef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,9 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.sohbet.DTOresponse.LoginResponse;
 import com.sohbet.DTOresponse.Response;
@@ -49,10 +42,9 @@ public class UserJwtController {
    
    
    // --------------------register user---------------------
-  
-   @PostMapping("/register/{imageId}")
    @Transactional
-   public ResponseEntity<Response> registerUser(@PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
+   @PostMapping("/register/{imageId}")
+   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
 	   userService.saveUser(imageId,registerRequest);
 	   
 	   Response response = new Response();

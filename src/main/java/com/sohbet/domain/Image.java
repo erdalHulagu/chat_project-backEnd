@@ -5,8 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,8 +27,8 @@ import jakarta.persistence.Table;
 public class Image {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	
+	@GeneratedValue(generator = "uuid") // 12 karakterlik String bir id
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	
 	private String name;
@@ -34,6 +38,9 @@ public class Image {
 	private long length;
 	
 	private String filePath;
+	
+//	@OneToOne(mappedBy = "profileImage", fetch = FetchType.LAZY)
+//	private User user;
 	
 	@OneToOne(cascade=CascadeType.ALL)// ImageFile silinirse , imageData da silinsin
 	private ImageData imageData; 
