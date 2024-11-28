@@ -141,14 +141,24 @@ public class UserController {
 	
 	}
 
-	@GetMapping("/userImage")
-	public ResponseEntity<UserDTO> getUserByImageId(@Valid @RequestParam("imageId")String imageId) {
+//	@GetMapping("/userImage")
+//	public ResponseEntity<UserDTO> getUserByImageId(@Valid @RequestParam("imageId")String imageId) {
+//		
+//	UserDTO userDTO=userService.findUserByImageId(imageId);
+//	
+//	return ResponseEntity.ok(userDTO);
+//		
+//		
+//
+//	}
+	@GetMapping("/userImage/{imageId}")
+	public ResponseEntity<UserDTO> getUserByImageId(@Valid @PathVariable String imageId) {
 		
-	UserDTO userDTO=userService.findUserByImageId(imageId);
-	
-	return ResponseEntity.ok(userDTO);
+		UserDTO userDTO=userService.findUserByImageId(imageId);
+		
+		return ResponseEntity.ok(userDTO);
 		
 		
-
+		
 	}
 }

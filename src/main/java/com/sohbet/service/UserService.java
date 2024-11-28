@@ -329,9 +329,19 @@ public class UserService {
 		return ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
 		
 	}
-User user=	userRepository.findUserByImageId(image.getId()).orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE + imageId));
+//User user=	userRepository.findUserByImageId(image.getId()).orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE + imageId));
 
-	return	userMapper.userToUserDto(user);
+List<User> users	=userRepository.findAll();
+User user=new User();
+for (User u:users) {
+	if (u.getProfileImage().getId().equals(image.getId())) {
+		user=u;
+	}else {
+		ResourceNotFoundException(imageId);
+	}
+	
+}
+return	userMapper.userToUserDto(user);
 	}
 
 private UserDTO ResourceNotFoundException(String imageNotFoundMessage) {
