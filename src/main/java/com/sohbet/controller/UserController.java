@@ -1,5 +1,4 @@
- package com.sohbet.controller;
-
+package com.sohbet.controller;
 
 import java.util.HashSet;
 import java.util.List;
@@ -42,140 +41,114 @@ import com.sohbet.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	
+
 	@Autowired
-    private UserService userService;
-	
+	private UserService userService;
+
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	@Transactional
-	@GetMapping("/{id}")
+	@GetMapping("/{userId}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
 
-	@PreAuthorize( "hasRole('ADMIN')")
-	public ResponseEntity<UserDTO> getUser(@PathVariable  Long id){
-		
-		UserDTO userDTO=userService. getUserById(id);
-		
+		UserDTO userDTO = userService.getUserById(userId);
+
 		return ResponseEntity.ok(userDTO);
-	
-	}
 
+	}
 
 	@Transactional
 	@GetMapping("/profile")
 //	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
-	public ResponseEntity<UserDTO> findUserProfile(){
-		
-	UserDTO userDTO=	userService.findUserProfile();
-	 
-	return ResponseEntity.ok(userDTO);
+	public ResponseEntity<UserDTO> findUserProfile() {
+
+		UserDTO userDTO = userService.findUserProfile();
+
+		return ResponseEntity.ok(userDTO);
 
 	}
-	
+
 //	@GetMapping("/{query}")
 //	public ResponseEntity<List<UserDTO>> searchUser(@PathVariable ("query") String query ){
 //		List<UserDTO> usersDtos=userService.seraachUser(query);
 //		return ResponseEntity.ok(usersDtos);
 //	}
-	
-	@GetMapping
-	public ResponseEntity<Page<UserDTO>>getAllUser(
-			                                     @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-		                                         @RequestParam(value = "size", required = false, defaultValue = "20") int size,
-				                                 @RequestParam(value = "type", required = false, defaultValue = "ASC") Direction direction
-				){
-     Pageable pageable = PageRequest.of(page, size, Sort.by(direction));
 
-		
+	@GetMapping
+	public ResponseEntity<Page<UserDTO>> getAllUser(
+			@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+			@RequestParam(value = "size", required = false, defaultValue = "20") int size,
+			@RequestParam(value = "type", required = false, defaultValue = "ASC") Direction direction) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by(direction));
+
 		Page<UserDTO> users = userService.getAllByPage(pageable);
-		
 
 		return ResponseEntity.ok(users);
-		
-		
-		
-		
-		
+
 	}
-	
-	
+
 	@Transactional
 	@GetMapping("/admin")
-	@PreAuthorize( "hasRole('ADMIN') " )
-	public ResponseEntity<Set<UserDTO>>getAllUser(){
-   
+	@PreAuthorize("hasRole('ADMIN') ")
+	public ResponseEntity<Set<UserDTO>> getAllUser() {
+
 		Set<UserDTO> usersDTO = userService.getAllUsers();
-		
 
 		return ResponseEntity.ok(usersDTO);
-		
+
 	}
 
 	@PutMapping("/auth")
-	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
+	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
-			@Valid @RequestBody UpdateUserRequest updateUserRequest){
-		
-		 userService.updateUser(imageId,updateUserRequest);
-		 
-		 
-		 Response response = new Response();
-		 response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-		 return ResponseEntity.ok(response);
-		
+			@Valid @RequestBody UpdateUserRequest updateUserRequest) {
+
+		userService.updateUser(imageId, updateUserRequest);
+
+		Response response = new Response();
+		response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+		return ResponseEntity.ok(response);
+
 	}
-	
+
 	@DeleteMapping("{id}")
-	public ResponseEntity<Response> deleteUser(@PathVariable Long id){
-		
+	public ResponseEntity<Response> deleteUser(@PathVariable Long id) {
+
 		userService.deleteUserById(id);
 		Response response = new Response();
-		 response.setMessage(ResponseMessage.USER_DELETED);
-		
+		response.setMessage(ResponseMessage.USER_DELETED);
+
 		return ResponseEntity.ok(response);
-		
-		
+
+	}
+
+	@GetMapping("/search")
+	public ResponseEntity<Set<UserDTO>> searchUser(@Valid @RequestParam("firstName") String firstName) {
+
+		List<User> users = userService.searchUserByName(firstName);
+
+		Set<User> setUsers = new HashSet<>(users);
+
+		Set<UserDTO> userDTOs = userMapper.mapUserListToUserDTOList(setUsers);
+
+		return new ResponseEntity<>(userDTOs, HttpStatus.ACCEPTED);
+
 	
 	}
-	@GetMapping("/search")
-	public ResponseEntity<Set<UserDTO>>searchUser (@Valid @RequestParam ("firstName") String firstName){
+
+	@GetMapping("/userImage")
+	public ResponseEntity<UserDTO> getUserByImageId(@Valid @RequestParam("imageId")String imageId) {
 		
-		List<User>users=userService.searchUserByName(firstName);
-		
-		Set<User> setUsers=new HashSet<>(users);
-		
-		Set<UserDTO> userDTOs= userMapper.mapUserListToUserDTOList(setUsers);
-		
+	UserDTO userDTO=userService.findUserByImageId(imageId);
 	
-	return new ResponseEntity<>(userDTOs,HttpStatus.ACCEPTED);
-	
+	return ResponseEntity.ok(userDTO);
 		
 		
-		
-		}
-	
-	
+
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

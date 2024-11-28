@@ -3,6 +3,7 @@ package com.sohbet.service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -184,7 +185,7 @@ public class UserService {
 
 		Image image = imageService.getImageById(imageId);
 
-		List<User> userList = userRepository.findUserByImageId(image.getId());
+		List<User> userList = userRepository.findUseListByImageId(image.getId());
 
 		for (User u : userList) {
 			// bana gelen user Id si ile yukardakiList türündeki user Id leri eşit olmaları
@@ -318,7 +319,27 @@ public class UserService {
 		userRepository.save(user);
 		
 	}
-//--------------------search users by name-----------------
+	//--------------------search users by imageId-----------------
+	public UserDTO findUserByImageId( String imageId) {
+		
+	Image image=imageService.getImageById(imageId);
+	
+	if (image==null) {
+		
+		return ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
+		
+	}
+User user=	userRepository.findUserByImageId(image.getId()).orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE + imageId));
+
+	return	userMapper.userToUserDto(user);
+	}
+
+private UserDTO ResourceNotFoundException(String imageNotFoundMessage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//--------------------search users by name-----------------
 	public List<User> searchUserByName(String firstName) {
 
 		return userRepository.searchUsersByUserName(firstName);
@@ -361,6 +382,7 @@ public class UserService {
 		return roles;
 	}
 
+	
 
 	
 
