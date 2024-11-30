@@ -35,6 +35,7 @@ import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
 import jakarta.transaction.Transactional;
+
 @Service
 public class UserService {
 
@@ -203,64 +204,14 @@ public class UserService {
 
 	// ---------------- register user----------------------
 
-//	public void saveUser(RegisterRequest registerRequest,MultipartFile  profileImageUpload) throws IOException  {
-//		
-//		
-//	String imageId=	imageService.uploadImage(profileImageUpload);
-//	
-//	registerRequest.setProfileImageId(imageId);
-//	
-//		Image profileImage = imageService.getImageById(registerRequest.getProfileImageId());
-//		
-//		
-//		if (profileImage==null) {
-//			
-//			throw new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, registerRequest.getProfileImageId()));
-//			
-//		}
-//
-//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-//
-//		if (usedUserImage > 0) {
-//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//		}
-//
-//		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-//			throw new ConflictException(
-//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
-//		}
-//
-//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-//
-//		Set<Role> roles = new HashSet<>();
-//		roles.add(role);
-//
-//		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
-//		User user = new User();
-//		user.getMyImages().add(profileImage);
-//		user.setProfileImage(profileImage.getId());
-//		user.setCreateAt(LocalDateTime.now());
-//		user.setRoles(roles);
-//		user.setPassword(encodedPassword);
-//		user.setFirstName(registerRequest.getFirstName());
-//		user.setLastName(registerRequest.getLastName());
-//		user.setEmail(registerRequest.getEmail());
-//		user.setAddress(registerRequest.getAddress());
-//		user.setPostCode(registerRequest.getPostCode());
-//		user.setPhone(registerRequest.getPhone());
-//
-//		userRepository.save(user);
-//
-//	}
-//	
-	public void saveUser(String imageId, RegisterRequest registerRequest) {
+	public void saveUser(RegisterRequest registerRequest) {
 
-		// get image
-		Image profileImage = imageService.getImageById(imageId);
+		Image profileImage = imageService.getImageById(registerRequest.getProfileImageId());
 
 		if (profileImage == null) {
 
-			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId);
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,
+					registerRequest.getProfileImageId());
 
 		}
 		Set<Image> imFiles = new HashSet<>();
@@ -282,12 +233,12 @@ public class UserService {
 		user.setMyImages(imFiles);
 		user.setProfileImage(profileImage);
 
-//		
-//		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-//		
-//		if (usedUserImage > 0) {
-//			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//		}
+		// Integer usedUserImage =
+		// userRepository.findUserCountByImageId(profileImage.getId());
+		//
+		// if (usedUserImage > 0) {
+		// throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+		// }
 
 		user.setCreateAt(LocalDateTime.now());
 		user.getRoles().add(role);
@@ -303,6 +254,56 @@ public class UserService {
 
 	}
 
+//	public void saveUser(String imageId, RegisterRequest registerRequest) {
+//
+//		// get image
+//		Image profileImage = imageService.getImageById(imageId);
+//
+//		if (profileImage == null) {
+//
+//			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId);
+//
+//		}
+//		Set<Image> imFiles = new HashSet<>();
+//		imFiles.add(profileImage);
+//
+//		// set user role
+//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+//
+//		// encode password
+//		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
+//
+//		// check email if exist
+//		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+//			throw new ConflictException(
+//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
+//		}
+//
+//		User user = new User();
+//		user.setMyImages(imFiles);
+//		user.setProfileImage(profileImage);
+//
+//		
+//	//	Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
+//	//	
+//	//	if (usedUserImage > 0) {
+//	//		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//	//	}
+//
+//		user.setCreateAt(LocalDateTime.now());
+//		user.getRoles().add(role);
+//		user.setPassword(encodedPassword);
+//		user.setFirstName(registerRequest.getFirstName());
+//		user.setLastName(registerRequest.getLastName());
+//		user.setEmail(registerRequest.getEmail());
+//		user.setAddress(registerRequest.getAddress());
+//		user.setPostCode(registerRequest.getPostCode());
+//		user.setPhone(registerRequest.getPhone());
+//
+//		userRepository.save(user);
+//
+//	}
+//
 	// --------------------search users by imageId-----------------
 	public UserDTO findUserByImageId(String imageId) {
 
@@ -313,7 +314,6 @@ public class UserService {
 			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
 
 		}
-//User user=	userRepository.findUserByImageId(image.getId()).orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE + imageId));
 
 		List<User> users = userRepository.findAll();
 		User user = new User();
@@ -321,14 +321,12 @@ public class UserService {
 			if (u.getProfileImage().getId().equals(image.getId())) {
 				user = u;
 			} else {
-			throw new	ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId));
+				throw new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId));
 			}
 
 		}
 		return userMapper.userToUserDto(user);
 	}
-
-	
 
 	// --------------------search users by name-----------------
 	public List<User> searchUserByName(String firstName) {

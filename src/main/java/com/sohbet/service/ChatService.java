@@ -198,7 +198,7 @@ public class ChatService {
 		Chat chat = new Chat();
 		chat.setIsGroup(true);
 		chat.setChatProfileImage(groupProfileImage); //set groupProfileImage
-		chat.
+		
 		// Chat adı ve kullanıcıları ayarla
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);

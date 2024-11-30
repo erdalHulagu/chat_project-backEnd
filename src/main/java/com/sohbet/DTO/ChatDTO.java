@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.mapstruct.Named;
 
+import com.sohbet.domain.Image;
 import com.sohbet.domain.Message;
 import com.sohbet.domain.User;
 
@@ -39,8 +40,9 @@ public class ChatDTO {
 	
 	
 	private Set<String> chatImage = new HashSet<>();
+	
 
-
+	private String chatProfileImage;
 
 
 }

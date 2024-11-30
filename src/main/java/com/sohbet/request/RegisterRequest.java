@@ -45,6 +45,8 @@ public class RegisterRequest {
 	private String postCode;
 
 	private boolean builtIn;
+	
+	private String profileImageId;
 
 	private Set<String> roles = new HashSet<>();
 

@@ -42,34 +42,33 @@ public class UserJwtController {
    
    
    // --------------------register user---------------------
-   @Transactional
-   @PostMapping("/register/{imageId}")
-   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
-	   userService.saveUser(imageId,registerRequest);
-	   
-	   Response response = new Response();
-	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
-	   response.setSuccess(true);
-	   
-	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-  
-   }
-   
-   
-//   @PostMapping(value="/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 //   @Transactional
-//   public ResponseEntity<Response> registerUser( @RequestPart("user") @Valid RegisterRequest registerRequest,
-//	                                             @RequestPart("profileImage") MultipartFile profileImageUpload) throws IOException {
-// 
-//	   userService.saveUser(registerRequest,profileImageUpload);
+//   @PostMapping("/register/{imageId}")
+//   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
+//	   userService.saveUser(imageId,registerRequest);
 //	   
 //	   Response response = new Response();
 //	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
 //	   response.setSuccess(true);
 //	   
 //	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-//	   
+//  
 //   }
+   
+   
+   @PostMapping("/register")
+   @Transactional
+   public ResponseEntity<Response> registerUser( @Valid @RequestBody RegisterRequest registerRequest) {
+ 
+	   userService.saveUser(registerRequest);
+	   
+	   Response response = new Response();
+	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+	   response.setSuccess(true);
+	   
+	   return new ResponseEntity<>(response,HttpStatus.CREATED);
+	   
+   }
   
    
    // ------------------------login user-----------------------------

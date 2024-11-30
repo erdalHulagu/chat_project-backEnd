@@ -58,9 +58,13 @@ public interface UserMapper {
         return images != null ? images.stream().map(Image::getId).collect(Collectors.toSet()) : Set.of();
     }
 
+//    @Named("mapChatsToChatDTOList")
+//    default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
+//        return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
+//    }
     @Named("mapChatsToChatDTOList")
     default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
-        return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
+    	return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
     }
 
     @Named("mapChatsToChatDTOSet")
