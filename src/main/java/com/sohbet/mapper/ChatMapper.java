@@ -24,6 +24,8 @@ public interface ChatMapper {
     @Mapping(target = "createdBy", source = "createdBy.id")
     @Mapping(target = "admins", ignore = true)
     @Mapping(target = "users", ignore = true)
+//    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
+//    @Mapping(target = "users", source = "users", qualifiedByName = "mapUsersToUserDTOs")
     @Mapping(target = "messages", ignore = true) // Avoid potential loops
     @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapImageIdToString")
     ChatDTO chatToChatDTO(Chat chat);

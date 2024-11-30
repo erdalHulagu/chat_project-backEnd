@@ -35,7 +35,6 @@ import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
 import jakarta.transaction.Transactional;
-
 @Service
 public class UserService {
 
@@ -43,7 +42,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private  ImageService imageService;
+	private ImageService imageService;
 
 	@Autowired
 	private UserMapper userMapper;
@@ -53,14 +52,11 @@ public class UserService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private ImageRepository imageRepository;
 
-	
-	
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-
 
 	// ------------------ get current user ------------------------
 	public User getCurrentUser() {
@@ -68,7 +64,7 @@ public class UserService {
 		String email = SecurityUtils.getCurrentUserLogin()
 				.orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.PRINCIPAL_FOUND_MESSAGE));
 		User user = getUserByEmail(email);
-	
+
 		return user;
 
 	}
@@ -82,20 +78,19 @@ public class UserService {
 	}
 
 // -------------------  get userDTO by id --------------
-	
+
 	@Transactional
-	public UserDTO getUserById( Long id) {
+	public UserDTO getUserById(Long id) {
 
 		User user = getUser(id);
 
-		
 		UserDTO userDTO = userMapper.userToUserDto(user);
 		return userDTO;
 
 	}
 
 // -------------------  get user by id --------------
-	
+
 	public User getUser(Long id) {
 
 		User user = userRepository.findUserById(id).orElseThrow(
@@ -108,7 +103,6 @@ public class UserService {
 	public UserDTO findUserProfile() {
 
 		User user = getCurrentUser();
-		
 
 		if (user == null) {
 			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));
@@ -125,20 +119,19 @@ public class UserService {
 		return getUserDTOPage(userPage);
 
 	}
-	//--------------------get all users pageable------------------------
+
+	// --------------------get all users pageable------------------------
 	private Page<UserDTO> getUserDTOPage(Page<User> userPage) {
 
 		Page<UserDTO> usersDTOPage = userPage.map(new Function<User, UserDTO>() {
-			
-			
-			
+
 			@Override
 			public UserDTO apply(User user) {
 
 				return userMapper.userToUserDto(user);
 			}
 		});
-		
+
 		if (usersDTOPage.isEmpty()) {
 			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_LIST_IS_EMPTY));
 		}
@@ -179,9 +172,7 @@ public class UserService {
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
 		}
 
-		
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-
 
 		Image image = imageService.getImageById(imageId);
 
@@ -211,7 +202,7 @@ public class UserService {
 	}
 
 	// ---------------- register user----------------------
-	
+
 //	public void saveUser(RegisterRequest registerRequest,MultipartFile  profileImageUpload) throws IOException  {
 //		
 //		
@@ -262,50 +253,42 @@ public class UserService {
 //
 //	}
 //	
-	public void saveUser(String imageId,RegisterRequest registerRequest) {
-		
-		
-		// get image 
+	public void saveUser(String imageId, RegisterRequest registerRequest) {
+
+		// get image
 		Image profileImage = imageService.getImageById(imageId);
 
-		if (profileImage==null) {
-			
-			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId);
-			
+		if (profileImage == null) {
+
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId);
+
 		}
 		Set<Image> imFiles = new HashSet<>();
 		imFiles.add(profileImage);
-		
-		
-		//set user role
-				Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-				
-		//encode password		
-				String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
-		
-				//check email if exist
-				if (userRepository.existsByEmail(registerRequest.getEmail())) {
-					throw new ConflictException(
-							String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
-				}
-		
+
+		// set user role
+		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+
+		// encode password
+		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
+
+		// check email if exist
+		if (userRepository.existsByEmail(registerRequest.getEmail())) {
+			throw new ConflictException(
+					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
+		}
+
 		User user = new User();
 		user.setMyImages(imFiles);
 		user.setProfileImage(profileImage);
-		
-		
+
 //		
 //		Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
 //		
 //		if (usedUserImage > 0) {
 //			throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 //		}
-		
-		
-		
-		
-		
-		
+
 		user.setCreateAt(LocalDateTime.now());
 		user.getRoles().add(role);
 		user.setPassword(encodedPassword);
@@ -315,41 +298,39 @@ public class UserService {
 		user.setAddress(registerRequest.getAddress());
 		user.setPostCode(registerRequest.getPostCode());
 		user.setPhone(registerRequest.getPhone());
-		
+
 		userRepository.save(user);
-		
+
 	}
-	//--------------------search users by imageId-----------------
-	public UserDTO findUserByImageId( String imageId) {
-		
-	Image image=imageService.getImageById(imageId);
-	
-	if (image==null) {
-		
-		return ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
-		
-	}
+
+	// --------------------search users by imageId-----------------
+	public UserDTO findUserByImageId(String imageId) {
+
+		Image image = imageService.getImageById(imageId);
+
+		if (image == null) {
+
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
+
+		}
 //User user=	userRepository.findUserByImageId(image.getId()).orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE + imageId));
 
-List<User> users	=userRepository.findAll();
-User user=new User();
-for (User u:users) {
-	if (u.getProfileImage().getId().equals(image.getId())) {
-		user=u;
-	}else {
-		ResourceNotFoundException(imageId);
+		List<User> users = userRepository.findAll();
+		User user = new User();
+		for (User u : users) {
+			if (u.getProfileImage().getId().equals(image.getId())) {
+				user = u;
+			} else {
+			throw new	ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,imageId));
+			}
+
+		}
+		return userMapper.userToUserDto(user);
 	}
+
 	
-}
-return	userMapper.userToUserDto(user);
-	}
 
-private UserDTO ResourceNotFoundException(String imageNotFoundMessage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	//--------------------search users by name-----------------
+	// --------------------search users by name-----------------
 	public List<User> searchUserByName(String firstName) {
 
 		return userRepository.searchUsersByUserName(firstName);
@@ -391,9 +372,5 @@ private UserDTO ResourceNotFoundException(String imageNotFoundMessage) {
 
 		return roles;
 	}
-
-	
-
-	
 
 }

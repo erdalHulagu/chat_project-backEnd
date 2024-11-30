@@ -182,38 +182,50 @@ public class ChatService {
 
 	// ---------------- createGroup chat------------------ BUNA KADAR CONTROLLER
 	// YAPILDI
-	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
+	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user ) {
 
-	    // Yeni bir Chat nesnesi oluştur
-	    Chat chat = new Chat();
-	    chat.setIsGroup(true);
+		//got profile imaga
+		Image groupProfileImage = imageService.getImageById(groupChatRequest.getChatImage());
 
-	    // Chat adı ve kullanıcıları ayarla
-	    chat.setChatName(groupChatRequest.getChatName());
-	    chat.setCreatedBy(user);
-	    chat.getAdmins().add(user);
+		if (groupProfileImage == null) {
+			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE);
 
-	    // Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
-	    List<String> groupUsers = new ArrayList<>();
-	    for (Long userId : groupChatRequest.getUserIds()) {
-	        UserDTO userDTO = userService.getUserById(userId);
-	        User usr = userMapper.userDTOToUser(userDTO);
-	        
-	        chat.getUsers().add(usr); // Chat nesnesine kullanıcıyı ekle
-	        groupUsers.add(usr.getFirstName()); // Kullanıcı adını listeye ekle
-	    }
+		}
+		
+		
 
-	    // Eğer chatName boş ise, kullanıcı adlarıyla dinamik bir isim oluştur
-	    if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
-	        String joinedFirstNames = String.join("-", groupUsers);
-	        chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames + ") groupChat");
-	    }
+		// Yeni bir Chat nesnesi oluştur
+		Chat chat = new Chat();
+		chat.setIsGroup(true);
+		chat.setChatProfileImage(groupProfileImage); //set groupProfileImage
+		chat.
+		// Chat adı ve kullanıcıları ayarla
+		chat.setChatName(groupChatRequest.getChatName());
+		chat.setCreatedBy(user);
+		chat.getAdmins().add(user);
 
-	    // Chat nesnesini kaydet
-	    Chat savedChat = chatRepository.save(chat);
+		// Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
+		List<String> groupUsers = new ArrayList<>();
+		for (Long userId : groupChatRequest.getUserIds()) {
+			UserDTO userDTO = userService.getUserById(userId);
+			User usr = userMapper.userDTOToUser(userDTO);
 
-	    // DTO'ya dönüştür ve geri döndür
-	    return chatMapper.chatToChatDTO(savedChat);
+			chat.getUsers().add(usr); // Chat nesnesine kullanıcıyı ekle
+			groupUsers.add(usr.getFirstName()); // Kullanıcı adını listeye ekle
+			
+		}
+
+		// Eğer chatName boş ise, kullanıcı adlarıyla dinamik bir isim oluştur
+		if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
+			String joinedFirstNames = String.join("-", groupUsers);
+			chat.setChatName(user.getFirstName() + "-(" + joinedFirstNames + ") groupChat");
+		}
+
+		// Chat nesnesini kaydet
+		Chat savedChat = chatRepository.save(chat);
+
+		// DTO'ya dönüştür ve geri döndür
+		return chatMapper.chatToChatDTO(savedChat);
 	}
 
 	// -----------add user to group-------------------
@@ -236,57 +248,51 @@ public class ChatService {
 	}
 
 	// -------------- add admin to group ------------------
-	
+
 	public ChatDTO addAdminToChat(Long chatId, Long userId, User user) {
-	    ChatDTO chatDTO = findChatById(chatId);
-	    Chat chat = chatMapper.chatDTOToChat(chatDTO);
+		ChatDTO chatDTO = findChatById(chatId);
+		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
-	    UserDTO userDTO = userService.getUserById(userId);
-	    User userAddAdmin = userMapper.userDTOToUser(userDTO);
+		UserDTO userDTO = userService.getUserById(userId);
+		User userAddAdmin = userMapper.userDTOToUser(userDTO);
 
- 
-	    if(!chat.getAdmins().contains(user)) {
-	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-	        
-	    } else if(chat.getAdmins().contains(userAddAdmin)) {
-	        throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
-	        
-	    } 
-	    else if (!chat.getUsers().contains(userAddAdmin)) {  // Check if userAddAdmin is in users
-	        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-	    }
+		if (!chat.getAdmins().contains(user)) {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 
-	    // Add the new admin and save the chat
-	    chat.getAdmins().add(userAddAdmin);
-	    Chat savedChat = chatRepository.save(chat);
-	    return chatMapper.chatToChatDTO(savedChat);
+		} else if (chat.getAdmins().contains(userAddAdmin)) {
+			throw new BadRequestException(ErrorMessage.THIS_USER_ALREADY_ADMIN);
+
+		} else if (!chat.getUsers().contains(userAddAdmin)) { // Check if userAddAdmin is in users
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+		}
+
+		// Add the new admin and save the chat
+		chat.getAdmins().add(userAddAdmin);
+		Chat savedChat = chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(savedChat);
 	}
-	
+
 	public ChatDTO removeAdminFromGroup(Long chatId, Long userId, User user) {
-		ChatDTO chatDTO =findChatById(chatId);
-		Chat chat=chatMapper.chatDTOToChat(chatDTO);
-		
-	UserDTO userDTO	=userService.getUserById(userId);
-	User user2= userMapper.userDTOToUser(userDTO);
-	
-	
+		ChatDTO chatDTO = findChatById(chatId);
+		Chat chat = chatMapper.chatDTOToChat(chatDTO);
 
+		UserDTO userDTO = userService.getUserById(userId);
+		User user2 = userMapper.userDTOToUser(userDTO);
 
-    if(!chat.getAdmins().contains(user)) {
-        throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
-        
-    } else if(!chat.getAdmins().contains(user2)) {
-        throw new BadRequestException(String.format(ErrorMessage.THIS_USER_IS_NOT_ADMIN, user.getFirstName()));
-        
-    } else
-    	if (!chat.getUsers().contains(user2)) {  // Check if userAddAdmin is in users
-    		chat.getUsers().add(user2);
-        
-    }
-    chat.getAdmins().remove(user2);
-   Chat savedChat=chatRepository.save(chat);
-   return chatMapper.chatToChatDTO(savedChat);
-		
+		if (!chat.getAdmins().contains(user)) {
+			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+
+		} else if (!chat.getAdmins().contains(user2)) {
+			throw new BadRequestException(String.format(ErrorMessage.THIS_USER_IS_NOT_ADMIN, user.getFirstName()));
+
+		} else if (!chat.getUsers().contains(user2)) { // Check if userAddAdmin is in users
+			chat.getUsers().add(user2);
+
+		}
+		chat.getAdmins().remove(user2);
+		Chat savedChat = chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(savedChat);
+
 	}
 
 	// -----------------rename group---------
@@ -312,8 +318,6 @@ public class ChatService {
 
 		UserDTO userDTO = userService.getUserById(userId);
 		User userToRemove = userMapper.userDTOToUser(userDTO);
-
-
 
 		// Admin veya aynı kullanıcı değilse çıkarabilir
 		if (chat.getAdmins().contains(user) || user.equals(userToRemove)) {
@@ -362,6 +366,14 @@ public class ChatService {
 		return chat;
 	}
 
+	public Set<Image> mapStringToImage(Set<String> ids) {
+	    Set<Image> images = new HashSet<>();
+	    for (String id : ids) {
+	        Image image = new Image();
+	        image.setId(id); 
+	        images.add(image);
+	    }
+	    return images;
+	}
 	
-
 }

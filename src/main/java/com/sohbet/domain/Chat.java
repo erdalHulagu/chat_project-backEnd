@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sohbet.request.AdminUserUpdateRequest;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -21,6 +22,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -70,6 +72,11 @@ public class Chat {
     @OneToMany(orphanRemoval = true, mappedBy = "chat", fetch = FetchType.LAZY) // LAZY yükleme ve orphanRemoval korundu
     private List<Message> messages = new ArrayList<>();
 
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "chat_profile_image_id", referencedColumnName = "id", nullable = true)
+    private Image chatProfileImage;
+    
     @ElementCollection // Image yerine sadece görüntü URL'lerini saklamak için basit bir koleksiyon
     @CollectionTable(name = "chat_images", joinColumns = @JoinColumn(name = "chat_id"))
     @Column(name = "image_url")
