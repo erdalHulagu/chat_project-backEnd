@@ -53,6 +53,15 @@ public class ChatController {
 		
 	}
 	
+	@GetMapping("/new")
+	public ResponseEntity<ChatDTO> getUserNameOfChat(@PathVariable Long chatId){
+		
+
+	ChatDTO chatDTO=chatService.getUserNameOfChat(chatId);
+	
+	return 	 ResponseEntity.ok(chatDTO);
+	}
+	
 	
 	@Transactional
 	@GetMapping("/{id}")

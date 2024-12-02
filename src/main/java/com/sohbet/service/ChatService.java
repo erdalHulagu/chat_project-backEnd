@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -25,6 +26,7 @@ import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.ChatMapper;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.repository.ChatRepository;
+import com.sohbet.repository.UserRepository;
 import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.GroupChatRequest;
 
@@ -47,6 +49,9 @@ public class ChatService {
 
 	@Autowired
 	private ImageService imageService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 //	
 //	public ChatService(ChatRepository chatRepository, UserService userService, UserMapper userMapper,
@@ -374,6 +379,15 @@ public class ChatService {
 	        images.add(image);
 	    }
 	    return images;
+	}
+
+	public ChatDTO getUserNameOfChat( Long chatId ) {
+		
+		ChatDTO  chatDTO=chatRepository.getChatById(chatId);
+
+		
+		
+		return chatDTO;
 	}
 	
 }
