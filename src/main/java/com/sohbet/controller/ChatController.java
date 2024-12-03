@@ -1,5 +1,6 @@
 package com.sohbet.controller;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,14 +54,6 @@ public class ChatController {
 		
 	}
 	
-	@GetMapping("/new")
-	public ResponseEntity<ChatDTO> getUserNameOfChat(@PathVariable Long chatId){
-		
-
-	ChatDTO chatDTO=chatService.getUserNameOfChat(chatId);
-	
-	return 	 ResponseEntity.ok(chatDTO);
-	}
 	
 	
 	@Transactional
@@ -110,6 +103,23 @@ public class ChatController {
 	
 	}
 	
+	@GetMapping("/chatUsers/{chatId}")
+	public ResponseEntity <Set<UserDTO>> getChatUsersByChatId( @PathVariable Long chatId){
+		
+		Set<UserDTO>userDTO =chatService.getChatUsersByChatId(chatId);
+		
+		return ResponseEntity.ok(userDTO);		
+		
+	}
+	
+	
+
+
+
+	
+
+
+
 	@Transactional
 	@PatchMapping("/{chatId}/addAdmin/{userId}")
 	public ResponseEntity<ChatDTO> addAdminToGroup( @PathVariable Long chatId, @PathVariable Long userId){
@@ -131,7 +141,7 @@ public class ChatController {
 	return ResponseEntity.ok(chatDTO);
 		
 	}
-	
+	//--------- BURAYA KADAR KONTROL EDILDI
 	@Transactional
 	@PatchMapping("/{chatId}/remove/{userId}")
 	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId, @PathVariable Long userId){

@@ -39,7 +39,7 @@ public interface ChatRepository extends JpaRepository<Chat, Long>{
 
 
 
-	public ChatDTO getChatById(Long chatId);
+	
     
 
 	

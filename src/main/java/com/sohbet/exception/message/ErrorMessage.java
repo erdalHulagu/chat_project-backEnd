@@ -25,7 +25,7 @@ public class ErrorMessage {
 
 	public final static String IMAGE_USED_MESSAGE = "ImageFile is used by other car";
 	
-	public final static String NO_PERMISSION_MESSAGE = "You don't have permission to change this data.";
+	public final static String NO_PERMISSION_MESSAGE = "%s , You don't have permission to change this data.";
 	public final static String CANT_CANCEL_MESSAGE = "You can't cancel this %s .";
 	public static final String PRINCIPAL_FOUND_MESSAGE = "User not found";
 
@@ -44,6 +44,7 @@ public class ErrorMessage {
 	public static final String MESSAGE_NOT_FOUND = "Message not found with id %s";
 	public static final String THIS_USER_ALREADY_ADMIN = "%s is already admin ";
 	public static final String THIS_USER_IS_NOT_ADMIN = "%s is not an admin";
+	public static final String THIS_USER_ALREADY_EXIST ="%s is already exist" ;
 	
 	
 	
