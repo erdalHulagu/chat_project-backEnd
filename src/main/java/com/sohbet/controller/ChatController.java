@@ -1,4 +1,5 @@
 package com.sohbet.controller;
+
 import java.util.List;
 import java.util.Set;
 
@@ -34,141 +35,137 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/chats")
 public class ChatController {
-	
+
 	@Autowired
 	private ChatService chatService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private UserMapper userMapper;
-	@Autowired 
+	@Autowired
 	private ChatMapper chatMapper;
-	
 
 	// ------------ create single chat -------------------
 	@Transactional
 	@PostMapping("/single")
 //	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_ANONYMOUS')")
-	public ResponseEntity<ChatDTO> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest){
-		
-		ChatDTO chatDto=chatService.createChat(singleChatRequest.getUserId());
-		
+	public ResponseEntity<ChatDTO> createSingleChat(@Valid @RequestBody SingleChatRequest singleChatRequest) {
+
+		ChatDTO chatDto = chatService.createChat(singleChatRequest.getUserId());
+
 		return ResponseEntity.ok(chatDto);
-		
+
 	}
-	
-	
+
 	// ------------ get chat by using id -------------------
 	@Transactional
 	@GetMapping("/{id}")
-	public ResponseEntity<ChatDTO>getChatById(@PathVariable Long id){
-		
-		Chat chat=chatService.findChatById(id);
-		
-		ChatDTO chatDto=chatMapper.chatToChatDTO(chat);
-	return ResponseEntity.ok(chatDto);
-		
+	public ResponseEntity<ChatDTO> getChatById(@PathVariable Long id) {
+
+		Chat chat = chatService.findChatById(id);
+
+		ChatDTO chatDto = chatMapper.chatToChatDTO(chat);
+		return ResponseEntity.ok(chatDto);
+
 	}
-	
+
 	// ------------ get all chats -------------------
 	@Transactional
 	@GetMapping("/allChats")
-	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId(){
-		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);	
-		
-	List<ChatDTO>chatDTOs=	chatService.findAllUserChats(user.getId());
-	
-	return ResponseEntity.ok(chatDTOs);
-		
+	public ResponseEntity<List<ChatDTO>> getAlluserChatsWithUserId() {
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+
+		List<ChatDTO> chatDTOs = chatService.findAllUserChats(user.getId());
+
+		return ResponseEntity.ok(chatDTOs);
+
 	}
-	
+
 	// ------------ create group chat -------------------
 	@Transactional
 	@PostMapping("/group")
-	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest){
-		
-		UserDTO userDTO=userService.findUserProfile();
-		User currentUser=userMapper.userDTOToUser(userDTO);
-		
-	ChatDTO chatDto=	chatService.createGroup(groupChatRequest,currentUser);
-		
+	public ResponseEntity<ChatDTO> createGroupChat(@RequestBody GroupChatRequest groupChatRequest) {
+
+		UserDTO userDTO = userService.findUserProfile();
+		User currentUser = userMapper.userDTOToUser(userDTO);
+
+		ChatDTO chatDto = chatService.createGroup(groupChatRequest, currentUser);
+
 		return ResponseEntity.ok(chatDto);
-		
+
 	}
-	
-	
+
 	// ------------ add user to group chat -------------------
 	@Transactional
 	@PatchMapping("/{chatId}/add/{userId}")
-	public ResponseEntity<ChatDTO>addUserToGroup(@PathVariable Long chatId,@PathVariable Long userId){
-		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);	
-		
-	ChatDTO chatDTOs=	chatService.addUserToGroup(userId,chatId,user);
-	
-	return ResponseEntity.ok(chatDTOs);
-	
+	public ResponseEntity<ChatDTO> addUserToGroup(@PathVariable Long chatId, @PathVariable Long userId) {
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+
+		ChatDTO chatDTOs = chatService.addUserToGroup(userId, chatId, user);
+
+		return ResponseEntity.ok(chatDTOs);
+
 	}
-	
+
 	// ------------ get user by chat id -------------------
 	@GetMapping("/chatUsers/{chatId}")
-	public ResponseEntity <Set<UserDTO>> getChatUsersByChatId( @PathVariable Long chatId){
-		
-		Set<UserDTO>userDTO =chatService.getChatUsersByChatId(chatId);
-		
-		return ResponseEntity.ok(userDTO);		
+	public ResponseEntity<Set<UserDTO>> getChatUsersByChatId(@PathVariable Long chatId) {
+
+		Set<UserDTO> userDTO = chatService.getChatUsersByChatId(chatId);
+
+		return ResponseEntity.ok(userDTO);
 	}
-	
+
 	// ------------ add admin to group -------------------
 	@Transactional
 	@PatchMapping("/{chatId}/addAdmin/{userId}")
-	public ResponseEntity<ChatDTO> addAdminToGroup( @PathVariable Long chatId, @PathVariable Long userId){
-		
-		UserDTO userDTO=userService .findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);
-		ChatDTO chatDTOs=chatService.addAdminToGroupChat(chatId,userId,user);
-		
+	public ResponseEntity<ChatDTO> addAdminToGroup(@PathVariable Long chatId, @PathVariable Long userId) {
+
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+		ChatDTO chatDTOs = chatService.addAdminToGroupChat(chatId, userId, user);
+
 		return ResponseEntity.ok(chatDTOs);
 	}
-	
-	
-	// ------------ remove admin from group -------------------
+
+	// ------------ remove admin from  -------------------
 	@Transactional
 	@PatchMapping("/{chatId}/removeAdmin/{userId}")
-	public ResponseEntity<ChatDTO>removeAdminFromGroup(@PathVariable Long chatId,@PathVariable Long userId){
-		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);	
-		ChatDTO chatDTO=chatService.removeAdminFromGroup(chatId,userId,user);
-		
-	return ResponseEntity.ok(chatDTO);
-		
+	public ResponseEntity<ChatDTO> removeAdminFromGroup(@PathVariable Long chatId, @PathVariable Long userId) {
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+		ChatDTO chatDTO = chatService.removeAdminFromGroup(chatId, userId, user);
+
+		return ResponseEntity.ok(chatDTO);
+
 	}
-	//--------- BURAYA KADAR KONTROL EDILDI
+
+	// --------- BURAYA KADAR KONTROL EDILDI
 	// ------------ remove user from group -------------------
 	@Transactional
 	@PatchMapping("/{chatId}/remove/{userId}")
-	public ResponseEntity<ChatDTO>removeUserFromGroup(@PathVariable Long chatId, @PathVariable Long userId){
-		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);	
-		
-	ChatDTO chatDTOs=	chatService.removeUserFromGroup(userId,chatId,user);
-	
-	return ResponseEntity.ok(chatDTOs);
-		
+	public ResponseEntity<ChatDTO> removeUserFromGroup(@PathVariable Long chatId, @PathVariable Long userId) {
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+
+		ChatDTO chatDTOs = chatService.removeUserFromGroup(userId, chatId, user);
+
+		return ResponseEntity.ok(chatDTOs);
+
 	}
-	
+
 	// ------------ remove user from group -------------------
 	@Transactional
 	@DeleteMapping("/delete/{chatId}")
-	public ResponseEntity<ChatResponse>removeUserFromGroup(@PathVariable Long chatId){
-		UserDTO userDTO=userService.findUserProfile();
-		User user=userMapper.userDTOToUser(userDTO);	
-		chatService.deleteChat(chatId,user.getId());
-		
-		
-		ChatResponse chatResponse=new ChatResponse(ResponseMessage.CHAT_DELETED_MESSAGE,true);
-	return ResponseEntity.ok(chatResponse);
-		
+	public ResponseEntity<ChatResponse> removeUserFromGroup(@PathVariable Long chatId) {
+		UserDTO userDTO = userService.findUserProfile();
+		User user = userMapper.userDTOToUser(userDTO);
+		chatService.deleteChat(chatId, user.getId());
+
+		ChatResponse chatResponse = new ChatResponse(ResponseMessage.CHAT_DELETED_MESSAGE, true);
+		return ResponseEntity.ok(chatResponse);
+
 	}
 }

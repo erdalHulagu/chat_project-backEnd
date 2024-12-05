@@ -23,25 +23,22 @@ import com.sohbet.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
-
 @RestController
 public class UserJwtController {
-	
-	
+
 //	private static final Logger logger = LoggerFactory.getLogger(UserJwtController.class);
 	// Bu classımda sadece login ve register işlemleri yapılacak
-	
-   @Autowired
-   private UserService userService;
-   
-   @Autowired
-   private  AuthenticationManager authenticationManager;
-   
-   @Autowired
-   private JwtUtils  jwtUtils;
-   
-   
-   // --------------------register user---------------------
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private JwtUtils jwtUtils;
+
+	// --------------------register user---------------------
 //   @Transactional
 //   @PostMapping("/register/{imageId}")
 //   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
@@ -54,73 +51,39 @@ public class UserJwtController {
 //	   return new ResponseEntity<>(response,HttpStatus.CREATED);
 //  
 //   }
-   
-   
-   @PostMapping("/register")
-   @Transactional
-   public ResponseEntity<Response> registerUser( @Valid @RequestBody RegisterRequest registerRequest) {
- 
-	   userService.saveUser(registerRequest);
-	   
-	   Response response = new Response();
-	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
-	   response.setSuccess(true);
-	   
-	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-	   
-   }
-  
-   
-   // ------------------------login user-----------------------------
-   @PostMapping("/login")
-   @Transactional
-   public ResponseEntity<LoginResponse> authenticate( @Validated @RequestBody LoginRequest loginRequest    )  {
-	   
-	   UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
-			     new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
-	   
-	    Authentication authentication  =  authenticationManager.
-	    		       authenticate(usernamePasswordAuthenticationToken);
-	    
-	 UserDetails userDetails  =  (UserDetails) authentication.getPrincipal() ;// mevcut giriş yapan kullanıcıyı getirir
-	    
-	   String jwtToken =   jwtUtils.generateJwtToken(userDetails);
-	   
-	   LoginResponse loginResponse = new LoginResponse(jwtToken);
-	   
-	   return new ResponseEntity<>(loginResponse,HttpStatus.OK);
-	   
-   }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+
+	@PostMapping("/register")
+	@Transactional
+	public ResponseEntity<Response> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+
+		userService.saveUser(registerRequest);
+
+		Response response = new Response();
+		response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
+		response.setSuccess(true);
+
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+	}
+
+	// ------------------------login user-----------------------------
+	@PostMapping("/login")
+	@Transactional
+	public ResponseEntity<LoginResponse> authenticate(@Validated @RequestBody LoginRequest loginRequest) {
+
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+				loginRequest.getEmail(), loginRequest.getPassword());
+
+		Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();// mevcut giriş yapan kullanıcıyı getirir
+
+		String jwtToken = jwtUtils.generateJwtToken(userDetails);
+
+		LoginResponse loginResponse = new LoginResponse(jwtToken);
+
+		return new ResponseEntity<>(loginResponse, HttpStatus.OK);
+
+	}
+
 }
-
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-

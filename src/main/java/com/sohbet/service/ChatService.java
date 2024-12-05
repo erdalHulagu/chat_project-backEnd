@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.sohbet.DTO.ChatDTO;
 import com.sohbet.DTO.UserDTO;
+import com.sohbet.DTOresponse.Response;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
@@ -93,7 +94,6 @@ public class ChatService {
 		chatRepository.save(chat);
 		return chatMapper.chatToChatDTO(chat);
 
-
 	}
 
 	// -------------------- create chat with user-----------------
@@ -131,7 +131,7 @@ public class ChatService {
 	}
 
 	// ----------- find chat by id---------------
-	
+
 	public Chat findChatById(Long id) {
 		Chat chat = chatRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, id)));
@@ -153,8 +153,8 @@ public class ChatService {
 		return chatDTOs;
 	}
 
-	// ---------------- createGroup chat------------------ 
-	
+	// ---------------- createGroup chat------------------
+
 	public ChatDTO createGroup(GroupChatRequest groupChatRequest, User user) {
 
 		// got profile imaga
@@ -171,21 +171,20 @@ public class ChatService {
 		chat.setChatProfileImage(groupProfileImage); // set groupProfileImage
 
 		// Chat adı ve kullanıcıları ayarla
-		
+
 		chat.setChatName(groupChatRequest.getChatName());
 		chat.setCreatedBy(user);
 		chat.getAdmins().add(user);
 		chat.getUsers().add(user);
 
 		// Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
-		
+
 		List<String> groupUsers = new ArrayList<>();
-		
-		
+
 		for (Long userId : groupChatRequest.getUserIds()) {
 			User usr = userService.getUserById(userId);
 
-			chat.getUsers().add(usr); 
+			chat.getUsers().add(usr);
 			groupUsers.add(usr.getFirstName());
 
 		}
@@ -235,7 +234,7 @@ public class ChatService {
 		User userAddAdmin = userService.getUserById(userId);
 
 		boolean isAdmin = chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(user.getId()));
-	boolean	IsUserAddAdmin=chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(userAddAdmin.getId()));
+		boolean IsUserAddAdmin = chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(userAddAdmin.getId()));
 
 		if (!isAdmin) {
 			throw new BadRequestException(String.format(ErrorMessage.NO_PERMISSION_MESSAGE, user.getFirstName()));
@@ -244,7 +243,7 @@ public class ChatService {
 			throw new BadRequestException(
 					String.format(ErrorMessage.THIS_USER_ALREADY_ADMIN, userAddAdmin.getFirstName()));
 
-		} else if (!chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(userAddAdmin.getId()))) { 
+		} else if (!chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(userAddAdmin.getId()))) {
 			chat.getUsers().add(userAddAdmin);
 		}
 
@@ -293,7 +292,8 @@ public class ChatService {
 		throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 	}
 
-	// ----------------------remove group  chat------------- BURAYA KADAR KONTROL EDILDI
+	// ----------------------remove group chat------------- BURAYA KADAR KONTROL
+	// EDILDI
 	public ChatDTO removeUserFromGroup(Long userId, Long chatId, User user) {
 
 		Chat chat = findChatById(chatId);
@@ -301,10 +301,10 @@ public class ChatService {
 		User userToRemove = userService.getUserById(userId);
 
 		// Admin veya aynı kullanıcı değilse çıkarabilir
-		
+
 		boolean isAdmin = chat.getAdmins().stream().anyMatch(usr -> usr.getId().equals(user.getId()));
-		
-		if (isAdmin || user.getId().equals(userToRemove.getId())) {
+
+		if (!isAdmin || user.getId().equals(userToRemove.getId())) {
 			// Eğer admin değilse ve aynı kullanıcı ise hata fırlatılır
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 
@@ -321,6 +321,13 @@ public class ChatService {
 		Chat chat = findChatById(chatId);
 		chatRepository.deleteById(chat.getId());
 
+	}
+
+	// ----------- get user by chat id-----------------
+	public Set<UserDTO> getChatUsersByChatId(Long chatId) {
+		Chat chat = chatRepository.findById(chatId).orElseThrow(
+				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, chatId)));
+		return chat.getAdmins().stream().map(userMapper::userToUserDto).collect(Collectors.toSet());
 	}
 
 	// ---------- CLASS METHODS BELOWE------------------------
@@ -343,8 +350,6 @@ public class ChatService {
 		return imageFile;
 	}
 
-	
-
 	public Set<Image> mapStringToImage(Set<String> ids) {
 		Set<Image> images = new HashSet<>();
 		for (String id : ids) {
@@ -353,12 +358,6 @@ public class ChatService {
 			images.add(image);
 		}
 		return images;
-	}
-
-	public Set<UserDTO> getChatUsersByChatId(Long chatId) {
-		Chat chat = chatRepository.findById(chatId).orElseThrow(
-				() -> new ResourceNotFoundException(String.format(ErrorMessage.CHAT_NOT_FOUND_MESSAGE, chatId)));
-		return chat.getAdmins().stream().map(userMapper::userToUserDto).collect(Collectors.toSet());
 	}
 
 }

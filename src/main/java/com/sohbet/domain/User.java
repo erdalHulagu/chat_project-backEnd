@@ -1,4 +1,5 @@
 package com.sohbet.domain;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -38,89 +39,83 @@ import lombok.Setter;
 @Table(name = "t_user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @NotNull
-    @Column(name = "name", nullable = false, length = 100)
-    private String firstName;
+	@NotNull
+	@Column(name = "name", nullable = false, length = 100)
+	private String firstName;
 
-    @NotNull
-    @Column(name = "surname", nullable = false, length = 100)
-    private String lastName;
+	@NotNull
+	@Column(name = "surname", nullable = false, length = 100)
+	private String lastName;
 
-    @NotNull
-    @Email(message = "Please provide a valid email")
-    @Size(min = 10, max = 80)
-    @Column(length = 80, nullable = false, unique = true, updatable = false)
-    private String email;
+	@NotNull
+	@Email(message = "Please provide a valid email")
+	@Size(min = 10, max = 80)
+	@Column(length = 80, nullable = false, unique = true, updatable = false)
+	private String email;
 
-    @NotNull
-    @Size(min = 10, max = 80)
-    @Column(length = 80, nullable = false, unique = true)
-    private String password;
+	@NotNull
+	@Size(min = 10, max = 80)
+	@Column(length = 80, nullable = false, unique = true)
+	private String password;
 
-    @Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", message = "Please provide a valid phone number")
-    @Column(nullable = true)
-    private String phone;
+	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", message = "Please provide a valid phone number")
+	@Column(nullable = true)
+	private String phone;
 
-    @Size(max = 100)
-    @NotNull(message = "Please provide your address")
-    @Column(length = 80, nullable = false, unique = true)
-    private String address;
+	@Size(max = 100)
+	@NotNull(message = "Please provide your address")
+	@Column(length = 80, nullable = false, unique = true)
+	private String address;
 
-    @Size(max = 20)
-    @NotNull(message = "Please provide a post code")
-    @Column(length = 10, nullable = true)
-    private String postCode;
+	@Size(max = 20)
+	@NotNull(message = "Please provide a post code")
+	@Column(length = 10, nullable = true)
+	private String postCode;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    @Column(name = "update_at", length = 30, nullable = false, updatable = true)
-    @UpdateTimestamp
-    private LocalDateTime updateAt;
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	@Column(name = "update_at", length = 30, nullable = false, updatable = true)
+	@UpdateTimestamp
+	private LocalDateTime updateAt;
 
-    @Column(name = "create_at", length = 30, updatable = false, nullable = true)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime createAt;
+	@Column(name = "create_at", length = 30, updatable = false, nullable = true)
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+	private LocalDateTime createAt;
 
-    private Boolean builtIn;
+	private Boolean builtIn;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "t_user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_images", nullable = true)
-    private Set<Image> myImages;
+	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_images", nullable = true)
+	private Set<Image> myImages;
 
 //    @Column(name = "profile_image_path", length = 255)
 //    private Image profileImage;
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
-    private Image profileImage;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Message> messages = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
+	private Image profileImage;
 
-    
-    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
-    private List<Chat> chatList;
+	@OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Message> messages = new ArrayList<>();
 
-    
-    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
-    private List<Chat> chats = new ArrayList<>();
+	@OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
+	private List<Chat> chatList;
 
-    @ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
-    private Set<Chat> chatAdmins = new HashSet<>();
+	@ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+	private List<Chat> chats = new ArrayList<>();
 
-    
+	@ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
+	private Set<Chat> chatAdmins = new HashSet<>();
+
 //    private List<User> friends = new ArrayList<>();
 
-   
 //    
 //    @Override
 //    public boolean equals(Object objct) {

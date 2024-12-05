@@ -51,7 +51,6 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 
-	
 	// ------------ get user by user id -------------------
 	@Transactional
 	@GetMapping("/{userId}")
@@ -59,11 +58,12 @@ public class UserController {
 	public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
 
 		User user = userService.getUserById(userId);
-		
-		UserDTO userDTO=userMapper.userToUserDto(user);
+
+		UserDTO userDTO = userMapper.userToUserDto(user);
 		return ResponseEntity.ok(userDTO);
 
 	}
+
 	// ------------ get user profile -------------------
 	@Transactional
 	@GetMapping("/profile")
@@ -94,6 +94,7 @@ public class UserController {
 		return ResponseEntity.ok(users);
 
 	}
+
 	// ------------ get all user -------------------
 	@Transactional
 	@GetMapping("/admin")
@@ -105,6 +106,7 @@ public class UserController {
 		return ResponseEntity.ok(usersDTO);
 
 	}
+
 	// ------------ up date user -------------------
 	@PutMapping("/auth")
 	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
@@ -118,6 +120,7 @@ public class UserController {
 		return ResponseEntity.ok(response);
 
 	}
+
 	// ------------ delete user by id -------------------
 	@DeleteMapping("{id}")
 	public ResponseEntity<Response> deleteUser(@PathVariable Long id) {
@@ -129,6 +132,7 @@ public class UserController {
 		return ResponseEntity.ok(response);
 
 	}
+
 	// ------------ search user -------------------
 	@GetMapping("/search")
 	public ResponseEntity<Set<UserDTO>> searchUser(@Valid @RequestParam("firstName") String firstName) {
@@ -141,18 +145,15 @@ public class UserController {
 
 		return new ResponseEntity<>(userDTOs, HttpStatus.ACCEPTED);
 
-	
 	}
 
 	// ------------ get user by image Id -------------------
 	@GetMapping("/userImage/{imageId}")
 	public ResponseEntity<UserDTO> getUserByImageId(@Valid @PathVariable String imageId) {
-		
-		UserDTO userDTO=userService.findUserByImageId(imageId);
-		
+
+		UserDTO userDTO = userService.findUserByImageId(imageId);
+
 		return ResponseEntity.ok(userDTO);
-		
-		
-		
+
 	}
 }

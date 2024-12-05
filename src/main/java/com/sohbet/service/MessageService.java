@@ -23,96 +23,91 @@ import com.sohbet.request.SendMessageRequest;
 
 @Service
 public class MessageService {
-	
-	
+
 	private MessageRepository messageRepository;
-	
+
 	private UserService userService;
-	
+
 	private ChatService chatService;
-	
+
 	private UserMapper userMapper;
-	
+
 	private ChatMapper chatMapper;
-	
+
 	private MessageMapper messageMapper;
-	
-	
+
 	@Autowired
-	public MessageService(UserService userService,ChatService chatService
-			                                     ,MessageRepository messageRepository
-			                                     ,ChatMapper chatMapper
-			                                     ,UserMapper userMapper
-			                                     ,MessageMapper messageMapper) {
-		
-		this.userService=userService;
-		this.chatService=chatService;
-		this.messageRepository=messageRepository;
-		this.chatMapper=chatMapper;
-		this.userMapper=userMapper;
-		this.messageMapper=messageMapper;
-		
+	public MessageService(UserService userService, ChatService chatService, MessageRepository messageRepository,
+			ChatMapper chatMapper, UserMapper userMapper, MessageMapper messageMapper) {
+
+		this.userService = userService;
+		this.chatService = chatService;
+		this.messageRepository = messageRepository;
+		this.chatMapper = chatMapper;
+		this.userMapper = userMapper;
+		this.messageMapper = messageMapper;
+
 	}
-	
-	//--------------- send message------------------------
+
+	// --------------- send message------------------------
 	public MessageDTO sendMessage(SendMessageRequest sendMessageRequest) {
-		
-		User user =userService.getUserById(sendMessageRequest.getUserId());
-		
-		Chat chat=chatService.findChatById(sendMessageRequest.getUserId());
-		
-		Message message= new Message();		
+
+		User user = userService.getUserById(sendMessageRequest.getUserId());
+
+		Chat chat = chatService.findChatById(sendMessageRequest.getUserId());
+
+		Message message = new Message();
 		message.setUser(user);
 		message.setChat(chat);
 		message.setContent(sendMessageRequest.getContent());
 		message.setCreateAt(LocalDateTime.now());
-		
-		MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
+
+		MessageDTO messageDTO = messageMapper.messageToMessageDTO(message);
 		return messageDTO;
-		
+
 	}
-	 
-	//--------------------get chats messages--------------------
-	public List<MessageDTO> getChatMessages(Long chatId,User user){
-		
+
+	// --------------------get chats messages--------------------
+	public List<MessageDTO> getChatMessages(Long chatId, User user) {
+
 		Chat chat = chatService.findChatById(chatId);
-		
-		if(!chat.getUsers().contains(user)) {
+
+		if (!chat.getUsers().contains(user)) {
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 		}
-		List<Message> messages=messageRepository.findByChatId(chat.getId());
-		
-	    List<MessageDTO>messageDTOs=messageMapper.messageToMessageDTOList(messages);
-			
+		List<Message> messages = messageRepository.findByChatId(chat.getId());
+
+		List<MessageDTO> messageDTOs = messageMapper.messageToMessageDTOList(messages);
+
 		return messageDTOs;
 	}
-	
-	//------------------ get message by id-----------------
-	
+
+	// ------------------ get message by id-----------------
+
 	public MessageDTO findMessageById(Long id) {
-	Message message=getMessageById(id);
-	
-	MessageDTO messageDTO=messageMapper.messageToMessageDTO(message);
-	return messageDTO;
+		Message message = getMessageById(id);
+
+		MessageDTO messageDTO = messageMapper.messageToMessageDTO(message);
+		return messageDTO;
 	}
-	
-	//------------------ delete message-----------------
+
+	// ------------------ delete message-----------------
 	public void deleteMessage(Long id, User user) {
-		Message message=getMessageById(id);
-		
-		
+		Message message = getMessageById(id);
+
 		if (message.getUser().getId().equals(user.getId())) {
 			messageRepository.delete(message);
 		}
-		
+
 		throw new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE, id));
-		}
-	
-	//--------- method find by id-------------
-	public Message  getMessageById(Long id) {
-		Message message=	messageRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessage.MESSAGE_NOT_FOUND, id)));
-		
+	}
+
+	// --------- method find by id-------------
+	public Message getMessageById(Long id) {
+		Message message = messageRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessage.MESSAGE_NOT_FOUND, id)));
+
 		return message;
-		}
-	
+	}
+
 }

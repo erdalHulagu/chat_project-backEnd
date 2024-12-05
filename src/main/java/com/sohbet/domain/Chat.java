@@ -1,4 +1,5 @@
 package com.sohbet.domain;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,52 +37,38 @@ import lombok.NoArgsConstructor;
 
 public class Chat {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    @Column(length = 100, nullable = true)
-    private String chatName;
+	@Column(length = 100, nullable = true)
+	private String chatName;
 
-    @Column(name = "is_group")
-    private Boolean isGroup;
+	@Column(name = "is_group")
+	private Boolean isGroup;
 
-   
-    @ManyToOne
-    @JoinColumn(name = "createdBy")
-    private User createdBy;
+	@ManyToOne
+	@JoinColumn(name = "createdBy")
+	private User createdBy;
 
-    @ManyToMany(fetch = FetchType.LAZY) // LAZY yükleme ile performans iyileştirme
-    @JoinTable(
-        name = "chat_admins",
-        joinColumns = @JoinColumn(name = "chat_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> admins = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY) // LAZY yükleme ile performans iyileştirme
+	@JoinTable(name = "chat_admins", joinColumns = @JoinColumn(name = "chat_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private Set<User> admins = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY) // LAZY yükleme ile performans iyileştirme
-    @JoinTable(
-        name = "chat_users",
-        joinColumns = @JoinColumn(name = "chat_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    
-   
-    private Set<User> users = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY) // LAZY yükleme ile performans iyileştirme
+	@JoinTable(name = "chat_users", joinColumns = @JoinColumn(name = "chat_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 
-    @OneToMany(orphanRemoval = true, mappedBy = "chat", fetch = FetchType.LAZY) // LAZY yükleme ve orphanRemoval korundu
-    private List<Message> messages = new ArrayList<>();
+	private Set<User> users = new HashSet<>();
 
+	@OneToMany(orphanRemoval = true, mappedBy = "chat", fetch = FetchType.LAZY) // LAZY yükleme ve orphanRemoval korundu
+	private List<Message> messages = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat_profile_image_id", referencedColumnName = "id", nullable = true)
-    private Image chatProfileImage;
-    
-    @ElementCollection // Image yerine sadece görüntü URL'lerini saklamak için basit bir koleksiyon
-    @CollectionTable(name = "chat_images", joinColumns = @JoinColumn(name = "chat_id"))
-    @Column(name = "image_url")
-    private Set<Image> chatImage = new HashSet<>();
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "chat_profile_image_id", referencedColumnName = "id", nullable = true)
+	private Image chatProfileImage;
+
+	@ElementCollection // Image yerine sadece görüntü URL'lerini saklamak için basit bir koleksiyon
+	@CollectionTable(name = "chat_images", joinColumns = @JoinColumn(name = "chat_id"))
+	@Column(name = "image_url")
+	private Set<Image> chatImage = new HashSet<>();
 }
-	
-
-	

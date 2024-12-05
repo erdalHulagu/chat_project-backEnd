@@ -254,7 +254,6 @@ public class UserService {
 
 	}
 
-
 	// --------------------search users by imageId-----------------
 	public UserDTO findUserByImageId(String imageId) {
 

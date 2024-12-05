@@ -77,7 +77,7 @@ public interface ChatMapper {
 		image.setId(imageId);
 		return image;
 	}
-	
+
 //    @Named("mapImageToString")
 //    static String mapStringToImage(Image image) {
 //    	if (image == null) return null;
