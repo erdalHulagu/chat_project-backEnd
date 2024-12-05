@@ -51,17 +51,20 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 
+	
+	// ------------ get user by user id -------------------
 	@Transactional
 	@GetMapping("/{userId}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
 
-		UserDTO userDTO = userService.getUserById(userId);
-
+		User user = userService.getUserById(userId);
+		
+		UserDTO userDTO=userMapper.userToUserDto(user);
 		return ResponseEntity.ok(userDTO);
 
 	}
-
+	// ------------ get user profile -------------------
 	@Transactional
 	@GetMapping("/profile")
 //	@PreAuthorize( "hasRole('ADMIN') or hasRole('ANONYMOUS')")
@@ -91,7 +94,7 @@ public class UserController {
 		return ResponseEntity.ok(users);
 
 	}
-
+	// ------------ get all user -------------------
 	@Transactional
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN') ")
@@ -102,7 +105,7 @@ public class UserController {
 		return ResponseEntity.ok(usersDTO);
 
 	}
-
+	// ------------ up date user -------------------
 	@PutMapping("/auth")
 	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
 	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
@@ -115,7 +118,7 @@ public class UserController {
 		return ResponseEntity.ok(response);
 
 	}
-
+	// ------------ delete user by id -------------------
 	@DeleteMapping("{id}")
 	public ResponseEntity<Response> deleteUser(@PathVariable Long id) {
 
@@ -126,7 +129,7 @@ public class UserController {
 		return ResponseEntity.ok(response);
 
 	}
-
+	// ------------ search user -------------------
 	@GetMapping("/search")
 	public ResponseEntity<Set<UserDTO>> searchUser(@Valid @RequestParam("firstName") String firstName) {
 
@@ -141,16 +144,7 @@ public class UserController {
 	
 	}
 
-//	@GetMapping("/userImage")
-//	public ResponseEntity<UserDTO> getUserByImageId(@Valid @RequestParam("imageId")String imageId) {
-//		
-//	UserDTO userDTO=userService.findUserByImageId(imageId);
-//	
-//	return ResponseEntity.ok(userDTO);
-//		
-//		
-//
-//	}
+	// ------------ get user by image Id -------------------
 	@GetMapping("/userImage/{imageId}")
 	public ResponseEntity<UserDTO> getUserByImageId(@Valid @PathVariable String imageId) {
 		

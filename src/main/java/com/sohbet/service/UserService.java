@@ -81,9 +81,9 @@ public class UserService {
 // -------------------  get userDTO by id --------------
 
 	@Transactional
-	public UserDTO getUserById(Long id) {
+	public UserDTO getUser(Long id) {
 
-		User user = getUser(id);
+		User user = getUserById(id);
 
 		UserDTO userDTO = userMapper.userToUserDto(user);
 		return userDTO;
@@ -92,7 +92,7 @@ public class UserService {
 
 // -------------------  get user by id --------------
 
-	public User getUser(Long id) {
+	public User getUserById(Long id) {
 
 		User user = userRepository.findUserById(id).orElseThrow(
 				() -> new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, id)));
@@ -254,56 +254,7 @@ public class UserService {
 
 	}
 
-//	public void saveUser(String imageId, RegisterRequest registerRequest) {
-//
-//		// get image
-//		Image profileImage = imageService.getImageById(imageId);
-//
-//		if (profileImage == null) {
-//
-//			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, imageId);
-//
-//		}
-//		Set<Image> imFiles = new HashSet<>();
-//		imFiles.add(profileImage);
-//
-//		// set user role
-//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
-//
-//		// encode password
-//		String encodedPassword = passwordEncoder.encode(registerRequest.getPassword());
-//
-//		// check email if exist
-//		if (userRepository.existsByEmail(registerRequest.getEmail())) {
-//			throw new ConflictException(
-//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, registerRequest.getEmail()));
-//		}
-//
-//		User user = new User();
-//		user.setMyImages(imFiles);
-//		user.setProfileImage(profileImage);
-//
-//		
-//	//	Integer usedUserImage = userRepository.findUserCountByImageId(profileImage.getId());
-//	//	
-//	//	if (usedUserImage > 0) {
-//	//		throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//	//	}
-//
-//		user.setCreateAt(LocalDateTime.now());
-//		user.getRoles().add(role);
-//		user.setPassword(encodedPassword);
-//		user.setFirstName(registerRequest.getFirstName());
-//		user.setLastName(registerRequest.getLastName());
-//		user.setEmail(registerRequest.getEmail());
-//		user.setAddress(registerRequest.getAddress());
-//		user.setPostCode(registerRequest.getPostCode());
-//		user.setPhone(registerRequest.getPhone());
-//
-//		userRepository.save(user);
-//
-//	}
-//
+
 	// --------------------search users by imageId-----------------
 	public UserDTO findUserByImageId(String imageId) {
 
