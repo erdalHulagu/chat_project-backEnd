@@ -36,7 +36,7 @@ public class ChatDTO {
 	private Set<UserDTO> users = new HashSet<>();
 
 	
-	private List<Message> messages = new ArrayList<>();
+	private List<MessageDTO> messages = new ArrayList<>();
 	
 	
 	private Set<String> chatImage = new HashSet<>();

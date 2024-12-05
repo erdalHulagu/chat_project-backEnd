@@ -25,6 +25,7 @@ import com.sohbet.service.MessageService;
 import com.sohbet.service.UserService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/messages")
@@ -55,19 +56,32 @@ public class MessageController {
 //	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<MessageDTO>sendMessage(@RequestBody SendMessageRequest sendMessageRequest){
+	public ResponseEntity<Message>sendMessage(@Valid @RequestBody SendMessageRequest sendMessageRequest){
 
-		UserDTO userDTO=userService.findUserProfile();
-		User user =userMapper.userDTOToUser(userDTO);
-		sendMessageRequest.setUserId(user.getId());
+		User user=userService.getCurrentUser();
+//		User user =userMapper.userDTOToUser(userDTO);
 		
-	MessageDTO messageDTO=	messageService.sendMessage(sendMessageRequest);
+		
+	Message message=	messageService.sendMessage(user,sendMessageRequest);
 	
-	return ResponseEntity.ok(messageDTO);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+	return ResponseEntity.ok(message);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
 		
 	}
+//	
+//	@PostMapping("/create")
+//	public ResponseEntity<MessageDTO>sendMessage(@RequestBody SendMessageRequest sendMessageRequest){
+//		
+//		UserDTO userDTO=userService.findUserProfile();
+//		User user =userMapper.userDTOToUser(userDTO);
+//		
+//		
+//		MessageDTO messageDTO=	messageService.sendMessage(user,sendMessageRequest);
+//		
+//		return ResponseEntity.ok(messageDTO);																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+//		
+//	}
 	
-	@GetMapping("/chat/{chatId}")
+	@GetMapping("/{chatId}")
 	public ResponseEntity<List<MessageDTO>>getChatMessages(@PathVariable Long chatId){
 
 		UserDTO userDTO=userService.findUserProfile();

@@ -50,20 +50,20 @@ public class MessageService {
 	}
 
 	// --------------- send message------------------------
-	public MessageDTO sendMessage(SendMessageRequest sendMessageRequest) {
+	public Message sendMessage(User user, SendMessageRequest sendMessageRequest) {
 
-		User user = userService.getUserById(sendMessageRequest.getUserId());
+		User usr = userService.getUserById(sendMessageRequest.getUserId());
 
 		Chat chat = chatService.findChatById(sendMessageRequest.getUserId());
-
+	
 		Message message = new Message();
-		message.setUser(user);
+		message.setUser(usr);
 		message.setChat(chat);
 		message.setContent(sendMessageRequest.getContent());
 		message.setCreateAt(LocalDateTime.now());
 
-		MessageDTO messageDTO = messageMapper.messageToMessageDTO(message);
-		return messageDTO;
+		
+		return message;
 
 	}
 
@@ -72,7 +72,8 @@ public class MessageService {
 
 		Chat chat = chatService.findChatById(chatId);
 
-		if (!chat.getUsers().contains(user)) {
+		boolean isUser = chat.getUsers().stream().anyMatch(usr -> usr.getId().equals(user.getId()));
+		if (!isUser) {
 			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
 		}
 		List<Message> messages = messageRepository.findByChatId(chat.getId());

@@ -5,36 +5,56 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 import com.sohbet.DTO.MessageDTO;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.Message;
+import com.sohbet.domain.User;
 
 
 
 
-@Mapper(componentModel = "spring", uses = {UserMapper.class, ChatMapper.class})
+@Mapper(componentModel = "spring")
 public interface MessageMapper {
-
+MessageMapper MESSAGEMAPPER=Mappers.getMapper(MessageMapper.class);
+	
     @Mapping(target = "id", ignore = true) // Yeni mesaj oluşturulurken ID yok sayılır
-    @Mapping(target = "user.id", source = "userId")
-    @Mapping(target = "chat.id", source = "chatId")
+    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "chat", ignore = true)
     Message messageDTOToMessage(MessageDTO messageDTO);
 
-    @Mapping(target = "userId", source = "user.id")
-    @Mapping(target = "chatId", source = "chat.id")
+    @Mapping(target = "userId", source = "user",qualifiedByName = "getUserIdAsLong")
+    @Mapping(target = "chatId", source = "chat",qualifiedByName = "getChatIdAsLong")
     MessageDTO messageToMessageDTO(Message message);
 
     List<MessageDTO> messageToMessageDTOList(List<Message> messages);
+    
+    @Named("mapLongToUser")
+	static User mapLongToUser(Long userId) {
+		if (userId == null)
+			return null;
+		User user = new User();
+		user.setId(userId);
+		return user;
+	}
+    @Named("mapLongToChat")
+    static Chat mapLongToChat(Long chatId) {
+    	if (chatId == null)
+    		return null;
+    	Chat chat = new Chat();
+    	chat.setId(chatId);
+    	return chat;
+    }
 
-//    @Named("getChatIdAsString")
-//    static String getChatIdAsString(Chat chat) {
-//        return chat != null && chat.getId() != null ? chat.getId().toString() : null;
-//    }
-//
-//    @Named("longToString")
-//    static String longToString(Long value) {
-//        return value != null ? value.toString() : null;
-//    }
+    @Named("getChatIdAsLong")
+    static Long getChatIdAsString(Chat chat) {
+        return chat != null && chat.getId() != null ? chat.getId() : null;
+    }
+    @Named("getUserIdAsLong")
+    static Long getChatIdAsString(User user) {
+    	return user != null && user.getId() != null ? user.getId() : null;
+    }
+
 }
 

@@ -10,11 +10,13 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import com.sohbet.DTO.ChatDTO;
+import com.sohbet.DTO.MessageDTO;
 import com.sohbet.DTO.UserDTO;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.Image;
+import com.sohbet.domain.Message;
 import com.sohbet.domain.Role;
 
 @Mapper(componentModel = "spring", uses = { ChatMapper.class })
@@ -27,6 +29,7 @@ public interface UserMapper {
     @Mapping(target = "profileImage", ignore = true)
     @Mapping(target = "chatList", ignore = true) // Avoid loops with chatList
     @Mapping(target = "chats", ignore = true)
+    @Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessageDTOsToMessages")
     @Mapping(target = "chatAdmins", ignore = true)
     User userDTOToUser(UserDTO userDTO);
 
@@ -34,6 +37,7 @@ public interface UserMapper {
     @Mapping(target = "profileImage", ignore = true)
     @Mapping(source = "chatList", target = "chatList", qualifiedByName = "mapChatsToChatDTOList")
     @Mapping(source = "chats", target= "chats", qualifiedByName = "mapChatsToChatDTOList" )
+    @Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessagesToMessageDTOs")
     @Mapping(source = "chatAdmins", target = "chatAdmins", qualifiedByName = "mapChatsToChatDTOSet")
     UserDTO userToUserDto(User user);
 
@@ -58,10 +62,7 @@ public interface UserMapper {
         return images != null ? images.stream().map(Image::getId).collect(Collectors.toSet()) : Set.of();
     }
 
-//    @Named("mapChatsToChatDTOList")
-//    default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
-//        return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
-//    }
+
     @Named("mapChatsToChatDTOList")
     default List<ChatDTO> mapChatsToChatDTOList(List<Chat> chats) {
     	return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toList()) : List.of();
@@ -71,4 +72,5 @@ public interface UserMapper {
     default Set<ChatDTO> mapChatsToChatDTOSet(Set<Chat> chats) {
         return chats != null ? chats.stream().map(ChatMapper.CHATMAPPER::chatToChatDTO).collect(Collectors.toSet()) : Set.of();
     }
+  
 }

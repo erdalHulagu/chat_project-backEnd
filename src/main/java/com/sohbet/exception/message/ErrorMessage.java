@@ -29,8 +29,6 @@ public class ErrorMessage {
 	public final static String CANT_CANCEL_MESSAGE = "You can't cancel this %s .";
 	public static final String PRINCIPAL_FOUND_MESSAGE = "User not found";
 
-
-    public static final String USER_ADDRESS_USED_BY_ORDER = "User address used by order";
     public static final String INVALID_ORDER_STATUS_FOR_UPDATE = "Invalid order status for update";
     public static final String USER_ADDRESSES_NOT_FOUND = "User Adresses Not Found";
 	public static final String NO_ADRESS_OF_ORDER_OF_USER_MESSAGE ="Address not found";

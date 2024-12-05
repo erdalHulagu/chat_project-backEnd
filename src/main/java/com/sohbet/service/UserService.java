@@ -70,14 +70,6 @@ public class UserService {
 
 	}
 
-	// ------------------ get principal userDTO ------------------------
-	public UserDTO getPrincipal() {
-		User currentUser = getCurrentUser();
-		UserDTO userDTO = userMapper.userToUserDto(currentUser);
-		return userDTO;
-
-	}
-
 // -------------------  get userDTO by id --------------
 
 	@Transactional
