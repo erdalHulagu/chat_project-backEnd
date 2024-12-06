@@ -2,6 +2,7 @@ package com.sohbet.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,18 +53,21 @@ public class MessageService {
 	// --------------- send message------------------------
 	public Message sendMessage(User user, SendMessageRequest sendMessageRequest) {
 
-		User usr = userService.getUserById(sendMessageRequest.getUserId());
+		User usrToMessage = userService.getUserById(sendMessageRequest.getUserId());
 
-		Chat chat = chatService.findChatById(sendMessageRequest.getUserId());
-	
+		Chat chat = chatService.findChatById(sendMessageRequest.getChatId());
+//		User usid =chat.getUsers().forEach(usr->usr.getId().equals(sendMessageRequest.getUserId()).collectors(Collectors.toList()));
+
 		Message message = new Message();
-		message.setUser(usr);
+		message.setUser(usrToMessage);
 		message.setChat(chat);
 		message.setContent(sendMessageRequest.getContent());
 		message.setCreateAt(LocalDateTime.now());
-
 		
-		return message;
+		Message newMessage = messageRepository.save(message);
+		user.getMessages().add(newMessage);
+		chat.getMessages().add(newMessage);
+		return newMessage;
 
 	}
 

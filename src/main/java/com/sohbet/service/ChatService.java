@@ -119,7 +119,6 @@ public class ChatService {
 			chat.getAdmins().add(currentUser);
 
 		}
-		chat.getMessages().forEach(msg->msg.setUser(user));
 		
 
 		// Chat name kontrolü
@@ -128,9 +127,7 @@ public class ChatService {
 		}
 
 		chatRepository.save(chat);
-		
-		currentUser.getMessages().forEach(msg->msg.setChat(chat));
-		userRepository.save(currentUser);
+	
 		return chatMapper.chatToChatDTO(chat);
 	}
 
@@ -180,11 +177,8 @@ public class ChatService {
 		chat.setCreatedBy(user);
 		chat.getAdmins().add(user);
 		chat.getUsers().add(user);
-		chat.getMessages().forEach(msg->msg.setChat(chat));
-		groupChatRequest.getUserIds().forEach(id -> {
-		    User user2 = userService.getUserById(id); // ID'ye göre kullanıcıyı al
-		    user.getMessages().addAll(user);           // Kullanıcıyı mesaja ekle
-		});
+		
+		
 
 		// Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
 
