@@ -111,23 +111,27 @@ public class ChatService {
 			return chatDTO;
 		}
 
-		Chat newChat = new Chat();
-		newChat.setCreatedBy(currentUser);
-		newChat.setIsGroup(false);
+		Chat chat = new Chat();
+		chat.setCreatedBy(currentUser);
+		chat.setIsGroup(false);
 		if (currentUser.getId().equals(user.getId())) {
 
-			newChat.getAdmins().add(currentUser);
+			chat.getAdmins().add(currentUser);
 
 		}
+		chat.getMessages().forEach(msg->msg.setUser(user));
+		
 
 		// Chat name kontrolü
-		if (newChat.getChatName() == null || newChat.getChatName().isEmpty()) {
-			newChat.setChatName(currentUser.getFirstName() + "-" + user.getFirstName());
+		if (chat.getChatName() == null || chat.getChatName().isEmpty()) {
+			chat.setChatName(currentUser.getFirstName() + "-" + user.getFirstName());
 		}
 
-		chatRepository.save(newChat);
-
-		return chatMapper.chatToChatDTO(newChat);
+		chatRepository.save(chat);
+		
+		currentUser.getMessages().forEach(msg->msg.setChat(chat));
+		userRepository.save(currentUser);
+		return chatMapper.chatToChatDTO(chat);
 	}
 
 	// ----------- find chat by id---------------
@@ -176,6 +180,11 @@ public class ChatService {
 		chat.setCreatedBy(user);
 		chat.getAdmins().add(user);
 		chat.getUsers().add(user);
+		chat.getMessages().forEach(msg->msg.setChat(chat));
+		groupChatRequest.getUserIds().forEach(id -> {
+		    User user2 = userService.getUserById(id); // ID'ye göre kullanıcıyı al
+		    user.getMessages().addAll(user);           // Kullanıcıyı mesaja ekle
+		});
 
 		// Kullanıcıların adlarını ve ID'lerini tek bir döngüde işleyelim
 

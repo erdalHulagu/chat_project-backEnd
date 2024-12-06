@@ -6578,3 +6578,22 @@ Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "
 2024-12-05 22:01:35,851 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [com.sohbet.exception.ResourceNotFoundException: User not found null]
 2024-12-05 22:01:35,856 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 404 NOT_FOUND
 2024-12-05 22:02:29,363 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2024-12-05 22:04:07,860 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
+2024-12-05 22:04:07,860 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
+2024-12-05 22:04:07,860 INFO  [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:Stopping...
+2024-12-05 22:04:07,861 INFO  [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2fbdfcaa]]
+2024-12-05 22:04:07,862 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2fbdfcaa]
+2024-12-05 22:04:07,862 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@2fbdfcaa]
+2024-12-05 22:04:07,862 INFO  [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:Stopped.
+2024-12-05 22:04:07,863 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-12-05 22:04:07,863 DEBUG [RMI TCP Connection(7)-127.0.0.1] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
+2024-12-05 22:04:07,874 WARN  [RMI TCP Connection(7)-127.0.0.1] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
