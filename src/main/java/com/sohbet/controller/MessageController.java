@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,13 +18,11 @@ import com.sohbet.DTOresponse.ChatResponse;
 import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Message;
 import com.sohbet.domain.User;
-import com.sohbet.mapper.MessageMapper;
 import com.sohbet.mapper.UserMapper;
 import com.sohbet.request.SendMessageRequest;
 import com.sohbet.service.MessageService;
 import com.sohbet.service.UserService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController
@@ -40,26 +38,14 @@ public class MessageController {
 	@Autowired
 	private UserMapper userMapper;
 	
-	@Autowired
-	private MessageMapper messageMapper;
+	
 	
 
-//	public MessageController( MessageService messageService
-//			                 ,UserService userService
-//			                 ,UserMapper userMapper
-//			                 ,MessageMapper messageMapper) {
-//		
-//		this.messageService=messageService;
-//		this.userService=userService;
-//		this.userMapper=userMapper;
-//		this.messageMapper=messageMapper;
-//	}
-	
 	@PostMapping("/create")
 	public ResponseEntity<Message>sendMessage(@Valid @RequestBody SendMessageRequest sendMessageRequest){
 
-		User user=userService.getCurrentUser();
-//		User user =userMapper.userDTOToUser(userDTO);
+		UserDTO userDTO=userService.findUserProfile();
+		User user =userMapper.userDTOToUser(userDTO);
 		
 		
 	Message message=	messageService.sendMessage(user,sendMessageRequest);
@@ -81,7 +67,7 @@ public class MessageController {
 //		
 //	}
 	
-	@GetMapping("/{chatId}")
+	@GetMapping("/chat/{chatId}")
 	public ResponseEntity<List<MessageDTO>>getChatMessages(@PathVariable Long chatId){
 
 		UserDTO userDTO=userService.findUserProfile();

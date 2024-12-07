@@ -88,11 +88,12 @@ public class ChatService {
 		Chat chat = new Chat();
 		chat.setCreatedBy(currentUser);
 		chat.setAdmins(adminSet);
-		chat.setUsers(users);
+		chat.getUsers().addAll(users);
 		chat.setIsGroup(false);
+		
 
-		chatRepository.save(chat);
-		return chatMapper.chatToChatDTO(chat);
+	Chat newChat=chatRepository.save(chat);
+		return chatMapper.chatToChatDTO(newChat);
 
 	}
 

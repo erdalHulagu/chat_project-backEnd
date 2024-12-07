@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MessageDTO {
 	
+	private Long id;
+	
 	private String content;
 	
 	private LocalDateTime createAt;

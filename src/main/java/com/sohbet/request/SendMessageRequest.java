@@ -16,5 +16,10 @@ public class SendMessageRequest {
 	private Long chatId;
 	
 	private String content;
+	
+	
+	
+	
+	
 
 }

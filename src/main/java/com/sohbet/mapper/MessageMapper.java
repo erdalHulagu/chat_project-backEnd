@@ -19,14 +19,21 @@ import com.sohbet.domain.User;
 public interface MessageMapper {
 MessageMapper MESSAGEMAPPER=Mappers.getMapper(MessageMapper.class);
 	
-    @Mapping(target = "id", ignore = true) // Yeni mesaj oluşturulurken ID yok sayılır
-    @Mapping(target = "user", ignore = true)
-    @Mapping(target = "chat", ignore = true)
-    Message messageDTOToMessage(MessageDTO messageDTO);
+////    @Mapping(target = "id", ignore = true) // Yeni mesaj oluşturulurken ID yok sayılır
+//    @Mapping(target = "user", ignore = true)
+//    @Mapping(target = "chat", ignore = true)
+//    Message messageDTOToMessage(MessageDTO messageDTO);
+//
+//    @Mapping(target = "userId", source = "user",qualifiedByName = "getUserIdAsLong")
+//    @Mapping(target = "chatId", source = "chat",qualifiedByName = "getChatIdAsLong")
+//    MessageDTO messageToMessageDTO(Message message);
+@Mapping(target = "user", source = "userId", qualifiedByName = "mapLongToUser")
+@Mapping(target = "chat", source = "chatId", qualifiedByName = "mapLongToChat")
+Message messageDTOToMessage(MessageDTO messageDTO);
 
-    @Mapping(target = "userId", source = "user",qualifiedByName = "getUserIdAsLong")
-    @Mapping(target = "chatId", source = "chat",qualifiedByName = "getChatIdAsLong")
-    MessageDTO messageToMessageDTO(Message message);
+@Mapping(target = "userId", source = "user", qualifiedByName = "getUserIdAsLong")
+@Mapping(target = "chatId", source = "chat", qualifiedByName = "getChatIdAsLong")
+MessageDTO messageToMessageDTO(Message message);
 
     List<MessageDTO> messageToMessageDTOList(List<Message> messages);
     
@@ -52,7 +59,7 @@ MessageMapper MESSAGEMAPPER=Mappers.getMapper(MessageMapper.class);
         return chat != null && chat.getId() != null ? chat.getId() : null;
     }
     @Named("getUserIdAsLong")
-    static Long getChatIdAsString(User user) {
+    static Long getUserIdAsString(User user) {
     	return user != null && user.getId() != null ? user.getId() : null;
     }
 

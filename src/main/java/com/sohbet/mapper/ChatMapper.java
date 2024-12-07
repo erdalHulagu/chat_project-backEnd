@@ -23,23 +23,41 @@ public interface ChatMapper {
 
 	ChatMapper CHATMAPPER = Mappers.getMapper(ChatMapper.class);
 
+//	@Mapping(target = "createdBy", source = "createdBy.id")
+//	@Mapping(target = "admins", ignore = true)
+//	@Mapping(target = "users", ignore = true)
+////    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
+////    @Mapping(target = "users", source = "users", qualifiedByName = "mapUsersToUserDTOs")
+//	@Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessagesToMessageDTOs") // Avoid potential loops
+//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapImageIdToString")
+//	@Mapping(target = "chatProfileImage", source = "chatProfileImage.id")
+//	ChatDTO chatToChatDTO(Chat chat);
+//
+//	@Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "mapLongToUser")
+//	@Mapping(target = "admins", source = "admins", qualifiedByName = "mapUserDTOsToUsers")
+//	@Mapping(target = "users", source = "users", qualifiedByName = "mapUserDTOsToUsers")
+//	@Mapping(target = "chatProfileImage.id", source = "chatProfileImage")
+//	@Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessageDTOsToMessages")
+//	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapStringToImage")
+//	Chat chatDTOToChat(ChatDTO chatDTO);
 	@Mapping(target = "createdBy", source = "createdBy.id")
 	@Mapping(target = "admins", ignore = true)
 	@Mapping(target = "users", ignore = true)
 //    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUsersToUserDTOs")
 //    @Mapping(target = "users", source = "users", qualifiedByName = "mapUsersToUserDTOs")
-	@Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessagesToMessageDTOs") // Avoid potential loops
-	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapImageIdToString")
-	@Mapping(target = "chatProfileImage", source = "chatProfileImage.id")
-	ChatDTO chatToChatDTO(Chat chat);
+    @Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessagesToMessageDTOs")
+    @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapImageIdToString")
+    @Mapping(target = "chatProfileImage", source = "chatProfileImage.id")
+    ChatDTO chatToChatDTO(Chat chat);
 
-	@Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "mapLongToUser")
-	@Mapping(target = "admins", source = "admins", qualifiedByName = "mapUserDTOsToUsers")
-	@Mapping(target = "users", source = "users", qualifiedByName = "mapUserDTOsToUsers")
-	@Mapping(target = "chatProfileImage.id", source = "chatProfileImage")
-	@Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessageDTOsToMessages")
-	@Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapStringToImage")
-	Chat chatDTOToChat(ChatDTO chatDTO);
+    @Mapping(target = "createdBy", source = "createdBy", qualifiedByName = "mapLongToUser")
+    @Mapping(target = "admins", source = "admins", qualifiedByName = "mapUserDTOsToUsers")
+    @Mapping(target = "users", source = "users", qualifiedByName = "mapUserDTOsToUsers")
+    @Mapping(target = "messages", source = "messages", qualifiedByName = "mapMessageDTOsToMessages")
+    @Mapping(target = "chatImage", source = "chatImage", qualifiedByName = "mapStringToImage")
+    @Mapping(target = "chatProfileImage", ignore = true)
+    Chat chatDTOToChat(ChatDTO chatDTO);
+
 
 	List<ChatDTO> chatListToChatDTOList(List<Chat> chats);
 
@@ -85,14 +103,14 @@ public interface ChatMapper {
     static List<MessageDTO> mapMessagesToMessageDTOs(List<Message> messages) {
         return messages != null
                 ? messages.stream().map(MessageMapper.MESSAGEMAPPER::messageToMessageDTO).toList()
-                : List.of();
+                : null;
     }
 
     @Named("mapMessageDTOsToMessages")
     static List<Message> mapMessageDTOsToMessages(List<MessageDTO> messageDTOs) {
         return messageDTOs != null
                 ? messageDTOs.stream().map(MessageMapper.MESSAGEMAPPER::messageDTOToMessage).toList()
-                : List.of();
+                : null;
     }
 //    @Named("mapImageToString")
 //    static String mapStringToImage(Image image) {
