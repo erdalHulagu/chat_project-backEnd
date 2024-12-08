@@ -39,6 +39,15 @@ public interface ChatRepository extends JpaRepository<Chat, Long>{
 
 
 
+//    @Query("SELECT COUNT(c) > 0 FROM Chat c " +
+//    	       "JOIN c.messages m " +
+//    	       "WHERE c.isGroup = false AND m.user.id = :userId AND c.id = :chatId")
+//    	boolean existsPrivateChatByUserAndChatId(@Param("userId") Long userId,
+//    	                                         @Param("chatId") Long chatId);
+//    	                                         ;
+
+   
+
 	
     
 
