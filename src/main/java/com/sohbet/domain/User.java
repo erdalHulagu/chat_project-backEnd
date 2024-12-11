@@ -53,16 +53,16 @@ public class User {
 
 	@NotNull
 	@Email(message = "Please provide a valid email")
-	@Size(min = 10, max = 80)
+	@Size(min = 4, max = 80)
 	@Column(length = 80, nullable = false, unique = true, updatable = false)
 	private String email;
 
 	@NotNull
-	@Size(min = 10, max = 80)
+	@Size(min = 4, max = 80)
 	@Column(length = 80, nullable = false, unique = true)
 	private String password;
 
-	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", message = "Please provide a valid phone number")
+//	@Pattern(regexp = "^(\\d{4} \\d{3} \\d{2} \\d{2})$", message = "Please provide a valid phone number")
 	@Column(nullable = true)
 	private String phone;
 
@@ -77,11 +77,11 @@ public class User {
 	private String postCode;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-	@Column(name = "update_at", length = 30, nullable = false, updatable = true)
+	@Column(name = "update_at", length = 30, updatable = true)
 	@UpdateTimestamp
 	private LocalDateTime updateAt;
 
-	@Column(name = "create_at", length = 30, updatable = false, nullable = true)
+	@Column(name = "create_at", length = 30, updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime createAt;
 
@@ -91,7 +91,8 @@ public class User {
 	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(orphanRemoval = true, fetch = FetchType.LAZY)
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_images", nullable = true)
 	private Set<Image> myImages;
 
@@ -99,7 +100,7 @@ public class User {
 //    private Image profileImage;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "profile_image_id", referencedColumnName = "id", nullable = true)
+	@JoinColumn(name = "profile_image_id", nullable = true)
 	private Image profileImage;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)

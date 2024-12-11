@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import com.sohbet.domain.Role;
+
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -46,7 +48,8 @@ public class RegisterRequest {
 
 	private boolean builtIn;
 	
-	private String profileImageId;
+	@Nullable
+	private String profileImage;
 
 	private Set<String> roles = new HashSet<>();
 

@@ -15,8 +15,8 @@ spring:
  datasource:
   hikari:
    autoCommit : false
-  url: jdbc:postgresql://localhost:5432/postgres
-  username: postgres
+  url: jdbc:postgresql://localhost:5432/furkanFoundationChat
+  username: furkanChat
   password: password
   driver-class-name: org.postgresql.Driver
   

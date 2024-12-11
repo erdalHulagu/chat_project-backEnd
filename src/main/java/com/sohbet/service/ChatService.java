@@ -115,6 +115,7 @@ public class ChatService {
 		Chat chat = new Chat();
 		chat.setCreatedBy(currentUser);
 		chat.setIsGroup(false);
+		
 		if (currentUser.getId().equals(user.getId())) {
 
 			chat.getAdmins().add(currentUser);

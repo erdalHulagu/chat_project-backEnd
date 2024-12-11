@@ -76,10 +76,8 @@ public class ImageService {
   //--------------------------------------------------------------------------------------------
     
 	public Image getImageById(String id) {
-		Image image= imageRepository.findImageById(id).orElseThrow(()->
-                                new ResourceNotFoundException(String.format(ErrorMessage.RESOURCE_NOT_FOUND_MESSAGE,true)));
-
-		return image;
+		
+		    return imageRepository.findImageById(id).orElse(null);
 		
 	}
 

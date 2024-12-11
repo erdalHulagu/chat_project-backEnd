@@ -20,6 +20,7 @@ import com.sohbet.request.LoginRequest;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.security.jwt.JwtUtils;
 import com.sohbet.service.UserService;
+
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -42,7 +43,7 @@ public class UserJwtController {
 //   @Transactional
 //   @PostMapping("/register/{imageId}")
 //   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
-//	   userService.saveUser(imageId,registerRequest);
+//	   userService.saveUser(registerRequest,imageId);
 //	   
 //	   Response response = new Response();
 //	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);

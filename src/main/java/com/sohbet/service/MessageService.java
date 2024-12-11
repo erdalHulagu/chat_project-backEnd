@@ -8,6 +8,7 @@ import com.sohbet.DTO.MessageDTO;
 import com.sohbet.domain.Chat;
 import com.sohbet.domain.Message;
 import com.sohbet.domain.User;
+import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.ChatMapper;
@@ -64,10 +65,11 @@ public class MessageService {
 		message.setChat(chat);
 		message.setContent(sendMessageRequest.getContent());
 		message.setCreateAt(LocalDateTime.now());
-		
 		user.getMessages().add(message);
 		chat.getMessages().add(message);
-		
+		//Burayi update icin yapmak lazim fakat sikinti cikariyor images ile ilgili
+		chatRepository.save(chat);
+		userRepository.save(user);
 		
 		Message newMessage = messageRepository.save(message);
 		
@@ -78,14 +80,15 @@ public class MessageService {
 	// --------------------get chats messages--------------------
 	public List<MessageDTO> getChatMessages(Long chatId, User user) {
 
+		
 		Chat chat = chatService.findChatById(chatId);
 		
 		
-		// su kontrol hata veriyor oonun icin birsey yapmalisin aksi halde herhangi bir kullanicio bu chat id ile cagirabilir
 		
-//		 if (!chat.getUsers().stream().anyMatch(us->us.getId().equals(user.getId()))){
-//		        throw new AccessDeniedException("User does not have access to this chat");
-//		    }
+         boolean  isUserCreated =chat.getCreatedBy().getId().equals(user.getId());
+		if (!isUserCreated) {
+			throw new BadRequestException(String.format(ErrorMessage.NO_PERMISSION_MESSAGE, user.getFirstName()+" "+user.getLastName()));
+		}
 
 		Pageable pageable = PageRequest.of(0, 20); // İlk 20 mesaj
 	    Page<Message> messages = messageRepository.findByChatId(chat.getId(), pageable);

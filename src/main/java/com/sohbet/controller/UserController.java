@@ -38,6 +38,8 @@ import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.request.UserRequest;
 import com.sohbet.service.UserService;
+
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -51,6 +53,9 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 
+	@Autowired
+	private EntityManager entityManager;
+	
 	// ------------ get user by user id -------------------
 	@Transactional
 	@GetMapping("/{userId}")
@@ -61,7 +66,6 @@ public class UserController {
 
 		UserDTO userDTO = userMapper.userToUserDto(user);
 		return ResponseEntity.ok(userDTO);
-
 	}
 
 	// ------------ get user profile -------------------

@@ -34,6 +34,8 @@ import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
+
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -56,6 +58,7 @@ public class UserService {
 
 	@Autowired
 	private ImageRepository imageRepository;
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -198,14 +201,8 @@ public class UserService {
 
 	public void saveUser(RegisterRequest registerRequest) {
 
-		Image profileImage = imageService.getImageById(registerRequest.getProfileImageId());
+		Image profileImage = imageService.getImageById(registerRequest.getProfileImage());
 
-		if (profileImage == null) {
-
-			throw new ResourceNotFoundException(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE,
-					registerRequest.getProfileImageId());
-
-		}
 		Set<Image> imFiles = new HashSet<>();
 		imFiles.add(profileImage);
 
@@ -243,7 +240,7 @@ public class UserService {
 		user.setPhone(registerRequest.getPhone());
 
 		userRepository.save(user);
-
+	
 	}
 
 	// --------------------search users by imageId-----------------
