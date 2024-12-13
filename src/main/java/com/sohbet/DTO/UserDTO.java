@@ -64,6 +64,7 @@ public class UserDTO {
 
 	private Set<ChatDTO> chatAdmins = new HashSet<>();
 
+	 private List<User> friends = new ArrayList<>();
 //--------------------
 	public void setRoles(Set<Role> roles) {
 

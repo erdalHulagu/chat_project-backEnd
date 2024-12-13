@@ -20,6 +20,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -112,18 +113,31 @@ public class UserController {
 	}
 
 	// ------------ up date user -------------------
-	@PutMapping("/auth")
-	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
+	@Transactional
+	@PatchMapping("/auth")
+//	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
+	public ResponseEntity<Response> upDateUser(
 			@Valid @RequestBody UpdateUserRequest updateUserRequest) {
 
-		userService.updateUser(imageId, updateUserRequest);
+		userService.updateUser(updateUserRequest);
 
 		Response response = new Response();
 		response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
 		return ResponseEntity.ok(response);
 
 	}
+//	@PatchMapping("/auth")
+////	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
+//	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
+//			@Valid @RequestBody UpdateUserRequest updateUserRequest) {
+//		
+//		userService.updateUser(imageId, updateUserRequest);
+//		
+//		Response response = new Response();
+//		response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+//		return ResponseEntity.ok(response);
+//		
+//	}
 
 	// ------------ delete user by id -------------------
 	@DeleteMapping("{id}")
@@ -159,5 +173,33 @@ public class UserController {
 
 		return ResponseEntity.ok(userDTO);
 
+	}
+	
+	//------------add user as friend -------------
+	@PatchMapping("/addFriend/{friendId}")
+	public ResponseEntity<Response> addUserAsFriend(@PathVariable Long friendId) {
+
+		UserDTO userDTO=userService.findUserProfile();
+		User currentUser= userMapper.userDTOToUser(userDTO);
+		userService.addUserAsFriend(currentUser,friendId);
+		Response response = new Response();
+		response.setMessage(ResponseMessage.FRIEND_ADDED);
+
+		return ResponseEntity.ok(response);
+		
+		
+	}
+	@PatchMapping("/addImage/{imageId}")
+	public ResponseEntity<Response> addImageToYourImages(@PathVariable String imageId) {
+		
+		UserDTO userDTO=userService.findUserProfile();
+		User currentUser= userMapper.userDTOToUser(userDTO);
+		userService.addImageToYourImages(currentUser,imageId);
+		Response response = new Response();
+		response.setMessage(ResponseMessage.IMAGE_SAVED_RESPONSE_MESSAGE);
+		
+		return ResponseEntity.ok(response);
+		
+		
 	}
 }

@@ -92,7 +92,7 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_images", nullable = true)
 	private Set<Image> myImages;
 
@@ -115,7 +115,11 @@ public class User {
 	@ManyToMany(mappedBy = "admins", fetch = FetchType.LAZY)
 	private Set<Chat> chatAdmins = new HashSet<>();
 
-//    private List<User> friends = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "user_friends",
+	           joinColumns = @JoinColumn(name = "user_id"),
+	           inverseJoinColumns = @JoinColumn(name = "friend_id"))
+	private List<User> friends = new ArrayList<>();
 
 //    
 //    @Override

@@ -32,4 +32,6 @@ public class ResponseMessage {
 	public static final String USER_CREATED_SUCCESFULLY = "User created succesfull";
 
 	public static final String CHAT_DUMMY_SUCCESFULL = "CHAT DUMMY SUCCES";
+
+	public static final String FRIEND_ADDED = "Friend added succesfully";
 }

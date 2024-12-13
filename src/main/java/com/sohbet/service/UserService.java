@@ -2,6 +2,7 @@ package com.sohbet.service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -58,7 +59,6 @@ public class UserService {
 
 	@Autowired
 	private ImageRepository imageRepository;
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -148,44 +148,40 @@ public class UserService {
 		return userDTOList;
 	}
 
-	// ------------------update user---------------------
-	public void updateUser(String imageId, UpdateUserRequest updateUserRequest) {
+	public void updateUser(UpdateUserRequest updateUserRequest) {
 		User user = getCurrentUser();
 
-		if ((user == null)) {
-			new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE));
-
-		}
-
-		if (user.getBuiltIn()) {
-			throw new BadRequestException(ErrorMessage.NO_PERMISSION_MESSAGE);
+		if (user == null) {
+			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE));
 		}
 
 		boolean emailExist = userRepository.existsByEmail(updateUserRequest.getEmail());
-
 		if (emailExist && (!updateUserRequest.getEmail().equals(user.getEmail()))) {
 			throw new ConflictException(
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
 		}
 
-		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
+		if (updateUserRequest.getProfileImage() != null) {
+			Image image = imageService.getImageById(updateUserRequest.getProfileImage());
 
-		Image image = imageService.getImageById(imageId);
-
-		List<User> userList = userRepository.findUseListByImageId(image.getId());
-
-		for (User u : userList) {
-			// bana gelen user Id si ile yukardakiList türündeki user Id leri eşit olmaları
-			// lazım,
-			// eğer eşit değilse girilenm image başka bir user için yüklenmiş
-			if (user.getId().longValue() != u.getId().longValue()) {
-				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+			if (image == null) {
+				throw new ResourceNotFoundException(
+						String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, updateUserRequest.getProfileImage()));
 			}
 
+			List<User> userList = userRepository.findUseListByImageId(image.getId());
+			for (User u : userList) {
+				if (!user.getId().equals(u.getId())) {
+					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+				}
+			}
+
+			user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
+			user.getMyImages().add(image);
 		}
 
-		user.setProfileImage(image);
-		user.getMyImages().add(image);
+		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 		user.getRoles().add(role);
 		user.setUpdateAt(LocalDateTime.now());
 		user.setFirstName(updateUserRequest.getFirstName());
@@ -193,6 +189,7 @@ public class UserService {
 		user.setAddress(updateUserRequest.getAddress());
 		user.setPhone(updateUserRequest.getPhone());
 		user.setEmail(updateUserRequest.getEmail());
+		user.setPostCode(updateUserRequest.getPostCode());
 
 		userRepository.save(user);
 	}
@@ -240,7 +237,7 @@ public class UserService {
 		user.setPhone(registerRequest.getPhone());
 
 		userRepository.save(user);
-	
+
 	}
 
 	// --------------------search users by imageId-----------------
@@ -276,6 +273,32 @@ public class UserService {
 	public void deleteUserById(Long id) {
 
 		userRepository.deleteById(id);
+
+	}
+
+//------------------ add User As Friend ------------------
+	public void addUserAsFriend(User currentUser, Long friendId) {
+		User userToAdd = getUserById(friendId);
+		boolean isFriend = currentUser.getFriends().stream().anyMatch(fr -> fr.getId().equals(userToAdd.getId()));
+		if (isFriend) {
+			throw new ConflictException(String.format(ErrorMessage.THIS_USER_ALREADY_EXIST));
+		}
+
+		currentUser.getFriends().add(userToAdd);
+		userToAdd.getFriends().add(currentUser);
+
+		userRepository.save(currentUser);
+		userRepository.save(userToAdd);
+
+	}
+
+	// ------------------ add image to your images ------------------
+	public void addImageToYourImages(User currentUser, String imageId) {
+		Image image = imageService.getImageById(imageId);
+		Set<Image> imgSet = new HashSet<>();
+		imgSet.add(image);
+		currentUser.setMyImages(imgSet);
+		userRepository.save(currentUser);
 
 	}
 
