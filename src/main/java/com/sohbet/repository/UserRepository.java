@@ -2,6 +2,7 @@ package com.sohbet.repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Query("SELECT u FROM User u WHERE u.firstName = :firstName")
 	List<User> searchUsersByUserName(@Param("firstName") String firstName);
-
+//
+//	 @Query("SELECT u.myImages FROM User u WHERE u.id = :userId")
+//	    Set<Image> findUserImages(@Param("userId") Long userId);
+	 
+//	 @Query("SELECT i FROM Image i WHERE i.id IN (SELECT ui.imageId FROM UserImages ui WHERE ui.userId = :userId)")
+//	 Set<Image> findUserImages(@Param("userId") Long userId);
+	
+	
 //	@Query("SELECT u FROM User u join u.profileImage pimg where pimg.id= : profileImage.id")
 //	Long getImage(@Param("id")String id);
 

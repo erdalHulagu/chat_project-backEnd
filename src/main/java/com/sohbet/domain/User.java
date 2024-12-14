@@ -91,13 +91,13 @@ public class User {
 	@JoinTable(name = "t_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
-
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_images", nullable = true)
-	private Set<Image> myImages;
-
-//    @Column(name = "profile_image_path", length = 255)
-//    private Image profileImage;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+	    name = "user_images", // Ara tablo adı
+	    joinColumns = @JoinColumn(name = "user_id"), // User tablosundan ilişki
+	    inverseJoinColumns = @JoinColumn(name = "image_id") // Image tablosundan ilişki
+	)
+	private Set<Image> myImages = new HashSet<>();
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "profile_image_id", nullable = true)

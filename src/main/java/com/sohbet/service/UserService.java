@@ -148,7 +148,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public void updateUser(UpdateUserRequest updateUserRequest) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -191,8 +191,9 @@ public class UserService {
 		user.setEmail(updateUserRequest.getEmail());
 		user.setPostCode(updateUserRequest.getPostCode());
 
-		userRepository.save(user);
-	}
+		User usr=userRepository.save(user);
+		return userMapper.userToUserDto(usr);
+		}
 
 	// ---------------- register user----------------------
 
@@ -332,5 +333,10 @@ public class UserService {
 
 		return roles;
 	}
+
+//	public Set<Image> findImagesByUserId(Long userId) {
+//		 return userRepository.findUserImages(userId);
+//		
+//	}
 
 }

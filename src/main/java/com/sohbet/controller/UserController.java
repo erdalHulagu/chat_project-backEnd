@@ -1,10 +1,14 @@
 package com.sohbet.controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.springframework.aot.generate.InMemoryGeneratedFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
 import org.springframework.context.annotation.Lazy;
@@ -38,6 +42,7 @@ import com.sohbet.mapper.UserMapper;
 import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.request.UserRequest;
+import com.sohbet.service.ImageService;
 import com.sohbet.service.UserService;
 
 import jakarta.persistence.EntityManager;
@@ -56,6 +61,9 @@ public class UserController {
 
 	@Autowired
 	private EntityManager entityManager;
+	
+	@Autowired
+	private ImageService imageService;
 	
 	// ------------ get user by user id -------------------
 	@Transactional
@@ -114,18 +122,13 @@ public class UserController {
 
 	// ------------ up date user -------------------
 	@Transactional
-	@PatchMapping("/auth")
+	@PutMapping("/auth")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-	public ResponseEntity<Response> upDateUser(
-			@Valid @RequestBody UpdateUserRequest updateUserRequest) {
-
-		userService.updateUser(updateUserRequest);
-
-		Response response = new Response();
-		response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-		return ResponseEntity.ok(response);
-
-	}
+    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest) {
+        UserDTO userDTO = userService.updateUser(updateUserRequest);
+    
+        return ResponseEntity.ok(userDTO);
+    }
 //	@PatchMapping("/auth")
 ////	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
 //	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
@@ -201,5 +204,24 @@ public class UserController {
 		return ResponseEntity.ok(response);
 		
 		
+	}
+	//-------------- getCurrentUsersImages-------------
+	@GetMapping("/myImages")
+	public Set<Image> getUsersImages() {
+	    UserDTO userDTO = userService.findUserProfile();
+	    User user2 = userMapper.userDTOToUser(userDTO);
+	User user=	userService.getUserById(user2.getId());
+	
+	    
+	    System.out.println("User ID: " + user.getId());
+	    if (user.getMyImages().isEmpty()) {
+	        System.out.println("No images found for the user");
+	        return new HashSet<>(); 
+	    }
+	    
+	 Set<Image>imgsImages= user.getMyImages().stream()
+			    .map(img -> imageService.getImageById(img.getId()))
+			    .collect(Collectors.toSet());
+	 return imgsImages;
 	}
 }
