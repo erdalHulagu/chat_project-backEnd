@@ -9,6 +9,8 @@ import java.util.Set;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -101,7 +103,9 @@ public class User {
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "profile_image_id", nullable = true)
+	@JsonIgnore
 	private Image profileImage;
+	
 
 	@OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Message> messages = new ArrayList<>();

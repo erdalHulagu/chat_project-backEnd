@@ -1,32 +1,22 @@
 package com.sohbet.controller;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.springframework.aot.generate.InMemoryGeneratedFiles;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,13 +29,9 @@ import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
-import com.sohbet.request.AdminUserUpdateRequest;
 import com.sohbet.request.UpdateUserRequest;
-import com.sohbet.request.UserRequest;
 import com.sohbet.service.ImageService;
 import com.sohbet.service.UserService;
-
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -58,9 +44,6 @@ public class UserController {
 
 	@Autowired
 	private UserMapper userMapper;
-
-	@Autowired
-	private EntityManager entityManager;
 	
 	@Autowired
 	private ImageService imageService;
@@ -122,25 +105,14 @@ public class UserController {
 
 	// ------------ up date user -------------------
 	@Transactional
-	@PutMapping("/auth")
+	@PutMapping("/auth/{imageId}")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest) {
-        UserDTO userDTO = userService.updateUser(updateUserRequest);
+    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest,@PathVariable String imageId) {
+        UserDTO userDTO = userService.updateUser(updateUserRequest,imageId);
     
         return ResponseEntity.ok(userDTO);
     }
-//	@PatchMapping("/auth")
-////	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-//	public ResponseEntity<Response> upDateUser(@RequestParam(value = "imageId", required = false) String imageId,
-//			@Valid @RequestBody UpdateUserRequest updateUserRequest) {
-//		
-//		userService.updateUser(imageId, updateUserRequest);
-//		
-//		Response response = new Response();
-//		response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-//		return ResponseEntity.ok(response);
-//		
-//	}
+
 
 	// ------------ delete user by id -------------------
 	@DeleteMapping("{id}")

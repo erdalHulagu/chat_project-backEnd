@@ -148,7 +148,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public UserDTO updateUser(UpdateUserRequest updateUserRequest) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest,String imageId) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -162,8 +162,8 @@ public class UserService {
 		}
 
 		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
-		if (updateUserRequest.getProfileImage() != null) {
-			Image image = imageService.getImageById(updateUserRequest.getProfileImage());
+//		if (updateUserRequest.getProfileImage() != null) {
+			Image image = imageService.getImageById(imageId);
 
 			if (image == null) {
 				throw new ResourceNotFoundException(
@@ -179,7 +179,7 @@ public class UserService {
 
 			user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
 			user.getMyImages().add(image);
-		}
+		
 
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 		user.getRoles().add(role);
