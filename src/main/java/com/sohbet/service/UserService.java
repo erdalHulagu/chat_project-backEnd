@@ -148,7 +148,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public UserDTO updateUser(UpdateUserRequest updateUserRequest,String imageId) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -163,19 +163,18 @@ public class UserService {
 
 		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
 //		if (updateUserRequest.getProfileImage() != null) {
-			Image image = imageService.getImageById(imageId);
+			Image image = imageService.getImageById(updateUserRequest.getProfileImage());
 
 			if (image == null) {
-				throw new ResourceNotFoundException(
-						String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, updateUserRequest.getProfileImage()));
+				return null;
 			}
 
-			List<User> userList = userRepository.findUseListByImageId(image.getId());
-			for (User u : userList) {
-				if (!user.getId().equals(u.getId())) {
-					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-				}
-			}
+//			List<User> userList = userRepository.findUseListByImageId(image.getId());
+//			for (User u : userList) {
+//				if (!user.getId().equals(u.getId())) {
+//					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//				}
+//			}
 
 			user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
 			user.getMyImages().add(image);
@@ -220,12 +219,12 @@ public class UserService {
 		user.setMyImages(imFiles);
 		user.setProfileImage(profileImage);
 
-		// Integer usedUserImage =
-		// userRepository.findUserCountByImageId(profileImage.getId());
-		//
-		// if (usedUserImage > 0) {
-		// throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-		// }
+//		 Integer usedUserImage =
+//		 userRepository.findUserCountByImageId(profileImage.getId());
+//		
+//		 if (usedUserImage > 0) {
+//		 throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//		 }
 
 		user.setCreateAt(LocalDateTime.now());
 		user.getRoles().add(role);

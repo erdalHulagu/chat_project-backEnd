@@ -39,19 +39,7 @@ public class UserJwtController {
 	@Autowired
 	private JwtUtils jwtUtils;
 
-	// --------------------register user---------------------
-//   @Transactional
-//   @PostMapping("/register/{imageId}")
-//   public ResponseEntity<Response> registerUser( @PathVariable String imageId,@Valid @RequestBody RegisterRequest registerRequest  )  {
-//	   userService.saveUser(registerRequest,imageId);
-//	   
-//	   Response response = new Response();
-//	   response.setMessage(ResponseMessage.REGISTER_RESPONSE_MESSAGE);
-//	   response.setSuccess(true);
-//	   
-//	   return new ResponseEntity<>(response,HttpStatus.CREATED);
-//  
-//   }
+
 
 	@PostMapping("/register")
 	@Transactional
