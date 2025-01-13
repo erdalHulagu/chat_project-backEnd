@@ -26,8 +26,4 @@ public class UpdateUserRequest {
 	
 	private String postCode;
 
-	public String profileImage;
-
-
-
 }

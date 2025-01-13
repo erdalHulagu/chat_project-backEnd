@@ -105,10 +105,10 @@ public class UserController {
 
 	// ------------ up date user -------------------
 	@Transactional
-	@PutMapping("/auth")
+	@PutMapping("/update/{image}")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest,@PathVariable String imageId) {
-        UserDTO userDTO = userService.updateUser(updateUserRequest);
+    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
+        UserDTO userDTO = userService.updateUser(updateUserRequest,imageId);
     
         return ResponseEntity.ok(userDTO);
     }

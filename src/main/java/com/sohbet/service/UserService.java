@@ -148,7 +148,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public UserDTO updateUser(UpdateUserRequest updateUserRequest) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest,String imageId) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -162,22 +162,19 @@ public class UserService {
 		}
 
 		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
-//		if (updateUserRequest.getProfileImage() != null) {
-			Image image = imageService.getImageById(updateUserRequest.getProfileImage());
-
-			if (image == null) {
-				return null;
-			}
-
+		if (imageId != null) {
+			Image image = imageService.getImageById(imageId);
+            user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
+			user.getMyImages().add(image);
+//			
 //			List<User> userList = userRepository.findUseListByImageId(image.getId());
 //			for (User u : userList) {
 //				if (!user.getId().equals(u.getId())) {
 //					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-//				}
+				}
 //			}
-
-			user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
-			user.getMyImages().add(image);
+//
+			
 		
 
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
