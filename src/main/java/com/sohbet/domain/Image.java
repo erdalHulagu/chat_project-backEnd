@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,9 +40,6 @@ public class Image {
 	private long length;
 	
 	private String filePath;
-	
-//	@OneToOne(mappedBy = "profileImage", fetch = FetchType.LAZY)
-//	private User user;
 	
 	@OneToOne(cascade=CascadeType.ALL)// ImageFile silinirse , imageData da silinsin
 	private ImageData imageData; 

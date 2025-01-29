@@ -49,7 +49,6 @@ public class SecurityConfig {
 	                .requestMatchers(
 	                    "/login",
 	                    "/register",
-	                    "/users/**",
 	                    "/register/**",
 	                    "/chats/dummy",
 	                    "/users/**",
@@ -58,7 +57,8 @@ public class SecurityConfig {
 	                    "/chats/single/**",
 	                    "/chats/**",
 	                    "/actuator/info",
-	                    "/actuator/health"
+	                    "/actuator/health",
+	                    "images/**"
 	                ).permitAll()
 	                .anyRequest().authenticated()
 	            )

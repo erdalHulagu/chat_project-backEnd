@@ -108,6 +108,18 @@ public class UserService {
 		return userDTO;
 
 	}
+	public User findUserProfile2() {
+		
+		User user = getCurrentUser();
+		
+		if (user == null) {
+			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));
+			
+		}
+		
+		return user;
+		
+	}
 
 	public Page<UserDTO> getAllByPage(Pageable pageable) {
 		Page<User> userPage = userRepository.findAll(pageable);
@@ -162,8 +174,12 @@ public class UserService {
 		}
 
 		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
-		if (imageId != null) {
+		
 			Image image = imageService.getImageById(imageId);
+			if (image==null) {
+				image=null;
+			}
+			
             user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
 			user.getMyImages().add(image);
 //			
@@ -171,7 +187,7 @@ public class UserService {
 //			for (User u : userList) {
 //				if (!user.getId().equals(u.getId())) {
 //					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-				}
+				
 //			}
 //
 			

@@ -69,6 +69,7 @@ public class ImageController {
 
 		return new ResponseEntity<>(image.getImageData().getData(), header, HttpStatus.OK);
 	}
+	
 
 	// *************************GetAllimages*******************
 	@GetMapping("/all")
@@ -101,15 +102,6 @@ public class ImageController {
 		return ResponseEntity.ok().body(uploadImage);
 	}
 
-//	@Transactional
-//	@GetMapping("/add/{imageId}")
-//	public ResponseEntity<byte[]> findImageByImageId(@PathVariable String imageId) {
-//
-//		Image image = imageService.findImageByImageId(imageId);
-//		HttpHeaders header = new HttpHeaders();
-//		header.setContentType(MediaType.IMAGE_PNG);
-//
-//		return new ResponseEntity<>(image.getData(), header, HttpStatus.OK);
-//	}
+
 
 }

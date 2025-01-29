@@ -1,9 +1,14 @@
 package com.sohbet.controller;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.xml.crypto.Data;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +35,7 @@ import com.sohbet.DTOresponse.ResponseMessage;
 import com.sohbet.domain.Image;
 import com.sohbet.domain.User;
 import com.sohbet.mapper.UserMapper;
+import com.sohbet.repository.ImageRepository;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.service.ImageService;
 import com.sohbet.service.UserService;
@@ -47,6 +54,11 @@ public class UserController {
 	
 	@Autowired
 	private ImageService imageService;
+	
+	@Autowired
+	private ImageRepository imageRepository;
+	@Autowired
+	private ImageController imageController;
 	
 	// ------------ get user by user id -------------------
 	@Transactional
@@ -70,6 +82,15 @@ public class UserController {
 
 		return ResponseEntity.ok(userDTO);
 
+	}
+	@Transactional
+	@GetMapping("/userImage")
+	public ResponseEntity<Image> findUserImageByImageId() {
+	    User user = userService.findUserProfile2();
+	    String profileImageId = user.getProfileImage().getId();
+	    Image image = imageRepository.findById(profileImageId)
+	            .orElseThrow(() -> new RuntimeException("Image not found"));
+	    return ResponseEntity.ok(image);
 	}
 
 //	@GetMapping("/{query}")
@@ -105,7 +126,7 @@ public class UserController {
 
 	// ------------ up date user -------------------
 	@Transactional
-	@PutMapping("/update/{image}")
+	@PutMapping("/update/{imageId}")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
     public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
         UserDTO userDTO = userService.updateUser(updateUserRequest,imageId);
