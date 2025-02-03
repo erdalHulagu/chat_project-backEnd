@@ -1,12 +1,7 @@
 package com.sohbet.service;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -14,7 +9,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,18 +19,14 @@ import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
-import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
 import com.sohbet.mapper.UserMapper;
-import com.sohbet.repository.ImageRepository;
 import com.sohbet.repository.UserRepository;
 import com.sohbet.request.RegisterRequest;
 import com.sohbet.request.UpdateUserRequest;
 import com.sohbet.security.config.SecurityUtils;
-
-import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -57,8 +47,6 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private ImageRepository imageRepository;
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -108,17 +96,18 @@ public class UserService {
 		return userDTO;
 
 	}
+
 	public User findUserProfile2() {
-		
+
 		User user = getCurrentUser();
-		
+
 		if (user == null) {
 			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));
-			
+
 		}
-		
+
 		return user;
-		
+
 	}
 
 	public Page<UserDTO> getAllByPage(Pageable pageable) {
@@ -160,7 +149,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public UserDTO updateUser(UpdateUserRequest updateUserRequest,String imageId) {
+	public void updateUser(UpdateUserRequest updateUserRequest, String imageId) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -174,25 +163,33 @@ public class UserService {
 		}
 
 		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
+
+		Image image = imageService.getImageById(imageId);
 		
-			Image image = imageService.getImageById(imageId);
-			if (image==null) {
-				image=null;
+
+		List<User> userList = userRepository.findUserByImageId(image.getId());
+
+		for (User u : userList) {
+			// bana gelen user Id si ile yukardakiList türündeki userId leri eşit olmaları
+			// lazım,
+			// eğer eşit değilse girilenm image başka bir user için yüklenmiş
+			if (user.getId().longValue() != u.getId().longValue()) {
+				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
 			}
-			
-            user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
-			user.getMyImages().add(image);
+
+		}
+
 //			
 //			List<User> userList = userRepository.findUseListByImageId(image.getId());
 //			for (User u : userList) {
 //				if (!user.getId().equals(u.getId())) {
 //					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-				
+
 //			}
 //
-			
-		
 
+		user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
+		user.getMyImages().add(image);
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 		user.getRoles().add(role);
 		user.setUpdateAt(LocalDateTime.now());
@@ -203,9 +200,9 @@ public class UserService {
 		user.setEmail(updateUserRequest.getEmail());
 		user.setPostCode(updateUserRequest.getPostCode());
 
-		User usr=userRepository.save(user);
-		return userMapper.userToUserDto(usr);
-		}
+		userRepository.save(user);
+//		return userMapper.userToUserDto(usr);
+	}
 
 	// ---------------- register user----------------------
 

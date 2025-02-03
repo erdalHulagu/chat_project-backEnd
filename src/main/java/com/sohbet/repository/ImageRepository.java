@@ -19,7 +19,7 @@ public interface ImageRepository extends JpaRepository<Image,String> {
 	//bağlı olduğu imageData lar gelmemiş olacak
 	List<Image> findAll();
 	
-	@EntityGraph(attributePaths = "imageData") // imageFile ile ilgili datalar gelsin
+	@EntityGraph(attributePaths = "id") // imageFile ile ilgili datalar gelsin
 	Optional<Image> findImageById(String Id);
 
 	 @EntityGraph(attributePaths = "imageData")

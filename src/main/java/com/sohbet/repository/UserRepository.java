@@ -27,7 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Boolean existsByEmail(String email);
 
 	 @Query("SELECT u FROM User u JOIN u.profileImage i WHERE i.id = :imageId")
-	Optional<User> findUserByImageId(@Param("imageId") String imageId);
+	 List<User> findUserByImageId(@Param("imageId") String imageId);
 	
 	@Query("Select u from User u join u.profileImage.id pId where pId=:imageId")
 	List<User> findUseListByImageId(@Param("imageId") String string);
