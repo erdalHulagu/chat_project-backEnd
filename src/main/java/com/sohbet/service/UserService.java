@@ -149,7 +149,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public void updateUser(UpdateUserRequest updateUserRequest, String imageId) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest, String imageId) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -162,9 +162,13 @@ public class UserService {
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
 		}
 
-		// profileImage kontrolü: Eğer null ise hiçbir işlem yapmaz
 
 		Image image = imageService.getImageById(imageId);
+		
+	    if (image==null) {
+	    	
+			image=null;
+		}
 		
 
 		List<User> userList = userRepository.findUserByImageId(image.getId());
@@ -179,14 +183,6 @@ public class UserService {
 
 		}
 
-//			
-//			List<User> userList = userRepository.findUseListByImageId(image.getId());
-//			for (User u : userList) {
-//				if (!user.getId().equals(u.getId())) {
-//					throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
-
-//			}
-//
 
 		user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
 		user.getMyImages().add(image);
@@ -200,8 +196,8 @@ public class UserService {
 		user.setEmail(updateUserRequest.getEmail());
 		user.setPostCode(updateUserRequest.getPostCode());
 
-		userRepository.save(user);
-//		return userMapper.userToUserDto(usr);
+		User newuser =userRepository.save(user);
+		return userMapper.userToUserDto(newuser);
 	}
 
 	// ---------------- register user----------------------

@@ -51,8 +51,6 @@ public class UserController {
 	
 	@Autowired
 	private ImageRepository imageRepository;
-	@Autowired
-	private ImageController imageController;
 	
 	// ------------ get user by user id -------------------
 	@Transactional
@@ -122,15 +120,16 @@ public class UserController {
 	@Transactional
 	@PutMapping("/update/{imageId}")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-    public ResponseEntity<Response> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
-        userService.updateUser(updateUserRequest,imageId);
+    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
+      UserDTO userDTO=  userService.updateUser(updateUserRequest,imageId);
         
-        Response response =new Response();
-        
-        response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
-		response.setSuccess(true);
-
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+//        Response response =new Response();
+//        
+//        response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+//		response.setSuccess(true);
+//
+//		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return  ResponseEntity.ok(userDTO);
     }
 
 
@@ -204,10 +203,7 @@ public class UserController {
 	    User user2 = userMapper.userDTOToUser(userDTO);
 	User user=	userService.getUserById(user2.getId());
 	
-	    
-	    System.out.println("User ID: " + user.getId());
 	    if (user.getMyImages().isEmpty()) {
-	        System.out.println("No images found for the user");
 	        return new HashSet<>(); 
 	    }
 	    

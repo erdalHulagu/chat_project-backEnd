@@ -98,11 +98,12 @@ public class User {
 	    name = "user_images", // Ara tablo adı
 	    joinColumns = @JoinColumn(name = "user_id"), // User tablosundan ilişki
 	    inverseJoinColumns = @JoinColumn(name = "image_id") // Image tablosundan ilişki
+	    
 	)
 	private Set<Image> myImages = new HashSet<>();
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "profile_image_id", nullable = true)
+	@JoinColumn(name = "profile_image_id")
 	@JsonIgnore
 	private Image profileImage;
 	

@@ -44,14 +44,13 @@ public class Image {
 	@OneToOne(cascade=CascadeType.ALL)// ImageFile silinirse , imageData da silinsin
 	private ImageData imageData; 
 	
-	public Image(String name, String type,ImageData imageData) {
-		this.name = name;
-		this.type = type;
-		this.imageData = imageData ;
-		this.length = imageData.getData().length; // ImageFile  uzunluğu imageData dan çekiliyor
+	public Image(String name, String type, ImageData imageData) {
+	    this.name = name;
+	    this.type = type;
+	    this.imageData = imageData;
+	    this.length = (imageData != null && imageData.getData() != null) ? imageData.getData().length : 0;
+
 	}
-
-
 	
 	
 }

@@ -47,8 +47,7 @@ public class RegisterRequest {
 	private String postCode;
 
 	private boolean builtIn;
-	
-	@Nullable
+
 	private String profileImage;
 
 	private Set<String> roles = new HashSet<>();
