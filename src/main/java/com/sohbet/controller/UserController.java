@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -75,15 +76,7 @@ public class UserController {
 		return ResponseEntity.ok(userDTO);
 
 	}
-	@Transactional
-	@GetMapping("/userImage")
-	public ResponseEntity<Image> findUserImageByImageId() {
-	    User user = userService.findUserProfile2();
-	    String profileImageId = user.getProfileImage().getId();
-	    Image image = imageRepository.findById(profileImageId)
-	            .orElseThrow(() -> new RuntimeException("Image not found"));
-	    return ResponseEntity.ok(image);
-	}
+	
 
 //	@GetMapping("/{query}")
 //	public ResponseEntity<List<UserDTO>> searchUser(@PathVariable ("query") String query ){
@@ -117,12 +110,26 @@ public class UserController {
 	}
 
 	// ------------ up date user -------------------
+//	@Transactional
+//	@PutMapping("/update/{imageId}")
+////	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
+//    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
+//      UserDTO userDTO=  userService.updateUser(updateUserRequest,imageId);
+//        
+////        Response response =new Response();
+////        
+////        response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
+////		response.setSuccess(true);
+////
+////		return new ResponseEntity<>(response, HttpStatus.CREATED);
+//		return  ResponseEntity.ok(userDTO);
+//    }
 	@Transactional
-	@PutMapping("/update/{imageId}")
+	@PutMapping("/update")
 //	@PreAuthorize("hasRole('ADMIN') or hasRole('ANONYMOUS')")
-    public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest, @PathVariable String imageId) {
-      UserDTO userDTO=  userService.updateUser(updateUserRequest,imageId);
-        
+	public ResponseEntity<UserDTO> upDateUser(@Valid @RequestBody UpdateUserRequest updateUserRequest) {
+		UserDTO userDTO=  userService.updateUser(updateUserRequest);
+		
 //        Response response =new Response();
 //        
 //        response.setMessage(ResponseMessage.USER_UPDATED_MESSAGE);
@@ -130,8 +137,24 @@ public class UserController {
 //
 //		return new ResponseEntity<>(response, HttpStatus.CREATED);
 		return  ResponseEntity.ok(userDTO);
-    }
-
+	}
+	
+	@Transactional
+	@PutMapping("/userImages/{imageId}")
+	public ResponseEntity<Image> updateUserImage( @PathVariable String imageId) {
+	    UserDTO userDTO = userService.findUserProfile();
+	    User user =userMapper.userDTOToUser(userDTO);
+	   Image image=userService. upDateUserImages(user,imageId);
+	    
+	   
+	   
+	  
+	  
+//	    Image image = imageRepository.findById(profileImageId)
+//	            .orElseThrow(() -> new RuntimeException("Image not found"));
+	    return ResponseEntity.ok(image);
+	    
+	}
 
 	// ------------ delete user by id -------------------
 	@DeleteMapping("{id}")
@@ -140,9 +163,23 @@ public class UserController {
 		userService.deleteUserById(id);
 		Response response = new Response();
 		response.setMessage(ResponseMessage.USER_DELETED);
-
+		response.setSuccess(true);
 		return ResponseEntity.ok(response);
 
+	}
+	@DeleteMapping("deleteImage{imageId}")
+	public ResponseEntity<Response> deleteUsersImage(@PathVariable String imageId){
+		
+		userService.deleteUserImageById(imageId);
+		
+		Response response=new Response();
+		
+		response.setSuccess(true);
+		response.setMessage(ResponseMessage.IMAGE_DELETED);
+		
+		return ResponseEntity.ok(response);
+		
+		
 	}
 
 	// ------------ search user -------------------

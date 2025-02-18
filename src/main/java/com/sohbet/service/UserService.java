@@ -19,6 +19,7 @@ import com.sohbet.domain.Image;
 import com.sohbet.domain.Role;
 import com.sohbet.domain.User;
 import com.sohbet.enums.RoleType;
+import com.sohbet.exception.BadRequestException;
 import com.sohbet.exception.ConflictException;
 import com.sohbet.exception.ResourceNotFoundException;
 import com.sohbet.exception.message.ErrorMessage;
@@ -97,18 +98,7 @@ public class UserService {
 
 	}
 
-	public User findUserProfile2() {
-
-		User user = getCurrentUser();
-
-		if (user == null) {
-			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE, user));
-
-		}
-
-		return user;
-
-	}
+	
 
 	public Page<UserDTO> getAllByPage(Pageable pageable) {
 		Page<User> userPage = userRepository.findAll(pageable);
@@ -149,7 +139,7 @@ public class UserService {
 		return userDTOList;
 	}
 
-	public UserDTO updateUser(UpdateUserRequest updateUserRequest, String imageId) {
+	public UserDTO updateUser(UpdateUserRequest updateUserRequest) {
 		User user = getCurrentUser();
 
 		if (user == null) {
@@ -162,16 +152,9 @@ public class UserService {
 					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
 		}
 
+                       String imageId=user.getProfileImage().getId();		
 
-		Image image = imageService.getImageById(imageId);
-		
-	    if (image==null) {
-	    	
-			image=null;
-		}
-		
-
-		List<User> userList = userRepository.findUserByImageId(image.getId());
+		List<User> userList = userRepository.findUserByImageId(imageId);
 
 		for (User u : userList) {
 			// bana gelen user Id si ile yukardakiList türündeki userId leri eşit olmaları
@@ -182,10 +165,7 @@ public class UserService {
 			}
 
 		}
-
-
-		user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
-		user.getMyImages().add(image);
+		
 		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
 		user.getRoles().add(role);
 		user.setUpdateAt(LocalDateTime.now());
@@ -199,6 +179,80 @@ public class UserService {
 		User newuser =userRepository.save(user);
 		return userMapper.userToUserDto(newuser);
 	}
+	
+	public Image upDateUserImages(User user, String imageId) {
+		
+		Image image  =imageService.getImageById(imageId);
+		
+		List<User> userList = userRepository.findUserByImageId(image.getId());
+		
+		for (User u : userList) {
+			// bana gelen user Id si ile yukardakiList türündeki userId leri eşit olmaları
+			// lazım,
+			// eğer eşit değilse girilenm image başka bir user için yüklenmiş
+			if (user.getId().longValue() != u.getId().longValue()) {
+				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+			}
+			
+		}
+		  user.setProfileImage(image);
+		  user.getMyImages().add(image);
+		  
+		User usr = userRepository.save(user);
+		
+		
+		return usr.getProfileImage();
+	}
+//	public UserDTO updateUser(UpdateUserRequest updateUserRequest, String imageId) {
+//		User user = getCurrentUser();
+//		
+//		if (user == null) {
+//			throw new ResourceNotFoundException(String.format(ErrorMessage.USER_NOT_FOUND_MESSAGE));
+//		}
+//		
+//		boolean emailExist = userRepository.existsByEmail(updateUserRequest.getEmail());
+//		if (emailExist && (!updateUserRequest.getEmail().equals(user.getEmail()))) {
+//			throw new ConflictException(
+//					String.format(ErrorMessage.EMAIL_ALREADY_EXIST_MESSAGE, updateUserRequest.getEmail()));
+//		}
+//		
+//		
+//		Image image = imageService.getImageById(imageId);
+//		
+//		if (image==null) {
+//			
+//			image=null;
+//		}
+//		
+//		
+//		List<User> userList = userRepository.findUserByImageId(image.getId());
+//		
+//		for (User u : userList) {
+//			// bana gelen user Id si ile yukardakiList türündeki userId leri eşit olmaları
+//			// lazım,
+//			// eğer eşit değilse girilenm image başka bir user için yüklenmiş
+//			if (user.getId().longValue() != u.getId().longValue()) {
+//				throw new ConflictException(ErrorMessage.IMAGE_USED_MESSAGE);
+//			}
+//			
+//		}
+//		
+//		
+//		user.setProfileImage(image); // Sadece `profileImage` null değilse ayarlanır
+//		user.getMyImages().add(image);
+//		Role role = roleService.findByType(RoleType.ROLE_ANONYMOUS);
+//		user.getRoles().add(role);
+//		user.setUpdateAt(LocalDateTime.now());
+//		user.setFirstName(updateUserRequest.getFirstName());
+//		user.setLastName(updateUserRequest.getLastName());
+//		user.setAddress(updateUserRequest.getAddress());
+//		user.setPhone(updateUserRequest.getPhone());
+//		user.setEmail(updateUserRequest.getEmail());
+//		user.setPostCode(updateUserRequest.getPostCode());
+//		
+//		User newuser =userRepository.save(user);
+//		return userMapper.userToUserDto(newuser);
+//	}
 
 	// ---------------- register user----------------------
 
@@ -338,6 +392,26 @@ public class UserService {
 
 		return roles;
 	}
+
+	@SuppressWarnings("unlikely-arg-type")
+	public void deleteUserImageById(String imageId) {
+		UserDTO userDTO=findUserProfile();
+		User user=userMapper.userDTOToUser(userDTO);
+		 boolean isImage=user.getMyImages().stream().anyMatch(img->img.getId().equalsIgnoreCase(imageId));
+		
+		if (!isImage) {
+			throw new BadRequestException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE));
+			
+		}
+		imageService.removeById(imageId);
+		user.getMyImages().remove(imageId);
+		
+		
+	}
+
+
+
+	
 
 //	public Set<Image> findImagesByUserId(Long userId) {
 //		 return userRepository.findUserImages(userId);
