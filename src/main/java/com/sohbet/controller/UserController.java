@@ -167,7 +167,7 @@ public class UserController {
 		return ResponseEntity.ok(response);
 
 	}
-	@DeleteMapping("deleteImage{imageId}")
+	@DeleteMapping("deleteImage/{imageId}")
 	public ResponseEntity<Response> deleteUsersImage(@PathVariable String imageId){
 		
 		userService.deleteUserImageById(imageId);

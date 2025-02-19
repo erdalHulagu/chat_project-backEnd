@@ -1,222 +1,365 @@
-2025-02-18 00:03:41,378 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
-2025-02-18 00:07:05,630 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2025-02-18 00:07:05,631 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2025-02-18 00:07:05,632 INFO  [Thread-5] org.springframework.web.SimpLogging:Stopping...
-2025-02-18 00:07:05,633 INFO  [Thread-5] org.springframework.web.SimpLogging:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@210df302]]
-2025-02-18 00:07:05,633 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@210df302]
-2025-02-18 00:07:05,633 DEBUG [Thread-5] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@210df302]
-2025-02-18 00:07:05,633 INFO  [Thread-5] org.springframework.web.SimpLogging:Stopped.
-2025-02-18 00:07:05,634 DEBUG [Thread-5] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:07:05,634 DEBUG [Thread-5] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:07:05,685 WARN  [Thread-5] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2025-02-18 00:07:08,300 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-18 00:07:08,312 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2025-02-18 00:07:08,672 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2025-02-18 00:07:08,879 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2025-02-18 00:07:08,880 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@64e5a386] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2025-02-18 00:07:10,480 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
-2025-02-18 00:07:10,802 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration:spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-18 00:07:11,011 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
-2025-02-18 00:07:11,101 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:38 mappings in 'requestMappingHandlerMapping'
-2025-02-18 00:07:11,575 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2025-02-18 00:07:12,121 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66ab6787, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64080f70, org.springframework.security.web.context.SecurityContextHolderFilter@41f20cf3, org.springframework.security.web.header.HeaderWriterFilter@47218d77, org.springframework.security.web.authentication.logout.LogoutFilter@554aed77, com.sohbet.security.jwt.AuthTokenFilter@2c069bb6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43c9cfa8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@848a893, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22da130c, org.springframework.security.web.session.SessionManagementFilter@1db23f04, org.springframework.security.web.access.ExceptionTranslationFilter@6cedda87, org.springframework.security.web.access.intercept.AuthorizationFilter@1532fb54]
-2025-02-18 00:07:12,155 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,155 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
-2025-02-18 00:07:12,155 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,155 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
-2025-02-18 00:07:12,167 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,168 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
-2025-02-18 00:07:12,168 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,168 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
-2025-02-18 00:07:12,168 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,171 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
-2025-02-18 00:07:12,171 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,171 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
-2025-02-18 00:07:12,171 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,171 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
-2025-02-18 00:07:12,171 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:07:12,172 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
-2025-02-18 00:07:12,368 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ChatController:
-	
-2025-02-18 00:07:12,372 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.HomeController:
-	
-2025-02-18 00:07:12,523 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ImageController:
-	
-2025-02-18 00:07:12,524 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.MessageController:
-	
-2025-02-18 00:07:12,541 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserController:
-	
-2025-02-18 00:07:12,542 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserJwtController:
-	
-2025-02-18 00:07:12,544 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	o.s.b.a.w.s.e.BasicErrorController:
-	
-2025-02-18 00:07:12,686 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-02-18 00:07:12,731 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-02-18 00:07:13,348 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2025-02-18 00:07:13,348 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2025-02-18 00:07:13,348 INFO  [restartedMain] org.springframework.web.SimpLogging:Starting...
-2025-02-18 00:07:13,349 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]
-2025-02-18 00:07:13,349 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]
-2025-02-18 00:07:13,349 INFO  [restartedMain] org.springframework.web.SimpLogging:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]]
-2025-02-18 00:07:13,349 INFO  [restartedMain] org.springframework.web.SimpLogging:Started.
-2025-02-18 00:07:13,349 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:07:13,349 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:08:12,322 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2025-02-18 00:18:52,239 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientOutboundChannel removed SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2025-02-18 00:18:52,241 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2025-02-18 00:18:52,241 INFO  [Thread-7] org.springframework.web.SimpLogging:Stopping...
-2025-02-18 00:18:52,242 INFO  [Thread-7] org.springframework.web.SimpLogging:BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]]
-2025-02-18 00:18:52,242 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]
-2025-02-18 00:18:52,242 DEBUG [Thread-7] org.springframework.web.SimpLogging:brokerChannel removed SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@69866b37]
-2025-02-18 00:18:52,242 INFO  [Thread-7] org.springframework.web.SimpLogging:Stopped.
-2025-02-18 00:18:52,249 DEBUG [Thread-7] org.springframework.web.SimpLogging:clientInboundChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:18:52,250 DEBUG [Thread-7] org.springframework.web.SimpLogging:brokerChannel removed UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:18:52,273 WARN  [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase:The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.10/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.10/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.10/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.10/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.10/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.10/java.lang.Thread.run(Thread.java:840)
-2025-02-18 00:18:53,879 INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-18 00:18:53,890 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2025-02-18 00:18:53,992 INFO  [restartedMain] org.hibernate.bytecode.internal.BytecodeProviderInitiator:HHH000021: Bytecode provider name : bytebuddy
-2025-02-18 00:18:54,116 INFO  [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2025-02-18 00:18:54,117 INFO  [restartedMain] org.hibernate.orm.connections.access:HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@773d577b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
-2025-02-18 00:18:54,532 DEBUG [restartedMain] org.springframework.web.filter.ServerHttpObservationFilter:Filter 'webMvcObservationFilter' configured for use
-2025-02-18 00:18:54,643 WARN  [restartedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration:spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-18 00:18:54,747 DEBUG [restartedMain] org.springframework.web.socket.server.support.WebSocketHandlerMapping:Patterns [/ws/**] in 'stompWebSocketHandlerMapping'
-2025-02-18 00:18:54,790 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:38 mappings in 'requestMappingHandlerMapping'
-2025-02-18 00:18:55,123 DEBUG [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping:Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2025-02-18 00:18:55,359 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@bbf0c81, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c3cc6ff, org.springframework.security.web.context.SecurityContextHolderFilter@9c27bb2, org.springframework.security.web.header.HeaderWriterFilter@606bff73, org.springframework.security.web.authentication.logout.LogoutFilter@49cfcf76, com.sohbet.security.jwt.AuthTokenFilter@20bcef52, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@652e7a46, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a8181f7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@48ef0e53, org.springframework.security.web.session.SessionManagementFilter@5c8ab908, org.springframework.security.web.access.ExceptionTranslationFilter@7b82e04c, org.springframework.security.web.access.intercept.AuthorizationFilter@9fdcc69]
-2025-02-18 00:18:55,372 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,372 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/v3/api-docs/**']
-2025-02-18 00:18:55,372 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='swagger-ui.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,372 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='swagger-ui.html']
-2025-02-18 00:18:55,372 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,372 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/swagger-ui/**']
-2025-02-18 00:18:55,372 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,372 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/']
-2025-02-18 00:18:55,373 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='index.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,373 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='index.html']
-2025-02-18 00:18:55,373 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/images/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,373 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/images/**']
-2025-02-18 00:18:55,373 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/css/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,373 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/css/**']
-2025-02-18 00:18:55,373 WARN  [restartedMain] org.springframework.security.config.annotation.web.builders.WebSecurity:You are asking Spring Security to ignore Mvc [pattern='/js/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2025-02-18 00:18:55,373 INFO  [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain:Will not secure Mvc [pattern='/js/**']
-2025-02-18 00:18:55,453 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ChatController:
-	
-2025-02-18 00:18:55,454 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.HomeController:
-	
-2025-02-18 00:18:55,454 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.ImageController:
-	
-2025-02-18 00:18:55,454 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.MessageController:
-	
-2025-02-18 00:18:55,454 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserController:
-	
-2025-02-18 00:18:55,454 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	c.s.c.UserJwtController:
-	
-2025-02-18 00:18:55,455 DEBUG [restartedMain] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler:
-	o.s.b.a.w.s.e.BasicErrorController:
-	
-2025-02-18 00:18:55,556 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter:ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2025-02-18 00:18:55,582 DEBUG [restartedMain] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2025-02-18 00:18:55,754 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientOutboundChannel added SubProtocolWebSocketHandler[StompSubProtocolHandler[v10.stomp, v11.stomp, v12.stomp]]
-2025-02-18 00:18:55,754 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added WebSocketAnnotationMethodMessageHandler[prefixes=[/]]
-2025-02-18 00:18:55,754 INFO  [restartedMain] org.springframework.web.SimpLogging:Starting...
-2025-02-18 00:18:55,754 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3d3b04ac]
-2025-02-18 00:18:55,754 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3d3b04ac]
-2025-02-18 00:18:55,754 INFO  [restartedMain] org.springframework.web.SimpLogging:BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3d3b04ac]]
-2025-02-18 00:18:55,755 INFO  [restartedMain] org.springframework.web.SimpLogging:Started.
-2025-02-18 00:18:55,755 DEBUG [restartedMain] org.springframework.web.SimpLogging:clientInboundChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:18:55,755 DEBUG [restartedMain] org.springframework.web.SimpLogging:brokerChannel added UserDestinationMessageHandler[DefaultUserDestinationResolver[prefix=/user/]]
-2025-02-18 00:19:51,322 INFO  [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Initializing Servlet 'dispatcherServlet'
-2025-02-18 00:19:51,326 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Detected StandardServletMultipartResolver
-2025-02-18 00:19:51,326 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Detected AcceptHeaderLocaleResolver
-2025-02-18 00:19:51,327 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Detected FixedThemeResolver
-2025-02-18 00:19:51,351 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@47107150
-2025-02-18 00:19:51,352 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Detected org.springframework.web.servlet.support.SessionFlashMapManager@706e47c3
-2025-02-18 00:19:51,352 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2025-02-18 00:19:51,352 INFO  [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed initialization in 27 ms
-2025-02-18 00:19:51,364 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,366 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,367 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,367 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,367 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,368 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,380 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
-2025-02-18 00:19:51,381 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,776 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
-2025-02-18 00:19:51,824 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
-2025-02-18 00:19:51,854 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,854 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,856 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,856 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,858 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,870 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:51,875 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
-2025-02-18 00:19:51,876 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:19:52,171 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2025-02-18 00:19:52,274 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
-2025-02-18 00:19:52,447 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
-2025-02-18 00:19:52,468 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2025-02-18 00:19:55,423 INFO  [MessageBroker-1] org.springframework.web.socket.config.WebSocketMessageBrokerStats:WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2025-02-18 00:20:10,757 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,758 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,758 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,758 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,759 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,759 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,759 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
-2025-02-18 00:20:10,759 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:10,803 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
-2025-02-18 00:20:10,841 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
-2025-02-18 00:20:10,843 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2025-02-18 00:20:17,348 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,348 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,349 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,349 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,349 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,350 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,350 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
-2025-02-18 00:20:17,350 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:20:17,391 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
-2025-02-18 00:20:17,430 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
-2025-02-18 00:20:17,446 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
-2025-02-18 00:21:25,706 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,708 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,708 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,709 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,709 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,709 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,709 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
-2025-02-18 00:21:25,710 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
-2025-02-18 00:21:25,740 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
-2025-02-18 00:21:25,769 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
-2025-02-18 00:21:25,773 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:02:30,454 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:30,454 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:30,454 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,011 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,002 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,191 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,192 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,192 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,192 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,189 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,192 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,192 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,193 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,194 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,194 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,196 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:02:31,197 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:31,200 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,314 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,314 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,319 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,319 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,340 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:31,340 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,340 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:31,340 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:31,341 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,341 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,829 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:31,830 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:31,835 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:31,835 ERROR [http-nio-8081-exec-1] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:31,838 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:31,839 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@1f5abb21]
+2025-02-19 00:02:31,839 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:31,839 ERROR [http-nio-8081-exec-8] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:31,839 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:31,839 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@7dfdfff1]
+2025-02-19 00:02:31,844 WARN  [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:31,847 WARN  [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:31,847 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:31,847 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:31,850 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:31,850 ERROR [http-nio-8081-exec-7] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:31,850 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:31,850 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@3910ff40]
+2025-02-19 00:02:31,855 WARN  [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:31,856 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:31,887 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:31,887 ERROR [http-nio-8081-exec-6] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:31,887 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:31,887 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@b84f6c3]
+2025-02-19 00:02:31,890 WARN  [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:31,891 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:31,965 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:02:32,188 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:02:32,195 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:02:32,196 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,196 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,197 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,197 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,197 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,198 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,198 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:02:32,202 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:02:32,219 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,219 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,219 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,219 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,220 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,220 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,221 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,222 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,222 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,222 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,225 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,225 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,542 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:32,542 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,549 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:32,549 ERROR [http-nio-8081-exec-4] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:32,549 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:32,550 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:32,550 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,550 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@45461b29]
+2025-02-19 00:02:32,550 WARN  [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:32,551 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:32,558 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:32,558 ERROR [http-nio-8081-exec-10] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:32,558 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:32,558 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@5e9321b0]
+2025-02-19 00:02:32,559 WARN  [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:32,559 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:32,562 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:02:32,597 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:02:32,598 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:02:32,616 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,617 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,617 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,617 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,617 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,617 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,618 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,619 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,619 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,620 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,620 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:32,621 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:33,294 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:33,295 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:33,305 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:02:33,305 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:02:33,409 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:33,409 ERROR [http-nio-8081-exec-5] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:33,410 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:33,410 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@16d5b9ee]
+2025-02-19 00:02:33,415 WARN  [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:33,418 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:02:33,429 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:02:33,429 ERROR [http-nio-8081-exec-9] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:02:33,429 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:02:33,429 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@50111bab]
+2025-02-19 00:02:33,430 WARN  [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:02:33,430 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:04:24,818 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,821 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,822 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,823 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,823 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,824 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:24,829 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:04:24,830 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,435 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:04:25,464 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:04:25,480 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:04:25,482 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,483 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,484 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,484 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,485 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,485 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,486 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:04:25,486 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:25,593 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:04:25,650 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:04:25,652 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:04:57,277 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,280 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,281 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,281 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,282 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,284 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,286 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:04:57,286 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,867 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:04:57,903 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:04:57,916 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,919 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,919 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,920 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,926 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,945 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:57,946 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:04:57,946 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:04:58,010 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:04:58,261 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:04:58,582 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:04:58,600 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:05:01,913 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:01,913 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:01,914 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:01,914 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:01,914 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:01,914 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:02,180 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/undefined", parameters={}
+2025-02-19 00:05:02,180 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:02,201 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:05:02,201 ERROR [http-nio-8081-exec-2] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:05:02,203 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:05:02,203 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@3ab02402]
+2025-02-19 00:05:02,205 WARN  [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:05:02,207 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:05:40,519 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,519 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,520 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,520 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,521 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,521 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,521 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:05:40,521 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:05:40,779 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:05:40,916 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:05:40,989 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:05:42,908 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,911 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,914 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,915 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,916 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,917 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,947 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:OPTIONS "/images/delete/1", parameters={}
+2025-02-19 00:05:42,949 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,952 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:05:42,969 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,971 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,974 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,974 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,974 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:42,974 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:43,028 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/1", parameters={}
+2025-02-19 00:05:43,029 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:05:43,032 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:05:43,033 ERROR [http-nio-8081-exec-3] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: Entity must not be null
+2025-02-19 00:05:43,033 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:05:43,033 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@536172b8]
+2025-02-19 00:05:43,033 WARN  [http-nio-8081-exec-3] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: Entity must not be null]
+2025-02-19 00:05:43,034 DEBUG [http-nio-8081-exec-3] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:06:06,434 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,448 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,449 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,449 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,449 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,449 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,450 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:06:06,450 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:06:06,554 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:06:06,583 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:06:06,643 DEBUG [http-nio-8081-exec-5] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:06:09,864 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,891 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,892 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,894 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,917 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,920 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,921 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:OPTIONS "/images/delete/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:06:09,922 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,940 DEBUG [http-nio-8081-exec-9] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:06:09,962 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,970 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,971 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,977 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,979 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:09,979 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:10,000 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:06:10,000 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:06:10,233 WARN  [http-nio-8081-exec-8] org.hibernate.engine.jdbc.spi.SqlExceptionHelper:SQL Error: 0, SQLState: 23503
+2025-02-19 00:06:10,233 ERROR [http-nio-8081-exec-8] org.hibernate.engine.jdbc.spi.SqlExceptionHelper:ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"
+  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".
+2025-02-19 00:06:10,255 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:06:10,256 ERROR [http-nio-8081-exec-8] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: could not execute statement [ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"
+  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".] [delete from image where id=?]; SQL [delete from image where id=?]; constraint [fkarif87131ncfhodvb46btrdws]
+2025-02-19 00:06:10,256 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:06:10,256 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@2faff5f3]
+2025-02-19 00:06:10,257 WARN  [http-nio-8081-exec-8] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"<EOL>  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".] [delete from image where id=?]; SQL [delete from image where id=?]; constraint [fkarif87131ncfhodvb46btrdws]]
+2025-02-19 00:06:10,258 DEBUG [http-nio-8081-exec-8] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:08:24,389 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,392 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,393 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,393 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,393 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,394 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,396 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:08:24,399 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:24,629 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:08:24,661 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:08:24,672 DEBUG [http-nio-8081-exec-1] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:08:27,715 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,717 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,740 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,756 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,761 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,761 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:27,906 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:DELETE "/images/delete/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:08:27,907 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#deleteImageFile(String)
+2025-02-19 00:08:28,085 WARN  [http-nio-8081-exec-7] org.hibernate.engine.jdbc.spi.SqlExceptionHelper:SQL Error: 0, SQLState: 23503
+2025-02-19 00:08:28,085 ERROR [http-nio-8081-exec-7] org.hibernate.engine.jdbc.spi.SqlExceptionHelper:ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"
+  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".
+2025-02-19 00:08:28,094 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Using @ExceptionHandler com.sohbet.exception.FurkanChatExceptionHandler#handleRuntimeException(RuntimeException, WebRequest)
+2025-02-19 00:08:28,094 ERROR [http-nio-8081-exec-7] com.sohbet.exception.FurkanChatExceptionHandler:Error occurred: could not execute statement [ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"
+  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".] [delete from image where id=?]; SQL [delete from image where id=?]; constraint [fkarif87131ncfhodvb46btrdws]
+2025-02-19 00:08:28,096 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:08:28,097 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.exception.message.ApiResponseError@15685ee0]
+2025-02-19 00:08:28,099 WARN  [http-nio-8081-exec-7] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver:Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: update or delete on table "image" violates foreign key constraint "fkarif87131ncfhodvb46btrdws" on table "user_images"<EOL>  Detail: Key (id)=(13f3cfd1-a220-4a79-b5ae-04b0274edd95) is still referenced from table "user_images".] [delete from image where id=?]; SQL [delete from image where id=?]; constraint [fkarif87131ncfhodvb46btrdws]]
+2025-02-19 00:08:28,101 DEBUG [http-nio-8081-exec-7] org.springframework.web.servlet.DispatcherServlet:Completed 500 INTERNAL_SERVER_ERROR
+2025-02-19 00:08:56,798 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,807 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,807 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,808 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,808 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,808 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,808 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,808 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,809 DEBUG [http-nio-8081-exec-6] org.springframework.security.web.FilterChainProxy:Securing POST /login
+2025-02-19 00:08:56,810 DEBUG [http-nio-8081-exec-6] org.springframework.security.web.authentication.AnonymousAuthenticationFilter:Set SecurityContextHolder to anonymous SecurityContext
+2025-02-19 00:08:56,811 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,812 DEBUG [http-nio-8081-exec-6] org.springframework.security.web.FilterChainProxy:Secured POST /login
+2025-02-19 00:08:56,812 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:POST "/login", parameters={}
+2025-02-19 00:08:56,813 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserJwtController#authenticate(LoginRequest)
+2025-02-19 00:08:56,853 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor:Read "application/json;charset=UTF-8" to [com.sohbet.request.LoginRequest@52bcceb4]
+2025-02-19 00:08:57,150 DEBUG [http-nio-8081-exec-6] org.springframework.security.authentication.dao.DaoAuthenticationProvider:Authenticated user
+2025-02-19 00:08:57,152 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:08:57,158 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.DTOresponse.LoginResponse@65a4dc2f]
+2025-02-19 00:08:57,161 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:08:57,171 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,171 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,172 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,173 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,177 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,179 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,180 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,180 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,181 DEBUG [http-nio-8081-exec-6] org.springframework.security.web.FilterChainProxy:Securing GET /users/profile
+2025-02-19 00:08:57,196 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,196 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,197 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,197 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,197 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,197 DEBUG [http-nio-8081-exec-6] org.springframework.security.web.FilterChainProxy:Secured GET /users/profile
+2025-02-19 00:08:57,198 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:GET "/users/profile", parameters={}
+2025-02-19 00:08:57,198 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.UserController#findUserProfile()
+2025-02-19 00:08:57,438 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2025-02-19 00:08:57,439 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [com.sohbet.DTO.UserDTO@5a445000]
+2025-02-19 00:08:57,441 DEBUG [http-nio-8081-exec-6] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:08:57,468 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,468 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,468 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,469 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,469 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,469 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,471 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:08:57,471 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:08:57,635 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:08:57,764 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:08:57,771 DEBUG [http-nio-8081-exec-2] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:09:07,539 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,541 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,542 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,542 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,543 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,543 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,544 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:09:07,544 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,567 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:09:07,584 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:09:07,586 DEBUG [http-nio-8081-exec-4] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
+2025-02-19 00:09:07,722 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,723 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,723 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,723 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,724 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,724 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,724 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:GET "/images/display/13f3cfd1-a220-4a79-b5ae-04b0274edd95", parameters={}
+2025-02-19 00:09:07,724 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping:Mapped to com.sohbet.controller.ImageController#getImage(String)
+2025-02-19 00:09:07,833 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Found 'Content-Type:image/png' in response
+2025-02-19 00:09:07,846 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor:Writing [{-1, -40, -1, -31, 1, -118, 69, 120, 105, 102, 0, 0, 77, 77, 0, 42, 0, 0, 0, 8, 0, 7, 1, 18, 0, 3, 0 (truncated)...]
+2025-02-19 00:09:07,847 DEBUG [http-nio-8081-exec-10] org.springframework.web.servlet.DispatcherServlet:Completed 200 OK
